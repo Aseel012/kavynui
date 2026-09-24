@@ -1,0 +1,1560 @@
+{
+  "families": [
+    {
+      "id": "blocks",
+      "name": "Blocks",
+      "blurb": "Whole sections, ready to drop into a page",
+      "count": 10
+    },
+    {
+      "id": "data",
+      "name": "Maps & Data",
+      "blurb": "Dashboards, maps and live metrics",
+      "count": 8
+    },
+    {
+      "id": "shaders",
+      "name": "Shaders",
+      "blurb": "WebGL backgrounds with a CSS fallback",
+      "count": 6
+    },
+    {
+      "id": "scroll",
+      "name": "Scroll Scenes",
+      "blurb": "Stories that move as people read",
+      "count": 6
+    },
+    {
+      "id": "physics",
+      "name": "Physics",
+      "blurb": "Weight, springs and cloth you can grab",
+      "count": 5
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "blurb": "Pointers that pull, trail and snap",
+      "count": 4
+    },
+    {
+      "id": "actions",
+      "name": "Actions",
+      "blurb": "Buttons that react, confirm and celebrate",
+      "count": 11
+    },
+    {
+      "id": "type",
+      "name": "Type & Motion",
+      "blurb": "Headlines with timing, weight and texture",
+      "count": 15
+    },
+    {
+      "id": "interactive",
+      "name": "Interactive",
+      "blurb": "Things people touch, drag and scrub",
+      "count": 15
+    },
+    {
+      "id": "scenes",
+      "name": "3D Scenes",
+      "blurb": "Depth and perspective without a game engine",
+      "count": 9
+    },
+    {
+      "id": "bento",
+      "name": "Bento & Layout",
+      "blurb": "Feature sections that feel alive",
+      "count": 10
+    },
+    {
+      "id": "marquee",
+      "name": "Hover & Marquee",
+      "blurb": "Social proof and small delights",
+      "count": 8
+    },
+    {
+      "id": "loaders",
+      "name": "Loaders",
+      "blurb": "Waiting that feels designed",
+      "count": 6
+    },
+    {
+      "id": "nav",
+      "name": "Navigation",
+      "blurb": "Getting around, with character",
+      "count": 11
+    },
+    {
+      "id": "bg",
+      "name": "Backgrounds",
+      "blurb": "Quiet motion behind content",
+      "count": 10
+    }
+  ],
+  "components": [
+    {
+      "slug": "edge-dashboard",
+      "name": "Edge Dashboard",
+      "export": "EdgeDashboard",
+      "family": "blocks",
+      "description": "Live analytics dashboard with stat tiles, request map and top countries",
+      "useCase": "Admin overview",
+      "tags": [
+        "original"
+      ],
+      "deps": [
+        "traffic-map.jsx",
+        "world-dots.js"
+      ]
+    },
+    {
+      "slug": "product-hero",
+      "name": "Product Hero",
+      "export": "ProductHero",
+      "family": "blocks",
+      "description": "Headline and actions beside an app window running a deploy",
+      "useCase": "SaaS landing page",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "feature-bento",
+      "name": "Feature Bento",
+      "export": "FeatureBento",
+      "family": "blocks",
+      "description": "Four feature tiles, each with its own small live demo",
+      "useCase": "Features section",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "proof-wall",
+      "name": "Proof Wall",
+      "export": "ProofWall",
+      "family": "blocks",
+      "description": "Logo marquee with a rotating customer quote",
+      "useCase": "Social proof",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "globe-cta",
+      "name": "Globe CTA",
+      "export": "GlobeCta",
+      "family": "blocks",
+      "description": "Closing call to action next to a live dotted globe",
+      "useCase": "Bottom-of-page CTA",
+      "tags": [
+        "original"
+      ],
+      "deps": [
+        "edge-globe.jsx",
+        "world-dots.js"
+      ]
+    },
+    {
+      "slug": "changelog-feed",
+      "name": "Changelog Feed",
+      "export": "ChangelogFeed",
+      "family": "blocks",
+      "description": "Release timeline whose entries expand in place",
+      "useCase": "Changelog page",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "sign-in-card",
+      "name": "Sign-in Card",
+      "export": "SignInCard",
+      "family": "blocks",
+      "description": "Magic-link sign-in with validation, shake and sent state",
+      "useCase": "Auth screen",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "faq-accordion",
+      "name": "FAQ Accordion",
+      "export": "FaqAccordion",
+      "family": "blocks",
+      "description": "One-open-at-a-time questions with a plus that becomes a minus",
+      "useCase": "Pricing page FAQ",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "status-board",
+      "name": "Status Board",
+      "export": "StatusBoard",
+      "family": "blocks",
+      "description": "Overall system state plus 90-day history per service",
+      "useCase": "Public status page",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "wordmark-footer",
+      "name": "Wordmark Footer",
+      "export": "WordmarkFooter",
+      "family": "blocks",
+      "description": "Link columns over a giant wordmark that rises in",
+      "useCase": "Site footer",
+      "tags": [
+        "new",
+        "original"
+      ]
+    },
+    {
+      "slug": "traffic-map",
+      "name": "Traffic Map",
+      "export": "TrafficMap",
+      "family": "data",
+      "description": "Dotted world map with live request arcs between edge cities",
+      "useCase": "Network overview",
+      "tags": [
+        "original"
+      ],
+      "deps": [
+        "world-dots.js"
+      ]
+    },
+    {
+      "slug": "edge-globe",
+      "name": "Edge Globe",
+      "export": "EdgeGlobe",
+      "family": "data",
+      "description": "Rotating globe of real land dots with arcs. Drag to spin",
+      "useCase": "Global presence",
+      "tags": [
+        "original"
+      ],
+      "deps": [
+        "world-dots.js"
+      ]
+    },
+    {
+      "slug": "uptime-bars",
+      "name": "Uptime Bars",
+      "export": "UptimeBars",
+      "family": "data",
+      "description": "90-day status bars that rise in, with a per-day tooltip",
+      "useCase": "Service health",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "latency-stream",
+      "name": "Latency Stream",
+      "export": "LatencyStream",
+      "family": "data",
+      "description": "Live latency line streaming from the right with an average",
+      "useCase": "Performance widget",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "threat-feed",
+      "name": "Threat Feed",
+      "export": "ThreatFeed",
+      "family": "data",
+      "description": "Security events slide into a live list; hover pauses it",
+      "useCase": "Firewall activity",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "region-bars",
+      "name": "Region Bars",
+      "export": "RegionBars",
+      "family": "data",
+      "description": "Top countries by traffic, re-ranking as shares shift",
+      "useCase": "Traffic breakdown",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "request-heatmap",
+      "name": "Request Heatmap",
+      "export": "RequestHeatmap",
+      "family": "data",
+      "description": "Hour by weekday grid that fills on a diagonal wave",
+      "useCase": "Usage patterns",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "cache-ring",
+      "name": "Cache Ring",
+      "export": "CacheRing",
+      "family": "data",
+      "description": "Donut ring and number spring to each new ratio",
+      "useCase": "Cache hit ratio",
+      "tags": [
+        "new",
+        "original"
+      ]
+    },
+    {
+      "slug": "liquid-button",
+      "name": "Liquid Button",
+      "export": "LiquidButton",
+      "family": "actions",
+      "description": "Gooey blobs merge and split on hover",
+      "useCase": "Primary CTA",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "ember-button",
+      "name": "Ember Button",
+      "export": "EmberButton",
+      "family": "actions",
+      "description": "Edge heat-shimmer builds as the cursor gets closer",
+      "useCase": "Checkout \"Pay now\"",
+      "tags": []
+    },
+    {
+      "slug": "magnet-pill",
+      "name": "Magnet Pill",
+      "export": "MagnetPill",
+      "family": "actions",
+      "description": "Label drifts toward the cursor, pill stretches back",
+      "useCase": "Newsletter signup",
+      "tags": []
+    },
+    {
+      "slug": "hold-to-confirm",
+      "name": "Hold to Confirm",
+      "export": "HoldToConfirm",
+      "family": "actions",
+      "description": "Ring fills while held, then snaps to a check",
+      "useCase": "Delete account",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "ink-bleed-button",
+      "name": "Ink Bleed Button",
+      "export": "InkBleedButton",
+      "family": "actions",
+      "description": "Fill floods in from the exact entry point",
+      "useCase": "Pricing CTA",
+      "tags": []
+    },
+    {
+      "slug": "split-flap-button",
+      "name": "Split Flap Button",
+      "export": "SplitFlapButton",
+      "family": "actions",
+      "description": "Label flips like a departures board on state change",
+      "useCase": "Seat booking",
+      "tags": []
+    },
+    {
+      "slug": "stamp-button",
+      "name": "Stamp Button",
+      "export": "StampButton",
+      "family": "actions",
+      "description": "Squash-and-press that leaves an embossed seal",
+      "useCase": "Approve invoice",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "orbit-button",
+      "name": "Orbit Button",
+      "export": "OrbitButton",
+      "family": "actions",
+      "description": "A spark orbits the border while work runs",
+      "useCase": "AI \"Generate\"",
+      "tags": []
+    },
+    {
+      "slug": "fuse-button",
+      "name": "Fuse Button",
+      "export": "FuseButton",
+      "family": "actions",
+      "description": "A spark burns along the border as a countdown",
+      "useCase": "Undo send",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "shutter-button",
+      "name": "Shutter Button",
+      "export": "ShutterButton",
+      "family": "actions",
+      "description": "Aperture blades open to reveal the icon",
+      "useCase": "Photo upload",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "pixel-melt-button",
+      "name": "Pixel Melt Button",
+      "export": "PixelMeltButton",
+      "family": "actions",
+      "description": "Label melts into pixels on success",
+      "useCase": "Form submit",
+      "tags": [
+        "new"
+      ]
+    },
+    {
+      "slug": "text-scramble",
+      "name": "Text Scramble",
+      "export": "TextScramble",
+      "family": "type",
+      "description": "Letters decode from noise, left to right, again on hover",
+      "useCase": "Dev-tool headline",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "shimmer-text",
+      "name": "Shimmer Text",
+      "export": "ShimmerText",
+      "family": "type",
+      "description": "A light band sweeps across muted text",
+      "useCase": "\"Thinking\" label",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "flip-words",
+      "name": "Flip Words",
+      "export": "FlipWords",
+      "family": "type",
+      "description": "The last word rolls to the next, letter by letter",
+      "useCase": "Hero tagline",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "odometer-figures",
+      "name": "Odometer Figures",
+      "export": "OdometerFigures",
+      "family": "type",
+      "description": "Digits roll with a mechanical overshoot",
+      "useCase": "Revenue dashboard",
+      "tags": []
+    },
+    {
+      "slug": "ink-write",
+      "name": "Ink Write",
+      "export": "InkWrite",
+      "family": "type",
+      "description": "Strokes draw in along a handwritten path",
+      "useCase": "Onboarding welcome",
+      "tags": []
+    },
+    {
+      "slug": "redact-reveal",
+      "name": "Redact Reveal",
+      "export": "RedactReveal",
+      "family": "type",
+      "description": "Black bars slide off words one by one",
+      "useCase": "Security product hero",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "kerning-breath",
+      "name": "Kerning Breath",
+      "export": "KerningBreath",
+      "family": "type",
+      "description": "Letter spacing follows scroll velocity",
+      "useCase": "Editorial headline",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "caret-rewrite",
+      "name": "Caret Rewrite",
+      "export": "CaretRewrite",
+      "family": "type",
+      "description": "Types, backspaces and retypes with a live caret",
+      "useCase": "AI taglines",
+      "tags": []
+    },
+    {
+      "slug": "weight-wave",
+      "name": "Weight Wave",
+      "export": "WeightWave",
+      "family": "type",
+      "description": "Variable-font weight ripples under the cursor",
+      "useCase": "Brand headline",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "echo-headline",
+      "name": "Echo Headline",
+      "export": "EchoHeadline",
+      "family": "type",
+      "description": "Outline copies trail behind the text",
+      "useCase": "Event landing",
+      "tags": []
+    },
+    {
+      "slug": "scan-line-text",
+      "name": "Scan Line Text",
+      "export": "ScanLineText",
+      "family": "type",
+      "description": "A CRT scan line passes and sharpens the words",
+      "useCase": "Dev tool launch",
+      "tags": []
+    },
+    {
+      "slug": "dial-text",
+      "name": "Dial Text",
+      "export": "DialText",
+      "family": "type",
+      "description": "Each letter spins on a combination-lock wheel",
+      "useCase": "Password reset",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "highlighter-sweep",
+      "name": "Highlighter Sweep",
+      "export": "HighlighterSweep",
+      "family": "type",
+      "description": "A marker stroke draws under the key phrase",
+      "useCase": "Blog emphasis",
+      "tags": []
+    },
+    {
+      "slug": "notif-stack",
+      "name": "Notification Stack",
+      "export": "NotifStack",
+      "family": "interactive",
+      "description": "Notifications pile up; tap to fan them out",
+      "useCase": "Activity inbox",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "expand-cards",
+      "name": "Expand Cards",
+      "export": "ExpandCards",
+      "family": "interactive",
+      "description": "Panels share a row; the active one expands",
+      "useCase": "Product pillars",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "morph-dialog",
+      "name": "Morph Dialog",
+      "export": "MorphDialog",
+      "family": "interactive",
+      "description": "A card morphs into a dialog with a shared layout",
+      "useCase": "Item details",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "lens-loupe",
+      "name": "Lens Loupe",
+      "export": "LensLoupe",
+      "family": "interactive",
+      "description": "Magnifier follows the cursor with live zoom",
+      "useCase": "Product photos",
+      "tags": []
+    },
+    {
+      "slug": "deck-shuffle",
+      "name": "Deck Shuffle",
+      "export": "DeckShuffle",
+      "family": "interactive",
+      "description": "Top card flicks away with real physics",
+      "useCase": "Onboarding tips",
+      "tags": []
+    },
+    {
+      "slug": "vinyl-deck",
+      "name": "Vinyl Deck",
+      "export": "VinylDeck",
+      "family": "interactive",
+      "description": "Record spins, drag the platter to scrub",
+      "useCase": "Podcast player",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "before-after-blade",
+      "name": "Before / After Blade",
+      "export": "BeforeAfterBlade",
+      "family": "interactive",
+      "description": "Angled blade wipes between two images",
+      "useCase": "Photo editor",
+      "tags": []
+    },
+    {
+      "slug": "globe-pins",
+      "name": "Globe Pins",
+      "export": "GlobePins",
+      "family": "interactive",
+      "description": "Dot-matrix globe turns with pulsing pins",
+      "useCase": "Office locations",
+      "tags": []
+    },
+    {
+      "slug": "terminal-replay",
+      "name": "Terminal Replay",
+      "export": "TerminalReplay",
+      "family": "interactive",
+      "description": "Recorded terminal session with real timing",
+      "useCase": "CLI docs",
+      "tags": []
+    },
+    {
+      "slug": "palette-fan",
+      "name": "Palette Fan",
+      "export": "PaletteFan",
+      "family": "interactive",
+      "description": "Swatches fan out like paint chips",
+      "useCase": "Theme picker",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "tilt-pass",
+      "name": "Tilt Pass",
+      "export": "TiltPass",
+      "family": "interactive",
+      "description": "Card tilts in 3D with glare that tracks light",
+      "useCase": "Membership card",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "route-draw",
+      "name": "Route Draw",
+      "export": "RouteDraw",
+      "family": "interactive",
+      "description": "Route line draws between stops, marker follows",
+      "useCase": "Delivery tracking",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "polaroid-drop",
+      "name": "Polaroid Drop",
+      "export": "PolaroidDrop",
+      "family": "interactive",
+      "description": "Photos drop, settle and can be rearranged",
+      "useCase": "Travel portfolio",
+      "tags": []
+    },
+    {
+      "slug": "waveform-scrubber",
+      "name": "Waveform Scrubber",
+      "export": "WaveformScrubber",
+      "family": "interactive",
+      "description": "Bars react to hover, click to seek",
+      "useCase": "Voice notes",
+      "tags": []
+    },
+    {
+      "slug": "paper-fold-reveal",
+      "name": "Paper Fold Reveal",
+      "export": "PaperFoldReveal",
+      "family": "interactive",
+      "description": "Content unfolds panel by panel like a map",
+      "useCase": "Trip itinerary",
+      "tags": [
+        "original",
+        "new"
+      ]
+    },
+    {
+      "slug": "isometric-stack",
+      "name": "Isometric Stack",
+      "export": "IsometricStack",
+      "family": "scenes",
+      "description": "App layers separate isometrically on scroll",
+      "useCase": "Infra \"how it works\"",
+      "tags": []
+    },
+    {
+      "slug": "turntable-viewer",
+      "name": "Turntable Viewer",
+      "export": "TurntableViewer",
+      "family": "scenes",
+      "description": "Drag to spin a product through 360\u00b0",
+      "useCase": "Sneaker store",
+      "tags": []
+    },
+    {
+      "slug": "cube-metrics",
+      "name": "Cube Metrics",
+      "export": "CubeMetrics",
+      "family": "scenes",
+      "description": "KPI cube rolls face to face",
+      "useCase": "Analytics summary",
+      "tags": []
+    },
+    {
+      "slug": "paper-plane-path",
+      "name": "Paper Plane Path",
+      "export": "PaperPlanePath",
+      "family": "scenes",
+      "description": "Plane flies along the scroll path",
+      "useCase": "Send confirmation",
+      "tags": []
+    },
+    {
+      "slug": "server-rack",
+      "name": "Server Rack",
+      "export": "ServerRack",
+      "family": "scenes",
+      "description": "Rack LEDs blink with each request",
+      "useCase": "Status page",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "shortcut-caps",
+      "name": "Shortcut Caps",
+      "export": "ShortcutCaps",
+      "family": "scenes",
+      "description": "Keycaps press in sequence to teach a shortcut",
+      "useCase": "Docs hints",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "spotlight-card",
+      "name": "Spotlight Card",
+      "export": "SpotlightCard",
+      "family": "bento",
+      "description": "Cursor light that also lights the border under it",
+      "useCase": "Feature card",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "beam-border",
+      "name": "Beam Border",
+      "export": "BeamBorder",
+      "family": "bento",
+      "description": "A single beam travels around the card edge",
+      "useCase": "Recommended plan",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "ledger-bento",
+      "name": "Ledger Bento",
+      "export": "LedgerBento",
+      "family": "bento",
+      "description": "Finance cells update in place",
+      "useCase": "Fintech features",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "timeline-rail",
+      "name": "Timeline Rail",
+      "export": "TimelineRail",
+      "family": "bento",
+      "description": "Events snap along a scroll rail",
+      "useCase": "Changelog",
+      "tags": []
+    },
+    {
+      "slug": "masonry-drift",
+      "name": "Masonry Drift",
+      "export": "MasonryDrift",
+      "family": "bento",
+      "description": "Columns drift at different speeds",
+      "useCase": "Portfolio",
+      "tags": []
+    },
+    {
+      "slug": "pricing-morph",
+      "name": "Pricing Morph",
+      "export": "PricingMorph",
+      "family": "bento",
+      "description": "Plan cards reshape when billing changes",
+      "useCase": "SaaS pricing",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "focus-grid",
+      "name": "Focus Grid",
+      "export": "FocusGrid",
+      "family": "bento",
+      "description": "Hovered cell sharpens, the rest blur back",
+      "useCase": "Feature overview",
+      "tags": []
+    },
+    {
+      "slug": "kanban-flow",
+      "name": "Kanban Flow",
+      "export": "KanbanFlow",
+      "family": "bento",
+      "description": "Cards glide between columns on their own",
+      "useCase": "Project tool hero",
+      "tags": []
+    },
+    {
+      "slug": "stat-wall",
+      "name": "Stat Wall",
+      "export": "StatWall",
+      "family": "bento",
+      "description": "Tiles count up in a checkerboard stagger",
+      "useCase": "Impact report",
+      "tags": []
+    },
+    {
+      "slug": "device-unveil",
+      "name": "Device Unveil",
+      "export": "DeviceUnveil",
+      "family": "bento",
+      "description": "Device frame reveals the UI on scroll",
+      "useCase": "App launch",
+      "tags": [
+        "new"
+      ]
+    },
+    {
+      "slug": "ticker-tape",
+      "name": "Ticker Tape",
+      "export": "TickerTape",
+      "family": "marquee",
+      "description": "Price ticker with colored deltas",
+      "useCase": "Crypto dashboard",
+      "tags": []
+    },
+    {
+      "slug": "review-rail",
+      "name": "Review Rail",
+      "export": "ReviewRail",
+      "family": "marquee",
+      "description": "Two opposing rows that pause on hover",
+      "useCase": "Social proof",
+      "tags": []
+    },
+    {
+      "slug": "footnote-pop",
+      "name": "Footnote Pop",
+      "export": "FootnotePop",
+      "family": "marquee",
+      "description": "Superscript opens an inline source card",
+      "useCase": "Docs and blogs",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "avatar-orbit",
+      "name": "Avatar Orbit",
+      "export": "AvatarOrbit",
+      "family": "marquee",
+      "description": "Avatars orbit a central mark",
+      "useCase": "Community page",
+      "tags": []
+    },
+    {
+      "slug": "badge-rain",
+      "name": "Badge Rain",
+      "export": "BadgeRain",
+      "family": "marquee",
+      "description": "Tags fall and pile up with physics",
+      "useCase": "Tech stack",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "ribbon-rows",
+      "name": "Ribbon Rows",
+      "export": "RibbonRows",
+      "family": "marquee",
+      "description": "Hover pulls a ribbon across the row",
+      "useCase": "Job listings",
+      "tags": []
+    },
+    {
+      "slug": "logo-constellation",
+      "name": "Logo Constellation",
+      "export": "LogoConstellation",
+      "family": "marquee",
+      "description": "Logos linked by lines that pulse",
+      "useCase": "Integrations",
+      "tags": []
+    },
+    {
+      "slug": "reaction-burst",
+      "name": "Reaction Burst",
+      "export": "ReactionBurst",
+      "family": "marquee",
+      "description": "Reactions float up and fade on click",
+      "useCase": "Live comments",
+      "tags": [
+        "original",
+        "new"
+      ]
+    },
+    {
+      "slug": "breath-dots",
+      "name": "Breath Dots",
+      "export": "BreathDots",
+      "family": "loaders",
+      "description": "Three dots inhale and exhale in sequence",
+      "useCase": "AI thinking",
+      "tags": []
+    },
+    {
+      "slug": "ring-weave",
+      "name": "Ring Weave",
+      "export": "RingWeave",
+      "family": "loaders",
+      "description": "Two rings interlock and swap",
+      "useCase": "Syncing",
+      "tags": []
+    },
+    {
+      "slug": "stitch-progress",
+      "name": "Stitch Progress",
+      "export": "StitchProgress",
+      "family": "loaders",
+      "description": "A thread stitches across the bar",
+      "useCase": "File upload",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "block-builder",
+      "name": "Block Builder",
+      "export": "BlockBuilder",
+      "family": "loaders",
+      "description": "Blocks drop and stack into a row",
+      "useCase": "Build logs",
+      "tags": []
+    },
+    {
+      "slug": "hourglass-flip",
+      "name": "Hourglass Flip",
+      "export": "HourglassFlip",
+      "family": "loaders",
+      "description": "Sand drains, glass flips",
+      "useCase": "Queue position",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "signal-bars",
+      "name": "Signal Bars",
+      "export": "SignalBars",
+      "family": "loaders",
+      "description": "Bars climb like signal strength",
+      "useCase": "Connecting",
+      "tags": [
+        "new"
+      ]
+    },
+    {
+      "slug": "dock-magnify",
+      "name": "Dock Magnify",
+      "export": "DockMagnify",
+      "family": "nav",
+      "description": "Icons grow with cursor distance on a spring",
+      "useCase": "App launcher",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "tab-lens",
+      "name": "Tab Lens",
+      "export": "TabLens",
+      "family": "nav",
+      "description": "A lens slides between items and magnifies",
+      "useCase": "Marketing nav",
+      "tags": []
+    },
+    {
+      "slug": "pocket-nav",
+      "name": "Pocket Nav",
+      "export": "PocketNav",
+      "family": "nav",
+      "description": "Nav folds into a floating pill on scroll",
+      "useCase": "Long landing pages",
+      "tags": []
+    },
+    {
+      "slug": "crumb-fold",
+      "name": "Crumb Fold",
+      "export": "CrumbFold",
+      "family": "nav",
+      "description": "Deep breadcrumbs fold into dots",
+      "useCase": "File manager",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "stack-menu",
+      "name": "Stack Menu",
+      "export": "StackMenu",
+      "family": "nav",
+      "description": "Menu items fan down like cards",
+      "useCase": "Mobile menu",
+      "tags": []
+    },
+    {
+      "slug": "command-rail",
+      "name": "Command Rail",
+      "export": "CommandRail",
+      "family": "nav",
+      "description": "Side rail with key hints, expands on hover",
+      "useCase": "Dashboards",
+      "tags": []
+    },
+    {
+      "slug": "section-beads",
+      "name": "Section Beads",
+      "export": "SectionBeads",
+      "family": "nav",
+      "description": "Beads fill as you read each section",
+      "useCase": "Docs pages",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "snap-sheet",
+      "name": "Snap Sheet",
+      "export": "SnapSheet",
+      "family": "nav",
+      "description": "Bottom sheet with snap points",
+      "useCase": "Mobile checkout",
+      "tags": []
+    },
+    {
+      "slug": "flow-chips",
+      "name": "Flow Chips",
+      "export": "FlowChips",
+      "family": "nav",
+      "description": "Filter chips reorder with FLIP motion",
+      "useCase": "Store filters",
+      "tags": []
+    },
+    {
+      "slug": "stepper-morph",
+      "name": "Stepper Morph",
+      "export": "StepperMorph",
+      "family": "nav",
+      "description": "Step line morphs into a check",
+      "useCase": "Onboarding",
+      "tags": []
+    },
+    {
+      "slug": "workspace-shuffle",
+      "name": "Workspace Shuffle",
+      "export": "WorkspaceShuffle",
+      "family": "nav",
+      "description": "Workspaces slide in as a card stack",
+      "useCase": "SaaS switcher",
+      "tags": [
+        "new"
+      ]
+    },
+    {
+      "slug": "topo-lines",
+      "name": "Topo Lines",
+      "export": "TopoLines",
+      "family": "bg",
+      "description": "Contour lines shift like a live map",
+      "useCase": "Outdoor brand",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "halftone-tide",
+      "name": "Halftone Tide",
+      "export": "HalftoneTide",
+      "family": "bg",
+      "description": "Dot field swells like a tide",
+      "useCase": "Product hero",
+      "tags": []
+    },
+    {
+      "slug": "grain-leak",
+      "name": "Grain Leak",
+      "export": "GrainLeak",
+      "family": "bg",
+      "description": "Film grain with a slow light leak",
+      "useCase": "Agency site",
+      "tags": []
+    },
+    {
+      "slug": "blueprint",
+      "name": "Blueprint",
+      "export": "Blueprint",
+      "family": "bg",
+      "description": "Drafting grid with lines drawing in",
+      "useCase": "Architecture",
+      "tags": []
+    },
+    {
+      "slug": "night-transit",
+      "name": "Night Transit",
+      "export": "NightTransit",
+      "family": "bg",
+      "description": "A night city from a moving train: three skyline depths, passing lamps, road light trails",
+      "useCase": "Travel app",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "rain-glass",
+      "name": "Rain Glass",
+      "export": "RainGlass",
+      "family": "bg",
+      "description": "Droplets gather and run on glass",
+      "useCase": "Weather app",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "circuit-pulse",
+      "name": "Circuit Pulse",
+      "export": "CircuitPulse",
+      "family": "bg",
+      "description": "Traces carry pulses across a board",
+      "useCase": "AI infra",
+      "tags": []
+    },
+    {
+      "slug": "ink-smoke",
+      "name": "Ink Smoke",
+      "export": "InkSmoke",
+      "family": "bg",
+      "description": "Monochrome smoke drifts and folds",
+      "useCase": "Luxury brand",
+      "tags": []
+    },
+    {
+      "slug": "dune-ridges",
+      "name": "Dune Ridges",
+      "export": "DuneRidges",
+      "family": "bg",
+      "description": "Ridges shift slowly like wind on sand",
+      "useCase": "Retreat booking",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "slug": "tile-flip-wall",
+      "name": "Tile Flip Wall",
+      "export": "TileFlipWall",
+      "family": "bg",
+      "description": "Tiles flip to reveal an image",
+      "useCase": "Portfolio hero",
+      "tags": [
+        "new"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "shader-grain",
+      "name": "Film Grain",
+      "export": "ShaderGrain",
+      "family": "shaders",
+      "description": "Warm light through live film grain, drawn on the GPU",
+      "useCase": "Hero backdrop",
+      "deps": [
+        "gl-canvas.js"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "shader-ink",
+      "name": "Ink Current",
+      "export": "ShaderInk",
+      "family": "shaders",
+      "description": "Slow fluid currents that bend away from the pointer",
+      "useCase": "Launch page",
+      "deps": [
+        "gl-canvas.js"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "shader-veil",
+      "name": "Polar Veil",
+      "export": "ShaderVeil",
+      "family": "shaders",
+      "description": "Aurora curtains with fine rays over a starfield",
+      "useCase": "Sign-up screen",
+      "deps": [
+        "gl-canvas.js"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "shader-molten",
+      "name": "Molten Glass",
+      "export": "ShaderMolten",
+      "family": "shaders",
+      "description": "Blobs that merge and split; press to grow your own",
+      "useCase": "Event page",
+      "deps": [
+        "gl-canvas.js"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "shader-lattice",
+      "name": "Wave Lattice",
+      "export": "ShaderLattice",
+      "family": "shaders",
+      "description": "A dot grid carrying waves, rippling out from the pointer",
+      "useCase": "Dev tool hero",
+      "deps": [
+        "gl-canvas.js"
+      ]
+    },
+    {
+      "tags": [
+        "new",
+        "original"
+      ],
+      "slug": "shader-caustics",
+      "name": "Pool Light",
+      "export": "ShaderCaustics",
+      "family": "shaders",
+      "description": "Light dancing on a pool floor, pulled toward the pointer",
+      "useCase": "Travel landing",
+      "deps": [
+        "gl-canvas.js"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "pinned-chapters",
+      "name": "Pinned Chapters",
+      "export": "PinnedChapters",
+      "family": "scroll",
+      "layout": "fill",
+      "description": "The story scrolls while the picture stays pinned and changes",
+      "useCase": "Product tour"
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "depth-story",
+      "name": "Depth Story",
+      "export": "DepthStory",
+      "family": "scroll",
+      "layout": "fill",
+      "description": "Ridges, sun and words moving at different depths",
+      "useCase": "Travel story"
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "reading-meter",
+      "name": "Reading Meter",
+      "export": "ReadingMeter",
+      "family": "scroll",
+      "layout": "fill",
+      "description": "Top progress bar and a ring with minutes left",
+      "useCase": "Blog post"
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "sideways-gallery",
+      "name": "Sideways Gallery",
+      "export": "SidewaysGallery",
+      "family": "scroll",
+      "layout": "fill",
+      "description": "Scroll down, the rail of case studies moves left",
+      "useCase": "Portfolio"
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "word-light",
+      "name": "Word Light",
+      "export": "WordLight",
+      "family": "scroll",
+      "layout": "fill",
+      "description": "A paragraph that lights up word by word as you read",
+      "useCase": "About page"
+    },
+    {
+      "tags": [
+        "new",
+        "original"
+      ],
+      "slug": "zoom-portal",
+      "name": "Zoom Portal",
+      "export": "ZoomPortal",
+      "family": "scroll",
+      "layout": "fill",
+      "description": "The headline steps back and the product grows to fill the view",
+      "useCase": "Product reveal"
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "tether-tag",
+      "name": "Tether Tag",
+      "export": "TetherTag",
+      "family": "physics",
+      "layout": "fill",
+      "description": "A promo tag on a chain you can grab and swing",
+      "useCase": "Sale badge",
+      "deps": [
+        "canvas-loop.js"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "cloth-banner",
+      "name": "Cloth Banner",
+      "export": "ClothBanner",
+      "family": "physics",
+      "layout": "fill",
+      "description": "A striped banner of real cloth, moving in the wind",
+      "useCase": "Launch announcement",
+      "deps": [
+        "canvas-loop.js"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "topic-bubbles",
+      "name": "Topic Bubbles",
+      "export": "TopicBubbles",
+      "family": "physics",
+      "layout": "fill",
+      "description": "Topics drop in with weight; tap to pick, drag to throw",
+      "useCase": "Onboarding interests",
+      "deps": [
+        "canvas-loop.js"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "jelly-grid",
+      "name": "Jelly Grid",
+      "export": "JellyGrid",
+      "family": "physics",
+      "layout": "fill",
+      "description": "Dots on springs that give way and settle back",
+      "useCase": "Empty state",
+      "deps": [
+        "canvas-loop.js"
+      ]
+    },
+    {
+      "tags": [
+        "new",
+        "original"
+      ],
+      "slug": "toss-deck",
+      "name": "Toss Deck",
+      "export": "TossDeck",
+      "family": "physics",
+      "layout": "fill",
+      "description": "Cards you can throw; they keep momentum and bounce",
+      "useCase": "Moodboard"
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "iron-filings",
+      "name": "Iron Filings",
+      "export": "IronFilings",
+      "family": "cursor",
+      "layout": "fill",
+      "description": "Strokes that turn to face the pointer like filings",
+      "useCase": "Hero backdrop",
+      "deps": [
+        "canvas-loop.js"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "comet-trail",
+      "name": "Comet Trail",
+      "export": "CometTrail",
+      "family": "cursor",
+      "layout": "fill",
+      "description": "A spring-chain comet that swings behind the pointer",
+      "useCase": "Creative portfolio",
+      "deps": [
+        "canvas-loop.js"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "snap-cursor",
+      "name": "Snap Cursor",
+      "export": "SnapCursor",
+      "family": "cursor",
+      "layout": "fill",
+      "description": "A custom cursor that wraps whatever link you hover",
+      "useCase": "Agency header"
+    },
+    {
+      "tags": [
+        "new",
+        "original"
+      ],
+      "slug": "lean-grid",
+      "name": "Lean Grid",
+      "export": "LeanGrid",
+      "family": "cursor",
+      "layout": "fill",
+      "description": "Tiles that lean toward the pointer in 3D",
+      "useCase": "Integrations wall"
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "swipe-stack",
+      "name": "Swipe Stack",
+      "export": "SwipeStack",
+      "family": "scenes",
+      "description": "A 3D card stack: swipe right to save, left to pass",
+      "useCase": "Job matching"
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "ring-carousel",
+      "name": "Ring Carousel",
+      "export": "RingCarousel",
+      "family": "scenes",
+      "description": "Cards on a 3D ring you drag or turn with arrow keys",
+      "useCase": "Template picker"
+    },
+    {
+      "tags": [
+        "new",
+        "original"
+      ],
+      "slug": "layer-explode",
+      "name": "Layer Explode",
+      "export": "LayerExplode",
+      "family": "scenes",
+      "description": "A card that splits into its design layers in 3D",
+      "useCase": "Design system page"
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "dust-letters",
+      "name": "Dust Letters",
+      "export": "DustLetters",
+      "family": "type",
+      "layout": "fill",
+      "description": "A headline of dust that scatters and drifts home",
+      "useCase": "Brand hero",
+      "deps": [
+        "canvas-loop.js"
+      ]
+    },
+    {
+      "tags": [
+        "new",
+        "original"
+      ],
+      "slug": "swarm-words",
+      "name": "Swarm Words",
+      "export": "SwarmWords",
+      "family": "type",
+      "layout": "fill",
+      "description": "Particles that re-form into each word in turn",
+      "useCase": "Hero tagline",
+      "deps": [
+        "canvas-loop.js",
+        "dust-letters.jsx"
+      ]
+    }
+  ]
+}

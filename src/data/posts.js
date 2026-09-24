@@ -1,0 +1,66 @@
+// Blog posts. Newest first. Body blocks: { p } paragraph, { h2 } subheading.
+export const posts = [
+  {
+    slug: 'dark-mode-first-component-design',
+    title: 'Dark-mode-first, but never dark-mode-only',
+    date: '2026-09-24',
+    minutes: 3,
+    excerpt: 'Every kavynUI component is designed dark-first with a real light theme - how nine tokens keep the whole library consistent in both modes.',
+    body: [
+      { p: 'Designing for dark mode first is a choice about contrast, not a choice about users. Dark surfaces make glow, grain and motion legible in a way white never will - but a library that only works in the dark is a library you cannot ship. Every kavynUI component renders in both, switched by a single class on the root element.' },
+      { h2: 'Tokens, not colors' },
+      { p: 'No component hard-codes a surface color. Backgrounds, lines, text and accents come from a small token set (bg, panel, line, tx, mute, acc), and each token has a dark and a light definition. A block like the Edge Dashboard - stat tiles, a request map, country bars - reads correctly in either mode because it only ever asks for "panel" and "line", never a hex value.' },
+      { h2: 'What changes between modes' },
+      { p: 'More than inversion. Glows dim instead of brighten, grain opacity drops, and shadows replace bloom. The light theme is tuned by hand, not generated - automatic inversion is how you end up with neon text on paper.' },
+      { p: 'Toggle the sun icon in the navbar and browse the whole catalog in both modes. If a component ever looks wrong in one, that is a bug.' },
+    ],
+  },
+  {
+    slug: 'physics-you-can-ship',
+    title: 'Physics playgrounds you can actually ship',
+    date: '2026-09-24',
+    minutes: 4,
+    excerpt: 'Cloth banners, tethered sale tags and throwable topic bubbles - real spring simulation tuned to feel playful without eating the main thread.',
+    body: [
+      { p: 'Physics on the web usually means one of two things: a demo that melts your frame rate, or a "spring" that is really just an easing curve wearing a costume. kavynUI\'s five physics pieces (Tether Tag, Cloth Banner, Topic Bubbles, Jelly Grid, Toss Deck) run real verlet and spring integration - tuned hard enough that they idle near zero cost.' },
+      { h2: 'Simulation with a budget' },
+      { p: 'Each piece runs a fixed-timestep integrator with a frame budget. If a frame overruns, the simulation takes a smaller step rather than spiraling. When nothing is moving and no pointer is near, the loop parks itself completely - a sleeping simulation costs nothing.' },
+      { h2: 'Interaction first' },
+      { p: 'Topic Bubbles is the pattern we are proudest of: an onboarding interest picker where tapping selects, dragging throws, and arrow keys work too. The physics is the fun, but the component is a form input at heart - every selection is keyboard reachable and announced to screen readers. Tether Tag turns a sale badge into a pendulum you can grab and swing, and it still reads as an ordinary link to assistive tech.' },
+      { h2: 'Where to use them' },
+      { p: 'Pricing pages, empty states, onboarding flows - anywhere a static badge would do the job but a playful one does it better. Keep physics off forms and checkout; delight has a time and place.' },
+    ],
+  },
+  {
+    slug: 'scroll-scenes-inside-a-card',
+    title: 'Scroll scenes that work inside a card, not just full pages',
+    date: '2026-09-24',
+    minutes: 4,
+    excerpt: 'Parallax stories and pinned chapters usually demand the whole window. kavynUI\'s scroll scenes measure their own container, so they work in a modal, a sidebar or a product page slot.',
+    body: [
+      { p: 'Scroll-driven animation libraries almost always assume one thing: the window is the scroller. That works for a marketing one-pager and falls apart the moment your design puts a story inside a card, a settings panel or a docs sidebar. kavynUI\'s six scroll scenes (Pinned Chapters, Depth Story, Reading Meter, Sideways Gallery, Word Light, Zoom Portal) attach to the nearest scrolling container instead.' },
+      { h2: 'Why container scroll matters' },
+      { p: 'A product tour pinned to the window hijacks the whole page. The same tour pinned to its own box becomes a component: drop it into a pricing page next to a comparison table and both scroll independently. Every scene measures its container\'s scroll position with a passive listener and derives progress locally, so nesting scenes inside scenes never double-counts.' },
+      { h2: 'Reading Meter as an example' },
+      { p: 'Reading Meter shows a progress bar and minutes remaining for an article. On a blog page it tracks the window; embedded in a docs panel it tracks the panel. The component does not know or care which - it asks its parent for the scroll geometry and animates from that.' },
+      { p: 'All six scenes respect reduced motion (content appears fully, without scrubbing) and clean up their listeners on unmount, so a route change never leaves a ghost animation running.' },
+    ],
+  },
+  {
+    slug: 'shader-backgrounds-that-never-break',
+    title: 'WebGL shader backgrounds that never break your page',
+    date: '2026-09-24',
+    minutes: 5,
+    excerpt: 'A shader that crashes on a weak GPU is worse than no shader at all. Here is the fallback ladder every kavynUI shader climbs down before it gives up.',
+    body: [
+      { p: 'Most WebGL demos are written on a fast laptop and tested on nothing else. The first time they meet an old phone with a software renderer, they either freeze the tab or throw a black rectangle where the hero was supposed to be. kavynUI\'s six shaders (Film Grain, Ink Current, Polar Veil, Molten Glass, Wave Lattice, Pool Light) are built around the opposite assumption: the GPU is a bonus, never a requirement.' },
+      { h2: 'The fallback ladder' },
+      { p: 'Every shader paints a hand-tuned CSS gradient first. That gradient is the design - the WebGL layer only fades in once a real hardware context is up and running frames. If the browser has no WebGL, if context creation returns a software-only renderer, or if the GPU process crashes mid-session, the gradient simply stays. Nothing errors, nothing goes black, and the layout never shifts.' },
+      { h2: 'Performance is a dial, not a switch' },
+      { p: 'Shaders render below screen resolution from the start, then watch their own frame times. When frames slow down, resolution steps down again until motion is smooth. When the element scrolls off screen or the tab goes to the background, rendering pauses entirely. Visitors on reduced-motion settings get a single still frame - the mood of the shader without the motion.' },
+      { h2: 'Try it' },
+      { p: 'Open any shader in the catalog, throttle your CPU in devtools, and watch it degrade in steps instead of dying. That is what production-ready means for decorative code: it should be the first thing to sacrifice itself and the last thing to cause a bug report.' },
+    ],
+  },
+]
+export const byPostSlug = Object.fromEntries(posts.map((p) => [p.slug, p]))

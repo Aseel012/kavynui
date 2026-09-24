@@ -1,0 +1,138 @@
+# kavynUI - full component index
+
+> 134 components in 15 families. Copy any file into a React + Tailwind project and ship it. Source and docs: https://kavynui.com
+
+- [Edge Dashboard](https://kavynui.com/components/edge-dashboard) (blocks): Live analytics dashboard with stat tiles, request map and top countries Use case: Admin overview.
+- [Product Hero](https://kavynui.com/components/product-hero) (blocks): Headline and actions beside an app window running a deploy Use case: SaaS landing page.
+- [Feature Bento](https://kavynui.com/components/feature-bento) (blocks): Four feature tiles, each with its own small live demo Use case: Features section.
+- [Proof Wall](https://kavynui.com/components/proof-wall) (blocks): Logo marquee with a rotating customer quote Use case: Social proof.
+- [Globe CTA](https://kavynui.com/components/globe-cta) (blocks): Closing call to action next to a live dotted globe Use case: Bottom-of-page CTA.
+- [Changelog Feed](https://kavynui.com/components/changelog-feed) (blocks): Release timeline whose entries expand in place Use case: Changelog page.
+- [Sign-in Card](https://kavynui.com/components/sign-in-card) (blocks): Magic-link sign-in with validation, shake and sent state Use case: Auth screen.
+- [FAQ Accordion](https://kavynui.com/components/faq-accordion) (blocks): One-open-at-a-time questions with a plus that becomes a minus Use case: Pricing page FAQ.
+- [Status Board](https://kavynui.com/components/status-board) (blocks): Overall system state plus 90-day history per service Use case: Public status page.
+- [Wordmark Footer](https://kavynui.com/components/wordmark-footer) (blocks): Link columns over a giant wordmark that rises in Use case: Site footer.
+- [Traffic Map](https://kavynui.com/components/traffic-map) (data): Dotted world map with live request arcs between edge cities Use case: Network overview.
+- [Edge Globe](https://kavynui.com/components/edge-globe) (data): Rotating globe of real land dots with arcs. Drag to spin Use case: Global presence.
+- [Uptime Bars](https://kavynui.com/components/uptime-bars) (data): 90-day status bars that rise in, with a per-day tooltip Use case: Service health.
+- [Latency Stream](https://kavynui.com/components/latency-stream) (data): Live latency line streaming from the right with an average Use case: Performance widget.
+- [Threat Feed](https://kavynui.com/components/threat-feed) (data): Security events slide into a live list; hover pauses it Use case: Firewall activity.
+- [Region Bars](https://kavynui.com/components/region-bars) (data): Top countries by traffic, re-ranking as shares shift Use case: Traffic breakdown.
+- [Request Heatmap](https://kavynui.com/components/request-heatmap) (data): Hour by weekday grid that fills on a diagonal wave Use case: Usage patterns.
+- [Cache Ring](https://kavynui.com/components/cache-ring) (data): Donut ring and number spring to each new ratio Use case: Cache hit ratio.
+- [Liquid Button](https://kavynui.com/components/liquid-button) (actions): Gooey blobs merge and split on hover Use case: Primary CTA.
+- [Ember Button](https://kavynui.com/components/ember-button) (actions): Edge heat-shimmer builds as the cursor gets closer Use case: Checkout "Pay now".
+- [Magnet Pill](https://kavynui.com/components/magnet-pill) (actions): Label drifts toward the cursor, pill stretches back Use case: Newsletter signup.
+- [Hold to Confirm](https://kavynui.com/components/hold-to-confirm) (actions): Ring fills while held, then snaps to a check Use case: Delete account.
+- [Ink Bleed Button](https://kavynui.com/components/ink-bleed-button) (actions): Fill floods in from the exact entry point Use case: Pricing CTA.
+- [Split Flap Button](https://kavynui.com/components/split-flap-button) (actions): Label flips like a departures board on state change Use case: Seat booking.
+- [Stamp Button](https://kavynui.com/components/stamp-button) (actions): Squash-and-press that leaves an embossed seal Use case: Approve invoice.
+- [Orbit Button](https://kavynui.com/components/orbit-button) (actions): A spark orbits the border while work runs Use case: AI "Generate".
+- [Fuse Button](https://kavynui.com/components/fuse-button) (actions): A spark burns along the border as a countdown Use case: Undo send.
+- [Shutter Button](https://kavynui.com/components/shutter-button) (actions): Aperture blades open to reveal the icon Use case: Photo upload.
+- [Pixel Melt Button](https://kavynui.com/components/pixel-melt-button) (actions): Label melts into pixels on success Use case: Form submit.
+- [Text Scramble](https://kavynui.com/components/text-scramble) (type): Letters decode from noise, left to right, again on hover Use case: Dev-tool headline.
+- [Shimmer Text](https://kavynui.com/components/shimmer-text) (type): A light band sweeps across muted text Use case: "Thinking" label.
+- [Flip Words](https://kavynui.com/components/flip-words) (type): The last word rolls to the next, letter by letter Use case: Hero tagline.
+- [Odometer Figures](https://kavynui.com/components/odometer-figures) (type): Digits roll with a mechanical overshoot Use case: Revenue dashboard.
+- [Ink Write](https://kavynui.com/components/ink-write) (type): Strokes draw in along a handwritten path Use case: Onboarding welcome.
+- [Redact Reveal](https://kavynui.com/components/redact-reveal) (type): Black bars slide off words one by one Use case: Security product hero.
+- [Kerning Breath](https://kavynui.com/components/kerning-breath) (type): Letter spacing follows scroll velocity Use case: Editorial headline.
+- [Caret Rewrite](https://kavynui.com/components/caret-rewrite) (type): Types, backspaces and retypes with a live caret Use case: AI taglines.
+- [Weight Wave](https://kavynui.com/components/weight-wave) (type): Variable-font weight ripples under the cursor Use case: Brand headline.
+- [Echo Headline](https://kavynui.com/components/echo-headline) (type): Outline copies trail behind the text Use case: Event landing.
+- [Scan Line Text](https://kavynui.com/components/scan-line-text) (type): A CRT scan line passes and sharpens the words Use case: Dev tool launch.
+- [Dial Text](https://kavynui.com/components/dial-text) (type): Each letter spins on a combination-lock wheel Use case: Password reset.
+- [Highlighter Sweep](https://kavynui.com/components/highlighter-sweep) (type): A marker stroke draws under the key phrase Use case: Blog emphasis.
+- [Notification Stack](https://kavynui.com/components/notif-stack) (interactive): Notifications pile up; tap to fan them out Use case: Activity inbox.
+- [Expand Cards](https://kavynui.com/components/expand-cards) (interactive): Panels share a row; the active one expands Use case: Product pillars.
+- [Morph Dialog](https://kavynui.com/components/morph-dialog) (interactive): A card morphs into a dialog with a shared layout Use case: Item details.
+- [Lens Loupe](https://kavynui.com/components/lens-loupe) (interactive): Magnifier follows the cursor with live zoom Use case: Product photos.
+- [Deck Shuffle](https://kavynui.com/components/deck-shuffle) (interactive): Top card flicks away with real physics Use case: Onboarding tips.
+- [Vinyl Deck](https://kavynui.com/components/vinyl-deck) (interactive): Record spins, drag the platter to scrub Use case: Podcast player.
+- [Before / After Blade](https://kavynui.com/components/before-after-blade) (interactive): Angled blade wipes between two images Use case: Photo editor.
+- [Globe Pins](https://kavynui.com/components/globe-pins) (interactive): Dot-matrix globe turns with pulsing pins Use case: Office locations.
+- [Terminal Replay](https://kavynui.com/components/terminal-replay) (interactive): Recorded terminal session with real timing Use case: CLI docs.
+- [Palette Fan](https://kavynui.com/components/palette-fan) (interactive): Swatches fan out like paint chips Use case: Theme picker.
+- [Tilt Pass](https://kavynui.com/components/tilt-pass) (interactive): Card tilts in 3D with glare that tracks light Use case: Membership card.
+- [Route Draw](https://kavynui.com/components/route-draw) (interactive): Route line draws between stops, marker follows Use case: Delivery tracking.
+- [Polaroid Drop](https://kavynui.com/components/polaroid-drop) (interactive): Photos drop, settle and can be rearranged Use case: Travel portfolio.
+- [Waveform Scrubber](https://kavynui.com/components/waveform-scrubber) (interactive): Bars react to hover, click to seek Use case: Voice notes.
+- [Paper Fold Reveal](https://kavynui.com/components/paper-fold-reveal) (interactive): Content unfolds panel by panel like a map Use case: Trip itinerary.
+- [Isometric Stack](https://kavynui.com/components/isometric-stack) (scenes): App layers separate isometrically on scroll Use case: Infra "how it works".
+- [Turntable Viewer](https://kavynui.com/components/turntable-viewer) (scenes): Drag to spin a product through 360° Use case: Sneaker store.
+- [Cube Metrics](https://kavynui.com/components/cube-metrics) (scenes): KPI cube rolls face to face Use case: Analytics summary.
+- [Paper Plane Path](https://kavynui.com/components/paper-plane-path) (scenes): Plane flies along the scroll path Use case: Send confirmation.
+- [Server Rack](https://kavynui.com/components/server-rack) (scenes): Rack LEDs blink with each request Use case: Status page.
+- [Shortcut Caps](https://kavynui.com/components/shortcut-caps) (scenes): Keycaps press in sequence to teach a shortcut Use case: Docs hints.
+- [Spotlight Card](https://kavynui.com/components/spotlight-card) (bento): Cursor light that also lights the border under it Use case: Feature card.
+- [Beam Border](https://kavynui.com/components/beam-border) (bento): A single beam travels around the card edge Use case: Recommended plan.
+- [Ledger Bento](https://kavynui.com/components/ledger-bento) (bento): Finance cells update in place Use case: Fintech features.
+- [Timeline Rail](https://kavynui.com/components/timeline-rail) (bento): Events snap along a scroll rail Use case: Changelog.
+- [Masonry Drift](https://kavynui.com/components/masonry-drift) (bento): Columns drift at different speeds Use case: Portfolio.
+- [Pricing Morph](https://kavynui.com/components/pricing-morph) (bento): Plan cards reshape when billing changes Use case: SaaS pricing.
+- [Focus Grid](https://kavynui.com/components/focus-grid) (bento): Hovered cell sharpens, the rest blur back Use case: Feature overview.
+- [Kanban Flow](https://kavynui.com/components/kanban-flow) (bento): Cards glide between columns on their own Use case: Project tool hero.
+- [Stat Wall](https://kavynui.com/components/stat-wall) (bento): Tiles count up in a checkerboard stagger Use case: Impact report.
+- [Device Unveil](https://kavynui.com/components/device-unveil) (bento): Device frame reveals the UI on scroll Use case: App launch.
+- [Ticker Tape](https://kavynui.com/components/ticker-tape) (marquee): Price ticker with colored deltas Use case: Crypto dashboard.
+- [Review Rail](https://kavynui.com/components/review-rail) (marquee): Two opposing rows that pause on hover Use case: Social proof.
+- [Footnote Pop](https://kavynui.com/components/footnote-pop) (marquee): Superscript opens an inline source card Use case: Docs and blogs.
+- [Avatar Orbit](https://kavynui.com/components/avatar-orbit) (marquee): Avatars orbit a central mark Use case: Community page.
+- [Badge Rain](https://kavynui.com/components/badge-rain) (marquee): Tags fall and pile up with physics Use case: Tech stack.
+- [Ribbon Rows](https://kavynui.com/components/ribbon-rows) (marquee): Hover pulls a ribbon across the row Use case: Job listings.
+- [Logo Constellation](https://kavynui.com/components/logo-constellation) (marquee): Logos linked by lines that pulse Use case: Integrations.
+- [Reaction Burst](https://kavynui.com/components/reaction-burst) (marquee): Reactions float up and fade on click Use case: Live comments.
+- [Breath Dots](https://kavynui.com/components/breath-dots) (loaders): Three dots inhale and exhale in sequence Use case: AI thinking.
+- [Ring Weave](https://kavynui.com/components/ring-weave) (loaders): Two rings interlock and swap Use case: Syncing.
+- [Stitch Progress](https://kavynui.com/components/stitch-progress) (loaders): A thread stitches across the bar Use case: File upload.
+- [Block Builder](https://kavynui.com/components/block-builder) (loaders): Blocks drop and stack into a row Use case: Build logs.
+- [Hourglass Flip](https://kavynui.com/components/hourglass-flip) (loaders): Sand drains, glass flips Use case: Queue position.
+- [Signal Bars](https://kavynui.com/components/signal-bars) (loaders): Bars climb like signal strength Use case: Connecting.
+- [Dock Magnify](https://kavynui.com/components/dock-magnify) (nav): Icons grow with cursor distance on a spring Use case: App launcher.
+- [Tab Lens](https://kavynui.com/components/tab-lens) (nav): A lens slides between items and magnifies Use case: Marketing nav.
+- [Pocket Nav](https://kavynui.com/components/pocket-nav) (nav): Nav folds into a floating pill on scroll Use case: Long landing pages.
+- [Crumb Fold](https://kavynui.com/components/crumb-fold) (nav): Deep breadcrumbs fold into dots Use case: File manager.
+- [Stack Menu](https://kavynui.com/components/stack-menu) (nav): Menu items fan down like cards Use case: Mobile menu.
+- [Command Rail](https://kavynui.com/components/command-rail) (nav): Side rail with key hints, expands on hover Use case: Dashboards.
+- [Section Beads](https://kavynui.com/components/section-beads) (nav): Beads fill as you read each section Use case: Docs pages.
+- [Snap Sheet](https://kavynui.com/components/snap-sheet) (nav): Bottom sheet with snap points Use case: Mobile checkout.
+- [Flow Chips](https://kavynui.com/components/flow-chips) (nav): Filter chips reorder with FLIP motion Use case: Store filters.
+- [Stepper Morph](https://kavynui.com/components/stepper-morph) (nav): Step line morphs into a check Use case: Onboarding.
+- [Workspace Shuffle](https://kavynui.com/components/workspace-shuffle) (nav): Workspaces slide in as a card stack Use case: SaaS switcher.
+- [Topo Lines](https://kavynui.com/components/topo-lines) (bg): Contour lines shift like a live map Use case: Outdoor brand.
+- [Halftone Tide](https://kavynui.com/components/halftone-tide) (bg): Dot field swells like a tide Use case: Product hero.
+- [Grain Leak](https://kavynui.com/components/grain-leak) (bg): Film grain with a slow light leak Use case: Agency site.
+- [Blueprint](https://kavynui.com/components/blueprint) (bg): Drafting grid with lines drawing in Use case: Architecture.
+- [Night Transit](https://kavynui.com/components/night-transit) (bg): A night city from a moving train: three skyline depths, passing lamps, road light trails Use case: Travel app.
+- [Rain Glass](https://kavynui.com/components/rain-glass) (bg): Droplets gather and run on glass Use case: Weather app.
+- [Circuit Pulse](https://kavynui.com/components/circuit-pulse) (bg): Traces carry pulses across a board Use case: AI infra.
+- [Ink Smoke](https://kavynui.com/components/ink-smoke) (bg): Monochrome smoke drifts and folds Use case: Luxury brand.
+- [Dune Ridges](https://kavynui.com/components/dune-ridges) (bg): Ridges shift slowly like wind on sand Use case: Retreat booking.
+- [Tile Flip Wall](https://kavynui.com/components/tile-flip-wall) (bg): Tiles flip to reveal an image Use case: Portfolio hero.
+- [Film Grain](https://kavynui.com/components/shader-grain) (shaders): Warm light through live film grain, drawn on the GPU Use case: Hero backdrop.
+- [Ink Current](https://kavynui.com/components/shader-ink) (shaders): Slow fluid currents that bend away from the pointer Use case: Launch page.
+- [Polar Veil](https://kavynui.com/components/shader-veil) (shaders): Aurora curtains with fine rays over a starfield Use case: Sign-up screen.
+- [Molten Glass](https://kavynui.com/components/shader-molten) (shaders): Blobs that merge and split; press to grow your own Use case: Event page.
+- [Wave Lattice](https://kavynui.com/components/shader-lattice) (shaders): A dot grid carrying waves, rippling out from the pointer Use case: Dev tool hero.
+- [Pool Light](https://kavynui.com/components/shader-caustics) (shaders): Light dancing on a pool floor, pulled toward the pointer Use case: Travel landing.
+- [Pinned Chapters](https://kavynui.com/components/pinned-chapters) (scroll): The story scrolls while the picture stays pinned and changes Use case: Product tour.
+- [Depth Story](https://kavynui.com/components/depth-story) (scroll): Ridges, sun and words moving at different depths Use case: Travel story.
+- [Reading Meter](https://kavynui.com/components/reading-meter) (scroll): Top progress bar and a ring with minutes left Use case: Blog post.
+- [Sideways Gallery](https://kavynui.com/components/sideways-gallery) (scroll): Scroll down, the rail of case studies moves left Use case: Portfolio.
+- [Word Light](https://kavynui.com/components/word-light) (scroll): A paragraph that lights up word by word as you read Use case: About page.
+- [Zoom Portal](https://kavynui.com/components/zoom-portal) (scroll): The headline steps back and the product grows to fill the view Use case: Product reveal.
+- [Tether Tag](https://kavynui.com/components/tether-tag) (physics): A promo tag on a chain you can grab and swing Use case: Sale badge.
+- [Cloth Banner](https://kavynui.com/components/cloth-banner) (physics): A striped banner of real cloth, moving in the wind Use case: Launch announcement.
+- [Topic Bubbles](https://kavynui.com/components/topic-bubbles) (physics): Topics drop in with weight; tap to pick, drag to throw Use case: Onboarding interests.
+- [Jelly Grid](https://kavynui.com/components/jelly-grid) (physics): Dots on springs that give way and settle back Use case: Empty state.
+- [Toss Deck](https://kavynui.com/components/toss-deck) (physics): Cards you can throw; they keep momentum and bounce Use case: Moodboard.
+- [Iron Filings](https://kavynui.com/components/iron-filings) (cursor): Strokes that turn to face the pointer like filings Use case: Hero backdrop.
+- [Comet Trail](https://kavynui.com/components/comet-trail) (cursor): A spring-chain comet that swings behind the pointer Use case: Creative portfolio.
+- [Snap Cursor](https://kavynui.com/components/snap-cursor) (cursor): A custom cursor that wraps whatever link you hover Use case: Agency header.
+- [Lean Grid](https://kavynui.com/components/lean-grid) (cursor): Tiles that lean toward the pointer in 3D Use case: Integrations wall.
+- [Swipe Stack](https://kavynui.com/components/swipe-stack) (scenes): A 3D card stack: swipe right to save, left to pass Use case: Job matching.
+- [Ring Carousel](https://kavynui.com/components/ring-carousel) (scenes): Cards on a 3D ring you drag or turn with arrow keys Use case: Template picker.
+- [Layer Explode](https://kavynui.com/components/layer-explode) (scenes): A card that splits into its design layers in 3D Use case: Design system page.
+- [Dust Letters](https://kavynui.com/components/dust-letters) (type): A headline of dust that scatters and drifts home Use case: Brand hero.
+- [Swarm Words](https://kavynui.com/components/swarm-words) (type): Particles that re-form into each word in turn Use case: Hero tagline.

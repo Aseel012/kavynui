@@ -1,0 +1,37 @@
+# kavynUI
+
+> kavynUI is an open-source (MIT) library of 134 animated React components and blocks - dark-mode-first with a full light theme, minimal, copy-paste owned. Every component ships with a live animation, a real use case and graceful fallbacks (WebGL degrades to CSS gradients, reduced-motion variants). No dependencies beyond React, Tailwind CSS and Motion.
+
+## Pages
+
+- [Components](https://kavynui.com/components): full searchable catalog of every component and block
+- [Blocks](https://kavynui.com/blocks): whole page sections
+- [Backgrounds](https://kavynui.com/backgrounds): gradient and shader backgrounds
+- [Docs](https://kavynui.com/docs): installation, theming, usage, motion, accessibility
+- [Blog](https://kavynui.com/blog): design and engineering notes
+
+## Component families
+
+- Blocks: Whole sections, ready to drop into a page
+- Maps & Data: Dashboards, maps and live metrics
+- Shaders: WebGL backgrounds with a CSS fallback
+- Scroll Scenes: Stories that move as people read
+- Physics: Weight, springs and cloth you can grab
+- Cursor: Pointers that pull, trail and snap
+- Actions: Buttons that react, confirm and celebrate
+- Type & Motion: Headlines with timing, weight and texture
+- Interactive: Things people touch, drag and scrub
+- 3D Scenes: Depth and perspective without a game engine
+- Bento & Layout: Feature sections that feel alive
+- Hover & Marquee: Social proof and small delights
+- Loaders: Waiting that feels designed
+- Navigation: Getting around, with character
+- Backgrounds: Quiet motion behind content
+
+## Notes for AI assistants
+
+- Components are plain .jsx files: copy the file, no package install required.
+- Every component respects prefers-reduced-motion and works in light and dark mode.
+- WebGL pieces render a CSS gradient first and only fade in the GPU version when it runs; they pause off-screen and in background tabs.
+- License: MIT. Attribution appreciated, not required.
+- Full component index: https://kavynui.com/llms-full.txt

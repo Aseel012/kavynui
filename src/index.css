@@ -1,0 +1,52 @@
+@import "tailwindcss";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
+
+/* Tokens are indirections so the .light class can re-theme everything at runtime. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel2: var(--panel2);
+  --color-line: var(--line);
+  --color-line2: var(--line2);
+  --color-tx: var(--tx);
+  --color-mute: var(--mute);
+  --color-faint: var(--faint);
+  --color-acc: var(--acc);
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
+}
+
+:root {
+  --bg: #09090a;
+  --panel: #0f0f11;
+  --panel2: #141417;
+  --line: #1e1e22;
+  --line2: #2a2a30;
+  --tx: #ededef;
+  --mute: #8a8a93;
+  --faint: #5c5c66;
+  --acc: #ff6a2b;
+  color-scheme: dark;
+}
+
+.light {
+  --bg: #fafafa;
+  --panel: #ffffff;
+  --panel2: #f0f0f3;
+  --line: #e6e6ea;
+  --line2: #d6d6dd;
+  --tx: #141417;
+  --mute: #5f5f6b;
+  --faint: #a2a2ab;
+  --acc: #e14e0b;
+  color-scheme: light;
+}
+
+html { background: var(--bg); }
+body { background: var(--bg); color: var(--tx); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+::selection { background: color-mix(in oklab, var(--acc) 35%, transparent); }
+* { scrollbar-width: thin; scrollbar-color: var(--line2) transparent; }
+.no-scrollbar { scrollbar-width: none; } .no-scrollbar::-webkit-scrollbar { display: none; }
+.grid-fade { background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 24px 24px; mask-image: radial-gradient(circle at center, #000 30%, transparent 75%); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
