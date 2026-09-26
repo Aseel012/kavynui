@@ -40,7 +40,7 @@
       "id": "actions",
       "name": "Actions",
       "blurb": "Buttons that react, confirm and celebrate",
-      "count": 11
+      "count": 12
     },
     {
       "id": "type",
@@ -1260,6 +1260,8 @@
         "gl-canvas.js"
       ]
     },
+    
+
     {
       "tags": [
         "original"
@@ -1555,6 +1557,18 @@
         "canvas-loop.js",
         "dust-letters.jsx"
       ]
+    },
+      {
+      "slug": "eclipse-toggle",
+      "name": "Eclipse Toggle",
+      "export": "EclipseToggle",
+      "family": "actions",
+      "description": "Sun springs into a crescent moon - rays retract with a stagger, stars pop in",
+      "useCase": "Dark/light theme switch",
+      "tags": [
+        "original"
+      ],
+      "deps": []
     }
   ]
 }
