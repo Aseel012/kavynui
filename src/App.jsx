@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react'
 import { Suspense } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Layout from '@/site/Layout'
@@ -21,26 +22,29 @@ const Page = ({ children }) => <Suspense fallback={<div className="relative min-
 
 export default function App() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route element={<CatalogLayout />}>
-          <Route path="components" element={<Components />} />
-          <Route path="components/:slug" element={<Detail />} />
-          <Route path="blocks" element={<Page><Blocks /></Page>} />
-          <Route path="backgrounds" element={<Page><Backgrounds /></Page>} />
+    <>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route element={<CatalogLayout />}>
+            <Route path="components" element={<Components />} />
+            <Route path="components/:slug" element={<Detail />} />
+            <Route path="blocks" element={<Page><Blocks /></Page>} />
+            <Route path="backgrounds" element={<Page><Backgrounds /></Page>} />
+          </Route>
+          <Route path="templates" element={<Page><Templates /></Page>} />
+          <Route path="docs" element={<Page><Docs /></Page>} />
+          <Route path="docs/:page" element={<Page><Docs /></Page>} />
+          <Route path="blog" element={<Page><Blog /></Page>} />
+          <Route path="blog/:slug" element={<Page><BlogPost /></Page>} />
+          <Route path="about" element={<Page><Info page="about" /></Page>} />
+          <Route path="privacy" element={<Page><Info page="privacy" /></Page>} />
+          <Route path="terms" element={<Page><Info page="terms" /></Page>} />
+          <Route path="gradients" element={<Navigate to="/backgrounds" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="templates" element={<Page><Templates /></Page>} />
-        <Route path="docs" element={<Page><Docs /></Page>} />
-        <Route path="docs/:page" element={<Page><Docs /></Page>} />
-        <Route path="blog" element={<Page><Blog /></Page>} />
-        <Route path="blog/:slug" element={<Page><BlogPost /></Page>} />
-        <Route path="about" element={<Page><Info page="about" /></Page>} />
-        <Route path="privacy" element={<Page><Info page="privacy" /></Page>} />
-        <Route path="terms" element={<Page><Info page="terms" /></Page>} />
-        <Route path="gradients" element={<Navigate to="/backgrounds" replace />} />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
+      </Routes>
+      <Analytics />
+    </>
   )
 }
