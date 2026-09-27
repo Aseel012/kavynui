@@ -16,7 +16,7 @@
       "id": "shaders",
       "name": "Shaders",
       "blurb": "WebGL backgrounds with a CSS fallback",
-      "count": 6
+      "count": 7
     },
     {
       "id": "scroll",
@@ -58,7 +58,7 @@
       "id": "scenes",
       "name": "3D Scenes",
       "blurb": "Depth and perspective without a game engine",
-      "count": 9
+      "count": 10
     },
     {
       "id": "bento",
@@ -416,6 +416,18 @@
       "tags": [
         "new"
       ]
+    },
+    {
+      "slug": "eclipse-toggle",
+      "name": "Eclipse Toggle",
+      "export": "EclipseToggle",
+      "family": "actions",
+      "description": "Sun springs into a crescent moon - rays retract with a stagger, stars pop in",
+      "useCase": "Dark/light theme switch",
+      "tags": [
+        "original"
+      ],
+      "deps": []
     },
     {
       "slug": "text-scramble",
@@ -1260,8 +1272,6 @@
         "gl-canvas.js"
       ]
     },
-    
-
     {
       "tags": [
         "original"
@@ -1557,18 +1567,7 @@
         "canvas-loop.js",
         "dust-letters.jsx"
       ]
-    },
-      {
-      "slug": "eclipse-toggle",
-      "name": "Eclipse Toggle",
-      "export": "EclipseToggle",
-      "family": "actions",
-      "description": "Sun springs into a crescent moon - rays retract with a stagger, stars pop in",
-      "useCase": "Dark/light theme switch",
-      "tags": [
-        "original"
-      ],
-      "deps": []
     }
+  
   ]
 }

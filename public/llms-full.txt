@@ -31,6 +31,7 @@
 - [Fuse Button](https://kavynui.com/components/fuse-button) (actions): A spark burns along the border as a countdown Use case: Undo send.
 - [Shutter Button](https://kavynui.com/components/shutter-button) (actions): Aperture blades open to reveal the icon Use case: Photo upload.
 - [Pixel Melt Button](https://kavynui.com/components/pixel-melt-button) (actions): Label melts into pixels on success Use case: Form submit.
+- [Eclipse Toggle](https://kavynui.com/components/eclipse-toggle) (actions): Sun springs into a crescent moon - rays retract with a stagger, stars pop in Use case: Dark/light theme switch.
 - [Text Scramble](https://kavynui.com/components/text-scramble) (type): Letters decode from noise, left to right, again on hover Use case: Dev-tool headline.
 - [Shimmer Text](https://kavynui.com/components/shimmer-text) (type): A light band sweeps across muted text Use case: "Thinking" label.
 - [Flip Words](https://kavynui.com/components/flip-words) (type): The last word rolls to the next, letter by letter Use case: Hero tagline.
@@ -136,4 +137,3 @@
 - [Layer Explode](https://kavynui.com/components/layer-explode) (scenes): A card that splits into its design layers in 3D Use case: Design system page.
 - [Dust Letters](https://kavynui.com/components/dust-letters) (type): A headline of dust that scatters and drifts home Use case: Brand hero.
 - [Swarm Words](https://kavynui.com/components/swarm-words) (type): Particles that re-form into each word in turn Use case: Hero tagline.
-- [Eclipse Toggle](https://kavynui.com/components/eclipse-toggle) (actions): Sun springs into a crescent moon - rays retract with a stagger, stars pop in Use case: Dark/light theme switch.

@@ -1,0 +1,75 @@
+{
+  "templates": [
+    {
+      "slug": "aperture",
+      "name": "Aperture",
+      "niche": "Venture capital",
+      "tagline": "Deal-flow and portfolio intelligence for a modern VC firm",
+      "description": "A complete venture-capital platform designed end to end: public site, onboarding, deal pipeline, deal detail with IC voting, relationship network, portfolio marks, LP reports, IC memos, meetings, tasks, analytics, settings, admin and audit. Light, cloud-hero aesthetic; benchmarked against Affinity and Carta.",
+      "screens": 19,
+      "stack": [
+        "HTML",
+        "CSS",
+        "REACT",
+        "TAILWIND CSS",
+        "JavaScript"
+      ],
+      "responsive": true,
+      "price": 79,
+      "currency": "USD",
+      "status": "available",
+      "preview": "/templates/aperture/preview.png",
+      "gallery": [
+        "/templates/aperture/deals.png",
+        "/templates/aperture/deal.png",
+        "/templates/aperture/network.png",
+        "/templates/aperture/landing.png"
+      ],
+      "includes": [
+        "19 linked screens, landing to admin to terms",
+        "Editable source - no build step, open index.html",
+        "Desktop 1440px and mobile 390px layouts",
+        "Filled with a complete fictional fund (Enzo Capital, Fund III)",
+        "Bundled fonts with licenses documented"
+      ],
+      "accent": "#7db8ff",
+      "buyUrl": "mailto:neoenzo126@gmail.com?subject=Aperture%20template",
+      "previewNote": "Screenshots from the actual template build"
+    },
+    {
+      "slug": "lectio",
+      "name": "Lectio",
+      "niche": "EdTech",
+      "tagline": "Lecture recording, on-device transcripts and summaries students actually read",
+      "description": "A complete lecture-notes SaaS designed end to end: landing page, login, signup, email verification, feature and how-it-works deep-dives, devices, integrations, campus for departments, pricing with plan comparison, download, about and security. Off-white paper aesthetic with a single orange accent; privacy-first story - transcription happens on the student's own device.",
+      "screens": 19,
+      "stack": [
+        "HTML",
+        "CSS",
+        "REACT",
+        "TAILWIND CSS"
+      ],
+      "responsive": false,
+      "price": 79,
+      "currency": "USD",
+      "status": "available",
+      "preview": "/templates/lectio/preview.png",
+      "gallery": [
+        "/templates/lectio/features.png",
+        "/templates/lectio/pricing.png",
+        "/templates/lectio/login.png",
+        "/templates/lectio/campus.png"
+      ],
+      "includes": [
+        "19 screens: full landing page plus 12 standalone pages, auth flow included",
+        "Editable source - plain HTML and CSS, no build step",
+        "Off-white paper design, one orange accent, Inter throughout",
+        "Filled with a complete fictional product (Lectio, on-device lecture notes)",
+        "Every icon, chart and mockup is inline CSS/SVG - no third-party assets"
+      ],
+      "accent": "#E2551F",
+      "buyUrl":  "mailto:neoenzo126@gmail.com?subject=Aperture%20template",
+      "previewNote": "Screenshots from the actual template build"
+    }
+  ]
+}

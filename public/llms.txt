@@ -7,6 +7,7 @@
 - [Components](https://kavynui.com/components): full searchable catalog of every component and block
 - [Blocks](https://kavynui.com/blocks): whole page sections
 - [Backgrounds](https://kavynui.com/backgrounds): gradient and shader backgrounds
+- [Templates](https://kavynui.com/templates): complete end-to-end product designs by Enzo, sold as source-you-own templates; the component library stays free (MIT)
 - [Docs](https://kavynui.com/docs): installation, theming, usage, motion, accessibility
 - [Blog](https://kavynui.com/blog): design and engineering notes
 

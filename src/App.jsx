@@ -15,6 +15,7 @@ const Docs = lazyRetry(() => import('@/pages/Docs'))
 const Blog = lazyRetry(() => import('@/pages/Blog'))
 const BlogPost = lazyRetry(() => import('@/pages/BlogPost'))
 const Info = lazyRetry(() => import('@/pages/Info'))
+const Templates = lazyRetry(() => import('@/pages/Templates'))
 
 const Page = ({ children }) => <Suspense fallback={<div className="relative min-h-[70vh]"><Loading label="Loading" /></div>}>{children}</Suspense>
 
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="blocks" element={<Page><Blocks /></Page>} />
           <Route path="backgrounds" element={<Page><Backgrounds /></Page>} />
         </Route>
+        <Route path="templates" element={<Page><Templates /></Page>} />
         <Route path="docs" element={<Page><Docs /></Page>} />
         <Route path="docs/:page" element={<Page><Docs /></Page>} />
         <Route path="blog" element={<Page><Blog /></Page>} />

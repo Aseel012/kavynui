@@ -14,7 +14,7 @@ const { posts } = await import(join(root, 'src/data/posts.js'))
 const docs = [...readFileSync(join(root, 'src/docs/pages.jsx'), 'utf8').matchAll(/\{ id: '([a-z-]+)', title:/g)].map((m) => m[1])
 const today = new Date().toISOString().slice(0, 10)
 const urls = [
-  ['/', '1.0'], ['/components', '0.9'], ['/blocks', '0.9'], ['/backgrounds', '0.8'], ['/blog', '0.7'],
+  ['/', '1.0'], ['/components', '0.9'], ['/blocks', '0.9'], ['/backgrounds', '0.8'], ['/templates', '0.8'], ['/blog', '0.7'],
   ...docs.map((d) => [d === 'introduction' ? '/docs' : `/docs/${d}`, '0.7']),
   ...posts.map((p) => [`/blog/${p.slug}`, '0.6']),
   ['/about', '0.5'], ['/privacy', '0.3'], ['/terms', '0.3'],
@@ -39,6 +39,7 @@ writeFileSync(join(root, 'public/llms.txt'), `# kavynUI
 - [Components](${SITE}/components): full searchable catalog of every component and block
 - [Blocks](${SITE}/blocks): whole page sections
 - [Backgrounds](${SITE}/backgrounds): gradient and shader backgrounds
+- [Templates](${SITE}/templates): complete end-to-end product designs by Enzo, sold as source-you-own templates; the component library stays free (MIT)
 - [Docs](${SITE}/docs): installation, theming, usage, motion, accessibility
 - [Blog](${SITE}/blog): design and engineering notes
 
