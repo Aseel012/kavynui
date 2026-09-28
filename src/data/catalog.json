@@ -1578,6 +1578,21 @@
       "tags": [
         "original"
       ]
-    }
+    },
+    {
+    "slug": "share-sheet",
+    "name": "Share Sheet",
+    "export": "ShareSheet",
+    "family": "interactive",
+    "description": "Animated share sheet with social destinations, copy confirmation, real QR download, message and compact variants",
+    "useCase": "Article sharing and product links",
+    "tags": [
+      "original"
+    ],
+    "deps": [
+      "share-sheet-qr.js"
+    ]
+  }
+
   ]
 }
