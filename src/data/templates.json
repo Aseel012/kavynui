@@ -68,8 +68,42 @@
         "Every icon, chart and mockup is inline CSS/SVG - no third-party assets"
       ],
       "accent": "#E2551F",
-      "buyUrl":  "mailto:neoenzo126@gmail.com?subject=Aperture%20template",
+      "buyUrl": "mailto:neoenzo126@gmail.com?subject=Aperture%20template",
       "previewNote": "Screenshots from the actual template build"
+    },
+    {
+      "slug": "luma-credit",
+      "name": "Luma Credit",
+      "niche": "Private credit",
+      "tagline": "A private-credit investment desk from first look to portfolio monitoring",
+      "description": "A complete private-credit platform designed end to end: public site, login, signup, verification, onboarding, investment desk, opportunities and deal detail, underwriting, investment committee, portfolio and position detail, covenants, documents, activity, analytics, reports, settings, profile, administration and terms. An atmospheric sunrise-and-mint design with a responsive workspace; benchmarked against Finley's credit operations platform.",
+      "screens": 21,
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "responsive": true,
+      "price": 79,
+      "currency": "USD",
+      "status": "available",
+      "preview": "/templates/luma-credit/preview.png",
+      "gallery": [
+        "/templates/luma-credit/dashboard.png",
+        "/templates/luma-credit/underwriting.png",
+        "/templates/luma-credit/portfolio.png",
+        "/templates/luma-credit/login.png"
+      ],
+      "includes": [
+        "21 linked screens, landing to admin to terms",
+        "Editable source - no build step, open index.html",
+        "Desktop 1440px and mobile 390px layouts",
+        "Filled with a fictional private-credit desk and investment data",
+        "Bundled fonts with licenses documented"
+      ],
+      "accent": "#6CB895",
+      "buyUrl": "",
+      "previewNote": "Full editable source included; ask the publisher for purchase details"
     }
   ]
 }
