@@ -16,7 +16,7 @@
       "id": "shaders",
       "name": "Shaders",
       "blurb": "WebGL backgrounds with a CSS fallback",
-      "count": 7
+      "count": 6
     },
     {
       "id": "scroll",
@@ -58,7 +58,7 @@
       "id": "scenes",
       "name": "3D Scenes",
       "blurb": "Depth and perspective without a game engine",
-      "count": 10
+      "count": 9
     },
     {
       "id": "bento",
@@ -416,18 +416,6 @@
       "tags": [
         "new"
       ]
-    },
-    {
-      "slug": "eclipse-toggle",
-      "name": "Eclipse Toggle",
-      "export": "EclipseToggle",
-      "family": "actions",
-      "description": "Sun springs into a crescent moon - rays retract with a stagger, stars pop in",
-      "useCase": "Dark/light theme switch",
-      "tags": [
-        "original"
-      ],
-      "deps": []
     },
     {
       "slug": "text-scramble",
@@ -1567,7 +1555,29 @@
         "canvas-loop.js",
         "dust-letters.jsx"
       ]
+    },
+    {
+      "slug": "eclipse-toggle",
+      "name": "Eclipse Toggle",
+      "export": "EclipseToggle",
+      "family": "actions",
+      "description": "Sun springs into a crescent moon - rays retract with a stagger, stars pop in",
+      "useCase": "Dark/light theme switch",
+      "tags": [
+        "original"
+      ],
+      "deps": []
+    },
+    {
+      "slug": "apple-keyboard",
+      "name": "Apple Keyboard",
+      "export": "AppleKeyboard",
+      "family": "interactive",
+      "description": "Realistic compact Apple-style keyboard; keys light up as you type, physically or on a loop",
+      "useCase": "Device mockups and typing demos",
+      "tags": [
+        "original"
+      ]
     }
-  
   ]
 }
