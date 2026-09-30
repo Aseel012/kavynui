@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pricing-morph",
+  "title": "Pricing Morph",
+  "type": "registry:component",
+  "description": "Plan cards reshape when billing changes",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/pricing-morph.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/pricing-morph.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion, AnimatePresence } from 'motion/react'\n\nconst PLANS = [\n  { n: 'Solo', m: 12, y: 9, f: ['1 workspace', '5 GB'] },\n  { n: 'Team', m: 29, y: 23, f: ['Unlimited workspaces', '100 GB', 'Roles'], hot: true },\n]\n\nexport default function PricingMorph({ plans = PLANS, currency = '$' }) {\n  const [yearly, setYearly] = useState(false)\n  return (\n    <div className=\"w-full max-w-md\">\n      <div className=\"mx-auto mb-5 flex w-fit rounded-full border border-line2 bg-panel p-1 text-xs\">\n        {['Monthly', 'Yearly'].map((l, i) => (\n          <button key={l} onClick={() => setYearly(!!i)} className=\"relative px-4 py-1.5\">\n            {yearly === !!i && <motion.span layoutId=\"pm-pill\" className=\"absolute inset-0 rounded-full bg-tx\" transition={{ type: 'spring', stiffness: 420, damping: 32 }} />}\n            <span className={`relative ${yearly === !!i ? 'text-bg' : 'text-mute'}`}>{l}</span>\n          </button>\n        ))}\n      </div>\n      <div className=\"grid grid-cols-2 gap-2\">\n        {plans.map((p) => (\n          <motion.div layout key={p.n} transition={{ type: 'spring', stiffness: 300, damping: 28 }} className={`rounded-2xl border p-4 ${p.hot ? 'border-acc/50 bg-panel2' : 'border-line bg-panel'}`}>\n            <div className=\"text-sm text-mute\">{p.n}</div>\n            <div className=\"mt-2 flex items-baseline gap-1\">\n              <span className=\"text-mute\">{currency}</span>\n              <AnimatePresence mode=\"popLayout\" initial={false}>\n                <motion.span key={yearly ? p.y : p.m} initial={{ y: 16, opacity: 0, filter: 'blur(4px)' }} animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }} exit={{ y: -16, opacity: 0, filter: 'blur(4px)' }} transition={{ type: 'spring', stiffness: 400, damping: 28 }} className=\"text-3xl font-medium text-tx\">\n                  {yearly ? p.y : p.m}\n                </motion.span>\n              </AnimatePresence>\n              <span className=\"text-xs text-faint\">/mo</span>\n            </div>\n            <AnimatePresence>\n              {yearly && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className=\"overflow-hidden text-xs text-acc\">billed {currency}{p.y * 12} yearly</motion.div>}\n            </AnimatePresence>\n            <ul className=\"mt-3 space-y-1 text-xs text-mute\">{p.f.map((f) => <li key={f}>· {f}</li>)}</ul>\n          </motion.div>\n        ))}\n      </div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

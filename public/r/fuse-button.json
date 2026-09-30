@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fuse-button",
+  "title": "Fuse Button",
+  "type": "registry:component",
+  "description": "A spark burns along the border as a countdown",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/fuse-button.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/fuse-button.jsx",
+      "content": "'use client'\n\nimport { useEffect, useState } from 'react'\nimport { motion, AnimatePresence } from 'motion/react'\n\nexport default function FuseButton({ seconds = 5, label = 'Undo send' }) {\n  const [run, setRun] = useState(0)\n  const [left, setLeft] = useState(seconds)\n  const [state, setState] = useState('armed')\n\n  useEffect(() => {\n    setLeft(seconds); setState('armed')\n    const t = setInterval(() => setLeft((v) => {\n      if (v <= 1) { clearInterval(t); setState('sent'); return 0 }\n      return v - 1\n    }), 1000)\n    return () => clearInterval(t)\n  }, [run, seconds])\n\n  const undo = () => { if (state === 'armed') setState('undone') }\n  useEffect(() => { if (state !== 'armed') { const t = setTimeout(() => setRun((r) => r + 1), 1800); return () => clearTimeout(t) } }, [state])\n\n  return (\n    <button onClick={undo} className=\"relative h-12 min-w-44 rounded-xl bg-panel px-5 text-sm text-tx\">\n      <svg className=\"pointer-events-none absolute inset-0 size-full overflow-visible\">\n        <rect x=\"0\" y=\"0\" width=\"100%\" height=\"100%\" rx=\"11.5\" fill=\"none\" stroke=\"#1e1e22\" />\n        {state === 'armed' && (\n          <motion.rect\n            key={run} x=\"0\" y=\"0\" width=\"100%\" height=\"100%\" rx=\"11.5\" fill=\"none\"\n            stroke=\"#ff6a2b\" strokeWidth=\"1.5\" initial={{ pathLength: 1 }} animate={{ pathLength: 0 }}\n            transition={{ duration: seconds, ease: 'linear' }} style={{ filter: 'drop-shadow(0 0 3px #ff8a4b)' }}\n          />\n        )}\n      </svg>\n      <AnimatePresence mode=\"wait\" initial={false}>\n        <motion.span key={state} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} className=\"relative flex items-center justify-center gap-2\">\n          {state === 'armed' && <>{label}<span className=\"font-mono text-xs text-acc tabular-nums\">{left}s</span></>}\n          {state === 'undone' && <span className=\"text-mute\">Send cancelled</span>}\n          {state === 'sent' && <span className=\"text-mute\">Message sent</span>}\n        </motion.span>\n      </AnimatePresence>\n    </button>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "turntable-viewer",
+  "title": "Turntable Viewer",
+  "type": "registry:component",
+  "description": "Drag to spin a product through 360°",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/turntable-viewer.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/turntable-viewer.jsx",
+      "content": "'use client'\n\nimport { useRef } from 'react'\nimport { motion, useMotionValue, useSpring, useTransform, animate } from 'motion/react'\n\nconst W = 180, H = 70, D = 90\n\nexport default function TurntableViewer({ label = 'RUNNER 02' }) {\n  const rot = useMotionValue(-30)\n  const s = useSpring(rot, { stiffness: 120, damping: 20 })\n  const deg = useTransform(s, (v) => `${Math.round((((v % 360) + 360) % 360))}°`)\n  const last = useRef(null)\n  const face = (t, w, h, bg, extra = '') => <div className={`absolute left-1/2 top-1/2 ${extra}`} style={{ width: w, height: h, marginLeft: -w / 2, marginTop: -h / 2, transform: t, background: bg, backfaceVisibility: 'hidden' }} />\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <div\n        onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); last.current = { x: e.clientX, t: performance.now(), v: 0 } }}\n        onPointerMove={(e) => { if (!last.current) return; const dx = e.clientX - last.current.x; const now = performance.now(); last.current.v = dx / Math.max(now - last.current.t, 1); last.current.x = e.clientX; last.current.t = now; rot.set(rot.get() + dx * 0.8) }}\n        onPointerUp={() => { const v = last.current?.v || 0; last.current = null; animate(rot, rot.get() + v * 260, { type: 'spring', stiffness: 40, damping: 18 }) }}\n        className=\"grid h-56 w-72 cursor-grab touch-none place-items-center [perspective:700px] active:cursor-grabbing\"\n      >\n        <motion.div style={{ rotateY: s, rotateX: -14, transformStyle: 'preserve-3d' }} className=\"relative size-0\">\n          {face(`translateZ(${D / 2}px)`, W, H, 'linear-gradient(180deg,#ededef,#b9b9c0)', 'rounded-t-[40px_60px] rounded-b-md')}\n          {face(`rotateY(180deg) translateZ(${D / 2}px)`, W, H, 'linear-gradient(180deg,#d0d0d6,#8a8a93)', 'rounded-t-[60px_40px] rounded-b-md')}\n          {face(`rotateY(90deg) translateZ(${W / 2}px)`, D, H, '#ff6a2b', 'rounded-t-3xl rounded-b-md')}\n          {face(`rotateY(-90deg) translateZ(${W / 2}px)`, D, H * 0.7, '#9a9aa2', 'rounded-t-lg translate-y-[10px]')}\n          {face(`rotateX(90deg) translateZ(${H / 2}px)`, W, D, '#1e1e22', 'rounded-full')}\n          {face(`rotateX(-90deg) translateZ(${H / 2}px)`, W + 10, D + 6, '#ff6a2b', 'rounded-[40px]')}\n        </motion.div>\n      </div>\n      <div className=\"flex items-center gap-3 font-mono text-xs text-mute\"><span>{label}</span><motion.span className=\"text-tx\">{deg}</motion.span><span className=\"text-faint\">drag to spin</span></div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

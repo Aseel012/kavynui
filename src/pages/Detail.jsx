@@ -6,6 +6,7 @@ import { getSource, parseProps } from '@/lib/registry'
 import { Demo } from '@/site/Preview'
 import CodeBlock, { CopyButton } from '@/site/CodeBlock'
 import NotFound from './NotFound'
+import InstallCard from '@/site/InstallCard'
 import { useSEO } from '@/lib/seo'
 import { SITE } from '@/config'
 
@@ -59,7 +60,6 @@ export default function Detail() {
   const main = files?.[0]?.code
   const props = main ? parseProps(main) : []
   const usage = `import ${item.export} from '@/components/kavyn/${item.slug}'\n\nexport default function Page() {\n  return <${item.export} />\n}`
-  const failed = files && files.some((f) => f.code === null)
 
   return (
     <div className="mx-auto max-w-5xl px-4 pb-24 pt-8 sm:px-8 sm:pt-10">
@@ -79,6 +79,8 @@ export default function Detail() {
         </div>
       </header>
 
+      <InstallCard name={item.slug} />
+
       <div className="mt-7 flex flex-wrap items-center justify-between gap-2">
         <Seg id="dt-tab" value={tab} onChange={setTab} options={[{ id: 'preview', label: 'Preview' }, { id: 'code', label: 'Code' }]} />
         {tab === 'preview' && (
@@ -93,7 +95,7 @@ export default function Detail() {
         <AnimatePresence mode="wait" initial={false}>
           {tab === 'preview' ? (
             <motion.div key="p" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.18 }}>
-              {isBlock ? (
+              {isBlock || item.layout === 'inline' ? (
                 <div className="rounded-2xl border border-line bg-panel/40 p-2 sm:p-4">
                   <motion.div layout className="mx-auto" style={{ width: VIEWPORTS.find((v) => v.id === vp)?.w, maxWidth: '100%' }} transition={{ type: 'spring', stiffness: 260, damping: 32 }}>
                     <Demo key={run} item={item} page="detail" />
@@ -129,25 +131,28 @@ export default function Detail() {
       <section className="mt-12 grid gap-8 lg:grid-cols-[1fr_260px]">
         <div className="min-w-0 space-y-10">
           <div>
-            <h2 className="mb-3 text-lg font-medium text-tx">Install</h2>
-            <ol className="space-y-2 text-sm text-mute">
-              <li className="flex items-center justify-between gap-3 rounded-xl border border-line bg-panel px-4 py-3">
-                <span className="flex min-w-0 items-center gap-3"><span className="font-mono text-xs text-faint">1</span><code className="truncate font-mono text-tx">npm i motion</code></span><CopyButton text="npm i motion" />
-              </li>
-              {(files || [{ name: fileOf(item.slug) }]).map((f, i) => (
-                <li key={f.name} className="flex items-center justify-between gap-3 rounded-xl border border-line bg-panel px-4 py-3">
-                  <span className="flex min-w-0 items-center gap-3"><span className="font-mono text-xs text-faint">{i + 2}</span><span className="truncate">Save as <code className="font-mono text-tx">src/components/kavyn/{f.name}</code></span></span>
-                  {f.code && <CopyButton text={f.code} />}
-                </li>
-              ))}
-              <li className="flex items-center gap-3 rounded-xl border border-line bg-panel px-4 py-3"><span className="font-mono text-xs text-faint">{(files?.length || 1) + 2}</span><span>Add the theme tokens once. See <Link to="/docs/theming" className="text-tx underline decoration-line2 underline-offset-4">Theming</Link>.</span></li>
-            </ol>
-            {failed && <p className="mt-2 text-xs text-amber-300">Some files did not load. They will appear once you are back online.</p>}
-          </div>
-          <div>
             <h2 className="mb-3 text-lg font-medium text-tx">Usage</h2>
             <CodeBlock code={usage} title="Page.jsx" maxHeight={260} />
           </div>
+          {item.slug === 'commit-grove' && <div>
+            <h2 className="mb-3 text-lg font-medium text-tx">Connect your activity</h2>
+            <p className="mb-4 text-sm leading-6 text-mute">The default preview uses labeled sample activity and fictional workspaces. Pass daily records to replace it. Dates use YYYY-MM-DD in UTC; duplicate dates are summed, missing days are empty, and invalid or negative counts are ignored. The heading totals only the selected date range. Pass an empty array for a real empty calendar.</p>
+            <CodeBlock title="Profile.jsx" maxHeight={340} code={`<CommitGrove
+  year={2026}
+  startMonth={6}
+  endMonth={12}
+  data={[
+    { date: '2026-06-01', count: 4 },
+    { date: '2026-06-02', count: 7 },
+  ]}
+  workspaces={[
+    { name: 'Your workspace', count: 11, mark: 'YW', color: '#9fcab0' },
+  ]}
+  theme="auto"
+  onExpandedChange={(expanded) => console.log(expanded)}
+/>`} />
+            <p className="mt-4 text-sm leading-6 text-mute">Workspace totals and optional avatar URLs come from your own data source. The component makes no activity API requests. Use theme="auto", "dark" or "light". Optional colors accepts dark and light arrays of five CSS colors, ordered from empty to peak intensity. Arrow keys move through days; Home and End move to the date-range edges. Enter or Space expands the workspace list.</p>
+          </div>}
           <div>
             <h2 className="mb-3 text-lg font-medium text-tx">Props</h2>
             {props.length === 0 ? <p className="text-sm text-faint">{files ? 'No props. Works out of the box.' : 'Loading…'}</p> : (

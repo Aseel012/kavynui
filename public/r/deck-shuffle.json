@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "deck-shuffle",
+  "title": "Deck Shuffle",
+  "type": "registry:component",
+  "description": "Top card flicks away with real physics",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/deck-shuffle.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/deck-shuffle.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion, AnimatePresence } from 'motion/react'\n\nconst TIPS = [\n  { t: 'Press / to search', d: 'Jump to anything from anywhere.' },\n  { t: 'Drag to reorder', d: 'Your sidebar follows your habits.' },\n  { t: 'Share with a link', d: 'Anyone with the link can view.' },\n  { t: 'Undo is always on', d: 'Cmd+Z works across the whole app.' },\n]\n\nexport default function DeckShuffle({ cards = TIPS }) {\n  const [order, setOrder] = useState(cards.map((_, i) => i))\n  const next = () => setOrder((o) => [...o.slice(1), o[0]])\n  return (\n    <div className=\"relative h-56 w-72\">\n      <AnimatePresence initial={false}>\n        {order.slice(0, 3).reverse().map((ci, rev, arr) => {\n          const depth = arr.length - 1 - rev\n          const top = depth === 0\n          return (\n            <motion.div\n              key={ci}\n              drag={top ? 'x' : false}\n              dragSnapToOrigin\n              onDragEnd={(_, info) => { if (Math.abs(info.offset.x) > 90 || Math.abs(info.velocity.x) > 500) next() }}\n              initial={{ scale: 0.85, y: 40, opacity: 0 }}\n              animate={{ scale: 1 - depth * 0.06, y: depth * -14, opacity: 1, rotate: depth * 1.5 }}\n              exit={{ x: 320, rotate: 18, opacity: 0, transition: { duration: 0.3 } }}\n              whileDrag={{ scale: 1.03, rotate: 4 }}\n              transition={{ type: 'spring', stiffness: 300, damping: 26 }}\n              className=\"absolute inset-0 flex cursor-grab flex-col justify-end rounded-2xl border border-line2 bg-panel2 p-5 shadow-[0_20px_50px_rgba(0,0,0,.5)] active:cursor-grabbing\"\n              style={{ zIndex: 10 - depth }}\n            >\n              <span className=\"mb-auto font-mono text-[11px] text-faint\">TIP {ci + 1}/{cards.length}</span>\n              <div className=\"text-lg font-medium text-tx\">{cards[ci].t}</div>\n              <div className=\"mt-1 text-sm text-mute\">{cards[ci].d}</div>\n              {top && <button onClick={next} className=\"mt-4 self-start text-xs text-acc\">Next tip →</button>}\n            </motion.div>\n          )\n        })}\n      </AnimatePresence>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

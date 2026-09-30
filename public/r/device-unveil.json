@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "device-unveil",
+  "title": "Device Unveil",
+  "type": "registry:component",
+  "description": "Device frame reveals the UI on scroll",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/device-unveil.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/device-unveil.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion } from 'motion/react'\n\nexport default function DeviceUnveil({ app = 'Streak' }) {\n  const [k, setK] = useState(0)\n  return (\n    <div onClick={() => setK(k + 1)} className=\"grid cursor-pointer place-items-center [perspective:1000px]\">\n      <motion.div\n        key={k}\n        initial={{ rotateX: 40, y: 60, opacity: 0, scale: 0.9 }}\n        whileInView={{ rotateX: 0, y: 0, opacity: 1, scale: 1 }}\n        viewport={{ amount: 0.5 }}\n        transition={{ type: 'spring', stiffness: 80, damping: 16 }}\n        className=\"relative h-80 w-40 rounded-[28px] border-[5px] border-[#26262b] bg-bg p-1 shadow-[0_40px_80px_rgba(0,0,0,.6)]\"\n      >\n        <div className=\"absolute left-1/2 top-2 z-10 h-3.5 w-12 -translate-x-1/2 rounded-full bg-black\" />\n        <motion.div\n          initial={{ clipPath: 'inset(100% 0 0 0 round 22px)' }}\n          whileInView={{ clipPath: 'inset(0% 0 0 0 round 22px)' }}\n          viewport={{ amount: 0.5 }}\n          transition={{ delay: 0.5, duration: 0.9, ease: [0.7, 0, 0.2, 1] }}\n          className=\"flex size-full flex-col gap-2 rounded-[22px] bg-gradient-to-b from-[#1b1310] to-panel p-3 pt-8\"\n        >\n          <div className=\"text-[11px] text-mute\">Good morning</div>\n          <div className=\"text-lg font-semibold text-tx\">{app}</div>\n          <div className=\"grid grid-cols-7 gap-1\">{Array.from({ length: 21 }).map((_, i) => <motion.span key={i} initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ delay: 1 + i * 0.03, type: 'spring', stiffness: 500, damping: 20 }} className={`aspect-square rounded-[3px] ${i % 5 === 3 ? 'bg-line2' : 'bg-acc'}`} style={{ opacity: 0.35 + (i % 4) * 0.2 }} />)}</div>\n          <div className=\"mt-auto rounded-xl bg-tx py-2 text-center text-[11px] font-medium text-bg\">Log today</div>\n        </motion.div>\n      </motion.div>\n      <span className=\"mt-3 text-[11px] text-faint\">click to replay</span>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "topo-lines",
+  "title": "Topo Lines",
+  "type": "registry:component",
+  "description": "Contour lines shift like a live map",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "src/kavyn/topo-lines.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/topo-lines.jsx",
+      "content": "'use client'\n\nimport { useEffect, useRef } from 'react'\n\n/** @param {{ children?: any, lines?: any, color?: any }} props */\nexport default function TopoLines({ children = undefined, lines = 14, color = undefined }) {\n  const ref = useRef(null)\n  useEffect(() => {\n    const c = ref.current, ctx = c.getContext('2d')\n    let raf, w, h\n    const size = () => { const d = devicePixelRatio || 1; w = c.clientWidth; h = c.clientHeight; c.width = w * d; c.height = h * d; ctx.setTransform(d, 0, 0, d, 0, 0) }\n    size(); const ro = new ResizeObserver(size); ro.observe(c)\n    const draw = (t) => {\n      t /= 1000; ctx.clearRect(0, 0, w, h)\n      for (let k = 0; k < lines; k++) {\n        ctx.beginPath()\n        for (let a = 0; a <= 64; a++) {\n          const th = (a / 64) * Math.PI * 2\n          const r = (k + 1) * (Math.max(w, h) / lines / 1.6) * (1 + 0.18 * Math.sin(th * 3 + t * 0.4 + k * 0.3) + 0.08 * Math.sin(th * 5 - t * 0.3))\n          const x = w * 0.62 + Math.cos(th) * r, y = h * 0.55 + Math.sin(th) * r * 0.75\n          a ? ctx.lineTo(x, y) : ctx.moveTo(x, y)\n        }\n        const ink = color || (document.documentElement.classList.contains('light') ? '20,20,23' : '237,237,239')\n        ctx.strokeStyle = k % 5 === 4 ? 'rgba(255,106,43,.45)' : `rgba(${ink},${0.06 + (k % 3) * 0.03})`\n        ctx.lineWidth = k % 5 === 4 ? 1.2 : 1; ctx.stroke()\n      }\n      raf = requestAnimationFrame(draw)\n    }\n    raf = requestAnimationFrame(draw)\n    return () => { cancelAnimationFrame(raf); ro.disconnect() }\n  }, [lines, color])\n  return (\n    <div className=\"relative size-full min-h-64 overflow-hidden bg-bg\">\n      <canvas ref={ref} className=\"absolute inset-0 size-full\" />\n      <div className=\"relative grid size-full min-h-64 place-items-center\">{children}</div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

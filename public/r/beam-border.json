@@ -1,0 +1,64 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "beam-border",
+  "title": "Beam Border",
+  "type": "registry:component",
+  "description": "A single beam travels around the card edge",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "src/kavyn/beam-border.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/beam-border.jsx",
+      "content": "'use client'\n\n// A single light beam travels around the card edge. Good for the one card you want seen.\n/** @param {{ children?: any, speed?: any, color?: any, className?: any }} props */\nexport default function BeamBorder({ children = undefined, speed = 4, color = '#ff6a2b', className = '' }) {\n  return (\n    <div className={`relative w-[340px] max-w-full overflow-hidden rounded-2xl p-px ${className}`}>\n      <style>{`@property --kv-a{syntax:'<angle>';initial-value:0deg;inherits:false}@keyframes kv-beam{to{--kv-a:360deg}}`}</style>\n      <div className=\"absolute inset-0 rounded-2xl\" style={{ background: `conic-gradient(from var(--kv-a), transparent 0 78%, ${color} 90%, transparent 100%)`, animation: `kv-beam ${speed}s linear infinite` }} />\n      <div className=\"absolute inset-0 rounded-2xl border border-line2\" />\n      <div className=\"relative rounded-[15px] bg-panel p-6\">\n        {children ?? (\n          <>\n            <div className=\"flex items-center justify-between\">\n              <span className=\"text-sm text-mute\">Workers</span>\n              <span className=\"rounded-full bg-acc/15 px-2 py-0.5 text-[11px] text-acc\">Recommended</span>\n            </div>\n            <div className=\"mt-4 font-mono text-3xl tracking-tight text-tx\">12 ms</div>\n            <p className=\"mt-1 text-sm text-mute\">Median cold start across 300 cities.</p>\n          </>\n        )}\n      </div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stack-menu",
+  "title": "Stack Menu",
+  "type": "registry:component",
+  "description": "Menu items fan down like cards",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/stack-menu.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/stack-menu.jsx",
+      "content": "'use client'\n\nimport { useEffect, useState } from 'react'\nimport { motion, AnimatePresence } from 'motion/react'\n\nconst ITEMS = ['Home', 'Menu', 'Reservations', 'Gift cards', 'Contact']\n\nexport default function StackMenu({ items = ITEMS, autoOpen = true }) {\n  const [open, setOpen] = useState(false)\n  useEffect(() => { if (!autoOpen) return; const t = setTimeout(() => setOpen(true), 500); return () => clearTimeout(t) }, [autoOpen])\n  return (\n    <div className=\"relative flex h-80 w-60 flex-col items-end\">\n      <button onClick={() => setOpen(!open)} className=\"relative z-20 grid size-11 place-items-center rounded-xl border border-line2 bg-panel2\" aria-label=\"Menu\">\n        <motion.span className=\"absolute h-0.5 w-5 rounded bg-tx\" animate={open ? { rotate: 45, y: 0 } : { rotate: 0, y: -4 }} />\n        <motion.span className=\"absolute h-0.5 w-5 rounded bg-tx\" animate={open ? { rotate: -45, y: 0 } : { rotate: 0, y: 4 }} />\n      </button>\n      <AnimatePresence>\n        {open && (\n          <motion.ul className=\"mt-2 w-full space-y-1.5\" initial=\"c\" animate=\"o\" exit=\"c\" variants={{ o: { transition: { staggerChildren: 0.05 } }, c: { transition: { staggerChildren: 0.03, staggerDirection: -1 } } }}>\n            {items.map((it, i) => (\n              <motion.li key={it} style={{ originX: 1, originY: 0 }}\n                variants={{ c: { opacity: 0, y: -24 - i * 6, rotate: -8, scale: 0.9 }, o: { opacity: 1, y: 0, rotate: 0, scale: 1 } }}\n                transition={{ type: 'spring', stiffness: 380, damping: 24 }}\n                className=\"rounded-xl border border-line2 bg-panel px-4 py-3 text-sm text-tx shadow-[0_8px_20px_rgba(0,0,0,.35)]\">\n                {it}\n              </motion.li>\n            ))}\n          </motion.ul>\n        )}\n      </AnimatePresence>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

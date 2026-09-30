@@ -1,0 +1,64 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "globe-pins",
+  "title": "Globe Pins",
+  "type": "registry:component",
+  "description": "Dot-matrix globe turns with pulsing pins",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "src/kavyn/globe-pins.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/globe-pins.jsx",
+      "content": "'use client'\n\nimport { useEffect, useRef } from 'react'\n\nconst PINS = [\n  { lat: 12.97, lon: 77.59, label: 'Bengaluru' },\n  { lat: 51.5, lon: -0.12, label: 'London' },\n  { lat: 37.77, lon: -122.42, label: 'San Francisco' },\n  { lat: 1.35, lon: 103.82, label: 'Singapore' },\n]\n\nexport default function GlobePins({ pins = PINS, size = 280, speed = 0.12 }) {\n  const ref = useRef(null)\n  useEffect(() => {\n    const c = ref.current, ctx = c.getContext('2d')\n    const dpr = window.devicePixelRatio || 1\n    c.width = size * dpr; c.height = size * dpr; ctx.scale(dpr, dpr)\n    const N = 900, pts = []\n    for (let i = 0; i < N; i++) {\n      const y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), th = i * 2.39996\n      pts.push([Math.cos(th) * r, y, Math.sin(th) * r])\n    }\n    const pp = pins.map((p) => { const la = (p.lat * Math.PI) / 180, lo = (p.lon * Math.PI) / 180; return [Math.cos(la) * Math.cos(lo), Math.sin(la), Math.cos(la) * Math.sin(lo)] })\n    let rot = 0, raf, last = performance.now(), dragging = false, px = 0\n    const R = size * 0.42, cx = size / 2, cy = size / 2, tilt = 0.35\n    const proj = ([x, y, z]) => {\n      const X = x * Math.cos(rot) - z * Math.sin(rot), Z = x * Math.sin(rot) + z * Math.cos(rot)\n      const Y = y * Math.cos(tilt) - Z * Math.sin(tilt), Z2 = y * Math.sin(tilt) + Z * Math.cos(tilt)\n      return [cx + X * R, cy - Y * R, Z2]\n    }\n    const draw = (now) => {\n      const dt = now - last; last = now\n      if (!dragging) rot += (speed * dt) / 1000\n      ctx.clearRect(0, 0, size, size)\n      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fillStyle = '#0f0f11'; ctx.fill()\n      const lite = document.documentElement.classList.contains('light')\n      for (const p of pts) { const [x, y, z] = proj(p); if (z < 0) continue; ctx.fillStyle = lite ? `rgba(20,20,23,${0.1 + z * 0.4})` : `rgba(237,237,239,${0.08 + z * 0.35})`; ctx.fillRect(x, y, 1.4, 1.4) }\n      const pulse = (now / 1400) % 1\n      pp.forEach((p, i) => {\n        const [x, y, z] = proj(p); if (z < 0) return\n        ctx.beginPath(); ctx.arc(x, y, 3 + pulse * 12, 0, Math.PI * 2); ctx.strokeStyle = `rgba(255,106,43,${(1 - pulse) * 0.8})`; ctx.stroke()\n        ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2); ctx.fillStyle = '#ff6a2b'; ctx.fill()\n        ctx.fillStyle = lite ? `rgba(20,20,23,${0.4 + z * 0.6})` : `rgba(237,237,239,${z})`; ctx.font = '10px ui-monospace, monospace'; ctx.fillText(pins[i].label, x + 7, y + 3)\n      })\n      raf = requestAnimationFrame(draw)\n    }\n    raf = requestAnimationFrame(draw)\n    const down = (e) => { dragging = true; px = e.clientX; c.setPointerCapture(e.pointerId) }\n    const move = (e) => { if (dragging) { rot += (e.clientX - px) * 0.01; px = e.clientX } }\n    const up = () => (dragging = false)\n    c.addEventListener('pointerdown', down); c.addEventListener('pointermove', move); c.addEventListener('pointerup', up)\n    return () => { cancelAnimationFrame(raf); c.removeEventListener('pointerdown', down); c.removeEventListener('pointermove', move); c.removeEventListener('pointerup', up) }\n  }, [pins, size, speed])\n  return <canvas ref={ref} style={{ width: size, height: size }} className=\"cursor-grab touch-none active:cursor-grabbing\" />\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "masonry-drift",
+  "title": "Masonry Drift",
+  "type": "registry:component",
+  "description": "Columns drift at different speeds",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/masonry-drift.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/masonry-drift.jsx",
+      "content": "'use client'\n\nimport { motion } from 'motion/react'\n\nconst T = [\n  ['from-[#ff6a2b] to-[#6b1f0a]', 140], ['from-[#2a2a30] to-[#0f0f11]', 90], ['from-[#d8b27a] to-[#5a3d1a]', 120],\n  ['from-[#3f7cac] to-[#0f2233]', 160], ['from-[#6b8f5e] to-[#1a2615]', 100], ['from-[#7d4e8a] to-[#1f1025]', 130],\n]\n\nfunction Col({ speed, offset }) {\n  const tiles = [...T.slice(offset), ...T.slice(0, offset)]\n  return (\n    <div className=\"h-full overflow-hidden\">\n      <motion.div animate={{ y: ['0%', '-50%'] }} transition={{ repeat: Infinity, ease: 'linear', duration: speed }} className=\"flex flex-col gap-2\">\n        {[...tiles, ...tiles].map(([g, h], i) => <div key={i} className={`rounded-lg bg-gradient-to-br ${g}`} style={{ height: h }} />)}\n      </motion.div>\n    </div>\n  )\n}\n\nexport default function MasonryDrift({ speeds = [22, 30, 18] }) {\n  return (\n    <div className=\"grid h-72 w-full max-w-md grid-cols-3 gap-2 overflow-hidden rounded-2xl border border-line p-2 [mask-image:linear-gradient(transparent,#000_15%,#000_85%,transparent)]\">\n      {speeds.map((s, i) => <Col key={i} speed={s} offset={i * 2} />)}\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

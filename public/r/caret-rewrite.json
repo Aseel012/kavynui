@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "caret-rewrite",
+  "title": "Caret Rewrite",
+  "type": "registry:component",
+  "description": "Types, backspaces and retypes with a live caret",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/caret-rewrite.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/caret-rewrite.jsx",
+      "content": "'use client'\n\nimport { useEffect, useState } from 'react'\nimport { motion } from 'motion/react'\n\nconst LINES = ['Write the release notes', 'Summarize this thread', 'Draft a reply to Priya']\n\nexport default function CaretRewrite({ lines = LINES, speed = 55 }) {\n  const [i, setI] = useState(0)\n  const [n, setN] = useState(0)\n  const [del, setDel] = useState(false)\n  useEffect(() => {\n    const full = lines[i]\n    let t\n    if (!del && n < full.length) t = setTimeout(() => setN(n + 1), speed + Math.random() * 40)\n    else if (!del) t = setTimeout(() => setDel(true), 1400)\n    else if (n > 0) t = setTimeout(() => setN(n - 1), 24)\n    else { setDel(false); setI((i + 1) % lines.length) }\n    return () => clearTimeout(t)\n  }, [n, del, i, lines, speed])\n  return (\n    <div className=\"flex h-12 w-full max-w-md items-center gap-3 rounded-xl border border-line2 bg-panel px-4 text-[15px]\">\n      <span className=\"text-acc\">✦</span>\n      <span className=\"text-tx\">{lines[i].slice(0, n)}</span>\n      <motion.span\n        className=\"-ml-2 h-5 w-[2px] rounded bg-acc\"\n        animate={{ opacity: [1, 1, 0, 0] }}\n        transition={{ repeat: Infinity, duration: 0.9, times: [0, 0.5, 0.5, 1] }}\n      />\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

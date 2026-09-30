@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "request-heatmap",
+  "title": "Request Heatmap",
+  "type": "registry:component",
+  "description": "Hour by weekday grid that fills on a diagonal wave",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/request-heatmap.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/request-heatmap.jsx",
+      "content": "'use client'\n\nimport { useMemo, useState } from 'react'\nimport { motion } from 'motion/react'\n\nconst DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']\n\n// Requests by hour and weekday. Cells fill in on a diagonal wave; hover reads the value.\nexport default function RequestHeatmap({ title = 'Requests by hour' }) {\n  const [on, setOn] = useState(null)\n  const grid = useMemo(() => DAYS.map((_, d) => Array.from({ length: 24 }, (_, h) => {\n    const work = h >= 9 && h <= 20 ? 1 : 0.25\n    const wk = d >= 5 ? 0.55 : 1\n    return Math.min(1, work * wk * (0.55 + 0.45 * Math.sin((h / 24) * Math.PI)) + ((h * 7 + d * 13) % 10) / 40)\n  })), [])\n  const cell = on ? grid[on[0]][on[1]] : null\n  return (\n    <div className=\"w-[440px] max-w-full rounded-2xl border border-line bg-panel p-4\">\n      <div className=\"mb-3 flex items-center justify-between text-xs\">\n        <span className=\"text-tx\">{title}</span>\n        <span className=\"font-mono text-mute\">{cell !== null ? `${DAYS[on[0]]} ${String(on[1]).padStart(2, '0')}:00 · ${(cell * 48).toFixed(1)}k` : 'last 7 days'}</span>\n      </div>\n      <div className=\"grid gap-[3px]\" onMouseLeave={() => setOn(null)}>\n        {grid.map((row, d) => (\n          <div key={d} className=\"grid grid-cols-[28px_repeat(24,1fr)] items-center gap-[3px]\">\n            <span className=\"text-[10px] text-faint\">{DAYS[d]}</span>\n            {row.map((v, h) => (\n              <motion.span key={h} onMouseEnter={() => setOn([d, h])}\n                initial={{ opacity: 0, scale: 0.4 }} animate={{ opacity: 1, scale: on && on[0] === d && on[1] === h ? 1.35 : 1 }}\n                transition={{ delay: on ? 0 : (d + h) * 0.012, type: 'spring', stiffness: 400, damping: 26 }}\n                className=\"aspect-square rounded-[3px]\" style={{ backgroundColor: `rgba(255,106,43,${0.06 + v * 0.85})` }} />\n            ))}\n          </div>\n        ))}\n      </div>\n      <div className=\"mt-2 grid grid-cols-[28px_1fr] font-mono text-[9px] text-faint\"><span /><div className=\"flex justify-between\"><span>00</span><span>06</span><span>12</span><span>18</span><span>23</span></div></div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

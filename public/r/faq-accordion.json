@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "faq-accordion",
+  "title": "FAQ Accordion",
+  "type": "registry:block",
+  "description": "One-open-at-a-time questions with a plus that becomes a minus",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/faq-accordion.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/faq-accordion.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion, AnimatePresence } from 'motion/react'\n\nconst QA = [\n  ['Is there a free tier?', 'Yes. Hobby projects run free with generous limits. You only pay when you add a team.'],\n  ['Can I use my own domain?', 'Point a CNAME at us and SSL is issued in about a minute.'],\n  ['Where does my code run?', 'In every edge location we have. Requests go to the nearest one.'],\n  ['How do rollbacks work?', 'Every deploy is kept. Pick one and it goes live instantly.'],\n]\n\n// Block: FAQ with one open item at a time and a plus that turns into a minus.\nexport default function FaqAccordion({ items = QA, title = 'Questions' }) {\n  const [open, setOpen] = useState(0)\n  return (\n    <section className=\"@container w-full rounded-2xl border border-line bg-bg p-6 @3xl:grid @3xl:grid-cols-[220px_1fr] @3xl:gap-10 @3xl:p-10\">\n      <h2 className=\"text-2xl font-semibold tracking-tight text-tx\">{title}</h2>\n      <div className=\"mt-6 divide-y divide-line @3xl:mt-0\">\n        {items.map(([q, a], i) => (\n          <div key={q}>\n            <button type=\"button\" onClick={() => setOpen(open === i ? -1 : i)} aria-expanded={open === i} className=\"flex w-full items-center justify-between gap-4 py-4 text-left text-[15px] text-tx\">\n              {q}\n              <span className=\"relative size-3.5 shrink-0\">\n                <span className=\"absolute inset-x-0 top-1/2 h-px bg-mute\" />\n                <motion.span className=\"absolute inset-y-0 left-1/2 w-px bg-mute\" animate={{ scaleY: open === i ? 0 : 1 }} />\n              </span>\n            </button>\n            <AnimatePresence initial={false}>\n              {open === i && (\n                <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ type: 'spring', stiffness: 320, damping: 34 }} className=\"overflow-hidden\">\n                  <p className=\"pb-4 text-sm leading-6 text-mute\">{a}</p>\n                </motion.div>\n              )}\n            </AnimatePresence>\n          </div>\n        ))}\n      </div>\n    </section>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

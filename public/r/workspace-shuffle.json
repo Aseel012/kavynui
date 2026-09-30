@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "workspace-shuffle",
+  "title": "Workspace Shuffle",
+  "type": "registry:component",
+  "description": "Workspaces slide in as a card stack",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/workspace-shuffle.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/workspace-shuffle.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion, AnimatePresence } from 'motion/react'\n\nconst WS = [{ n: 'Acme Studio', c: '#ff6a2b', m: 12 }, { n: 'Personal', c: '#6b8f5e', m: 1 }, { n: 'Side project', c: '#3f7cac', m: 3 }]\n\nexport default function WorkspaceShuffle({ workspaces = WS }) {\n  const [order, setOrder] = useState(workspaces.map((_, i) => i))\n  const [open, setOpen] = useState(false)\n  const pick = (i) => { setOrder([i, ...order.filter((x) => x !== i)]); setOpen(false) }\n  return (\n    <div className=\"relative h-64 w-64\">\n      {order.map((wi, depth) => {\n        const w = workspaces[wi]\n        return (\n          <motion.button key={w.n} onClick={() => (open ? pick(wi) : setOpen(true))}\n            animate={open ? { y: depth * 64, scale: 1, opacity: 1 } : { y: depth * 8, scale: 1 - depth * 0.05, opacity: depth > 2 ? 0 : 1 - depth * 0.25 }}\n            transition={{ type: 'spring', stiffness: 360, damping: 30 }} style={{ zIndex: 10 - depth }}\n            className=\"absolute inset-x-0 top-0 flex h-14 items-center gap-3 rounded-xl border border-line2 bg-panel2 px-3 text-left shadow-[0_10px_24px_rgba(0,0,0,.4)]\">\n            <span className=\"grid size-8 place-items-center rounded-lg text-xs font-semibold text-bg\" style={{ background: w.c }}>{w.n[0]}</span>\n            <span className=\"flex-1\"><span className=\"block text-sm text-tx\">{w.n}</span><span className=\"block text-[11px] text-faint\">{w.m} members</span></span>\n            {depth === 0 && !open && <span className=\"text-xs text-mute\">⇅</span>}\n          </motion.button>\n        )\n      })}\n      <AnimatePresence>{open && <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setOpen(false)} className=\"absolute inset-x-0 text-xs text-faint\" style={{ top: workspaces.length * 64 + 4 }}>close</motion.button>}</AnimatePresence>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

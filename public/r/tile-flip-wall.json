@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tile-flip-wall",
+  "title": "Tile Flip Wall",
+  "type": "registry:component",
+  "description": "Tiles flip to reveal an image",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/tile-flip-wall.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/tile-flip-wall.jsx",
+      "content": "'use client'\n\nimport { useEffect, useState } from 'react'\nimport { motion } from 'motion/react'\n\n/** @param {{ children?: any, cols?: any, rows?: any }} props */\nexport default function TileFlipWall({ children = undefined, cols = 10, rows = 6 }) {\n  const [side, setSide] = useState(false)\n  const [origin, setOrigin] = useState([0, 0])\n  useEffect(() => { const t = setInterval(() => { setOrigin([Math.floor(Math.random() * cols), Math.floor(Math.random() * rows)]); setSide((s) => !s) }, 3600); return () => clearInterval(t) }, [cols, rows])\n  return (\n    <div className=\"relative size-full min-h-64 overflow-hidden bg-bg\">\n      <div className=\"absolute inset-0 grid gap-px\" style={{ gridTemplateColumns: `repeat(${cols},1fr)`, gridTemplateRows: `repeat(${rows},1fr)` }}>\n        {Array.from({ length: cols * rows }).map((_, i) => {\n          const x = i % cols, y = Math.floor(i / cols)\n          const pos = `${(x / (cols - 1)) * 100}% ${(y / (rows - 1)) * 100}%`\n          return (\n            <div key={i} className=\"[perspective:400px]\">\n              <motion.div className=\"relative size-full\" style={{ transformStyle: 'preserve-3d' }} animate={{ rotateY: side ? 180 : 0 }} transition={{ type: 'spring', stiffness: 120, damping: 16, delay: Math.hypot(x - origin[0], y - origin[1]) * 0.05 }}>\n                <div className=\"absolute inset-0 bg-panel [backface-visibility:hidden]\" />\n                <div className=\"absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]\" style={{ backgroundImage: 'linear-gradient(135deg,#ff6a2b,#7a2a10 50%,#141417)', backgroundSize: `${cols * 100}% ${rows * 100}%`, backgroundPosition: pos }} />\n              </motion.div>\n            </div>\n          )\n        })}\n      </div>\n      <div className=\"relative grid size-full min-h-64 place-items-center\">{children}</div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

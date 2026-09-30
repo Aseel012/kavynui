@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ember-button",
+  "title": "Ember Button",
+  "type": "registry:component",
+  "description": "Edge heat-shimmer builds as the cursor gets closer",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/ember-button.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/ember-button.jsx",
+      "content": "'use client'\n\nimport { useEffect, useRef } from 'react'\nimport { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from 'motion/react'\n\n/** @param {{ children?: any, range?: any, onClick?: any }} props */\nexport default function EmberButton({ children = 'Pay now', range = 220, onClick = undefined }) {\n  const ref = useRef(null)\n  const heat = useMotionValue(0)\n  const angle = useMotionValue(0)\n  const h = useSpring(heat, { stiffness: 180, damping: 22 })\n  const a = useSpring(angle, { stiffness: 120, damping: 20 })\n  const glow = useTransform(h, [0, 1], [0, 0.9])\n  const blur = useTransform(h, [0, 1], [0, 18])\n  const bg = useMotionTemplate`conic-gradient(from ${a}deg, transparent 0deg, #ff6a2b 40deg, #ffb46b 70deg, transparent 130deg, transparent 360deg)`\n  const shadow = useMotionTemplate`0 0 ${blur}px rgba(255,106,43,${glow})`\n\n  useEffect(() => {\n    const move = (e) => {\n      const r = ref.current?.getBoundingClientRect()\n      if (!r) return\n      const cx = r.left + r.width / 2, cy = r.top + r.height / 2\n      const d = Math.hypot(e.clientX - cx, e.clientY - cy)\n      heat.set(Math.max(0, 1 - d / range))\n      angle.set((Math.atan2(e.clientY - cy, e.clientX - cx) * 180) / Math.PI + 30)\n    }\n    window.addEventListener('pointermove', move)\n    return () => window.removeEventListener('pointermove', move)\n  }, [range, heat, angle])\n\n  return (\n    <motion.button\n      ref={ref}\n      onClick={onClick}\n      whileTap={{ scale: 0.96 }}\n      style={{ boxShadow: shadow }}\n      className=\"relative isolate rounded-xl p-px text-sm font-medium text-tx\"\n    >\n      <motion.span aria-hidden style={{ background: bg, opacity: glow }} className=\"absolute inset-0 -z-10 rounded-xl\" />\n      <span className=\"absolute inset-0 -z-10 rounded-xl bg-line2\" />\n      <span className=\"relative flex h-11 items-center gap-2 rounded-[11px] bg-panel px-6\">\n        <motion.span style={{ opacity: glow }} className=\"size-1.5 rounded-full bg-acc\" />\n        {children}\n      </span>\n    </motion.button>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

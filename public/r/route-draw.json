@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "route-draw",
+  "title": "Route Draw",
+  "type": "registry:component",
+  "description": "Route line draws between stops, marker follows",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/route-draw.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/route-draw.jsx",
+      "content": "'use client'\n\nimport { useEffect, useRef, useState } from 'react'\nimport { motion, useMotionValue, animate } from 'motion/react'\n\nconst D = 'M40 200 C 90 200, 90 120, 150 120 S 220 60, 270 90 S 330 170, 380 60'\nconst STOPS = [{ t: 0, n: 'Kitchen' }, { t: 0.45, n: 'Hub' }, { t: 1, n: 'You' }]\n\nexport default function RouteDraw({ duration = 4 }) {\n  const path = useRef(null)\n  const p = useMotionValue(0)\n  const [pt, setPt] = useState({ x: 40, y: 200 })\n  const [pts, setPts] = useState([])\n  const [prog, setProg] = useState(0)\n  useEffect(() => {\n    const el = path.current, L = el.getTotalLength()\n    setPts(STOPS.map((s) => el.getPointAtLength(L * s.t)))\n    const un = p.on('change', (v) => { const q = el.getPointAtLength(L * v); setPt({ x: q.x, y: q.y }); setProg(v) })\n    const c = animate(p, [0, 1, 1], { duration: duration + 1.5, times: [0, duration / (duration + 1.5), 1], ease: 'easeInOut', repeat: Infinity })\n    return () => { un(); c.stop() }\n  }, [p, duration])\n  return (\n    <div className=\"w-full max-w-md rounded-2xl border border-line bg-panel p-3\">\n      <svg viewBox=\"0 0 420 240\" className=\"w-full\">\n        <defs><pattern id=\"rd-g\" width=\"20\" height=\"20\" patternUnits=\"userSpaceOnUse\"><path d=\"M20 0H0V20\" fill=\"none\" stroke=\"#1e1e22\" /></pattern></defs>\n        <rect width=\"420\" height=\"240\" fill=\"url(#rd-g)\" rx=\"10\" />\n        <path ref={path} d={D} fill=\"none\" stroke=\"#2a2a30\" strokeWidth=\"3\" strokeDasharray=\"2 6\" strokeLinecap=\"round\" />\n        <motion.path d={D} fill=\"none\" stroke=\"#ff6a2b\" strokeWidth=\"3\" strokeLinecap=\"round\" style={{ pathLength: p }} />\n        {pts.map((s, i) => (\n          <g key={i}>\n            <circle cx={s.x} cy={s.y} r=\"5\" fill={prog >= STOPS[i].t - 0.001 ? '#ff6a2b' : '#2a2a30'} />\n            <text x={s.x} y={s.y - 12} textAnchor=\"middle\" fontSize=\"10\" fill=\"#8a8a93\" fontFamily=\"ui-monospace\">{STOPS[i].n}</text>\n          </g>\n        ))}\n        <g transform={`translate(${pt.x} ${pt.y})`}>\n          <circle r=\"11\" fill=\"#ff6a2b\" opacity=\".2\" />\n          <circle r=\"6\" fill=\"#ededef\" />\n        </g>\n      </svg>\n      <div className=\"flex justify-between px-1 pt-1 text-xs\"><span className=\"text-mute\">Order #2381</span><span className=\"font-mono text-tx\">{prog >= 1 ? 'Arrived' : `${Math.max(1, Math.round((1 - prog) * 14))} min away`}</span></div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

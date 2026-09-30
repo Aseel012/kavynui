@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "split-flap-button",
+  "title": "Split Flap Button",
+  "type": "registry:component",
+  "description": "Label flips like a departures board on state change",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/split-flap-button.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/split-flap-button.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion, AnimatePresence } from 'motion/react'\n\nconst STATES = ['SELECT SEAT', 'HOLDING 14C', 'BOOKED  14C']\n\nexport default function SplitFlapButton({ states = STATES }) {\n  const [i, setI] = useState(0)\n  const width = Math.max(...states.map((s) => s.length))\n  const label = states[i].padEnd(width, ' ')\n\n  return (\n    <button\n      onClick={() => setI((i + 1) % states.length)}\n      className=\"flex gap-[3px] rounded-xl border border-line2 bg-panel p-2\"\n      aria-label={states[i]}\n    >\n      {label.split('').map((ch, k) => (\n        <span key={k} className=\"relative h-9 w-6 overflow-hidden rounded-[4px] bg-bg font-mono text-sm text-tx [perspective:200px]\">\n          <AnimatePresence initial={false} mode=\"popLayout\">\n            <motion.span\n              key={ch + i}\n              initial={{ rotateX: -90, opacity: 0 }}\n              animate={{ rotateX: 0, opacity: 1 }}\n              exit={{ rotateX: 90, opacity: 0 }}\n              transition={{ type: 'spring', stiffness: 380, damping: 22, delay: k * 0.035 }}\n              className=\"absolute inset-0 grid origin-center place-items-center\"\n            >\n              {ch === ' ' ? '\\u00a0' : ch}\n            </motion.span>\n          </AnimatePresence>\n          <span className=\"pointer-events-none absolute inset-x-0 top-1/2 h-px bg-black/60\" />\n        </span>\n      ))}\n    </button>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

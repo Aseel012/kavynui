@@ -1,0 +1,70 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "iron-filings",
+  "title": "Iron Filings",
+  "type": "registry:component",
+  "description": "Strokes that turn to face the pointer like filings",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "src/kavyn/iron-filings.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/iron-filings.jsx",
+      "content": "'use client'\n\nimport { useCanvasLoop } from './canvas-loop'\n\n// Short strokes that turn to face the pointer like filings around a magnet.\n// When nobody is pointing, a slow magnet drifts on its own.\n/** @param {{ gap?: any, color?: any, className?: any, children?: any }} props */\nexport default function IronFilings({ gap = 22, color = '#ff6a2b', className = '', children = undefined }) {\n  const host = useCanvasLoop((ctx, s) => {\n    const g = Math.max(12, Number(gap) || 22)\n    let idle = 0, mx = s.w / 2, my = s.h / 2\n    return {\n      step(dt) {\n        const p = s.pointer\n        let tx = p.x, ty = p.y\n        if (!p.inside) { idle += s.reduce ? 0 : dt; tx = s.w / 2 + Math.cos(idle * 0.5) * s.w * 0.28; ty = s.h / 2 + Math.sin(idle * 0.8) * s.h * 0.22 }\n        mx += (tx - mx) * 0.12; my += (ty - my) * 0.12\n        ctx.clearRect(0, 0, s.w, s.h)\n        ctx.lineCap = 'round'\n        const diag = Math.hypot(s.w, s.h)\n        for (let y = g / 2; y < s.h; y += g) for (let x = g / 2; x < s.w; x += g) {\n          const dx = mx - x, dy = my - y, d = Math.hypot(dx, dy) || 1\n          const near = Math.max(0, 1 - d / (diag * 0.45))\n          const len = 3 + near * g * 0.45\n          const a = Math.atan2(dy, dx)\n          const cx = Math.cos(a) * len / 2, cy = Math.sin(a) * len / 2\n          ctx.strokeStyle = near > 0.6 ? color : `rgba(138,138,147,${0.25 + near * 0.6})`\n          ctx.lineWidth = 1 + near * 1.2\n          ctx.beginPath(); ctx.moveTo(x - cx, y - cy); ctx.lineTo(x + cx, y + cy); ctx.stroke()\n        }\n      },\n    }\n  }, [gap, color])\n  return (\n    <div ref={host} className={`relative h-full min-h-72 w-full overflow-hidden bg-bg ${className}`}>\n      {children && <div className=\"pointer-events-none relative z-10 grid h-full min-h-72 place-items-center p-6\">{children}</div>}\n    </div>\n  )\n}\n"
+    },
+    {
+      "path": "src/kavyn/canvas-loop.js",
+      "type": "registry:file",
+      "target": "@components/kavyn/canvas-loop.js",
+      "content": "'use client'\n\nimport { useEffect, useRef } from 'react'\n\n// Shared 2D canvas runner for the physics and particle pieces.\n// Sizes the canvas to its box (capped DPR), pauses off screen and in hidden tabs,\n// tracks the pointer in CSS pixels, and hands your step() a ready context.\nexport function useCanvasLoop(setup, deps = []) {\n  const host = useRef(null)\n  useEffect(() => {\n    const el = host.current\n    if (!el || typeof window === 'undefined') return\n    const canvas = document.createElement('canvas')\n    canvas.setAttribute('aria-hidden', 'true')\n    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none'\n    const ctx = canvas.getContext('2d')\n    if (!ctx) return\n    el.prepend(canvas)\n    const reduce = !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches\n    const state = { w: 0, h: 0, dpr: 1, pointer: { x: -9999, y: -9999, down: false, inside: false, vx: 0, vy: 0 }, reduce }\n    const resize = () => {\n      const dpr = Math.min(2, window.devicePixelRatio || 1)\n      const w = Math.max(1, el.clientWidth), h = Math.max(1, el.clientHeight)\n      if (w === state.w && h === state.h && dpr === state.dpr) return false\n      state.w = w; state.h = h; state.dpr = dpr\n      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr)\n      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)\n      return true\n    }\n    resize()\n    let api = null\n    try { api = setup(ctx, state) || {} } catch { api = {} }\n    const pos = (e) => { const r = el.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top } }\n    const onMove = (e) => { const p = pos(e); const q = state.pointer; q.vx = p.x - q.x; q.vy = p.y - q.y; q.x = p.x; q.y = p.y; q.inside = true; api.move?.(q) }\n    const onDown = (e) => { const p = pos(e); Object.assign(state.pointer, p, { down: true, inside: true, vx: 0, vy: 0 }); try { canvas.setPointerCapture(e.pointerId) } catch { /* ignore */ } api.down?.(state.pointer) }\n    const onUp = () => { state.pointer.down = false; api.up?.(state.pointer) }\n    const onLeave = () => { if (!state.pointer.down) { state.pointer.inside = false; state.pointer.x = -9999; state.pointer.y = -9999 } }\n    canvas.addEventListener('pointermove', onMove)\n    canvas.addEventListener('pointerdown', onDown)\n    canvas.addEventListener('pointerup', onUp)\n    canvas.addEventListener('pointercancel', onUp)\n    canvas.addEventListener('pointerleave', onLeave)\n    let raf = 0, visible = true, prev = performance.now()\n    const loop = (now) => {\n      raf = 0\n      if (resize()) api.resize?.()\n      const dt = Math.min(1 / 30, Math.max(0, (now - prev) / 1000)); prev = now\n      try { api.step?.(dt, now / 1000) } catch { return }\n      if (visible && !document.hidden) raf = requestAnimationFrame(loop)\n    }\n    const start = () => { if (!raf) { prev = performance.now(); raf = requestAnimationFrame(loop) } }\n    const io = typeof IntersectionObserver !== 'undefined' ? new IntersectionObserver(([e]) => { visible = !!e?.isIntersecting; if (visible) start() }) : null\n    io?.observe(el)\n    const onVis = () => { if (!document.hidden) start() }\n    document.addEventListener('visibilitychange', onVis)\n    start()\n    return () => {\n      cancelAnimationFrame(raf); io?.disconnect()\n      document.removeEventListener('visibilitychange', onVis)\n      canvas.remove()\n    }\n  }, deps) // eslint-disable-line react-hooks/exhaustive-deps\n  return host\n}\n\nexport const clamp = (v, a, b) => Math.min(b, Math.max(a, v))\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

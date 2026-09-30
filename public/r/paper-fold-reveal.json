@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "paper-fold-reveal",
+  "title": "Paper Fold Reveal",
+  "type": "registry:component",
+  "description": "Content unfolds panel by panel like a map",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/paper-fold-reveal.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/paper-fold-reveal.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion } from 'motion/react'\n\nconst DAYS = [\n  { d: 'Day 1', t: 'Land in Lisbon, tram 28, Alfama dinner' },\n  { d: 'Day 2', t: 'Sintra palaces, back by sunset' },\n  { d: 'Day 3', t: 'LX Factory, river walk, fly out' },\n]\n\nexport default function PaperFoldReveal({ panels = DAYS }) {\n  const [open, setOpen] = useState(false)\n  return (\n    <div className=\"flex w-72 flex-col items-stretch [perspective:900px]\">\n      <button onClick={() => setOpen(!open)} className=\"z-10 flex items-center justify-between rounded-t-xl border border-line2 bg-panel2 px-4 py-3 text-sm text-tx\">\n        Lisbon, 3 days <motion.span animate={{ rotate: open ? 180 : 0 }} className=\"text-mute\">⌄</motion.span>\n      </button>\n      {panels.map((p, i) => (\n        <motion.div\n          key={i}\n          initial={false}\n          animate={{ rotateX: open ? 0 : -92, opacity: open ? 1 : 0, height: open ? 64 : 0 }}\n          transition={{ type: 'spring', stiffness: 170, damping: 20, delay: open ? i * 0.14 : (panels.length - i) * 0.06 }}\n          style={{ transformOrigin: 'top', background: i % 2 ? '#111114' : '#141417' }}\n          className=\"overflow-hidden border-x border-b border-line2 px-4 last:rounded-b-xl\"\n        >\n          <div className=\"flex h-16 items-center gap-3\">\n            <span className=\"font-mono text-[11px] text-acc\">{p.d}</span>\n            <span className=\"text-sm text-mute\">{p.t}</span>\n          </div>\n        </motion.div>\n      ))}\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

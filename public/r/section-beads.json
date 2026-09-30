@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "section-beads",
+  "title": "Section Beads",
+  "type": "registry:component",
+  "description": "Beads fill as you read each section",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/section-beads.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/section-beads.jsx",
+      "content": "'use client'\n\nimport { useRef, useState } from 'react'\nimport { motion, useScroll, useMotionValueEvent } from 'motion/react'\n\nconst SECTIONS = ['Install', 'Usage', 'Props', 'Theming', 'FAQ']\n\nexport default function SectionBeads({ sections = SECTIONS }) {\n  const ref = useRef(null)\n  const { scrollYProgress } = useScroll({ container: ref })\n  const [p, setP] = useState(0)\n  useMotionValueEvent(scrollYProgress, 'change', setP)\n  const n = sections.length\n  return (\n    <div className=\"flex h-72 w-full max-w-md overflow-hidden rounded-2xl border border-line bg-bg\">\n      <div className=\"flex w-32 flex-col gap-3 border-r border-line p-4\">\n        {sections.map((s, i) => {\n          const f = Math.min(1, Math.max(0, p * n - i))\n          return (\n            <button key={s} onClick={() => ref.current.scrollTo({ top: (ref.current.scrollHeight - ref.current.clientHeight) * (i / (n - 1)), behavior: 'smooth' })} className=\"flex items-center gap-2 text-left text-xs\">\n              <span className=\"relative size-3 overflow-hidden rounded-full border border-line2\">\n                <motion.span className=\"absolute inset-x-0 bottom-0 bg-acc\" animate={{ height: `${f * 100}%` }} transition={{ type: 'spring', stiffness: 300, damping: 30 }} />\n              </span>\n              <span className={f > 0.05 ? 'text-tx' : 'text-faint'}>{s}</span>\n            </button>\n          )\n        })}\n      </div>\n      <div ref={ref} className=\"flex-1 overflow-y-auto p-4\">\n        {sections.map((s) => (\n          <section key={s} className=\"mb-6\">\n            <h4 className=\"text-sm text-tx\">{s}</h4>\n            {[0, 1, 2, 3].map((k) => <div key={k} className=\"mt-2 h-2 rounded bg-line\" style={{ width: `${90 - k * 15}%` }} />)}\n          </section>\n        ))}\n      </div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

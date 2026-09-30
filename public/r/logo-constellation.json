@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-constellation",
+  "title": "Logo Constellation",
+  "type": "registry:component",
+  "description": "Logos linked by lines that pulse",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/logo-constellation.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/logo-constellation.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion } from 'motion/react'\n\nconst NODES = [\n  { n: 'Slack', x: 60, y: 60 }, { n: 'Stripe', x: 250, y: 40 }, { n: 'Linear', x: 330, y: 150 },\n  { n: 'Notion', x: 270, y: 250 }, { n: 'GitHub', x: 70, y: 240 }, { n: 'Figma', x: 30, y: 150 },\n]\nconst C = { x: 180, y: 150 }\n\nexport default function LogoConstellation({ nodes = NODES, hub = 'K' }) {\n  const [h, setH] = useState(null)\n  return (\n    <svg viewBox=\"0 0 360 300\" className=\"w-full max-w-md\">\n      {nodes.map((n, i) => (\n        <g key={n.n}>\n          <line x1={C.x} y1={C.y} x2={n.x} y2={n.y} stroke={h === i ? '#ff6a2b' : '#2a2a30'} strokeWidth=\"1\" />\n          <motion.line x1={C.x} y1={C.y} x2={n.x} y2={n.y} stroke=\"#ff6a2b\" strokeWidth=\"2\" strokeLinecap=\"round\" pathLength=\"1\" strokeDasharray=\"0.08 0.92\"\n            animate={{ strokeDashoffset: [1, 0] }} transition={{ repeat: Infinity, duration: 2.2, delay: i * 0.37, ease: 'easeInOut' }} />\n        </g>\n      ))}\n      {nodes.map((n, i) => (\n        <motion.g key={n.n} onPointerEnter={() => setH(i)} onPointerLeave={() => setH(null)} animate={{ scale: h === i ? 1.15 : 1 }} style={{ transformOrigin: `${n.x}px ${n.y}px` }} className=\"cursor-pointer\">\n          <rect x={n.x - 22} y={n.y - 22} width=\"44\" height=\"44\" rx=\"12\" fill=\"#141417\" stroke={h === i ? '#ff6a2b' : '#2a2a30'} />\n          <text x={n.x} y={n.y + 5} textAnchor=\"middle\" fontSize=\"15\" fontWeight=\"600\" fill=\"#ededef\">{n.n[0]}</text>\n          <text x={n.x} y={n.y + 38} textAnchor=\"middle\" fontSize=\"10\" fill=\"#8a8a93\" opacity={h === i ? 1 : 0.6}>{n.n}</text>\n        </motion.g>\n      ))}\n      <rect x={C.x - 28} y={C.y - 28} width=\"56\" height=\"56\" rx=\"16\" fill=\"#ededef\" />\n      <rect x={C.x + 8} y={C.y + 8} width=\"12\" height=\"12\" rx=\"4\" fill=\"#ff6a2b\" />\n      <text x={C.x - 4} y={C.y + 6} textAnchor=\"middle\" fontSize=\"18\" fontWeight=\"700\" fill=\"#09090a\">{hub}</text>\n    </svg>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ledger-bento",
+  "title": "Ledger Bento",
+  "type": "registry:component",
+  "description": "Finance cells update in place",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/ledger-bento.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/ledger-bento.jsx",
+      "content": "'use client'\n\nimport { useEffect, useState } from 'react'\nimport { motion, AnimatePresence } from 'motion/react'\n\nconst MERCH = ['Swiggy', 'Figma', 'Uber', 'AWS', 'Blue Tokai', 'Zerodha', 'Notion']\n\nfunction Cell({ className = '', children }) {\n  return <div className={`rounded-2xl border border-line bg-panel p-4 ${className}`}>{children}</div>\n}\n\nexport default function LedgerBento() {\n  const [bal, setBal] = useState(284120)\n  const [tx, setTx] = useState([{ id: 1, m: 'Figma', a: -1250 }, { id: 2, m: 'Salary', a: 180000 }, { id: 3, m: 'Uber', a: -412 }])\n  const [fx, setFx] = useState(83.42)\n  useEffect(() => {\n    const t = setInterval(() => {\n      const a = -Math.floor(Math.random() * 2400 + 90)\n      setTx((l) => [{ id: Date.now(), m: MERCH[Math.floor(Math.random() * MERCH.length)], a }, ...l].slice(0, 3))\n      setBal((b) => b + a)\n      setFx((f) => +(f + (Math.random() - 0.5) * 0.08).toFixed(2))\n    }, 2200)\n    return () => clearInterval(t)\n  }, [])\n  const spent = Math.min(1, (284120 - bal + 40000) / 120000)\n  return (\n    <div className=\"grid w-full max-w-lg grid-cols-2 gap-2 sm:grid-cols-3\">\n      <Cell className=\"col-span-2\">\n        <div className=\"text-xs text-faint\">Balance</div>\n        <motion.div key={bal} initial={{ y: -6, opacity: 0.4 }} animate={{ y: 0, opacity: 1 }} className=\"mt-1 font-mono text-3xl tracking-tight text-tx tabular-nums\">₹{bal.toLocaleString('en-IN')}</motion.div>\n      </Cell>\n      <Cell>\n        <div className=\"text-xs text-faint\">USD / INR</div>\n        <motion.div key={fx} initial={{ color: '#ff6a2b' }} animate={{ color: '#ededef' }} transition={{ duration: 1 }} className=\"mt-1 font-mono text-xl tabular-nums\">{fx}</motion.div>\n      </Cell>\n      <Cell className=\"col-span-2 sm:col-span-2\">\n        <div className=\"mb-2 text-xs text-faint\">Latest</div>\n        <ul className=\"space-y-1.5\">\n          <AnimatePresence initial={false}>\n            {tx.map((t) => (\n              <motion.li layout key={t.id} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} transition={{ type: 'spring', stiffness: 400, damping: 32 }} className=\"flex justify-between text-sm\">\n                <span className=\"text-mute\">{t.m}</span><span className={`font-mono ${t.a > 0 ? 'text-emerald-400' : 'text-tx'}`}>{t.a > 0 ? '+' : ''}{t.a.toLocaleString('en-IN')}</span>\n              </motion.li>\n            ))}\n          </AnimatePresence>\n        </ul>\n      </Cell>\n      <Cell className=\"col-span-2 sm:col-span-1\">\n        <div className=\"text-xs text-faint\">Card budget</div>\n        <div className=\"mt-3 h-2 overflow-hidden rounded-full bg-line\"><motion.div className=\"h-full rounded-full bg-acc\" animate={{ width: `${spent * 100}%` }} transition={{ type: 'spring', stiffness: 120, damping: 20 }} /></div>\n        <div className=\"mt-2 font-mono text-xs text-mute\">{Math.round(spent * 100)}% used</div>\n      </Cell>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sideways-gallery",
+  "title": "Sideways Gallery",
+  "type": "registry:component",
+  "description": "Scroll down, the rail of case studies moves left",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/sideways-gallery.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/sideways-gallery.jsx",
+      "content": "'use client'\n\nimport { useLayoutEffect, useRef, useState } from 'react'\nimport { motion, useScroll, useTransform } from 'motion/react'\n\nconst WORK = [\n  { t: 'Northwind Air', k: 'Booking app', g: 'from-[#ff6a2b] to-[#7a1f0a]' },\n  { t: 'Ledgerly', k: 'Finance dashboard', g: 'from-[#3b82f6] to-[#0b1d4a]' },\n  { t: 'Fieldnote', k: 'Writing tool', g: 'from-[#22c55e] to-[#07301a]' },\n  { t: 'Parcel', k: 'Delivery tracker', g: 'from-[#a855f7] to-[#2a0b4a]' },\n  { t: 'Tidewater', k: 'Weather', g: 'from-[#06b6d4] to-[#032a33]' },\n]\n\n// Case studies on a sideways rail. Scrolling down moves the rail left.\nexport default function SidewaysGallery({ items = WORK, className = '' }) {\n  const box = useRef(null), track = useRef(null), rail = useRef(null)\n  const list = Array.isArray(items) && items.length ? items : WORK\n  const [dist, setDist] = useState(0)\n  useLayoutEffect(() => {\n    const calc = () => { if (rail.current && box.current) setDist(Math.max(0, rail.current.scrollWidth - box.current.clientWidth)) }\n    calc()\n    if (typeof ResizeObserver === 'undefined') return\n    const ro = new ResizeObserver(calc)\n    if (box.current) ro.observe(box.current)\n    if (rail.current) ro.observe(rail.current)\n    return () => ro.disconnect()\n  }, [list.length])\n  const { scrollYProgress } = useScroll({ container: box, target: track, offset: ['start start', 'end end'] })\n  const x = useTransform(scrollYProgress, [0, 1], [0, -dist])\n  return (\n    <div ref={box} className={`relative h-full min-h-80 w-full overflow-y-auto overflow-x-hidden overscroll-contain bg-bg [container-type:size] ${className}`}>\n      <div ref={track} className=\"relative h-[300cqh]\">\n        <div className=\"sticky top-0 flex h-[100cqh] flex-col justify-center overflow-hidden\">\n          <div className=\"mb-4 flex items-baseline justify-between px-6\">\n            <h3 className=\"text-lg font-semibold tracking-tight text-tx\">Selected work</h3>\n            <span className=\"text-xs text-faint\">{list.length} projects</span>\n          </div>\n          <motion.div ref={rail} style={{ x }} className=\"flex w-max gap-4 px-6\">\n            {list.map((w) => (\n              <article key={w.t} className=\"w-[62cqw] max-w-72 shrink-0 @xl:w-64\">\n                <div className={`aspect-[4/3] rounded-2xl bg-gradient-to-br ${w.g || 'from-panel2 to-panel'} p-4`}>\n                  <div className=\"h-full rounded-lg border border-white/15 bg-black/20 p-3\"><div className=\"h-1.5 w-10 rounded-full bg-white/40\" /><div className=\"mt-2 h-1.5 w-16 rounded-full bg-white/20\" /></div>\n                </div>\n                <div className=\"mt-2 text-sm font-medium text-tx\">{w.t}</div>\n                <div className=\"text-xs text-mute\">{w.k}</div>\n              </article>\n            ))}\n          </motion.div>\n        </div>\n      </div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

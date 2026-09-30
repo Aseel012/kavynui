@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "signal-bars",
+  "title": "Signal Bars",
+  "type": "registry:component",
+  "description": "Bars climb like signal strength",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/signal-bars.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/signal-bars.jsx",
+      "content": "'use client'\n\nimport { motion } from 'motion/react'\n\nexport default function SignalBars({ bars = 5, label = 'Connecting to printer' }) {\n  return (\n    <div className=\"flex items-center gap-4\">\n      <div className=\"flex h-10 items-end gap-1\">\n        {Array.from({ length: bars }).map((_, i) => (\n          <motion.span key={i} className=\"block w-2 rounded-sm bg-tx\" style={{ height: 8 + (i * 32) / Math.max(bars - 1, 1) }}\n            animate={{ backgroundColor: ['#2a2a30', '#ededef', i === bars - 1 ? '#ff6a2b' : '#ededef', '#2a2a30'] }}\n            transition={{ repeat: Infinity, duration: 2, delay: i * 0.18, times: [0, 0.2, 0.7, 1] }} />\n        ))}\n      </div>\n      <span className=\"text-sm text-mute\">{label}</span>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

@@ -16,7 +16,7 @@ const make = () => {
 
 // Security events sliding into a live list. New rows push old ones out.
 export default function ThreatFeed({ rows = 5, interval = 1400 }) {
-  const [items, setItems] = useState(() => Array.from({ length: rows }, make))
+  const [items, setItems] = useState(() => Array.from({ length: rows }, (_, i) => ({ id: `sample-${i}`, cc: COUNTRIES[(i * 3) % COUNTRIES.length], ip: `${31 + (i * 47) % 192}.${(i * 61 + 17) % 255}.x.x`, ...RULES[i % RULES.length] })))
   const [total, setTotal] = useState(18244)
   const paused = useRef(false)
   useEffect(() => {

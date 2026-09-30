@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stamp-button",
+  "title": "Stamp Button",
+  "type": "registry:component",
+  "description": "Squash-and-press that leaves an embossed seal",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/stamp-button.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/stamp-button.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion, AnimatePresence } from 'motion/react'\n\nexport default function StampButton({ children = 'Approve invoice', seal = 'APPROVED' }) {\n  const [stamped, setStamped] = useState(false)\n  return (\n    <div className=\"relative grid place-items-center p-8\">\n      <motion.button\n        onClick={() => { setStamped(true); setTimeout(() => setStamped(false), 2200) }}\n        whileTap={{ scaleY: 0.82, scaleX: 1.08, y: 3 }}\n        transition={{ type: 'spring', stiffness: 600, damping: 14 }}\n        className=\"h-12 rounded-xl bg-tx px-7 text-sm font-semibold text-bg shadow-[0_4px_0_#8a8a93]\"\n      >\n        {children}\n      </motion.button>\n      <AnimatePresence>\n        {stamped && (\n          <motion.div\n            initial={{ scale: 2.2, opacity: 0, rotate: -24 }}\n            animate={{ scale: 1, opacity: 1, rotate: -12 }}\n            exit={{ opacity: 0, scale: 0.9 }}\n            transition={{ type: 'spring', stiffness: 520, damping: 20 }}\n            className=\"pointer-events-none absolute right-0 top-1 grid size-20 place-items-center rounded-full border-2 border-dashed border-acc text-[10px] font-bold tracking-[0.2em] text-acc\"\n          >\n            <span className=\"grid size-16 place-items-center rounded-full border border-acc/60\">{seal}</span>\n          </motion.div>\n        )}\n      </AnimatePresence>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

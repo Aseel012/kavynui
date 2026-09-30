@@ -1,0 +1,64 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rain-glass",
+  "title": "Rain Glass",
+  "type": "registry:component",
+  "description": "Droplets gather and run on glass",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "src/kavyn/rain-glass.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/rain-glass.jsx",
+      "content": "'use client'\n\nimport { useEffect, useRef } from 'react'\n\n/** @param {{ children?: any, drops?: any }} props */\nexport default function RainGlass({ children = undefined, drops = 70 }) {\n  const ref = useRef(null)\n  useEffect(() => {\n    const c = ref.current, ctx = c.getContext('2d')\n    let raf, w, h, last = performance.now()\n    const size = () => { const d = devicePixelRatio || 1; w = c.clientWidth; h = c.clientHeight; c.width = w * d; c.height = h * d; ctx.setTransform(d, 0, 0, d, 0, 0) }\n    size(); const ro = new ResizeObserver(size); ro.observe(c)\n    const mk = (y) => ({ x: Math.random() * w, y: y ?? Math.random() * h, r: 1 + Math.random() * 3, vy: 0, run: false, trail: [] })\n    const D = Array.from({ length: drops }, () => mk())\n    const draw = (now) => {\n      const dt = Math.min((now - last) / 1000, 0.05); last = now\n      ctx.clearRect(0, 0, w, h)\n      for (const d of D) {\n        if (!d.run) { d.r += dt * 0.35; if (d.r > 3.4 && Math.random() < 0.02) d.run = true }\n        else { d.vy = Math.min(d.vy + 300 * dt, 160 + d.r * 20); d.y += d.vy * dt; d.x += Math.sin(d.y * 0.05) * 0.3; d.trail.push([d.x, d.y]); if (d.trail.length > 26) d.trail.shift() }\n        if (d.y > h + 10) Object.assign(d, mk(-10))\n        if (d.trail.length > 1) { ctx.beginPath(); d.trail.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.strokeStyle = 'rgba(200,215,230,.12)'; ctx.lineWidth = d.r * 0.7; ctx.stroke() }\n        const g = ctx.createRadialGradient(d.x - d.r * 0.3, d.y - d.r * 0.3, 0, d.x, d.y, d.r)\n        g.addColorStop(0, 'rgba(255,255,255,.55)'); g.addColorStop(1, 'rgba(160,180,200,.12)')\n        ctx.beginPath(); ctx.ellipse(d.x, d.y, d.r * 0.85, d.r, 0, 0, 6.283); ctx.fillStyle = g; ctx.fill()\n      }\n      raf = requestAnimationFrame(draw)\n    }\n    raf = requestAnimationFrame(draw)\n    return () => { cancelAnimationFrame(raf); ro.disconnect() }\n  }, [drops])\n  return (\n    <div className=\"relative size-full min-h-64 overflow-hidden bg-[radial-gradient(ellipse_at_30%_70%,#1d2733,#0b0d10_70%)]\">\n      <div className=\"absolute left-[20%] top-[55%] size-24 rounded-full bg-acc/30 blur-3xl\" /><div className=\"absolute right-[15%] top-[30%] size-20 rounded-full bg-sky-300/10 blur-3xl\" />\n      <canvas ref={ref} className=\"absolute inset-0 size-full\" />\n      <div className=\"relative grid size-full min-h-64 place-items-center\">{children}</div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

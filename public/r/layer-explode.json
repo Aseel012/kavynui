@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layer-explode",
+  "title": "Layer Explode",
+  "type": "registry:component",
+  "description": "A card that splits into its design layers in 3D",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/layer-explode.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/layer-explode.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion } from 'motion/react'\n\nconst LAYERS = ['Surface', 'Content', 'Controls', 'Focus']\n\n// A card that splits into its design layers in 3D. Hover or tap to explode it.\n// Good for design-system pages and \"how it's built\" sections.\nexport default function LayerExplode({ labels = LAYERS, className = '' }) {\n  const [open, setOpen] = useState(false)\n  const names = Array.isArray(labels) && labels.length >= 4 ? labels : LAYERS\n  const z = (k) => (open ? k * 46 : k * 0.5)\n  const layer = 'absolute inset-0 rounded-2xl [transform-style:preserve-3d]'\n  const spring = { type: 'spring', stiffness: 170, damping: 20 }\n  return (\n    <div className={`flex flex-col items-center gap-4 ${className}`}>\n      <button type=\"button\" aria-pressed={open} onClick={() => setOpen((o) => !o)} onPointerEnter={(e) => e.pointerType === 'mouse' && setOpen(true)} onPointerLeave={(e) => e.pointerType === 'mouse' && setOpen(false)}\n        className=\"relative h-64 w-72 outline-none [perspective:1100px] focus-visible:ring-2 focus-visible:ring-acc/60\" aria-label=\"Explode card layers\">\n        <motion.div animate={{ rotateX: open ? 58 : 0, rotateZ: open ? -32 : 0, scale: open ? 0.82 : 1 }} transition={spring} className=\"absolute inset-0 [transform-style:preserve-3d]\">\n          <motion.div animate={{ z: z(0) }} transition={spring} className={`${layer} border border-line bg-panel shadow-[0_30px_60px_-20px_rgba(0,0,0,.8)]`} />\n          <motion.div animate={{ z: z(1) }} transition={spring} className={`${layer} p-5 text-left`}>\n            <div className=\"h-24 rounded-lg bg-gradient-to-br from-acc/70 to-[#7a1f0a]\" />\n            <div className=\"mt-3 text-sm font-semibold text-tx\">Weekly digest</div>\n            <div className=\"mt-1 text-xs text-mute\">Five links worth your time.</div>\n          </motion.div>\n          <motion.div animate={{ z: z(2) }} transition={spring} className={`${layer} flex items-end gap-2 p-5`}>\n            <span className=\"flex-1 rounded-lg bg-tx py-2 text-center text-xs font-medium text-bg\">Subscribe</span>\n            <span className=\"rounded-lg border border-line2 px-3 py-2 text-xs text-mute\">Later</span>\n          </motion.div>\n          <motion.div animate={{ z: z(3), opacity: open ? 1 : 0 }} transition={spring} className={`${layer} border-2 border-dashed border-acc/60`} />\n          {names.slice(0, 4).map((l, k) => (\n            <motion.span key={l} animate={{ z: z(k), opacity: open ? 1 : 0 }} transition={spring}\n              className=\"absolute -right-24 top-0 whitespace-nowrap font-mono text-[10px] text-acc [transform-style:preserve-3d]\">── {l}</motion.span>\n          ))}\n        </motion.div>\n      </button>\n      <span className=\"text-[11px] text-faint\">{open ? 'Four layers, one card' : 'Hover or tap'}</span>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

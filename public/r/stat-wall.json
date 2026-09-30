@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stat-wall",
+  "title": "Stat Wall",
+  "type": "registry:component",
+  "description": "Tiles count up in a checkerboard stagger",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/stat-wall.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/stat-wall.jsx",
+      "content": "'use client'\n\nimport { useEffect, useRef, useState } from 'react'\nimport { motion, useInView, animate } from 'motion/react'\n\nconst STATS = [\n  ['1.2M', 1200000, 'meals served'], ['38', 38, 'cities'], ['4.9', 4.9, 'avg rating'],\n  ['92%', 92, 'on time'], ['210', 210, 'partners'], ['14k', 14000, 'volunteers'],\n  ['0', 0, 'food wasted, kg'], ['7', 7, 'years'], ['99.9%', 99.9, 'uptime'],\n]\n\nfunction Num({ to, fmt, go, delay }) {\n  const [v, setV] = useState(0)\n  useEffect(() => { if (!go) return; const c = animate(0, to, { duration: 1.4, delay, ease: [0.2, 0.7, 0.2, 1], onUpdate: setV }); return () => c.stop() }, [go, to, delay])\n  const s = fmt.endsWith('M') ? (v / 1e6).toFixed(1) + 'M' : fmt.endsWith('k') ? Math.round(v / 1000) + 'k' : fmt.includes('.') ? v.toFixed(1) + (fmt.endsWith('%') ? '%' : '') : Math.round(v) + (fmt.endsWith('%') ? '%' : '')\n  return <span>{s}</span>\n}\n\nexport default function StatWall({ stats = STATS }) {\n  const ref = useRef(null)\n  const inView = useInView(ref, { amount: 0.4 })\n  return (\n    <div ref={ref} className=\"grid w-full max-w-md grid-cols-3 gap-1.5\">\n      {stats.map(([f, n, l], i) => {\n        const delay = ((Math.floor(i / 3) + (i % 3)) % 2) * 0.25 + Math.floor(i / 3) * 0.08\n        return (\n          <motion.div key={l} initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay, type: 'spring', stiffness: 200, damping: 20 }} className={`rounded-xl border border-line p-3 ${(i + Math.floor(i / 3)) % 2 ? 'bg-panel' : 'bg-panel2'}`}>\n            <div className=\"font-mono text-xl text-tx tabular-nums\"><Num to={n} fmt={f} go={inView} delay={delay} /></div>\n            <div className=\"mt-0.5 text-[11px] text-faint\">{l}</div>\n          </motion.div>\n        )\n      })}\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "snap-sheet",
+  "title": "Snap Sheet",
+  "type": "registry:component",
+  "description": "Bottom sheet with snap points",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/snap-sheet.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/snap-sheet.jsx",
+      "content": "'use client'\n\nimport { useRef, useState } from 'react'\nimport { motion, useAnimate } from 'motion/react'\n\nexport default function SnapSheet({ snaps = [0.15, 0.5, 0.88], height = 380 }) {\n  const [scope, animate] = useAnimate()\n  const [snap, setSnap] = useState(1)\n  const y0 = useRef(0)\n  const toY = (f) => height * (1 - f)\n  const settle = (_, info) => {\n    const cur = y0.current + info.offset.y + info.velocity.y * 0.15\n    let best = 0\n    snaps.forEach((f, i) => { if (Math.abs(toY(f) - cur) < Math.abs(toY(snaps[best]) - cur)) best = i })\n    setSnap(best); y0.current = toY(snaps[best])\n    animate(scope.current, { y: toY(snaps[best]) }, { type: 'spring', stiffness: 380, damping: 36 })\n  }\n  return (\n    <div className=\"relative w-56 overflow-hidden rounded-[28px] border-[5px] border-[#26262b] bg-panel\" style={{ height }}>\n      <div className=\"p-4\"><div className=\"text-xs text-faint\">Cart</div><div className=\"text-lg text-tx\">3 items</div><div className=\"mt-3 h-24 rounded-xl bg-line\" /></div>\n      <motion.div ref={scope} drag=\"y\" dragConstraints={{ top: toY(snaps[snaps.length - 1]), bottom: toY(snaps[0]) }} dragElastic={0.12}\n        onDragStart={() => { y0.current = toY(snaps[snap]) }} onDragEnd={settle}\n        initial={{ y: toY(snaps[1]) }} className=\"absolute inset-x-0 top-0 h-full cursor-grab touch-none rounded-t-3xl border-t border-line2 bg-panel2 p-4 shadow-[0_-10px_30px_rgba(0,0,0,.5)] active:cursor-grabbing\">\n        <div className=\"mx-auto mb-4 h-1 w-10 rounded-full bg-line2\" />\n        <div className=\"flex justify-between text-sm\"><span className=\"text-mute\">Total</span><span className=\"font-mono text-tx\">₹1,480</span></div>\n        <button className=\"mt-4 w-full rounded-xl bg-acc py-2.5 text-sm font-medium text-bg\">Place order</button>\n        <div className=\"mt-4 space-y-2 text-xs text-mute\"><div>Deliver to: Home</div><div>Pay: UPI</div><div>Arrives in 25 min</div></div>\n      </motion.div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

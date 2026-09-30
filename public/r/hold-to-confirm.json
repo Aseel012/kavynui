@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hold-to-confirm",
+  "title": "Hold to Confirm",
+  "type": "registry:component",
+  "description": "Ring fills while held, then snaps to a check",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/hold-to-confirm.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/hold-to-confirm.jsx",
+      "content": "'use client'\n\nimport { useRef, useState } from 'react'\nimport { motion, useMotionValue, animate, AnimatePresence } from 'motion/react'\n\n/** @param {{ label?: any, duration?: any, onConfirm?: any }} props */\nexport default function HoldToConfirm({ label = 'Hold to delete', duration = 1.4, onConfirm = undefined }) {\n  const p = useMotionValue(0)\n  const ctl = useRef(null)\n  const [done, setDone] = useState(false)\n\n  const start = () => {\n    if (done) return\n    ctl.current = animate(p, 1, {\n      duration: duration * (1 - p.get()), ease: 'linear',\n      onComplete: () => { setDone(true); onConfirm?.(); setTimeout(() => { setDone(false); p.set(0) }, 1800) },\n    })\n  }\n  const stop = () => {\n    if (done) return\n    ctl.current?.stop()\n    animate(p, 0, { type: 'spring', stiffness: 300, damping: 26 })\n  }\n\n  return (\n    <motion.button\n      onPointerDown={start} onPointerUp={stop} onPointerLeave={stop}\n      whileTap={{ scale: 0.97 }}\n      className=\"relative flex h-12 select-none items-center gap-3 overflow-hidden rounded-xl border border-line2 bg-panel pl-3 pr-5 text-sm text-tx\"\n    >\n      <motion.span style={{ scaleX: p }} className=\"absolute inset-0 origin-left bg-red-500/10\" />\n      <span className=\"relative grid size-7 place-items-center\">\n        <svg viewBox=\"0 0 28 28\" className=\"absolute inset-0 -rotate-90\">\n          <circle cx=\"14\" cy=\"14\" r=\"12\" fill=\"none\" stroke=\"#2a2a30\" strokeWidth=\"2\" />\n          <motion.circle cx=\"14\" cy=\"14\" r=\"12\" fill=\"none\" stroke=\"#ef4444\" strokeWidth=\"2\" strokeLinecap=\"round\" style={{ pathLength: p }} />\n        </svg>\n        <AnimatePresence mode=\"wait\">\n          {done ? (\n            <motion.svg key=\"c\" viewBox=\"0 0 24 24\" className=\"size-4 text-red-400\" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 500, damping: 18 }}>\n              <motion.path d=\"M5 12l5 5 9-10\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2.5\" strokeLinecap=\"round\" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} />\n            </motion.svg>\n          ) : (\n            <motion.span key=\"d\" exit={{ scale: 0 }} className=\"size-1.5 rounded-full bg-red-400\" />\n          )}\n        </AnimatePresence>\n      </span>\n      <span className=\"relative\">{done ? 'Account deleted' : label}</span>\n    </motion.button>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

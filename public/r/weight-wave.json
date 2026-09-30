@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "weight-wave",
+  "title": "Weight Wave",
+  "type": "registry:component",
+  "description": "Variable-font weight ripples under the cursor",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/weight-wave.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/weight-wave.jsx",
+      "content": "'use client'\n\nimport { useRef } from 'react'\nimport { motion, useMotionValue, useSpring, useTransform } from 'motion/react'\n\nfunction Letter({ ch, mx, idx, total }) {\n  const w = useTransform(mx, (x) => {\n    if (x < 0) return 300\n    const center = (idx + 0.5) / total\n    const d = Math.abs(x - center)\n    return 300 + 600 * Math.max(0, 1 - d * 5)\n  })\n  const s = useSpring(w, { stiffness: 220, damping: 20 })\n  return <motion.span style={{ fontWeight: s }} className=\"inline-block whitespace-pre\">{ch}</motion.span>\n}\n\nexport default function WeightWave({ text = 'MERIDIAN' }) {\n  const ref = useRef(null)\n  const mx = useMotionValue(-1)\n  return (\n    <h3\n      ref={ref}\n      onPointerMove={(e) => { const r = ref.current.getBoundingClientRect(); mx.set((e.clientX - r.left) / r.width) }}\n      onPointerLeave={() => mx.set(-1)}\n      className=\"cursor-default select-none text-6xl tracking-tight text-tx\"\n    >\n      {text.split('').map((c, i) => <Letter key={i} ch={c} mx={mx} idx={i} total={text.length} />)}\n    </h3>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

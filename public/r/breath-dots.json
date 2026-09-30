@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breath-dots",
+  "title": "Breath Dots",
+  "type": "registry:component",
+  "description": "Three dots inhale and exhale in sequence",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/breath-dots.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/breath-dots.jsx",
+      "content": "'use client'\n\nimport { motion } from 'motion/react'\n\nexport default function BreathDots({ label = 'Thinking', color = '#ededef' }) {\n  return (\n    <div className=\"flex items-center gap-3 rounded-full border border-line2 bg-panel px-4 py-2.5\">\n      <div className=\"flex items-center gap-1.5\">\n        {[0, 1, 2].map((i) => (\n          <motion.span key={i} className=\"size-2 rounded-full\" style={{ background: color }}\n            animate={{ scale: [0.6, 1.15, 0.6], opacity: [0.3, 1, 0.3] }}\n            transition={{ repeat: Infinity, duration: 1.6, delay: i * 0.22, ease: 'easeInOut' }} />\n        ))}\n      </div>\n      <span className=\"text-sm text-mute\">{label}</span>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

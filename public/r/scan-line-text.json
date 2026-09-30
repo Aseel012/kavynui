@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scan-line-text",
+  "title": "Scan Line Text",
+  "type": "registry:component",
+  "description": "A CRT scan line passes and sharpens the words",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/scan-line-text.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/scan-line-text.jsx",
+      "content": "'use client'\n\nimport { useEffect } from 'react'\nimport { motion, useMotionValue, useTransform, animate } from 'motion/react'\n\nexport default function ScanLineText({ text = 'ship --prod', sub = 'deploys in 41s' }) {\n  const p = useMotionValue(0)\n  useEffect(() => {\n    const c = animate(p, [0, 100, 100], { duration: 3.4, times: [0, 0.6, 1], repeat: Infinity, ease: 'easeInOut' })\n    return () => c.stop()\n  }, [p])\n  const clip = useTransform(p, (v) => `inset(0 0 ${100 - v}% 0)`)\n  const top = useTransform(p, (v) => `${v}%`)\n  return (\n    <div className=\"relative px-2 font-mono\">\n      <div className=\"text-5xl font-medium tracking-tight text-mute/60 blur-[3px]\">{text}</div>\n      <motion.div style={{ clipPath: clip }} className=\"absolute inset-0 px-2 text-5xl font-medium tracking-tight text-tx\">{text}</motion.div>\n      <motion.div style={{ top }} className=\"pointer-events-none absolute inset-x-0 h-[2px] bg-acc shadow-[0_0_14px_2px_rgba(255,106,43,.6)]\" />\n      <div className=\"mt-3 text-xs text-faint\">{sub}</div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

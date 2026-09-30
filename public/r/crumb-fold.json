@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "crumb-fold",
+  "title": "Crumb Fold",
+  "type": "registry:component",
+  "description": "Deep breadcrumbs fold into dots",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/crumb-fold.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/crumb-fold.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion, AnimatePresence } from 'motion/react'\n\nconst PATH = ['Drive', 'Clients', 'Acme', 'Brand', '2026', 'Exports', 'logo-final.svg']\n\nexport default function CrumbFold({ path = PATH, keep = 1 }) {\n  const [open, setOpen] = useState(false)\n  const head = path.slice(0, keep), mid = path.slice(keep, -2), tail = path.slice(-2)\n  const Sep = () => <span className=\"text-faint\">/</span>\n  return (\n    <nav className=\"flex max-w-full flex-wrap items-center gap-1.5 rounded-xl border border-line2 bg-panel px-3 py-2 text-sm\">\n      {head.map((p) => <span key={p} className=\"text-mute\">{p}</span>)}\n      <Sep />\n      <AnimatePresence mode=\"popLayout\" initial={false}>\n        {open ? (\n          mid.map((p, i) => (\n            <motion.span key={p} layout initial={{ opacity: 0, width: 0 }} animate={{ opacity: 1, width: 'auto' }} exit={{ opacity: 0, width: 0 }} transition={{ type: 'spring', stiffness: 400, damping: 32, delay: i * 0.04 }} className=\"flex items-center gap-1.5 overflow-hidden whitespace-nowrap\">\n              <button onClick={() => setOpen(false)} className=\"text-mute hover:text-tx\">{p}</button><Sep />\n            </motion.span>\n          ))\n        ) : (\n          <motion.button key=\"dots\" layout initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.6 }} onClick={() => setOpen(true)} className=\"flex gap-0.5 rounded-md bg-line px-1.5 py-1.5\" aria-label={`Show ${mid.length} folders`}>\n            {mid.slice(0, 3).map((p) => <span key={p} className=\"size-1 rounded-full bg-mute\" />)}\n          </motion.button>\n        )}\n      </AnimatePresence>\n      {!open && <Sep />}\n      <motion.span layout className=\"text-mute\">{tail[0]}</motion.span><Sep />\n      <motion.span layout className=\"text-tx\">{tail[1]}</motion.span>\n    </nav>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

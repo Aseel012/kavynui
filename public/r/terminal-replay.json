@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "terminal-replay",
+  "title": "Terminal Replay",
+  "type": "registry:component",
+  "description": "Recorded terminal session with real timing",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/terminal-replay.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/terminal-replay.jsx",
+      "content": "'use client'\n\nimport { useEffect, useState } from 'react'\nimport { motion } from 'motion/react'\n\nconst SESSION = [\n  { cmd: 'npm i motion' },\n  { out: 'added 3 packages in 1.8s', d: 700 },\n  { out: '✓ copied HoldToConfirm.jsx into src/components', d: 300 },\n  { cmd: 'npm run dev' },\n  { out: 'ready in 412 ms  →  http://localhost:5173', d: 600, acc: true },\n]\n\nexport default function TerminalReplay({ session = SESSION, title = 'zsh - my-app' }) {\n  const [lines, setLines] = useState([])\n  const [typing, setTyping] = useState('')\n  useEffect(() => {\n    let alive = true\n    const sleep = (ms) => new Promise((r) => setTimeout(r, ms))\n    ;(async () => {\n      while (alive) {\n        setLines([])\n        for (const step of session) {\n          if (!alive) return\n          if (step.cmd) {\n            for (let i = 1; i <= step.cmd.length && alive; i++) { setTyping(step.cmd.slice(0, i)); await sleep(38 + Math.random() * 50) }\n            await sleep(250); setTyping(''); setLines((l) => [...l, step])\n          } else { await sleep(step.d || 300); setLines((l) => [...l, step]) }\n        }\n        await sleep(2600)\n      }\n    })()\n    return () => { alive = false }\n  }, [session])\n  return (\n    <div className=\"w-full max-w-md overflow-hidden rounded-xl border border-line2 bg-[#0b0b0d] font-mono text-[12.5px]\">\n      <div className=\"flex items-center gap-1.5 border-b border-line px-3 py-2\">\n        {[0, 1, 2].map((i) => <span key={i} className=\"size-2.5 rounded-full bg-line2\" />)}\n        <span className=\"ml-2 text-[11px] text-faint\">{title}</span>\n      </div>\n      <div className=\"min-h-40 space-y-1 p-4\">\n        {lines.map((l, i) => (\n          <motion.div key={i} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className={l.cmd ? 'text-tx' : l.acc ? 'text-acc' : 'text-mute'}>\n            {l.cmd ? <><span className=\"text-faint\">$ </span>{l.cmd}</> : l.out}\n          </motion.div>\n        ))}\n        <div className=\"text-tx\"><span className=\"text-faint\">$ </span>{typing}<motion.span animate={{ opacity: [1, 0] }} transition={{ repeat: Infinity, duration: 0.7, repeatType: 'reverse' }} className=\"ml-px inline-block h-3.5 w-[7px] translate-y-0.5 bg-tx\" /></div>\n      </div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

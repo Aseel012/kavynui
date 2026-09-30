@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "reaction-burst",
+  "title": "Reaction Burst",
+  "type": "registry:component",
+  "description": "Reactions float up and fade on click",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/reaction-burst.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/reaction-burst.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion, AnimatePresence } from 'motion/react'\n\nconst EMO = ['🔥', '👏', '😂', '❤️']\n\nexport default function ReactionBurst({ emojis = EMO }) {\n  const [parts, setParts] = useState([])\n  const [counts, setCounts] = useState(() => emojis.map((_, i) => ((i * 17 + 11) % 40) + 5))\n  const fire = (i) => {\n    setCounts((c) => c.map((v, k) => (k === i ? v + 1 : v)))\n    const burst = Array.from({ length: 5 }, (_, k) => ({ id: Math.random(), e: emojis[i], x: i * 64 + 20 + (Math.random() - 0.5) * 30, dx: (Math.random() - 0.5) * 60, r: (Math.random() - 0.5) * 50, d: k * 0.05 }))\n    setParts((p) => [...p, ...burst])\n    setTimeout(() => setParts((p) => p.filter((x) => !burst.includes(x))), 1600)\n  }\n  return (\n    <div className=\"relative h-56 w-72\">\n      <AnimatePresence>\n        {parts.map((p) => (\n          <motion.span key={p.id} className=\"pointer-events-none absolute bottom-12 text-2xl\" style={{ left: p.x }}\n            initial={{ y: 0, opacity: 0, scale: 0.4 }} animate={{ y: -150, x: p.dx, opacity: [0, 1, 1, 0], scale: 1.1, rotate: p.r }} exit={{ opacity: 0 }}\n            transition={{ duration: 1.4, delay: p.d, ease: 'easeOut' }}>{p.e}</motion.span>\n        ))}\n      </AnimatePresence>\n      <div className=\"absolute bottom-0 flex gap-2\">\n        {emojis.map((e, i) => (\n          <motion.button key={e} whileTap={{ scale: 1.35 }} transition={{ type: 'spring', stiffness: 600, damping: 12 }} onClick={() => fire(i)} className=\"flex h-10 w-14 items-center justify-center gap-1 rounded-full border border-line2 bg-panel text-base\">\n            {e}<span className=\"font-mono text-[11px] text-mute tabular-nums\">{counts[i]}</span>\n          </motion.button>\n        ))}\n      </div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

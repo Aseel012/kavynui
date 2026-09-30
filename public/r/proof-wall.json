@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "proof-wall",
+  "title": "Proof Wall",
+  "type": "registry:block",
+  "description": "Logo marquee with a rotating customer quote",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/proof-wall.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/proof-wall.jsx",
+      "content": "'use client'\n\nimport { useEffect, useState } from 'react'\nimport { motion, AnimatePresence } from 'motion/react'\n\nconst LOGOS = ['Northwind', 'Lumen', 'Parcel', 'Orbit', 'Helix', 'Quanta', 'Fable', 'Kite']\nconst QUOTES = [\n  { q: 'We moved 40 sites over in a weekend. Page loads dropped by half.', n: 'Riya Menon', r: 'CTO, Parcel' },\n  { q: 'The dashboard is the first one my whole team actually opens.', n: 'Daniel Park', r: 'Eng lead, Lumen' },\n  { q: 'Blocked a credential-stuffing wave before we even got paged.', n: 'Sara Okafor', r: 'Security, Helix' },\n]\n\n// Block: logo marquee plus a rotating customer quote.\nexport default function ProofWall({ logos = LOGOS, quotes = QUOTES, interval = 4200 }) {\n  const [i, setI] = useState(0)\n  useEffect(() => { const id = setInterval(() => !document.hidden && setI((n) => (n + 1) % Math.max(1, quotes.length)), interval); return () => clearInterval(id) }, [quotes.length, interval])\n  const q = quotes[i]\n  return (\n    <section className=\"@container w-full overflow-hidden rounded-2xl border border-line bg-bg py-10\">\n      <style>{`@keyframes kv-marq{to{transform:translateX(-50%)}}`}</style>\n      <div className=\"relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_15%,#000_85%,transparent)]\">\n        <div className=\"flex w-max gap-12 px-6\" style={{ animation: 'kv-marq 28s linear infinite' }}>\n          {[...logos, ...logos].map((l, k) => <span key={k} className=\"whitespace-nowrap text-lg font-semibold tracking-tight text-faint\">{l}</span>)}\n        </div>\n      </div>\n      <div className=\"mx-auto mt-10 h-40 max-w-xl px-6 text-center\">\n        <AnimatePresence mode=\"wait\">\n          {q && (\n            <motion.figure key={i} initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} exit={{ opacity: 0, y: -10, filter: 'blur(4px)' }} transition={{ duration: 0.35 }}>\n              <blockquote className=\"text-lg leading-8 tracking-tight text-tx @2xl:text-xl\">“{q.q}”</blockquote>\n              <figcaption className=\"mt-4 text-sm text-mute\">{q.n} · <span className=\"text-faint\">{q.r}</span></figcaption>\n            </motion.figure>\n          )}\n        </AnimatePresence>\n      </div>\n      <div className=\"flex justify-center gap-1.5\">\n        {quotes.map((_, k) => <button key={k} type=\"button\" aria-label={`Quote ${k + 1}`} onClick={() => setI(k)} className={`h-1.5 rounded-full transition-all ${k === i ? 'w-5 bg-tx' : 'w-1.5 bg-line2'}`} />)}\n      </div>\n    </section>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

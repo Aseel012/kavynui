@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "server-rack",
+  "title": "Server Rack",
+  "type": "registry:component",
+  "description": "Rack LEDs blink with each request",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/server-rack.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/server-rack.jsx",
+      "content": "'use client'\n\nimport { useEffect, useState } from 'react'\nimport { motion } from 'motion/react'\n\nexport default function ServerRack({ units = 6, rps = 9 }) {\n  const [hits, setHits] = useState(() => Array(units).fill(0))\n  const [total, setTotal] = useState(18342)\n  useEffect(() => {\n    const t = setInterval(() => {\n      const u = Math.floor(Math.random() * units)\n      setHits((h) => h.map((v, i) => (i === u ? v + 1 : v)))\n      setTotal((x) => x + 1)\n    }, 1000 / rps)\n    return () => clearInterval(t)\n  }, [units, rps])\n  return (\n    <div className=\"w-64 rounded-xl border border-line2 bg-[#0b0b0d] p-2\">\n      {hits.map((h, i) => (\n        <div key={i} className=\"mb-1.5 flex h-8 items-center gap-2 rounded-md border border-line bg-panel px-2 last:mb-0\">\n          <span className=\"font-mono text-[9px] text-faint\">U{String(i + 1).padStart(2, '0')}</span>\n          <div className=\"flex flex-1 gap-[3px]\">{Array.from({ length: 10 }).map((_, k) => <span key={k} className=\"h-3 flex-1 rounded-[1px] bg-line\" />)}</div>\n          <motion.span key={h} initial={{ backgroundColor: '#ff6a2b', boxShadow: '0 0 8px #ff6a2b' }} animate={{ backgroundColor: '#3a2016', boxShadow: '0 0 0px #ff6a2b' }} transition={{ duration: 0.5 }} className=\"size-1.5 rounded-full\" />\n          <span className=\"size-1.5 rounded-full bg-emerald-500/80\" />\n        </div>\n      ))}\n      <div className=\"flex justify-between px-1 pt-2 font-mono text-[10px]\"><span className=\"text-faint\">all systems normal</span><span className=\"text-mute tabular-nums\">{total.toLocaleString()} req</span></div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

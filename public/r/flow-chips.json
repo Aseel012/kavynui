@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "flow-chips",
+  "title": "Flow Chips",
+  "type": "registry:component",
+  "description": "Filter chips reorder with FLIP motion",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/flow-chips.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/flow-chips.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion } from 'motion/react'\n\nconst CHIPS = ['Under ₹999', 'In stock', 'Cotton', 'Free delivery', 'Linen', 'New', 'Black', 'Oversized']\n\nexport default function FlowChips({ chips = CHIPS }) {\n  const [on, setOn] = useState(['In stock'])\n  const sorted = [...chips].sort((a, b) => (on.includes(b) ? 1 : 0) - (on.includes(a) ? 1 : 0))\n  return (\n    <div className=\"flex max-w-md flex-wrap gap-2\">\n      {sorted.map((c) => {\n        const a = on.includes(c)\n        return (\n          <motion.button layout key={c} onClick={() => setOn(a ? on.filter((x) => x !== c) : [...on, c])} transition={{ type: 'spring', stiffness: 420, damping: 30 }} whileTap={{ scale: 0.94 }}\n            className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm ${a ? 'border-tx bg-tx text-bg' : 'border-line2 bg-panel text-mute'}`}>\n            {a && <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} className=\"text-xs\">✓</motion.span>}{c}\n          </motion.button>\n        )\n      })}\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

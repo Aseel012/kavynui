@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "odometer-figures",
+  "title": "Odometer Figures",
+  "type": "registry:component",
+  "description": "Digits roll with a mechanical overshoot",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/odometer-figures.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/odometer-figures.jsx",
+      "content": "'use client'\n\nimport { useEffect, useState } from 'react'\nimport { motion } from 'motion/react'\n\nfunction Digit({ d }) {\n  return (\n    <span className=\"relative inline-block h-[1em] w-[0.62em] overflow-hidden\">\n      <motion.span\n        className=\"absolute inset-x-0 top-0 flex flex-col\"\n        animate={{ y: `${-d}em` }}\n        transition={{ type: 'spring', stiffness: 140, damping: 15, mass: 0.9 }}\n      >\n        {Array.from({ length: 10 }, (_, n) => <span key={n} className=\"h-[1em] leading-none\">{n}</span>)}\n      </motion.span>\n    </span>\n  )\n}\n\n/** @param {{ value?: any, prefix?: any, auto?: any }} props */\nexport default function OdometerFigures({ value = undefined, prefix = '$', auto = true }) {\n  const [v, setV] = useState(value ?? 48210)\n  useEffect(() => { if (value != null) setV(value) }, [value])\n  useEffect(() => {\n    if (!auto || value != null) return\n    const t = setInterval(() => setV((x) => x + Math.floor(Math.random() * 900) + 80), 2200)\n    return () => clearInterval(t)\n  }, [auto, value])\n  const s = v.toLocaleString('en-US')\n  return (\n    <div className=\"flex flex-col items-start gap-2\">\n      <span className=\"text-xs uppercase tracking-widest text-faint\">Revenue today</span>\n      <div className=\"flex items-end font-mono text-5xl font-medium leading-none tracking-tight text-tx tabular-nums\">\n        <span className=\"mr-1 inline-block h-[1em] leading-none text-mute\">{prefix}</span>\n        {s.split('').map((c, i) => (c === ',' ? <span key={i} className=\"inline-block h-[1em] w-[0.3em] leading-none text-faint\">,</span> : <Digit key={s.length - i} d={+c} />))}\n      </div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toss-deck",
+  "title": "Toss Deck",
+  "type": "registry:component",
+  "description": "Cards you can throw; they keep momentum and bounce",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/toss-deck.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/toss-deck.jsx",
+      "content": "'use client'\n\nimport { useRef, useState } from 'react'\nimport { motion } from 'motion/react'\n\nconst NOTES = [\n  { t: 'Warm neutrals', c: 'bg-[#e8dccb] text-[#2b2118]', r: -6 },\n  { t: 'Serif headings', c: 'bg-[#1d2a44] text-[#dfe6f5]', r: 4 },\n  { t: 'Grain on photos', c: 'bg-[#2f2f35] text-[#ededef]', r: -2 },\n  { t: 'Orange accent', c: 'bg-[#ff6a2b] text-[#140803]', r: 7 },\n  { t: 'Round 12px', c: 'bg-[#dff5e6] text-[#0f2a18]', r: -9 },\n]\n\n// A moodboard you can throw around. Cards keep their momentum and bounce off the edges.\nexport default function TossDeck({ notes = NOTES, className = '' }) {\n  const box = useRef(null)\n  const list = Array.isArray(notes) && notes.length ? notes : NOTES\n  const [order, setOrder] = useState(() => list.map((_, i) => i))\n  const lift = (i) => setOrder((o) => [...o.filter((x) => x !== i), i])\n  return (\n    <div ref={box} className={`relative h-full min-h-80 w-full touch-none overflow-hidden bg-bg ${className}`}>\n      <div className=\"pointer-events-none absolute left-4 top-3 text-[11px] uppercase tracking-widest text-faint\">Moodboard</div>\n      {list.map((n, i) => (\n        <motion.div key={n.t} drag dragConstraints={box} dragElastic={0.15} dragTransition={{ bounceStiffness: 400, bounceDamping: 18, power: 0.35 }}\n          onPointerDown={() => lift(i)} whileDrag={{ scale: 1.06, rotate: 0, cursor: 'grabbing' }}\n          initial={{ opacity: 0, y: 30, rotate: 0 }} animate={{ opacity: 1, y: 0, rotate: n.r || 0 }} transition={{ delay: i * 0.06, type: 'spring', stiffness: 260, damping: 20 }}\n          style={{ zIndex: order.indexOf(i) + 1, left: `${12 + ((i * 19) % 55)}%`, top: `${18 + ((i * 23) % 45)}%` }}\n          tabIndex={0} aria-label={n.t}\n          className={`absolute w-36 cursor-grab rounded-xl p-3 shadow-[0_12px_30px_-8px_rgba(0,0,0,.6)] outline-none focus-visible:ring-2 focus-visible:ring-acc ${n.c || 'bg-panel2 text-tx'}`}>\n          <div className=\"mb-6 h-1 w-6 rounded-full bg-current opacity-40\" />\n          <div className=\"text-sm font-medium\">{n.t}</div>\n        </motion.div>\n      ))}\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

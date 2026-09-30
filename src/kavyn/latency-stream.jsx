@@ -7,7 +7,8 @@ const next = (v) => Math.max(8, Math.min(120, v + (Math.random() - 0.5) * 18 + (
 
 // Live p50 latency line that streams in from the right, with a moving average.
 export default function LatencyStream({ label = 'p50 latency', unit = 'ms', interval = 700 }) {
-  const [pts, setPts] = useState(() => { let v = 38; return Array.from({ length: N }, () => (v = next(v))) })
+  // Stable sample on server and client; live updates remain random after mounting.
+  const [pts, setPts] = useState(() => Array.from({ length: N }, (_, i) => 38 + Math.sin(i * 0.73) * 10 + Math.cos(i * 0.31) * 6))
   const hidden = useRef(false)
   useEffect(() => {
     const vis = () => { hidden.current = document.hidden }

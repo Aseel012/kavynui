@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "orbit-button",
+  "title": "Orbit Button",
+  "type": "registry:component",
+  "description": "A spark orbits the border while work runs",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/orbit-button.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/orbit-button.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion, AnimatePresence } from 'motion/react'\n\nexport default function OrbitButton({ label = 'Generate', busyLabel = 'Generating', ms = 2600 }) {\n  const [busy, setBusy] = useState(false)\n  return (\n    <motion.button\n      layout\n      onClick={() => { if (!busy) { setBusy(true); setTimeout(() => setBusy(false), ms) } }}\n      transition={{ type: 'spring', stiffness: 400, damping: 30 }}\n      className=\"relative h-12 rounded-xl bg-panel px-6 text-sm text-tx\"\n    >\n      <svg className=\"pointer-events-none absolute inset-0 size-full overflow-visible\">\n        <rect x=\"0\" y=\"0\" width=\"100%\" height=\"100%\" rx=\"11.5\" fill=\"none\" stroke=\"#2a2a30\" />\n        {busy && (\n          <motion.rect\n            x=\"0\" y=\"0\" width=\"100%\" height=\"100%\" rx=\"11.5\" fill=\"none\"\n            stroke=\"#ff6a2b\" strokeWidth=\"1.5\" strokeLinecap=\"round\" pathLength=\"100\" strokeDasharray=\"14 86\"\n            initial={{ strokeDashoffset: 0 }} animate={{ strokeDashoffset: -100 }}\n            transition={{ repeat: Infinity, duration: 1.2, ease: 'linear' }}\n            style={{ filter: 'drop-shadow(0 0 4px #ff6a2b)' }}\n          />\n        )}\n      </svg>\n      <AnimatePresence mode=\"popLayout\" initial={false}>\n        <motion.span\n          key={busy ? 'b' : 'i'}\n          initial={{ y: 12, opacity: 0, filter: 'blur(4px)' }}\n          animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}\n          exit={{ y: -12, opacity: 0, filter: 'blur(4px)' }}\n          className=\"relative flex items-center gap-2\"\n        >\n          <span className={busy ? 'text-acc' : 'text-mute'}>✦</span>{busy ? busyLabel : label}\n        </motion.span>\n      </AnimatePresence>\n    </motion.button>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "blueprint",
+  "title": "Blueprint",
+  "type": "registry:component",
+  "description": "Drafting grid with lines drawing in",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/blueprint.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/blueprint.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion } from 'motion/react'\n\nconst LINES = ['M40 200 H360', 'M40 200 V80 H200 V200', 'M200 120 H360 V200', 'M110 200 V150 H150 V200', 'M250 150 H310 V120', 'M40 80 L120 40 L200 80']\n\n/** @param {{ children?: any }} props */\nexport default function Blueprint({ children = undefined }) {\n  const [k, setK] = useState(0)\n  return (\n    <div onClick={() => setK(k + 1)} className=\"relative size-full min-h-64 overflow-hidden bg-[#0a0e14]\">\n      <div className=\"absolute inset-0 opacity-60 [background-image:linear-gradient(#16202c_1px,transparent_1px),linear-gradient(90deg,#16202c_1px,transparent_1px)] [background-size:20px_20px]\" />\n      <div className=\"absolute inset-0 [background-image:linear-gradient(#1c2a3a_1px,transparent_1px),linear-gradient(90deg,#1c2a3a_1px,transparent_1px)] [background-size:100px_100px]\" />\n      <svg key={k} viewBox=\"0 0 400 240\" className=\"absolute inset-0 size-full\" preserveAspectRatio=\"xMidYMid meet\">\n        {LINES.map((d, i) => (\n          <motion.path key={i} d={d} fill=\"none\" stroke=\"#7fb2e6\" strokeWidth=\"1.2\" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.85 }} transition={{ delay: 0.3 + i * 0.35, duration: 1.1, ease: 'easeInOut' }} />\n        ))}\n        <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.6 }} fill=\"#7fb2e6\" fontSize=\"8\" fontFamily=\"ui-monospace\">\n          <path d=\"M40 215 H360 M40 211 V219 M360 211 V219\" stroke=\"#ff6a2b\" strokeWidth=\".8\" /><text x=\"190\" y=\"228\" fill=\"#ff6a2b\">12.40 m</text>\n        </motion.g>\n      </svg>\n      <div className=\"relative grid size-full min-h-64 place-items-center\">{children}</div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

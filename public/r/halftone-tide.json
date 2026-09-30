@@ -1,0 +1,64 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "halftone-tide",
+  "title": "Halftone Tide",
+  "type": "registry:component",
+  "description": "Dot field swells like a tide",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "src/kavyn/halftone-tide.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/halftone-tide.jsx",
+      "content": "'use client'\n\nimport { useEffect, useRef } from 'react'\n\n/** @param {{ children?: any, gap?: any }} props */\nexport default function HalftoneTide({ children = undefined, gap = 14 }) {\n  const ref = useRef(null)\n  useEffect(() => {\n    const c = ref.current, ctx = c.getContext('2d')\n    let raf, w, h\n    const size = () => { const d = devicePixelRatio || 1; w = c.clientWidth; h = c.clientHeight; c.width = w * d; c.height = h * d; ctx.setTransform(d, 0, 0, d, 0, 0) }\n    size(); const ro = new ResizeObserver(size); ro.observe(c)\n    const draw = (t) => {\n      t /= 1000; ctx.clearRect(0, 0, w, h)\n      for (let y = gap / 2; y < h; y += gap) for (let x = gap / 2; x < w; x += gap) {\n        const v = Math.sin(x * 0.012 + t * 1.1) + Math.sin(y * 0.02 - t * 0.8) + Math.sin((x + y) * 0.008 + t * 0.5)\n        const r = Math.max(0.3, ((v + 3) / 6) * (gap * 0.42))\n        ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283)\n        ctx.fillStyle = v > 1.6 ? 'rgba(255,106,43,.7)' : `rgba(237,237,239,${0.05 + ((v + 3) / 6) * 0.18})`; ctx.fill()\n      }\n      raf = requestAnimationFrame(draw)\n    }\n    raf = requestAnimationFrame(draw)\n    return () => { cancelAnimationFrame(raf); ro.disconnect() }\n  }, [gap])\n  return (\n    <div className=\"relative size-full min-h-64 overflow-hidden bg-bg\">\n      <canvas ref={ref} className=\"absolute inset-0 size-full\" />\n      <div className=\"relative grid size-full min-h-64 place-items-center\">{children}</div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ink-write",
+  "title": "Ink Write",
+  "type": "registry:component",
+  "description": "Strokes draw in along a handwritten path",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/ink-write.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/ink-write.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion } from 'motion/react'\n\nexport default function InkWrite({ text = 'Welcome, Maya', loop = true }) {\n  const [k, setK] = useState(0)\n  return (\n    <svg viewBox=\"0 0 520 120\" className=\"w-full max-w-md\" onClick={() => setK(k + 1)}>\n      <motion.text\n        key={k}\n        x=\"50%\" y=\"78\" textAnchor=\"middle\"\n        style={{ fontFamily: 'Georgia, \"Times New Roman\", serif', fontStyle: 'italic', fontSize: 64 }}\n        stroke=\"#ededef\" strokeWidth=\"1.2\" strokeDasharray=\"900\"\n        initial={{ strokeDashoffset: 900, fill: 'rgba(237,237,239,0)' }}\n        animate={{ strokeDashoffset: 0, fill: 'rgba(237,237,239,1)' }}\n        transition={{ strokeDashoffset: { duration: 2.4, ease: [0.6, 0, 0.3, 1] }, fill: { delay: 1.9, duration: 0.8 } }}\n        onAnimationComplete={() => loop && setTimeout(() => setK((x) => x + 1), 2200)}\n      >\n        {text}\n      </motion.text>\n      <motion.path\n        key={'u' + k} d=\"M140 100 Q 260 86 380 98\" fill=\"none\" stroke=\"#ff6a2b\" strokeWidth=\"2.5\" strokeLinecap=\"round\"\n        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 2.1, duration: 0.6, ease: 'easeOut' }}\n      />\n    </svg>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "vinyl-deck",
+  "title": "Vinyl Deck",
+  "type": "registry:component",
+  "description": "Record spins, drag the platter to scrub",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/vinyl-deck.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/vinyl-deck.jsx",
+      "content": "'use client'\n\nimport { useRef, useState } from 'react'\nimport { motion, useMotionValue, useAnimationFrame, useTransform } from 'motion/react'\n\nconst LEN = 1860\n\nexport default function VinylDeck({ title = 'Episode 42 - Shipping slower', rpm = 33 }) {\n  const rot = useMotionValue(0)\n  const [playing, setPlaying] = useState(true)\n  const drag = useRef(null)\n  const ref = useRef(null)\n  const [t, setT] = useState(0)\n  useAnimationFrame((_, dt) => {\n    if (playing && !drag.current) rot.set(rot.get() + (rpm * 6 * dt) / 1000)\n    const s = Math.floor(((rot.get() / 360) * 1.8) % LEN)\n    if (s !== t) setT(s < 0 ? s + LEN : s)\n  })\n  const ang = (e) => { const r = ref.current.getBoundingClientRect(); return Math.atan2(e.clientY - r.top - r.height / 2, e.clientX - r.left - r.width / 2) * 57.3 }\n  const tone = useTransform(rot, (r) => `conic-gradient(from ${r}deg, #141417, #1e1e22 20%, #141417 40%, #1e1e22 60%, #141417 80%)`)\n  const fmt = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`\n  return (\n    <div className=\"flex items-center gap-6\">\n      <motion.div\n        ref={ref}\n        style={{ rotate: rot, background: tone }}\n        onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); drag.current = ang(e) }}\n        onPointerMove={(e) => { if (drag.current == null) return; const a = ang(e); let d = a - drag.current; if (d > 180) d -= 360; if (d < -180) d += 360; rot.set(rot.get() + d); drag.current = a }}\n        onPointerUp={() => (drag.current = null)}\n        className=\"relative size-40 cursor-grab touch-none rounded-full border border-line2 shadow-[0_0_0_6px_#0f0f11,0_20px_40px_rgba(0,0,0,.6)] active:cursor-grabbing\"\n      >\n        {[0.82, 0.68, 0.54].map((s) => <div key={s} className=\"absolute rounded-full border border-white/[0.04]\" style={{ inset: `${(1 - s) * 50}%` }} />)}\n        <div className=\"absolute inset-[36%] grid place-items-center rounded-full bg-acc\"><div className=\"size-2 rounded-full bg-bg\" /></div>\n      </motion.div>\n      <div className=\"w-40\">\n        <div className=\"text-sm text-tx\">{title}</div>\n        <div className=\"mt-1 font-mono text-xs text-mute tabular-nums\">{fmt(t)} / {fmt(LEN)}</div>\n        <button onClick={() => setPlaying(!playing)} className=\"mt-3 rounded-lg border border-line2 px-3 py-1 text-xs text-tx\">{playing ? 'Pause' : 'Play'}</button>\n        <div className=\"mt-2 text-[11px] text-faint\">drag the record to scrub</div>\n      </div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

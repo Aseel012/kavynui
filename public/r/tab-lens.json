@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tab-lens",
+  "title": "Tab Lens",
+  "type": "registry:component",
+  "description": "A lens slides between items and magnifies",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/tab-lens.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/tab-lens.jsx",
+      "content": "'use client'\n\nimport { useId, useState } from 'react'\nimport { motion } from 'motion/react'\n\n/** @param {{ items?: any, defaultIndex?: any, onChange?: any }} props */\nexport default function TabLens({ items = ['Product', 'Customers', 'Changelog', 'Docs'], defaultIndex = 0, onChange = undefined }) {\n  const id = useId()\n  const [active, setActive] = useState(defaultIndex)\n  const [hover, setHover] = useState(null)\n  const lens = hover ?? active\n  return (\n    <nav className=\"flex rounded-full border border-line2 bg-panel p-1\" onPointerLeave={() => setHover(null)}>\n      {items.map((it, i) => (\n        <button key={it} onPointerEnter={() => setHover(i)} onClick={() => { setActive(i); onChange?.(i) }} className=\"relative px-4 py-2 text-sm\">\n          {lens === i && (\n            <motion.span layoutId={id + 'lens'} className=\"absolute inset-0 rounded-full border border-white/10 bg-white/[0.06] shadow-[inset_0_1px_0_rgba(255,255,255,.08),0_4px_14px_rgba(0,0,0,.4)]\" transition={{ type: 'spring', stiffness: 420, damping: 32 }} />\n          )}\n          <motion.span className=\"relative inline-block\" animate={{ scale: lens === i ? 1.1 : 1, color: active === i ? '#ededef' : lens === i ? '#d0d0d6' : '#8a8a93' }} transition={{ type: 'spring', stiffness: 420, damping: 26 }}>\n            {it}\n          </motion.span>\n          {active === i && <motion.span layoutId={id + 'dot'} className=\"absolute bottom-0.5 left-1/2 size-1 -translate-x-1/2 rounded-full bg-acc\" />}\n        </button>\n      ))}\n    </nav>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

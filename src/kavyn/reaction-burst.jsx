@@ -7,7 +7,7 @@ const EMO = ['🔥', '👏', '😂', '❤️']
 
 export default function ReactionBurst({ emojis = EMO }) {
   const [parts, setParts] = useState([])
-  const [counts, setCounts] = useState(() => emojis.map(() => Math.floor(Math.random() * 40) + 5))
+  const [counts, setCounts] = useState(() => emojis.map((_, i) => ((i * 17 + 11) % 40) + 5))
   const fire = (i) => {
     setCounts((c) => c.map((v, k) => (k === i ? v + 1 : v)))
     const burst = Array.from({ length: 5 }, (_, k) => ({ id: Math.random(), e: emojis[i], x: i * 64 + 20 + (Math.random() - 0.5) * 30, dx: (Math.random() - 0.5) * 60, r: (Math.random() - 0.5) * 50, d: k * 0.05 }))

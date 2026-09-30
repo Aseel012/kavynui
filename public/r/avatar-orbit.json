@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-orbit",
+  "title": "Avatar Orbit",
+  "type": "registry:component",
+  "description": "Avatars orbit a central mark",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/avatar-orbit.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/avatar-orbit.jsx",
+      "content": "'use client'\n\nimport { motion } from 'motion/react'\n\nconst PEOPLE = ['AK', 'MS', 'RJ', 'PN', 'DV', 'SL', 'TK', 'IB']\nconst HUES = ['#ff6a2b', '#ededef', '#8a8a93', '#d8b27a', '#6b8f5e', '#3f7cac', '#7d4e8a', '#5c5c66']\n\nfunction Ring({ people, r, dur, dir, off }) {\n  return (\n    <motion.div className=\"absolute left-1/2 top-1/2\" animate={{ rotate: dir * 360 }} transition={{ repeat: Infinity, ease: 'linear', duration: dur }}>\n      <div className=\"absolute rounded-full border border-dashed border-line2\" style={{ width: r * 2, height: r * 2, left: -r, top: -r }} />\n      {people.map((p, i) => {\n        const a = (i / people.length) * Math.PI * 2\n        return (\n          <motion.div key={p} className=\"absolute grid size-9 place-items-center rounded-full border-2 border-bg text-[11px] font-semibold text-bg\"\n            style={{ left: Math.cos(a) * r - 18, top: Math.sin(a) * r - 18, background: HUES[(i + off) % HUES.length] }}\n            animate={{ rotate: -dir * 360 }} transition={{ repeat: Infinity, ease: 'linear', duration: dur }} whileHover={{ scale: 1.2 }}>\n            {p}\n          </motion.div>\n        )\n      })}\n    </motion.div>\n  )\n}\n\nexport default function AvatarOrbit({ people = PEOPLE, count = '2,400' }) {\n  return (\n    <div className=\"relative size-72\">\n      <Ring people={people.slice(0, 3)} r={62} dur={18} dir={1} off={0} />\n      <Ring people={people.slice(3)} r={122} dur={32} dir={-1} off={3} />\n      <div className=\"absolute left-1/2 top-1/2 grid size-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-2xl border border-line2 bg-panel2 text-center\">\n        <div><div className=\"text-sm font-semibold text-tx\">{count}</div><div className=\"text-[9px] text-faint\">members</div></div>\n      </div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

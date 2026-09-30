@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "highlighter-sweep",
+  "title": "Highlighter Sweep",
+  "type": "registry:component",
+  "description": "A marker stroke draws under the key phrase",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/highlighter-sweep.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/highlighter-sweep.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion } from 'motion/react'\n\nexport default function HighlighterSweep({ before = 'Most teams lose ', mark = 'three hours a week', after = ' to status meetings.' }) {\n  const [k, setK] = useState(0)\n  return (\n    <p onClick={() => setK(k + 1)} className=\"max-w-md text-2xl leading-snug tracking-tight text-mute\">\n      {before}\n      <span className=\"relative inline-block whitespace-nowrap text-tx\">\n        <motion.span\n          key={k}\n          aria-hidden\n          className=\"absolute -inset-x-1 bottom-[0.08em] top-[0.45em] -z-0 origin-left -skew-x-6 rounded-[3px] bg-acc/35\"\n          initial={{ scaleX: 0 }}\n          whileInView={{ scaleX: 1 }}\n          viewport={{ amount: 0.8 }}\n          transition={{ delay: 0.35, duration: 0.7, ease: [0.65, 0, 0.35, 1] }}\n        />\n        <span className=\"relative\">{mark}</span>\n      </span>\n      {after}\n    </p>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

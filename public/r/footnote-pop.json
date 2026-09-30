@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "footnote-pop",
+  "title": "Footnote Pop",
+  "type": "registry:component",
+  "description": "Superscript opens an inline source card",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/footnote-pop.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/footnote-pop.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion, AnimatePresence } from 'motion/react'\n\nconst NOTES = {\n  1: { src: 'State of Remote Work, 2025', body: 'Survey of 3,100 teams across 22 countries.' },\n  2: { src: 'Internal benchmark', body: 'Median of 40 runs on a mid-range Android phone.' },\n}\n\nexport default function FootnotePop({ notes = NOTES }) {\n  const [open, setOpen] = useState(null)\n  const Ref = ({ n }) => (\n    <motion.button whileHover={{ y: -1 }} onClick={() => setOpen(open === n ? null : n)} className={`mx-0.5 -translate-y-1.5 rounded px-1 font-mono text-[10px] ${open === n ? 'bg-acc text-bg' : 'bg-line2 text-mute'}`}>{n}</motion.button>\n  )\n  return (\n    <div className=\"max-w-md text-[15px] leading-relaxed text-mute\">\n      Async teams ship 23% more often<Ref n={1} /> and the new renderer paints the first screen in 180 ms<Ref n={2} />.\n      <AnimatePresence mode=\"wait\">\n        {open && (\n          <motion.aside key={open} initial={{ opacity: 0, height: 0, y: -6 }} animate={{ opacity: 1, height: 'auto', y: 0 }} exit={{ opacity: 0, height: 0 }} transition={{ type: 'spring', stiffness: 380, damping: 30 }} className=\"overflow-hidden\">\n            <div className=\"mt-3 rounded-xl border border-line2 bg-panel p-3 text-sm\">\n              <div className=\"font-mono text-[11px] text-acc\">[{open}] {notes[open].src}</div>\n              <div className=\"mt-1 text-tx\">{notes[open].body}</div>\n            </div>\n          </motion.aside>\n        )}\n      </AnimatePresence>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shutter-button",
+  "title": "Shutter Button",
+  "type": "registry:component",
+  "description": "Aperture blades open to reveal the icon",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/shutter-button.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/shutter-button.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion } from 'motion/react'\n\nconst BLADES = 6\n\n/** @param {{ label?: any, onClick?: any }} props */\nexport default function ShutterButton({ label = 'Upload photo', onClick = undefined }) {\n  const [open, setOpen] = useState(false)\n  return (\n    <button\n      onPointerEnter={() => setOpen(true)} onPointerLeave={() => setOpen(false)}\n      onFocus={() => setOpen(true)} onBlur={() => setOpen(false)} onClick={onClick}\n      className=\"flex h-14 items-center gap-3 rounded-2xl border border-line2 bg-panel pl-2 pr-5 text-sm text-tx\"\n    >\n      <span className=\"relative grid size-10 place-items-center overflow-hidden rounded-full bg-bg\">\n        <svg viewBox=\"0 0 24 24\" className=\"size-4 text-acc\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\">\n          <path d=\"M12 16V6M7 11l5-5 5 5M5 19h14\" />\n        </svg>\n        {Array.from({ length: BLADES }).map((_, i) => (\n          <motion.span\n            key={i}\n            className=\"absolute left-1/2 top-1/2 h-10 w-6 origin-[0%_0%] bg-line2\"\n            style={{ rotate: (360 / BLADES) * i, borderRight: '1px solid #3a3a42' }}\n            animate={{ rotate: (360 / BLADES) * i + (open ? 48 : 0), x: open ? 6 : -1, y: open ? 6 : -1 }}\n            transition={{ type: 'spring', stiffness: 260, damping: 22 }}\n          />\n        ))}\n      </span>\n      {label}\n    </button>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

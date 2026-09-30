@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "reading-meter",
+  "title": "Reading Meter",
+  "type": "registry:component",
+  "description": "Top progress bar and a ring with minutes left",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/reading-meter.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/reading-meter.jsx",
+      "content": "'use client'\n\nimport { useRef, useState } from 'react'\nimport { motion, useScroll, useSpring, useMotionValueEvent } from 'motion/react'\n\nconst PARAS = [\n  'Motion is a promise about where things came from and where they are going. When a panel slides in from the right, people expect it to leave to the right.',\n  'Good motion is short. Most interface moves land between 150 and 300 milliseconds, long enough to follow and short enough to never wait for.',\n  'Springs feel more natural than curves because they keep their speed when interrupted. Grab a moving card and it does not jump.',\n  'Respect reduced motion. Keep the change of state, drop the travel. A fade is still a signal; a flying card is not required.',\n  'Test on a slow phone. Motion that stutters reads as broken, so animate transform and opacity, and let the rest be still.',\n  'Finally, remove one animation. Then look again. If nobody misses it, it was decoration.',\n]\n\n// Article reading progress: a top bar and a ring with minutes left. For blogs and docs.\nexport default function ReadingMeter({ title = 'Six rules for interface motion', paragraphs = PARAS, wpm = 220, className = '' }) {\n  const box = useRef(null)\n  const paras = Array.isArray(paragraphs) && paragraphs.length ? paragraphs : PARAS\n  const words = paras.join(' ').split(/\\s+/).length\n  const total = Math.max(1, Math.ceil(words / Math.max(60, Number(wpm) || 220) * 4))\n  const { scrollYProgress } = useScroll({ container: box })\n  const prog = useSpring(scrollYProgress, { stiffness: 180, damping: 28 })\n  const [left, setLeft] = useState(total)\n  useMotionValueEvent(scrollYProgress, 'change', (v) => setLeft(Math.max(0, Math.ceil(total * (1 - (Number(v) || 0))))))\n  return (\n    <div className={`relative h-full min-h-80 w-full overflow-hidden bg-bg ${className}`}>\n      <motion.div style={{ scaleX: prog }} className=\"absolute inset-x-0 top-0 z-10 h-0.5 origin-left bg-acc\" />\n      <div ref={box} className=\"relative h-full overflow-y-auto overscroll-contain px-6 py-8 @xl:px-12\">\n        <article className=\"mx-auto max-w-md\">\n          <div className=\"text-[11px] uppercase tracking-widest text-faint\">Essay · {total} min read</div>\n          <h3 className=\"mt-2 text-2xl font-semibold tracking-tight text-tx\">{title}</h3>\n          {paras.map((t, n) => <p key={n} className=\"mt-5 text-[15px] leading-7 text-mute\">{t}</p>)}\n          <p className=\"mt-8 border-t border-line pt-4 text-xs text-faint\">The end. Thanks for reading.</p>\n        </article>\n      </div>\n      <div className=\"absolute bottom-4 right-4 z-10 flex items-center gap-2 rounded-full border border-line bg-panel/90 py-1.5 pl-1.5 pr-3 backdrop-blur\" role=\"status\" aria-live=\"polite\">\n        <svg viewBox=\"0 0 36 36\" className=\"size-7 -rotate-90\" aria-hidden>\n          <circle cx=\"18\" cy=\"18\" r=\"15\" fill=\"none\" stroke=\"#2a2a30\" strokeWidth=\"3\" />\n          <motion.circle cx=\"18\" cy=\"18\" r=\"15\" fill=\"none\" stroke=\"#ff6a2b\" strokeWidth=\"3\" strokeLinecap=\"round\" style={{ pathLength: prog }} />\n        </svg>\n        <span className=\"text-xs tabular-nums text-tx\">{left ? `${left} min left` : 'Done'}</span>\n      </div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ring-weave",
+  "title": "Ring Weave",
+  "type": "registry:component",
+  "description": "Two rings interlock and swap",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/ring-weave.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/ring-weave.jsx",
+      "content": "'use client'\n\nimport { motion } from 'motion/react'\n\nexport default function RingWeave({ size = 56, label = 'Syncing' }) {\n  const t = { repeat: Infinity, duration: 1.8, ease: 'easeInOut' }\n  return (\n    <div className=\"flex flex-col items-center gap-3\">\n      <div className=\"relative\" style={{ width: size * 1.7, height: size }}>\n        <motion.span className=\"absolute top-0 rounded-full border-[3px] border-tx\" style={{ width: size, height: size }}\n          animate={{ left: [0, size * 0.7, 0], zIndex: [2, 2, 1, 1, 2], scale: [1, 0.9, 1] }} transition={t} />\n        <motion.span className=\"absolute top-0 rounded-full border-[3px] border-acc\" style={{ width: size, height: size }}\n          animate={{ left: [size * 0.7, 0, size * 0.7], zIndex: [1, 1, 2, 2, 1], scale: [0.9, 1, 0.9] }} transition={t} />\n      </div>\n      <span className=\"text-xs text-mute\">{label}</span>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

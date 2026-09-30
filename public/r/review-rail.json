@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "review-rail",
+  "title": "Review Rail",
+  "type": "registry:component",
+  "description": "Two opposing rows that pause on hover",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/review-rail.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/review-rail.jsx",
+      "content": "'use client'\n\nimport { useRef } from 'react'\nimport { motion, useMotionValue, useSpring, useAnimationFrame, useTransform } from 'motion/react'\n\nconst R = [\n  ['Ananya, PM at Loop', 'Our onboarding finally feels like the product.'], ['Dev, founder', 'Shipped the landing page in an afternoon.'],\n  ['Meera, designer', 'The motion is calm. Nothing shouts.'], ['Kabir, eng lead', 'Drop-in components, no fighting CSS.'],\n  ['Sara, indie hacker', 'Conversions went up after the redesign.'], ['Rohan, CTO', 'Fast on low-end phones too.'],\n]\n\nfunction Row({ items, dir, speed }) {\n  const x = useMotionValue(0)\n  const rate = useMotionValue(1)\n  const s = useSpring(rate, { stiffness: 60, damping: 20 })\n  const ref = useRef(null)\n  useAnimationFrame((_, dt) => {\n    const w = ref.current ? ref.current.scrollWidth / 2 : 1000\n    let v = x.get() + dir * speed * s.get() * (dt / 1000)\n    if (v <= -w) v += w\n    if (v > 0) v -= w\n    x.set(v)\n  })\n  const tx = useTransform(x, (v) => `${v}px`)\n  return (\n    <div onPointerEnter={() => rate.set(0)} onPointerLeave={() => rate.set(1)} className=\"overflow-hidden\">\n      <motion.div ref={ref} style={{ x: tx }} className=\"flex w-max gap-3 py-1.5\">\n        {[...items, ...items].map(([who, q], i) => (\n          <figure key={i} className=\"w-64 shrink-0 rounded-xl border border-line bg-panel p-4\">\n            <blockquote className=\"text-sm text-tx\">“{q}”</blockquote>\n            <figcaption className=\"mt-2 text-xs text-faint\">{who}</figcaption>\n          </figure>\n        ))}\n      </motion.div>\n    </div>\n  )\n}\n\nexport default function ReviewRail({ reviews = R, speed = 40 }) {\n  return (\n    <div className=\"w-full [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]\">\n      <Row items={reviews} dir={-1} speed={speed} />\n      <Row items={[...reviews].reverse()} dir={1} speed={speed} />\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

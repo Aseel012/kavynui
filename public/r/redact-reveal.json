@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "redact-reveal",
+  "title": "Redact Reveal",
+  "type": "registry:component",
+  "description": "Black bars slide off words one by one",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/redact-reveal.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/redact-reveal.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion } from 'motion/react'\n\nexport default function RedactReveal({ text = 'Your keys never leave your device. Not even we can read them.' }) {\n  const [k, setK] = useState(0)\n  const words = text.split(' ')\n  return (\n    <p onClick={() => setK(k + 1)} className=\"max-w-md cursor-pointer text-2xl font-medium leading-snug tracking-tight text-tx\">\n      {words.map((w, i) => (\n        <span key={i} className=\"relative mr-[0.28em] inline-block\">\n          {w}\n          <motion.span\n            key={k}\n            aria-hidden\n            className=\"absolute -inset-x-0.5 inset-y-[0.12em] origin-right rounded-[2px] bg-tx\"\n            initial={{ scaleX: 1 }}\n            whileInView={{ scaleX: 0 }}\n            viewport={{ once: false, amount: 0.6 }}\n            transition={{ delay: 0.3 + i * 0.12, type: 'spring', stiffness: 220, damping: 26 }}\n          />\n        </span>\n      ))}\n    </p>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

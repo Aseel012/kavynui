@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "before-after-blade",
+  "title": "Before / After Blade",
+  "type": "registry:component",
+  "description": "Angled blade wipes between two images",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/before-after-blade.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/before-after-blade.jsx",
+      "content": "'use client'\n\nimport { useRef } from 'react'\nimport { motion, useMotionValue, useSpring, useTransform } from 'motion/react'\n\nconst Scene = ({ graded }) => (\n  <div className=\"absolute inset-0\" style={{ filter: graded ? 'none' : 'grayscale(.85) contrast(.8) brightness(.8)' }}>\n    <div className=\"absolute inset-0 bg-gradient-to-b from-[#ff9a5a] via-[#e2566b] to-[#2b1a3d]\" />\n    <div className=\"absolute bottom-[34%] left-1/2 size-24 -translate-x-1/2 rounded-full bg-[#ffd29a] blur-[1px]\" />\n    <svg viewBox=\"0 0 400 300\" preserveAspectRatio=\"none\" className=\"absolute inset-0 size-full\">\n      <path d=\"M0 210 L70 150 L130 190 L210 120 L290 185 L350 150 L400 175 L400 300 L0 300Z\" fill=\"#1a1024\" />\n      <path d=\"M0 250 L90 205 L170 240 L260 200 L400 245 L400 300 L0 300Z\" fill=\"#0d0814\" />\n    </svg>\n  </div>\n)\n\nexport default function BeforeAfterBlade({ angle = 12 }) {\n  const ref = useRef(null)\n  const pos = useMotionValue(50)\n  const s = useSpring(pos, { stiffness: 300, damping: 30 })\n  const clip = useTransform(s, (p) => `polygon(${p + angle}% 0, 100% 0, 100% 100%, ${p - angle}% 100%)`)\n  const left = useTransform(s, (p) => `${p}%`)\n  const set = (e) => { const r = ref.current.getBoundingClientRect(); pos.set(Math.min(95, Math.max(5, ((e.clientX - r.left) / r.width) * 100))) }\n  return (\n    <div ref={ref} onPointerMove={set} onPointerDown={set} className=\"relative aspect-[4/3] w-full max-w-sm touch-none select-none overflow-hidden rounded-2xl border border-line\">\n      <Scene />\n      <motion.div style={{ clipPath: clip }} className=\"absolute inset-0\"><Scene graded /></motion.div>\n      <motion.div style={{ left, rotate: angle * 0.6 }} className=\"absolute -top-4 -bottom-4 w-px bg-tx/90\">\n        <div className=\"absolute left-1/2 top-1/2 grid size-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-tx bg-bg/80 text-[10px] text-tx backdrop-blur\">⇆</div>\n      </motion.div>\n      <span className=\"absolute left-3 top-3 rounded bg-bg/70 px-2 py-0.5 font-mono text-[10px] text-mute\">RAW</span>\n      <span className=\"absolute right-3 top-3 rounded bg-bg/70 px-2 py-0.5 font-mono text-[10px] text-tx\">GRADED</span>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

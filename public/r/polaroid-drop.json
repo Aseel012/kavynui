@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "polaroid-drop",
+  "title": "Polaroid Drop",
+  "type": "registry:component",
+  "description": "Photos drop, settle and can be rearranged",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/polaroid-drop.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/polaroid-drop.jsx",
+      "content": "'use client'\n\nimport { useRef, useState } from 'react'\nimport { motion } from 'motion/react'\n\nconst PH = [\n  { cap: 'Hampi, dawn', g: 'from-[#f6b36b] to-[#7a3b2e]' },\n  { cap: 'Kochi harbor', g: 'from-[#6fb1c9] to-[#1d3a4f]' },\n  { cap: 'Spiti road', g: 'from-[#c9c3b5] to-[#4a4f5c]' },\n  { cap: 'Goa, 6pm', g: 'from-[#ff7a59] to-[#3b1f4a]' },\n]\n\nexport default function PolaroidDrop({ photos = PH }) {\n  const box = useRef(null)\n  const [z, setZ] = useState(photos.map((_, i) => i))\n  const [k, setK] = useState(0)\n  const front = (i) => setZ((o) => { const m = Math.max(...o); return o.map((v, j) => (j === i ? m + 1 : v)) })\n  return (\n    <div className=\"flex w-full max-w-sm flex-col items-center gap-3\">\n      <div ref={box} className=\"relative h-64 w-full max-w-sm overflow-hidden rounded-2xl border border-line bg-panel\">\n        {photos.map((p, i) => (\n          <motion.div\n            key={i + '-' + k}\n            drag dragConstraints={box} dragElastic={0.15} dragMomentum\n            onPointerDown={() => front(i)}\n            initial={{ y: -260, rotate: (i - 1.5) * 25, opacity: 0 }}\n            animate={{ y: 0, rotate: [-9, 6, -4, 8][i % 4], opacity: 1 }}\n            transition={{ type: 'spring', stiffness: 140, damping: 13, delay: i * 0.18 }}\n            whileDrag={{ scale: 1.06, rotate: 0 }}\n            style={{ zIndex: z[i], left: 24 + i * 62, top: 30 + (i % 2) * 28 }}\n            className=\"absolute w-32 cursor-grab rounded-sm bg-[#f4f1ea] p-2 pb-7 shadow-[0_14px_30px_rgba(0,0,0,.5)] active:cursor-grabbing\"\n          >\n            <div className={`aspect-square bg-gradient-to-br ${p.g}`} />\n            <div className=\"absolute bottom-1.5 left-2 font-serif text-[11px] italic text-[#333]\">{p.cap}</div>\n          </motion.div>\n        ))}\n      </div>\n      <button onClick={() => setK(k + 1)} className=\"text-xs text-mute hover:text-tx\">Drop again</button>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

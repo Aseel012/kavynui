@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "command-rail",
+  "title": "Command Rail",
+  "type": "registry:component",
+  "description": "Side rail with key hints, expands on hover",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/command-rail.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/command-rail.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion } from 'motion/react'\n\nconst ITEMS = [\n  { i: '◧', l: 'Overview', k: 'G O' }, { i: '◎', l: 'Customers', k: 'G C' }, { i: '▤', l: 'Invoices', k: 'G I' },\n  { i: '◇', l: 'Reports', k: 'G R' }, { i: '⚙', l: 'Settings', k: '⌘ ,' },\n]\n\nexport default function CommandRail({ items = ITEMS }) {\n  const [open, setOpen] = useState(false)\n  const [active, setActive] = useState(0)\n  return (\n    <motion.aside onPointerEnter={() => setOpen(true)} onPointerLeave={() => setOpen(false)}\n      animate={{ width: open ? 208 : 56 }} transition={{ type: 'spring', stiffness: 380, damping: 34 }}\n      className=\"flex h-72 flex-col gap-1 overflow-hidden rounded-2xl border border-line2 bg-panel p-2\">\n      {items.map((it, i) => (\n        <button key={it.l} onClick={() => setActive(i)} className=\"relative flex h-10 shrink-0 items-center gap-3 rounded-lg px-3 text-left\">\n          {active === i && <motion.span layoutId=\"cr-act\" className=\"absolute inset-0 rounded-lg bg-line\" transition={{ type: 'spring', stiffness: 420, damping: 34 }} />}\n          <span className={`relative w-4 text-center ${active === i ? 'text-acc' : 'text-mute'}`}>{it.i}</span>\n          <motion.span animate={{ opacity: open ? 1 : 0, x: open ? 0 : -6 }} className=\"relative flex flex-1 items-center justify-between whitespace-nowrap text-sm text-tx\">\n            {it.l}<kbd className=\"rounded border border-line2 px-1 font-mono text-[10px] text-faint\">{it.k}</kbd>\n          </motion.span>\n        </button>\n      ))}\n    </motion.aside>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shortcut-caps",
+  "title": "Shortcut Caps",
+  "type": "registry:component",
+  "description": "Keycaps press in sequence to teach a shortcut",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/shortcut-caps.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/shortcut-caps.jsx",
+      "content": "'use client'\n\nimport { useEffect, useState } from 'react'\nimport { motion } from 'motion/react'\n\nconst SEQ = [{ keys: ['⌘', 'K'], label: 'Open command menu' }, { keys: ['⌘', '⇧', 'P'], label: 'Publish page' }, { keys: ['G', 'I'], label: 'Go to inbox' }]\n\nfunction Cap({ k, down }) {\n  return (\n    <motion.kbd\n      animate={{ y: down ? 4 : 0, boxShadow: down ? '0 0px 0 #1e1e22, 0 0 0 1px #ff6a2b55' : '0 4px 0 #1e1e22, 0 0 0 0px #ff6a2b00' }}\n      transition={{ type: 'spring', stiffness: 700, damping: 24 }}\n      className=\"grid h-14 min-w-14 place-items-center rounded-xl border border-line2 bg-panel2 px-3 font-sans text-xl text-tx\"\n    >\n      {k}\n    </motion.kbd>\n  )\n}\n\nexport default function ShortcutCaps({ shortcuts = SEQ }) {\n  const [s, setS] = useState(0)\n  const [n, setN] = useState(0)\n  useEffect(() => {\n    const cur = shortcuts[s].keys.length\n    const t = setTimeout(() => {\n      if (n < cur) setN(n + 1)\n      else { setN(0); setS((s + 1) % shortcuts.length) }\n    }, n < cur ? 260 : 1300)\n    return () => clearTimeout(t)\n  }, [n, s, shortcuts])\n  const cur = shortcuts[s]\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <div className=\"flex gap-2\">{cur.keys.map((k, i) => <Cap key={s + k + i} k={k} down={i < n} />)}</div>\n      <motion.div key={s} initial={{ opacity: 0, y: 4 }} animate={{ opacity: n >= cur.keys.length ? 1 : 0.35, y: 0 }} className=\"text-sm text-mute\">{cur.label}</motion.div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

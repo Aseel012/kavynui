@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stitch-progress",
+  "title": "Stitch Progress",
+  "type": "registry:component",
+  "description": "A thread stitches across the bar",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/stitch-progress.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/stitch-progress.jsx",
+      "content": "'use client'\n\nimport { useEffect, useState } from 'react'\nimport { motion } from 'motion/react'\n\nexport default function StitchProgress({ file = 'brand-guide.pdf', size = '8.4 MB' }) {\n  const [p, setP] = useState(0)\n  useEffect(() => {\n    const t = setInterval(() => setP((v) => (v >= 1 ? 0 : Math.min(1, v + Math.random() * 0.06))), 180)\n    return () => clearInterval(t)\n  }, [])\n  const W = 300\n  return (\n    <div className=\"w-80 rounded-xl border border-line2 bg-panel p-4\">\n      <div className=\"mb-3 flex justify-between text-sm\"><span className=\"text-tx\">{file}</span><span className=\"font-mono text-xs text-mute tabular-nums\">{Math.round(p * 100)}%</span></div>\n      <svg viewBox={`0 0 ${W} 16`} className=\"w-full overflow-visible\">\n        <line x1=\"0\" y1=\"8\" x2={W} y2=\"8\" stroke=\"#1e1e22\" strokeWidth=\"6\" strokeLinecap=\"round\" />\n        <motion.path d={Array.from({ length: 30 }, (_, i) => `M${i * 10 + 2} ${i % 2 ? 4 : 12} L${i * 10 + 8} ${i % 2 ? 12 : 4}`).join(' ')} stroke=\"#ff6a2b\" strokeWidth=\"2\" strokeLinecap=\"round\" fill=\"none\"\n          animate={{ pathLength: p }} transition={{ type: 'spring', stiffness: 120, damping: 20 }} />\n        <motion.g animate={{ x: p * W }} transition={{ type: 'spring', stiffness: 120, damping: 20 }}>\n          <line x1=\"0\" y1=\"-4\" x2=\"0\" y2=\"20\" stroke=\"#ededef\" strokeWidth=\"1.5\" />\n          <circle cx=\"0\" cy=\"-5\" r=\"2\" fill=\"none\" stroke=\"#ededef\" />\n        </motion.g>\n      </svg>\n      <div className=\"mt-2 text-xs text-faint\">{size} · {p >= 1 ? 'Uploaded' : 'Uploading'}</div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

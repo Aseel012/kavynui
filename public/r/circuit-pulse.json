@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "circuit-pulse",
+  "title": "Circuit Pulse",
+  "type": "registry:component",
+  "description": "Traces carry pulses across a board",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/circuit-pulse.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/circuit-pulse.jsx",
+      "content": "'use client'\n\nimport { useMemo } from 'react'\nimport { motion } from 'motion/react'\n\n/** @param {{ children?: any, traces?: any, seed?: any }} props */\nexport default function CircuitPulse({ children = undefined, traces = 12, seed = 7 }) {\n  const paths = useMemo(() => {\n    let s = seed; const rnd = () => ((s = (s * 9301 + 49297) % 233280) / 233280)\n    return Array.from({ length: traces }, () => {\n      let x = Math.round(rnd() * 20) * 20, y = Math.round(rnd() * 12) * 20, d = `M${x} ${y}`\n      for (let k = 0; k < 4; k++) { if (k % 2) y += (rnd() > 0.5 ? 1 : -1) * Math.round(1 + rnd() * 3) * 20; else x += Math.round(2 + rnd() * 5) * 20; d += ` L${x} ${y}` }\n      return { d, end: [x, y] }\n    })\n  }, [traces, seed])\n  return (\n    <div className=\"relative size-full min-h-64 overflow-hidden bg-bg\">\n      <svg viewBox=\"0 0 400 240\" preserveAspectRatio=\"xMidYMid slice\" className=\"absolute inset-0 size-full\">\n        {paths.map((p, i) => (\n          <g key={i}>\n            <path d={p.d} fill=\"none\" stroke=\"#1e1e22\" strokeWidth=\"1.5\" />\n            <motion.path d={p.d} fill=\"none\" stroke=\"#ff6a2b\" strokeWidth=\"1.5\" strokeLinecap=\"round\" pathLength=\"1\" strokeDasharray=\"0.12 0.88\"\n              initial={{ strokeDashoffset: 1 }} animate={{ strokeDashoffset: -0.12 }} transition={{ repeat: Infinity, duration: 2.4 + (i % 4) * 0.5, delay: i * 0.3, ease: 'easeIn', repeatDelay: 1 }} style={{ filter: 'drop-shadow(0 0 3px #ff6a2b)' }} />\n            <circle cx={p.end[0]} cy={p.end[1]} r=\"2.5\" fill=\"#141417\" stroke=\"#2a2a30\" />\n          </g>\n        ))}\n      </svg>\n      <div className=\"relative grid size-full min-h-64 place-items-center\">{children}</div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

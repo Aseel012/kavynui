@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "isometric-stack",
+  "title": "Isometric Stack",
+  "type": "registry:component",
+  "description": "App layers separate isometrically on scroll",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/isometric-stack.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/isometric-stack.jsx",
+      "content": "'use client'\n\nimport { useEffect, useState } from 'react'\nimport { motion } from 'motion/react'\n\nconst LAYERS = [\n  { n: 'Edge', c: '#ff6a2b' }, { n: 'API', c: '#ededef' }, { n: 'Queue', c: '#8a8a93' }, { n: 'Postgres', c: '#5c5c66' },\n]\n\nexport default function IsometricStack({ layers = LAYERS }) {\n  const [hover, setHover] = useState(false)\n  const [auto, setAuto] = useState(false)\n  useEffect(() => { const t = setInterval(() => setAuto((a) => !a), 2600); return () => clearInterval(t) }, [])\n  const spread = hover || auto\n  return (\n    <div onPointerEnter={() => setHover(true)} onPointerLeave={() => setHover(false)} className=\"relative grid h-72 w-72 place-items-center\">\n      {layers.map((l, i) => (\n        <motion.div\n          key={l.n}\n          className=\"absolute size-36\"\n          style={{ zIndex: layers.length - i }}\n          animate={{ y: (i - (layers.length - 1) / 2) * (spread ? 52 : 14) }}\n          transition={{ type: 'spring', stiffness: 160, damping: 18, delay: i * 0.04 }}\n        >\n          <div className=\"size-full rounded-xl border bg-panel2/90 backdrop-blur-sm\" style={{ transform: 'rotateX(58deg) rotateZ(-45deg)', borderColor: l.c + '99', boxShadow: `0 0 30px ${l.c}22 inset` }}>\n            <div className=\"grid size-full grid-cols-4 gap-1.5 p-3 opacity-60\">{Array.from({ length: 8 }).map((_, k) => <span key={k} className=\"rounded-sm\" style={{ background: l.c + '33' }} />)}</div>\n          </div>\n          <motion.span animate={{ opacity: spread ? 1 : 0, x: spread ? 0 : -8 }} className=\"absolute -right-16 top-1/2 font-mono text-[11px]\" style={{ color: l.c }}>{l.n}</motion.span>\n        </motion.div>\n      ))}\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

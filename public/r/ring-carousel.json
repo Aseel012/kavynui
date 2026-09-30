@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ring-carousel",
+  "title": "Ring Carousel",
+  "type": "registry:component",
+  "description": "Cards on a 3D ring you drag or turn with arrow keys",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/ring-carousel.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/ring-carousel.jsx",
+      "content": "'use client'\n\nimport { useRef, useState } from 'react'\nimport { motion, useMotionValue, useSpring, useTransform, useMotionValueEvent } from 'motion/react'\n\nconst TEMPLATES = [\n  { t: 'Portfolio', c: '#ff6a2b' }, { t: 'SaaS', c: '#3b82f6' }, { t: 'Docs', c: '#22c55e' }, { t: 'Store', c: '#a855f7' },\n  { t: 'Blog', c: '#eab308' }, { t: 'Event', c: '#06b6d4' }, { t: 'Agency', c: '#f43f5e' }, { t: 'Waitlist', c: '#ededef' },\n]\n\n// A template gallery on a 3D ring. Drag or use arrow keys to turn it.\n/** @param {{ items?: any, onSelect?: any, className?: any }} props */\nexport default function RingCarousel({ items = TEMPLATES, onSelect = undefined, className = '' }) {\n  const list = (Array.isArray(items) && items.length ? items : TEMPLATES).slice(0, 12)\n  const n = list.length, step = 360 / n, radius = Math.round(90 / Math.tan(Math.PI / n)) + 20\n  const rot = useMotionValue(0)\n  const spring = useSpring(rot, { stiffness: 120, damping: 20 })\n  const transform = useTransform(spring, (r) => `translateZ(${-radius}px) rotateY(${r}deg)`)\n  const [active, setActive] = useState(0)\n  const start = useRef(0)\n  useMotionValueEvent(spring, 'change', (r) => setActive((((Math.round(-r / step)) % n) + n) % n))\n  const snap = (r) => rot.set(Math.round(r / step) * step)\n  const go = (d) => snap(rot.get() - d * step)\n  return (\n    <div className={`flex flex-col items-center gap-4 ${className}`}>\n      <motion.div tabIndex={0} role=\"listbox\" aria-label=\"Templates\" aria-activedescendant={`ring-${active}`}\n        onKeyDown={(e) => { if (e.key === 'ArrowRight') go(1); if (e.key === 'ArrowLeft') go(-1); if (e.key === 'Enter') onSelect?.(list[active]) }}\n        onPanStart={() => { start.current = rot.get() }} onPan={(_, i) => rot.set(start.current + (i?.offset?.x || 0) * 0.4)} onPanEnd={(_, i) => snap(rot.get() + (i?.velocity?.x || 0) * 0.05)}\n        className=\"relative h-52 w-[340px] cursor-grab touch-pan-y select-none outline-none [perspective:1000px] focus-visible:ring-2 focus-visible:ring-acc/60 active:cursor-grabbing\">\n        <motion.div style={{ transform }} className=\"absolute inset-0 [transform-style:preserve-3d]\">\n          {list.map((it, k) => (\n            <div key={it.t} id={`ring-${k}`} role=\"option\" aria-selected={k === active}\n              style={{ transform: `rotateY(${k * step}deg) translateZ(${radius}px)` }}\n              className={`absolute left-1/2 top-1/2 -ml-[70px] -mt-[90px] h-[180px] w-[140px] rounded-xl border bg-panel p-2.5 transition-opacity [backface-visibility:hidden] ${k === active ? 'border-line2 opacity-100' : 'border-line opacity-60'}`}>\n              <div className=\"h-24 rounded-md\" style={{ background: `linear-gradient(135deg, ${it.c}, #141417)` }} />\n              <div className=\"mt-2 h-1.5 w-12 rounded-full bg-line2\" /><div className=\"mt-1.5 h-1.5 w-20 rounded-full bg-line\" />\n              <div className=\"mt-3 text-xs font-medium text-tx\">{it.t}</div>\n            </div>\n          ))}\n        </motion.div>\n      </motion.div>\n      <div className=\"flex items-center gap-3\">\n        <button type=\"button\" onClick={() => go(-1)} aria-label=\"Previous\" className=\"grid size-8 place-items-center rounded-full border border-line2 text-mute hover:text-tx\">‹</button>\n        <button type=\"button\" onClick={() => onSelect?.(list[active])} className=\"min-w-28 rounded-full bg-tx px-4 py-1.5 text-xs font-medium text-bg\">Use {list[active]?.t}</button>\n        <button type=\"button\" onClick={() => go(1)} aria-label=\"Next\" className=\"grid size-8 place-items-center rounded-full border border-line2 text-mute hover:text-tx\">›</button>\n      </div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

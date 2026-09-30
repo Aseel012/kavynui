@@ -70,6 +70,8 @@ export default function ShareSheet({ url = sampleUrl, title = 'Share this page',
   const link = safeUrl(url)
   const canShare = Boolean(link)
   const [siteLight, setSiteLight] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
   useEffect(() => { const sync = () => setSiteLight(document.documentElement.classList.contains('light') || document.body.classList.contains('light')); sync(); const mo = new MutationObserver(sync); mo.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] }); mo.observe(document.body, { attributes: true, attributeFilter: ['class'] }); return () => mo.disconnect() }, [])
   const resolvedTheme = theme === 'auto' ? (siteLight ? 'light' : 'dark') : theme
   const isCompact = variant === 'compact'
@@ -152,10 +154,10 @@ export default function ShareSheet({ url = sampleUrl, title = 'Share this page',
     <span className={`kss-icon kss-${name}`}>{['whatsapp','telegram','x','instagram'].includes(name) ? <Brand name={name}/> : <Icon name={name} size={20}/>}</span>
     {!isCompact && <span className="kss-label">{label}</span>}
   </button>)
-  const content = open && typeof document !== 'undefined' && createPortal(<div className={`kss-root kss-${resolvedTheme}`} data-theme={resolvedTheme}>
+  const content = open && mounted && createPortal(<div className={`kss-root kss-${resolvedTheme}`} data-theme={resolvedTheme}>
       <motion.div className="kss-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduced ? 0 : .2 }} onPointerDown={(e) => { if (e.target === e.currentTarget) close() }} />
       <motion.div ref={dialog} role="dialog" aria-modal="true" aria-labelledby={titleId} className={`kss-sheet ${isCompact && view === 'share' ? 'kss-sheet-compact' : ''}`} initial={{ opacity: 0, y: reduced ? 0 : 70, scale: reduced ? 1 : .97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: reduced ? 0 : 50, scale: .98 }} transition={reduced ? { duration: 0 } : sheetTransition}>
-        {isCompact && view === 'share' ? <><span className="kss-sr" id={titleId}>Share</span><div className="kss-compact-row">{controls}</div></> : <>
+        {isCompact && view === 'share' ? <><span className="kss-sr" id={titleId}>Share</span><div className="kss-compact-row">{controls}</div>{feedback && <p className="kss-feedback" role="status">{feedback}</p>}</> : <>
           <div className="kss-handle" aria-hidden="true" />
           {view === 'copied' ? <div className="kss-success"><span className="kss-check"><Icon name="check" size={26}/></span><h2 id={titleId}>Link copied!</h2><p>You can now paste it anywhere</p><button type="button" className="kss-done" onClick={close}>Done</button></div> : <>
             <div className="kss-heading"><div>{view !== 'share' && <button type="button" className="kss-back" onClick={() => { setView('share'); setFeedback('') }} aria-label="Back to sharing"><Icon name="back" size={18}/></button>}<h2 id={titleId}>{view === 'more' ? 'More Options' : view === 'qr' ? 'Share via QR' : 'Share'}</h2><p>{view === 'more' ? 'Additional ways to share' : view === 'qr' ? 'Scan the QR code to open the link' : isMessage ? 'Add a message (optional)' : 'Choose where to share'}</p></div><button type="button" onClick={close} className="kss-close" aria-label="Close share sheet"><Icon name="close" size={17}/></button></div>

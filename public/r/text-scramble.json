@@ -1,0 +1,64 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "text-scramble",
+  "title": "Text Scramble",
+  "type": "registry:component",
+  "description": "Letters decode from noise, left to right, again on hover",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "src/kavyn/text-scramble.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/text-scramble.jsx",
+      "content": "'use client'\n\nimport { useEffect, useRef, useState } from 'react'\n\nconst GLYPHS = '!<>-_\\\\/[]{}=+*^?#01'\n\n// Letters decode from noise, left to right. Replays on hover.\nexport default function TextScramble({ text = 'Deploy to the edge', duration = 900, className = '' }) {\n  const [out, setOut] = useState(text)\n  const raf = useRef(0)\n  const run = () => {\n    cancelAnimationFrame(raf.current)\n    const start = performance.now()\n    const tick = (now) => {\n      const p = Math.min(1, (now - start) / Math.max(1, duration))\n      const lock = Math.floor(p * text.length)\n      setOut(text.split('').map((ch, i) => (ch === ' ' || i < lock ? ch : GLYPHS[(Math.random() * GLYPHS.length) | 0])).join(''))\n      if (p < 1) raf.current = requestAnimationFrame(tick)\n    }\n    raf.current = requestAnimationFrame(tick)\n  }\n  useEffect(() => { run(); return () => cancelAnimationFrame(raf.current) }, [text, duration]) // eslint-disable-line react-hooks/exhaustive-deps\n  return (\n    <span onMouseEnter={run} onFocus={run} tabIndex={0} aria-label={text}\n      className={`cursor-default whitespace-nowrap font-mono text-2xl tracking-tight text-tx outline-none sm:text-3xl ${className}`}>\n      <span aria-hidden>{out}</span>\n    </span>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

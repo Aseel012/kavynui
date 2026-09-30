@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "magnet-pill",
+  "title": "Magnet Pill",
+  "type": "registry:component",
+  "description": "Label drifts toward the cursor, pill stretches back",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/magnet-pill.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/magnet-pill.jsx",
+      "content": "'use client'\n\nimport { useRef, useState } from 'react'\nimport { motion, useMotionValue, useSpring, useTransform } from 'motion/react'\n\nexport default function MagnetPill({ children = 'Subscribe', pull = 0.35, className = 'p-10' }) {\n  const ref = useRef(null)\n  const x = useMotionValue(0), y = useMotionValue(0)\n  const sx = useSpring(x, { stiffness: 260, damping: 16, mass: 0.6 })\n  const sy = useSpring(y, { stiffness: 260, damping: 16, mass: 0.6 })\n  const stretch = useTransform(sx, (v) => 1 + Math.min(Math.abs(v) / 180, 0.12))\n  const lx = useTransform(sx, (v) => v * 0.6), ly = useTransform(sy, (v) => v * 0.6)\n  const [done, setDone] = useState(false)\n\n  const move = (e) => {\n    const r = ref.current.getBoundingClientRect()\n    x.set((e.clientX - (r.left + r.width / 2)) * pull)\n    y.set((e.clientY - (r.top + r.height / 2)) * pull)\n  }\n  const leave = () => { x.set(0); y.set(0) }\n\n  return (\n    <div onPointerMove={move} onPointerLeave={leave} className={`grid place-items-center ${className}`}>\n      <motion.button\n        ref={ref}\n        onClick={() => { setDone(true); setTimeout(() => setDone(false), 1600) }}\n        style={{ x: sx, y: sy, scaleX: stretch }}\n        whileTap={{ scale: 0.94 }}\n        className=\"h-12 rounded-full bg-tx px-8 text-sm font-medium text-bg\"\n      >\n        <motion.span style={{ x: lx, y: ly }} className=\"inline-block\">\n          {done ? 'You are in' : children}\n        </motion.span>\n      </motion.button>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

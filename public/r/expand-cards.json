@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "expand-cards",
+  "title": "Expand Cards",
+  "type": "registry:component",
+  "description": "Panels share a row; the active one expands",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/expand-cards.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/expand-cards.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion } from 'motion/react'\n\nconst PANELS = [\n  { t: 'Observe', s: 'Every request, logged at the edge.', g: 'linear-gradient(160deg,#ff6a2b,#7a1f00)' },\n  { t: 'Protect', s: 'Rules that update themselves.', g: 'linear-gradient(160deg,#3b82f6,#0b1e4a)' },\n  { t: 'Cache', s: 'Static and dynamic, close to users.', g: 'linear-gradient(160deg,#10b981,#053d2c)' },\n  { t: 'Route', s: 'Smart paths around congestion.', g: 'linear-gradient(160deg,#a855f7,#2e0a52)' },\n]\n\n// Panels share a row; the active one expands on hover or tap, the rest compress.\nexport default function ExpandCards({ panels = PANELS }) {\n  const [on, setOn] = useState(0)\n  return (\n    <div className=\"flex h-64 w-[460px] max-w-full gap-2\">\n      {panels.map((p, i) => (\n        <motion.button key={p.t} type=\"button\" onMouseEnter={() => setOn(i)} onFocus={() => setOn(i)} onClick={() => setOn(i)}\n          animate={{ flexGrow: on === i ? 5 : 1 }} transition={{ type: 'spring', stiffness: 260, damping: 30 }}\n          className=\"relative min-w-0 basis-0 overflow-hidden rounded-2xl border border-line text-left\" style={{ background: p.g }}>\n          <div className=\"absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,.18),transparent_60%)]\" />\n          <div className=\"absolute inset-x-0 bottom-0 p-4\">\n            <motion.div animate={{ rotate: on === i ? 0 : -90, x: on === i ? 0 : -6, y: on === i ? 0 : -30 }} transition={{ type: 'spring', stiffness: 300, damping: 28 }}\n              className=\"origin-bottom-left whitespace-nowrap text-sm font-medium text-white\">{p.t}</motion.div>\n            <motion.p animate={{ opacity: on === i ? 1 : 0, y: on === i ? 0 : 8 }} className=\"mt-1 text-xs leading-5 text-white/75\">{p.s}</motion.p>\n          </div>\n        </motion.button>\n      ))}\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

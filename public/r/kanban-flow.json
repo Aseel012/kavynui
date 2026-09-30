@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kanban-flow",
+  "title": "Kanban Flow",
+  "type": "registry:component",
+  "description": "Cards glide between columns on their own",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/kanban-flow.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/kanban-flow.jsx",
+      "content": "'use client'\n\nimport { useEffect, useState } from 'react'\nimport { motion, LayoutGroup } from 'motion/react'\n\nconst COLS = ['Todo', 'Doing', 'Done']\nconst START = [\n  { id: 'a', t: 'Invoice PDF export', c: 0 }, { id: 'b', t: 'Fix login redirect', c: 0 },\n  { id: 'c', t: 'Onboarding emails', c: 1 }, { id: 'd', t: 'Billing page', c: 2 },\n]\n\nexport default function KanbanFlow({ cards = START, every = 1700 }) {\n  const [list, setList] = useState(cards)\n  useEffect(() => {\n    const t = setInterval(() => setList((l) => {\n      const movable = l.filter((x) => x.c < 2)\n      if (!movable.length) return cards\n      const pick = movable[Math.floor(Math.random() * movable.length)]\n      return l.map((x) => (x.id === pick.id ? { ...x, c: x.c + 1 } : x))\n    }), every)\n    return () => clearInterval(t)\n  }, [cards, every])\n  return (\n    <LayoutGroup>\n      <div className=\"grid w-full min-w-[480px] grid-cols-3 gap-2\">\n        {COLS.map((col, ci) => (\n          <div key={col} className=\"min-h-48 rounded-xl border border-line bg-panel p-2\">\n            <div className=\"mb-2 flex justify-between px-1 text-[11px] text-faint\"><span>{col}</span><span>{list.filter((x) => x.c === ci).length}</span></div>\n            <div className=\"space-y-1.5\">\n              {list.filter((x) => x.c === ci).map((x) => (\n                <motion.div layout layoutId={x.id} key={x.id} transition={{ type: 'spring', stiffness: 260, damping: 26 }} className=\"rounded-lg border border-line2 bg-panel2 p-2 text-xs text-tx\">\n                  <span className={`mr-1.5 inline-block size-1.5 rounded-full ${ci === 2 ? 'bg-emerald-400' : ci === 1 ? 'bg-acc' : 'bg-faint'}`} />{x.t}\n                </motion.div>\n              ))}\n            </div>\n          </div>\n        ))}\n      </div>\n    </LayoutGroup>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

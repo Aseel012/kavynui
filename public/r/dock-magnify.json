@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dock-magnify",
+  "title": "Dock Magnify",
+  "type": "registry:component",
+  "description": "Icons grow with cursor distance on a spring",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/dock-magnify.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/dock-magnify.jsx",
+      "content": "'use client'\n\nimport { useRef } from 'react'\nimport { motion, useMotionValue, useSpring, useTransform } from 'motion/react'\n\nconst ICONS = [\n  { label: 'Home', d: 'M3 11 12 4l9 7v9h-6v-6H9v6H3z' },\n  { label: 'Analytics', d: 'M4 20V10M10 20V4M16 20v-7M22 20H2' },\n  { label: 'Globe', d: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm-9 9h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18' },\n  { label: 'Shield', d: 'M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z' },\n  { label: 'Terminal', d: 'm5 8 4 4-4 4M12 16h7M3 4h18v16H3z' },\n  { label: 'Settings', d: 'M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM4 12h2M18 12h2M12 4v2M12 18v2M6.3 6.3l1.4 1.4M16.3 16.3l1.4 1.4M6.3 17.7l1.4-1.4M16.3 7.7l1.4-1.4' },\n]\n\nfunction Item({ mouse, icon, onPick }) {\n  const ref = useRef(null)\n  const dist = useTransform(mouse, (x) => {\n    const b = ref.current?.getBoundingClientRect()\n    return b ? x - (b.left + b.width / 2) : 999\n  })\n  const size = useSpring(useTransform(dist, [-120, 0, 120], [40, 64, 40]), { stiffness: 400, damping: 28 })\n  return (\n    <motion.button ref={ref} type=\"button\" onClick={() => onPick?.(icon.label)} aria-label={icon.label} style={{ width: size, height: size }}\n      className=\"group relative grid shrink-0 place-items-center rounded-2xl border border-line2 bg-panel2 text-mute hover:text-tx\">\n      <svg viewBox=\"0 0 24 24\" className=\"size-[45%]\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.7\" strokeLinecap=\"round\" strokeLinejoin=\"round\"><path d={icon.d} /></svg>\n      <span className=\"pointer-events-none absolute -top-8 rounded-md border border-line2 bg-panel px-2 py-0.5 text-[11px] text-tx opacity-0 transition-opacity group-hover:opacity-100\">{icon.label}</span>\n    </motion.button>\n  )\n}\n\n// macOS-style dock: icons grow with cursor distance on a spring.\n/** @param {{ items?: any, onPick?: any }} props */\nexport default function DockMagnify({ items = ICONS, onPick = undefined }) {\n  const mouse = useMotionValue(Infinity)\n  return (\n    <div onMouseMove={(e) => mouse.set(e.clientX)} onMouseLeave={() => mouse.set(Infinity)}\n      className=\"flex h-[76px] items-end gap-2.5 rounded-3xl border border-line bg-panel/80 px-3 pb-3 backdrop-blur\">\n      {items.map((it) => <Item key={it.label} mouse={mouse} icon={it} onPick={onPick} />)}\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

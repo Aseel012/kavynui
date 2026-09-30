@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ink-smoke",
+  "title": "Ink Smoke",
+  "type": "registry:component",
+  "description": "Monochrome smoke drifts and folds",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/ink-smoke.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/ink-smoke.jsx",
+      "content": "'use client'\n\nimport { motion } from 'motion/react'\n\nconst BLOBS = [\n  { s: 340, x: ['-10%', '30%', '0%', '-10%'], y: ['0%', '20%', '40%', '0%'], d: 22, o: 0.09 },\n  { s: 260, x: ['60%', '20%', '50%', '60%'], y: ['50%', '10%', '30%', '50%'], d: 18, o: 0.07 },\n  { s: 200, x: ['30%', '70%', '40%', '30%'], y: ['60%', '40%', '0%', '60%'], d: 26, o: 0.06 },\n]\n\n/** @param {{ children?: any }} props */\nexport default function InkSmoke({ children = undefined }) {\n  return (\n    <div className=\"relative size-full min-h-64 overflow-hidden bg-bg\">\n      <svg className=\"absolute size-0\"><filter id=\"ink-smoke-f\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.012\" numOctaves=\"3\" seed=\"3\"><animate attributeName=\"baseFrequency\" dur=\"30s\" values=\"0.012;0.018;0.012\" repeatCount=\"indefinite\" /></feTurbulence><feDisplacementMap in=\"SourceGraphic\" scale=\"90\" /></filter></svg>\n      <div className=\"absolute inset-0\" style={{ filter: 'url(#ink-smoke-f) blur(28px)' }}>\n        {BLOBS.map((b, i) => (\n          <motion.div key={i} className=\"absolute rounded-full bg-tx\" style={{ width: b.s, height: b.s, opacity: b.o }} animate={{ left: b.x, top: b.y, scale: [1, 1.3, 0.9, 1] }} transition={{ repeat: Infinity, duration: b.d, ease: 'easeInOut' }} />\n        ))}\n      </div>\n      <div className=\"relative grid size-full min-h-64 place-items-center\">{children}</div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

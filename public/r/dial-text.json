@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dial-text",
+  "title": "Dial Text",
+  "type": "registry:component",
+  "description": "Each letter spins on a combination-lock wheel",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/dial-text.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/dial-text.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion } from 'motion/react'\n\nconst AB = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 '\n\nfunction Wheel({ ch, spin, i }) {\n  const idx = Math.max(0, AB.indexOf(ch.toUpperCase()))\n  return (\n    <span className=\"relative h-12 w-8 overflow-hidden rounded-md border border-line bg-panel2 font-mono text-2xl text-tx [mask-image:linear-gradient(transparent,#000_30%,#000_70%,transparent)]\">\n      <motion.span\n        className=\"absolute inset-x-0 top-0 flex flex-col items-center\"\n        initial={false}\n        animate={{ y: -(idx + AB.length * spin) * 48 }}\n        transition={{ type: 'spring', stiffness: 60, damping: 14, mass: 1 + i * 0.15 }}\n      >\n        {Array.from({ length: AB.length * (spin + 1) }, (_, k) => (\n          <span key={k} className=\"grid h-12 place-items-center\">{AB[k % AB.length] === ' ' ? '\\u00a0' : AB[k % AB.length]}</span>\n        ))}\n      </motion.span>\n    </span>\n  )\n}\n\nexport default function DialText({ words = ['UNLOCKED', 'NEW CODE', 'VERIFIED'] }) {\n  const [n, setN] = useState(0)\n  const w = words[n % words.length].padEnd(8, ' ')\n  return (\n    <button onClick={() => setN(n + 1)} className=\"flex flex-col items-center gap-3\">\n      <span className=\"flex gap-1\">{w.split('').map((c, i) => <Wheel key={i} ch={c} spin={n % 2} i={i} />)}</span>\n      <span className=\"text-xs text-faint\">click to turn</span>\n    </button>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

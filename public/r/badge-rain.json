@@ -1,0 +1,64 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge-rain",
+  "title": "Badge Rain",
+  "type": "registry:component",
+  "description": "Tags fall and pile up with physics",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "src/kavyn/badge-rain.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/badge-rain.jsx",
+      "content": "'use client'\n\nimport { useEffect, useRef, useState } from 'react'\n\nconst TAGS = ['React', 'Tailwind', 'Motion', 'Vite', 'Postgres', 'Redis', 'Go', 'Rust', 'Figma', 'Stripe', 'Docker', 'Kafka', 'Bun', 'tRPC']\n\nexport default function BadgeRain({ tags = TAGS, height = 260 }) {\n  const box = useRef(null)\n  const refs = useRef([])\n  const [run, setRun] = useState(0)\n  useEffect(() => {\n    const W = box.current.clientWidth, H = height\n    const bodies = tags.map((_, i) => {\n      const el = refs.current[i]; const w = el.offsetWidth, h = el.offsetHeight\n      return { el, w, h, x: Math.random() * (W - w), y: -40 - i * 55 - Math.random() * 40, vy: 0, vx: (Math.random() - 0.5) * 30, r: (Math.random() - 0.5) * 30, vr: 0, rest: false }\n    })\n    let raf, last = performance.now()\n    const step = (now) => {\n      const dt = Math.min((now - last) / 1000, 0.033); last = now\n      for (const b of bodies) {\n        if (b.rest) continue\n        b.vy += 1400 * dt; b.x += b.vx * dt; b.y += b.vy * dt; b.r += b.vr * dt\n        if (b.x < 0) { b.x = 0; b.vx *= -0.5 } if (b.x + b.w > W) { b.x = W - b.w; b.vx *= -0.5 }\n        let floor = H - b.h\n        for (const o of bodies) if (o !== b && o.rest && b.x + b.w > o.x + 4 && b.x < o.x + o.w - 4) floor = Math.min(floor, o.y - b.h)\n        if (b.y >= floor) {\n          b.y = floor\n          if (b.vy > 160) { b.vy *= -0.32; b.vr = (Math.random() - 0.5) * 120; b.vx *= 0.7 } else { b.vy = 0; b.vx = 0; b.rest = true; b.r *= 0.4 }\n        }\n        b.el.style.transform = `translate(${b.x}px, ${b.y}px) rotate(${b.r}deg)`\n      }\n      if (bodies.some((b) => !b.rest)) raf = requestAnimationFrame(step)\n    }\n    raf = requestAnimationFrame(step)\n    return () => cancelAnimationFrame(raf)\n  }, [run, tags, height])\n  return (\n    <div className=\"flex w-full max-w-md flex-col items-center gap-2\">\n      <div ref={box} style={{ height }} className=\"relative w-full overflow-hidden rounded-2xl border border-line bg-panel\">\n        {tags.map((t, i) => (\n          <span key={t} ref={(el) => (refs.current[i] = el)} style={{ transform: 'translate(-200px,-200px)' }} className={`absolute left-0 top-0 whitespace-nowrap rounded-full border px-3 py-1 text-xs will-change-transform ${i % 4 === 0 ? 'border-acc/60 bg-acc/10 text-acc' : 'border-line2 bg-panel2 text-tx'}`}>{t}</span>\n        ))}\n      </div>\n      <button onClick={() => setRun(run + 1)} className=\"text-xs text-mute hover:text-tx\">Rain again</button>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

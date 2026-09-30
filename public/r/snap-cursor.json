@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "snap-cursor",
+  "title": "Snap Cursor",
+  "type": "registry:component",
+  "description": "A custom cursor that wraps whatever link you hover",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/snap-cursor.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/snap-cursor.jsx",
+      "content": "'use client'\n\nimport { useRef, useState } from 'react'\nimport { motion, useMotionValue, useSpring } from 'motion/react'\n\nconst LINKS = ['Work', 'Studio', 'Journal', 'Contact']\n\n// An agency header with its own cursor. The dot follows you and wraps any link you hover.\n// Touch screens keep their normal behavior.\nexport default function SnapCursor({ links = LINKS, brand = 'Northside', className = '' }) {\n  const box = useRef(null)\n  const list = Array.isArray(links) && links.length ? links : LINKS\n  const x = useMotionValue(-100), y = useMotionValue(-100), w = useMotionValue(10), h = useMotionValue(10)\n  const cfg = { stiffness: 420, damping: 32, mass: 0.6 }\n  const sx = useSpring(x, cfg), sy = useSpring(y, cfg), sw = useSpring(w, cfg), sh = useSpring(h, cfg)\n  const [on, setOn] = useState(false)\n  const [snapped, setSnapped] = useState(false)\n  const move = (e) => {\n    if (e.pointerType && e.pointerType !== 'mouse') return\n    const r = box.current?.getBoundingClientRect()\n    if (!r) return\n    setOn(true)\n    const t = e.target instanceof Element ? e.target.closest('[data-snap]') : null\n    if (t && box.current.contains(t)) {\n      const b = t.getBoundingClientRect()\n      x.set(b.left - r.left - 6); y.set(b.top - r.top - 4); w.set(b.width + 12); h.set(b.height + 8); setSnapped(true)\n    } else {\n      x.set(e.clientX - r.left - 5); y.set(e.clientY - r.top - 5); w.set(10); h.set(10); setSnapped(false)\n    }\n  }\n  return (\n    <div ref={box} onPointerMove={move} onPointerLeave={() => setOn(false)}\n      className={`relative grid h-full min-h-72 w-full place-items-center overflow-hidden bg-bg ${on ? '[&_*]:cursor-none cursor-none' : ''} ${className}`}>\n      <div className=\"flex w-[min(560px,92%)] items-center justify-between rounded-2xl border border-line bg-panel px-4 py-3\">\n        <a href=\"#\" onClick={(e) => e.preventDefault()} data-snap className=\"text-sm font-semibold tracking-tight text-tx\">{brand}</a>\n        <nav className=\"flex gap-1\">\n          {list.map((l) => <a key={l} href=\"#\" onClick={(e) => e.preventDefault()} data-snap className=\"hidden rounded-md px-2.5 py-1 text-sm text-mute transition-colors hover:text-tx sm:block\">{l}</a>)}\n          <a href=\"#\" onClick={(e) => e.preventDefault()} data-snap className=\"rounded-md px-2.5 py-1 text-sm text-mute hover:text-tx sm:hidden\">Menu</a>\n        </nav>\n      </div>\n      <motion.div aria-hidden style={{ x: sx, y: sy, width: sw, height: sh, opacity: on ? 1 : 0 }}\n        className={`pointer-events-none absolute left-0 top-0 rounded-full ${snapped ? 'rounded-lg border border-acc/70 bg-acc/10' : 'bg-acc'}`} />\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shimmer-text",
+  "title": "Shimmer Text",
+  "type": "registry:component",
+  "description": "A light band sweeps across muted text",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "src/kavyn/shimmer-text.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/shimmer-text.jsx",
+      "content": "'use client'\n\n// A light band sweeps across muted text. For \"thinking\" and in-progress labels.\nexport default function ShimmerText({ children = 'Generating preview…', speed = 2.2, className = '' }) {\n  return (\n    <span className={`relative inline-block text-lg font-medium tracking-tight ${className}`}>\n      <style>{`@keyframes kv-shimmer{from{background-position:150% 0}to{background-position:-50% 0}}`}</style>\n      <span\n        className=\"bg-clip-text text-transparent\"\n        style={{\n          backgroundImage: 'linear-gradient(100deg, #5c5c66 35%, #ededef 50%, #5c5c66 65%)',\n          backgroundSize: '220% 100%',\n          animation: `kv-shimmer ${speed}s linear infinite`,\n        }}\n      >{children}</span>\n    </span>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

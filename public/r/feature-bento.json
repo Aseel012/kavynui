@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "feature-bento",
+  "title": "Feature Bento",
+  "type": "registry:block",
+  "description": "Four feature tiles, each with its own small live demo",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/feature-bento.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/feature-bento.jsx",
+      "content": "'use client'\n\nimport { useEffect, useState } from 'react'\nimport { motion, useMotionTemplate, useMotionValue } from 'motion/react'\n\nfunction Tile({ className = '', title, body, children }) {\n  const x = useMotionValue(-300), y = useMotionValue(-300)\n  const bg = useMotionTemplate`radial-gradient(220px circle at ${x}px ${y}px, rgba(255,106,43,.10), transparent 70%)`\n  return (\n    <div onPointerMove={(e) => { const r = e.currentTarget.getBoundingClientRect(); x.set(e.clientX - r.left); y.set(e.clientY - r.top) }} onPointerLeave={() => { x.set(-300); y.set(-300) }}\n      className={`relative overflow-hidden rounded-2xl border border-line bg-panel ${className}`}>\n      <motion.div className=\"pointer-events-none absolute inset-0\" style={{ background: bg }} />\n      <div className=\"relative flex h-full flex-col\">\n        <div className=\"relative min-h-36 flex-1\">{children}</div>\n        <div className=\"p-5 pt-0\"><h3 className=\"text-[15px] font-medium text-tx\">{title}</h3><p className=\"mt-1 text-sm text-mute\">{body}</p></div>\n      </div>\n    </div>\n  )\n}\n\nfunction Regions() {\n  const [on, setOn] = useState(0)\n  useEffect(() => { const id = setInterval(() => setOn((n) => (n + 1) % 12), 500); return () => clearInterval(id) }, [])\n  return <div className=\"absolute inset-0 grid place-items-center p-6\"><div className=\"grid grid-cols-6 gap-2\">{Array.from({ length: 12 }, (_, i) => <motion.span key={i} animate={{ backgroundColor: i === on ? '#ff6a2b' : '#1e1e22', scale: i === on ? 1.1 : 1 }} className=\"size-7 rounded-md @3xl:size-8\" />)}</div></div>\n}\nfunction Rollback() {\n  const [v, setV] = useState(3)\n  useEffect(() => { const id = setInterval(() => setV((n) => (n === 3 ? 2 : 3)), 1800); return () => clearInterval(id) }, [])\n  return (\n    <div className=\"absolute inset-0 flex items-center justify-center gap-2 p-6\">\n      {[1, 2, 3].map((n) => (\n        <motion.div key={n} animate={{ opacity: n === v ? 1 : 0.35, y: n === v ? -6 : 0, borderColor: n === v ? '#ff6a2b' : '#2a2a30' }} className=\"rounded-lg border bg-bg px-3 py-2 font-mono text-xs text-tx\">v1.{n}</motion.div>\n      ))}\n    </div>\n  )\n}\nfunction Logs() {\n  const [lines, setLines] = useState([0, 1, 2, 3])\n  useEffect(() => { const id = setInterval(() => setLines((l) => [...l.slice(1), l[l.length - 1] + 1]), 700); return () => clearInterval(id) }, [])\n  const txt = ['GET /api/user 200 12ms', 'POST /checkout 201 48ms', 'GET / 304 3ms', 'GET /img/hero.webp 200 9ms', 'GET /api/search 200 21ms']\n  return <div className=\"absolute inset-0 overflow-hidden p-5 font-mono text-[11px] text-mute\">{lines.map((n) => <motion.div key={n} layout initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className=\"py-0.5\"><span className=\"text-faint\">{String(10 + (n % 50)).padStart(2, '0')}:04</span> {txt[n % txt.length]}</motion.div>)}</div>\n}\nfunction Shield() {\n  return (\n    <div className=\"absolute inset-0 grid place-items-center\">\n      <motion.svg viewBox=\"0 0 24 24\" className=\"size-16 text-acc\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.2\"><motion.path d=\"M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z\" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.6, repeat: Infinity, repeatType: 'reverse', repeatDelay: 0.6 }} /><path d=\"m9 12 2 2 4-4\" /></motion.svg>\n    </div>\n  )\n}\n\n// Block: a four-tile feature section. Every tile has its own small live demo.\nexport default function FeatureBento() {\n  return (\n    <section className=\"@container w-full\">\n      <div className=\"grid gap-3 @3xl:grid-cols-3\">\n        <Tile className=\"@3xl:col-span-2\" title=\"Runs in every region\" body=\"Your code is copied to each edge location on deploy.\"><Regions /></Tile>\n        <Tile title=\"Instant rollback\" body=\"One click back to any previous build.\"><Rollback /></Tile>\n        <Tile title=\"Built-in firewall\" body=\"Bad traffic stops before it reaches you.\"><Shield /></Tile>\n        <Tile className=\"@3xl:col-span-2\" title=\"Real-time logs\" body=\"Tail requests as they happen, no setup.\"><Logs /></Tile>\n      </div>\n    </section>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

@@ -43,6 +43,7 @@ export default function EclipseToggle({ defaultMode = 'dark', size = 44, onToggl
         <motion.circle
           cx={12} cy={12}
           fill="var(--tx)"
+          initial={false}
           animate={{ r: dark ? 5.6 : 5.2, opacity: dark ? 1 : 0 }}
           transition={spring}
         />
@@ -50,6 +51,7 @@ export default function EclipseToggle({ defaultMode = 'dark', size = 44, onToggl
         <motion.circle
           cx={12} cy={12}
           fill="var(--acc)"
+          initial={false}
           animate={{ r: dark ? 5.6 : 5.2, opacity: dark ? 0 : 1 }}
           transition={spring}
         />

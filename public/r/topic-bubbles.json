@@ -1,0 +1,70 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "topic-bubbles",
+  "title": "Topic Bubbles",
+  "type": "registry:component",
+  "description": "Topics drop in with weight; tap to pick, drag to throw",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "src/kavyn/topic-bubbles.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/topic-bubbles.jsx",
+      "content": "'use client'\n\nimport { useRef, useState } from 'react'\nimport { useCanvasLoop, clamp } from './canvas-loop'\n\nconst TOPICS = ['Design', 'React', 'Motion', 'Rust', 'AI', 'Go', 'Type', 'CSS', 'Data', '3D', 'Audio', 'Infra']\n\n// An interest picker for onboarding. Topics drop in with real weight.\n// Tap to pick, drag to throw. A hidden list of buttons keeps it usable by keyboard.\n/** @param {{ topics?: any, color?: any, onChange?: any, className?: any }} props */\nexport default function TopicBubbles({ topics = TOPICS, color = '#ff6a2b', onChange = undefined, className = '' }) {\n  const list = (Array.isArray(topics) && topics.length ? topics : TOPICS).slice(0, 24).map(String)\n  const [picked, setPicked] = useState([])\n  const pickedRef = useRef(new Set())\n  const toggle = (name) => {\n    const set = pickedRef.current\n    set.has(name) ? set.delete(name) : set.add(name)\n    const arr = list.filter((t) => set.has(t))\n    setPicked(arr)\n    try { onChange?.(arr) } catch { /* caller error should not break the picker */ }\n  }\n  const toggleRef = useRef(toggle)\n  toggleRef.current = toggle\n\n  const host = useCanvasLoop((ctx, s) => {\n    ctx.font = '500 13px \"Geist Variable\", system-ui, sans-serif'\n    const balls = list.map((name, i) => {\n      const r = clamp(ctx.measureText(name).width / 2 + 16, 26, 48)\n      return { name, r, x: ((i * 97) % Math.max(1, s.w - 2 * r)) + r, y: -60 - i * 45, vx: (i % 2 ? 1 : -1) * 20, vy: 0, s: 1 }\n    })\n    let held = null, downAt = null\n    return {\n      down(p) {\n        held = balls.find((b) => (b.x - p.x) ** 2 + (b.y - p.y) ** 2 < b.r * b.r) || null\n        downAt = held ? { x: p.x, y: p.y, t: performance.now() } : null\n      },\n      up(p) {\n        if (held && downAt && Math.hypot(p.x - downAt.x, p.y - downAt.y) < 6 && performance.now() - downAt.t < 350) { toggleRef.current(held.name); held.s = 1.25 }\n        if (held) { held.vx = clamp(p.vx * 40, -1400, 1400); held.vy = clamp(p.vy * 40, -1400, 1400) }\n        held = null; downAt = null\n      },\n      step(dt) {\n        const g = 1100\n        for (const b of balls) {\n          if (b === held) { b.x = s.pointer.x; b.y = s.pointer.y; b.vx = 0; b.vy = 0 } else { b.vy += g * dt; b.x += b.vx * dt; b.y += b.vy * dt }\n          if (b.x < b.r) { b.x = b.r; b.vx *= -0.5 } if (b.x > s.w - b.r) { b.x = s.w - b.r; b.vx *= -0.5 }\n          if (b.y > s.h - b.r) { b.y = s.h - b.r; b.vy *= -0.35; b.vx *= 0.96 }\n          b.s += (1 - b.s) * 0.15\n        }\n        for (let k = 0; k < 3; k++) for (let i = 0; i < balls.length; i++) for (let j = i + 1; j < balls.length; j++) {\n          const a = balls[i], c = balls[j], dx = c.x - a.x, dy = c.y - a.y, d = Math.hypot(dx, dy) || 0.01, o = a.r + c.r - d\n          if (o > 0) {\n            const nx = dx / d, ny = dy / d, wa = a === held ? 0 : c === held ? 1 : 0.5, wc = 1 - wa\n            a.x -= nx * o * wa; a.y -= ny * o * wa; c.x += nx * o * wc; c.y += ny * o * wc\n            const rv = (c.vx - a.vx) * nx + (c.vy - a.vy) * ny\n            if (rv < 0) { const imp = -rv * 0.6; a.vx -= nx * imp * wa; a.vy -= ny * imp * wa; c.vx += nx * imp * wc; c.vy += ny * imp * wc }\n          }\n        }\n        ctx.clearRect(0, 0, s.w, s.h)\n        ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = '500 13px \"Geist Variable\", system-ui, sans-serif'\n        for (const b of balls) {\n          const on = pickedRef.current.has(b.name)\n          ctx.beginPath(); ctx.arc(b.x, b.y, b.r * b.s, 0, Math.PI * 2)\n          ctx.fillStyle = on ? color : '#141417'; ctx.fill()\n          ctx.lineWidth = 1; ctx.strokeStyle = on ? color : '#2a2a30'; ctx.stroke()\n          ctx.fillStyle = on ? '#09090a' : '#ededef'; ctx.fillText(b.name, b.x, b.y + 1)\n        }\n      },\n    }\n  }, [list.join('|'), color])\n\n  return (\n    <div className={`relative h-full min-h-80 w-full select-none overflow-hidden bg-bg ${className}`}>\n      <div ref={host} className=\"absolute inset-0 cursor-pointer\" />\n      <div className=\"pointer-events-none absolute inset-x-0 top-3 text-center text-xs text-mute\" aria-live=\"polite\">\n        {picked.length ? `${picked.length} picked: ${picked.slice(0, 4).join(', ')}${picked.length > 4 ? '…' : ''}` : 'Pick what you are into'}\n      </div>\n      <div className=\"sr-only\">{list.map((t) => <button key={t} type=\"button\" aria-pressed={picked.includes(t)} onClick={() => toggle(t)}>{t}</button>)}</div>\n    </div>\n  )\n}\n"
+    },
+    {
+      "path": "src/kavyn/canvas-loop.js",
+      "type": "registry:file",
+      "target": "@components/kavyn/canvas-loop.js",
+      "content": "'use client'\n\nimport { useEffect, useRef } from 'react'\n\n// Shared 2D canvas runner for the physics and particle pieces.\n// Sizes the canvas to its box (capped DPR), pauses off screen and in hidden tabs,\n// tracks the pointer in CSS pixels, and hands your step() a ready context.\nexport function useCanvasLoop(setup, deps = []) {\n  const host = useRef(null)\n  useEffect(() => {\n    const el = host.current\n    if (!el || typeof window === 'undefined') return\n    const canvas = document.createElement('canvas')\n    canvas.setAttribute('aria-hidden', 'true')\n    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none'\n    const ctx = canvas.getContext('2d')\n    if (!ctx) return\n    el.prepend(canvas)\n    const reduce = !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches\n    const state = { w: 0, h: 0, dpr: 1, pointer: { x: -9999, y: -9999, down: false, inside: false, vx: 0, vy: 0 }, reduce }\n    const resize = () => {\n      const dpr = Math.min(2, window.devicePixelRatio || 1)\n      const w = Math.max(1, el.clientWidth), h = Math.max(1, el.clientHeight)\n      if (w === state.w && h === state.h && dpr === state.dpr) return false\n      state.w = w; state.h = h; state.dpr = dpr\n      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr)\n      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)\n      return true\n    }\n    resize()\n    let api = null\n    try { api = setup(ctx, state) || {} } catch { api = {} }\n    const pos = (e) => { const r = el.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top } }\n    const onMove = (e) => { const p = pos(e); const q = state.pointer; q.vx = p.x - q.x; q.vy = p.y - q.y; q.x = p.x; q.y = p.y; q.inside = true; api.move?.(q) }\n    const onDown = (e) => { const p = pos(e); Object.assign(state.pointer, p, { down: true, inside: true, vx: 0, vy: 0 }); try { canvas.setPointerCapture(e.pointerId) } catch { /* ignore */ } api.down?.(state.pointer) }\n    const onUp = () => { state.pointer.down = false; api.up?.(state.pointer) }\n    const onLeave = () => { if (!state.pointer.down) { state.pointer.inside = false; state.pointer.x = -9999; state.pointer.y = -9999 } }\n    canvas.addEventListener('pointermove', onMove)\n    canvas.addEventListener('pointerdown', onDown)\n    canvas.addEventListener('pointerup', onUp)\n    canvas.addEventListener('pointercancel', onUp)\n    canvas.addEventListener('pointerleave', onLeave)\n    let raf = 0, visible = true, prev = performance.now()\n    const loop = (now) => {\n      raf = 0\n      if (resize()) api.resize?.()\n      const dt = Math.min(1 / 30, Math.max(0, (now - prev) / 1000)); prev = now\n      try { api.step?.(dt, now / 1000) } catch { return }\n      if (visible && !document.hidden) raf = requestAnimationFrame(loop)\n    }\n    const start = () => { if (!raf) { prev = performance.now(); raf = requestAnimationFrame(loop) } }\n    const io = typeof IntersectionObserver !== 'undefined' ? new IntersectionObserver(([e]) => { visible = !!e?.isIntersecting; if (visible) start() }) : null\n    io?.observe(el)\n    const onVis = () => { if (!document.hidden) start() }\n    document.addEventListener('visibilitychange', onVis)\n    start()\n    return () => {\n      cancelAnimationFrame(raf); io?.disconnect()\n      document.removeEventListener('visibilitychange', onVis)\n      canvas.remove()\n    }\n  }, deps) // eslint-disable-line react-hooks/exhaustive-deps\n  return host\n}\n\nexport const clamp = (v, a, b) => Math.min(b, Math.max(a, v))\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

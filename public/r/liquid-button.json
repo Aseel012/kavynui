@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "liquid-button",
+  "title": "Liquid Button",
+  "type": "registry:component",
+  "description": "Gooey blobs merge and split on hover",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/liquid-button.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/liquid-button.jsx",
+      "content": "'use client'\n\nimport { useId, useState } from 'react'\nimport { motion } from 'motion/react'\n\n// Gooey button: blobs merge and split through an SVG filter when you hover or press.\n/** @param {{ children?: any, onClick?: any }} props */\nexport default function LiquidButton({ children = 'Get started', onClick = undefined }) {\n  const [hot, setHot] = useState(false)\n  const id = useId().replace(/:/g, '')\n  const blobs = [[-46, 0], [46, 0], [0, -18], [0, 18]]\n  return (\n    <button type=\"button\" onClick={onClick} onMouseEnter={() => setHot(true)} onMouseLeave={() => setHot(false)} onFocus={() => setHot(true)} onBlur={() => setHot(false)}\n      className=\"relative grid h-24 w-64 place-items-center outline-none\">\n      <svg className=\"absolute size-0\" aria-hidden>\n        <filter id={`goo-${id}`}><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"8\" result=\"b\" /><feColorMatrix in=\"b\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9\" /></filter>\n      </svg>\n      <div className=\"absolute inset-0 grid place-items-center\" style={{ filter: `url(#goo-${id})` }}>\n        <motion.div className=\"absolute h-12 w-40 rounded-full bg-acc\" animate={{ scaleX: hot ? 1.06 : 1 }} whileTap={{ scale: 0.94 }} />\n        {blobs.map(([x, y], i) => (\n          <motion.div key={i} className=\"absolute size-9 rounded-full bg-acc\"\n            animate={hot ? { x: x * 1.6, y: y * 1.5, scale: 0.8 } : { x: 0, y: 0, scale: 0.6 }}\n            transition={{ type: 'spring', stiffness: 180, damping: 12, delay: i * 0.03 }} />\n        ))}\n      </div>\n      <span className=\"relative text-sm font-medium text-black\">{children}</span>\n    </button>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

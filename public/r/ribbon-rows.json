@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ribbon-rows",
+  "title": "Ribbon Rows",
+  "type": "registry:component",
+  "description": "Hover pulls a ribbon across the row",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/ribbon-rows.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/ribbon-rows.jsx",
+      "content": "'use client'\n\nimport { useState } from 'react'\nimport { motion, AnimatePresence } from 'motion/react'\n\nconst JOBS = [\n  { r: 'Senior Frontend Engineer', l: 'Remote · India', t: 'Full-time' },\n  { r: 'Product Designer', l: 'Bengaluru', t: 'Full-time' },\n  { r: 'Developer Advocate', l: 'Remote', t: 'Contract' },\n  { r: 'Platform Engineer', l: 'Pune', t: 'Full-time' },\n]\n\nexport default function RibbonRows({ rows = JOBS }) {\n  const [h, setH] = useState(null)\n  return (\n    <ul className=\"w-full max-w-md overflow-hidden rounded-2xl border border-line\" onPointerLeave={() => setH(null)}>\n      {rows.map((j, i) => (\n        <li key={j.r} onPointerEnter={() => setH(i)} className=\"relative flex cursor-pointer items-center justify-between border-b border-line px-4 py-3.5 last:border-0\">\n          <AnimatePresence>\n            {h === i && (\n              <motion.span\n                initial={{ clipPath: 'polygon(0 0, 0 0, -8% 100%, -8% 100%)' }}\n                animate={{ clipPath: 'polygon(0 0, 108% 0, 100% 100%, -8% 100%)' }}\n                exit={{ clipPath: 'polygon(108% 0, 108% 0, 100% 100%, 100% 100%)' }}\n                transition={{ duration: 0.38, ease: [0.7, 0, 0.2, 1] }}\n                className=\"absolute inset-0 bg-acc\"\n              />\n            )}\n          </AnimatePresence>\n          <div className=\"relative\">\n            <div className={`text-sm transition-colors duration-300 ${h === i ? 'text-bg' : 'text-tx'}`}>{j.r}</div>\n            <div className={`text-xs transition-colors duration-300 ${h === i ? 'text-bg/70' : 'text-faint'}`}>{j.l} · {j.t}</div>\n          </div>\n          <motion.span animate={{ x: h === i ? 0 : -8, opacity: h === i ? 1 : 0 }} transition={{ type: 'spring', stiffness: 400, damping: 26 }} className=\"relative text-sm font-medium text-bg\">Apply →</motion.span>\n        </li>\n      ))}\n    </ul>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

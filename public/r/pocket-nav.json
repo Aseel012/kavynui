@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pocket-nav",
+  "title": "Pocket Nav",
+  "type": "registry:component",
+  "description": "Nav folds into a floating pill on scroll",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/pocket-nav.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/pocket-nav.jsx",
+      "content": "'use client'\n\nimport { useRef, useState } from 'react'\nimport { motion, useScroll, useMotionValueEvent } from 'motion/react'\n\nexport default function PocketNav({ links = ['Features', 'Stories', 'Docs'] }) {\n  const ref = useRef(null)\n  const { scrollY } = useScroll({ container: ref })\n  const [pocket, setPocket] = useState(false)\n  useMotionValueEvent(scrollY, 'change', (v) => setPocket(v > 40))\n  return (\n    <div className=\"relative h-72 w-full max-w-md overflow-hidden rounded-2xl border border-line bg-bg\">\n      <motion.header\n        layout\n        transition={{ type: 'spring', stiffness: 320, damping: 30 }}\n        className={`absolute z-10 flex items-center gap-4 border-line2 ${pocket ? 'left-1/2 top-3 -translate-x-1/2 rounded-full border bg-panel2/90 px-4 py-2 shadow-lg backdrop-blur' : 'inset-x-0 top-0 border-b bg-bg px-5 py-3.5'}`}\n      >\n        <motion.span layout className=\"size-4 rounded bg-tx\" />\n        {links.map((l) => <motion.span layout key={l} className=\"text-xs text-mute\">{l}</motion.span>)}\n        <motion.span layout className={`${pocket ? '' : 'ml-auto'} rounded-full bg-acc px-2.5 py-1 text-[11px] font-medium text-bg`}>Join</motion.span>\n      </motion.header>\n      <div ref={ref} className=\"h-full overflow-y-auto px-5 pb-6 pt-16\">\n        <div className=\"text-xs text-faint\">scroll inside this box</div>\n        {Array.from({ length: 7 }).map((_, i) => (\n          <div key={i} className=\"mt-4 rounded-xl border border-line bg-panel p-4\">\n            <div className=\"h-2.5 w-1/3 rounded bg-line2\" /><div className=\"mt-2 h-2 w-4/5 rounded bg-line\" /><div className=\"mt-1.5 h-2 w-3/5 rounded bg-line\" />\n          </div>\n        ))}\n      </div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

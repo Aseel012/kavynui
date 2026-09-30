@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "word-light",
+  "title": "Word Light",
+  "type": "registry:component",
+  "description": "A paragraph that lights up word by word as you read",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/word-light.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/word-light.jsx",
+      "content": "'use client'\n\nimport { useRef } from 'react'\nimport { motion, useScroll, useTransform } from 'motion/react'\n\nconst TEXT = 'We build tools for people who ship. Small teams, real deadlines, no ceremony. Every screen should earn its place, every animation should explain something, and nothing should wait on us.'\n\nfunction Word({ children, range, progress }) {\n  const opacity = useTransform(progress, range, [0.15, 1])\n  const y = useTransform(progress, range, [4, 0])\n  return <motion.span style={{ opacity, y }} className=\"mr-[0.28em] inline-block\">{children}</motion.span>\n}\n\n// A manifesto that lights up word by word as you read down.\nexport default function WordLight({ text = TEXT, className = '' }) {\n  const box = useRef(null), track = useRef(null)\n  const words = String(text || TEXT).split(/\\s+/).filter(Boolean)\n  const { scrollYProgress } = useScroll({ container: box, target: track, offset: ['start start', 'end end'] })\n  return (\n    <div ref={box} className={`relative h-full min-h-80 w-full overflow-y-auto overscroll-contain bg-bg [container-type:size] ${className}`}>\n      <div ref={track} className=\"relative h-[260cqh]\">\n        <div className=\"sticky top-0 grid h-[100cqh] content-center px-6 @xl:px-14\">\n          <div className=\"mb-3 text-[11px] uppercase tracking-widest text-acc\">About us</div>\n          <p className=\"max-w-xl text-xl font-medium leading-snug tracking-tight text-tx @xl:text-3xl\" aria-label={words.join(' ')}>\n            <span aria-hidden>{words.map((w, n) => <Word key={n} progress={scrollYProgress} range={[n / words.length * 0.9, (n + 1) / words.length * 0.9 + 0.02]}>{w}</Word>)}</span>\n          </p>\n        </div>\n      </div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

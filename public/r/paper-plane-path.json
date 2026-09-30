@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "paper-plane-path",
+  "title": "Paper Plane Path",
+  "type": "registry:component",
+  "description": "Plane flies along the scroll path",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/paper-plane-path.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/paper-plane-path.jsx",
+      "content": "'use client'\n\nimport { useEffect, useRef, useState } from 'react'\nimport { motion, useMotionValue, animate } from 'motion/react'\n\nconst D = 'M20 170 C 90 40, 170 200, 230 110 S 330 30, 400 60'\n\nexport default function PaperPlanePath({ message = 'Invoice sent to Priya' }) {\n  const path = useRef(null)\n  const p = useMotionValue(0)\n  const [s, setS] = useState({ x: 20, y: 170, a: 0, v: 0 })\n  useEffect(() => {\n    const el = path.current, L = el.getTotalLength()\n    const un = p.on('change', (v) => {\n      const a = el.getPointAtLength(L * v), b = el.getPointAtLength(Math.min(L, L * v + 1))\n      setS({ x: a.x, y: a.y, a: (Math.atan2(b.y - a.y, b.x - a.x) * 180) / Math.PI, v })\n    })\n    const c = animate(p, [0, 1, 1], { duration: 4.2, times: [0, 0.75, 1], ease: [0.45, 0, 0.2, 1], repeat: Infinity })\n    return () => { un(); c.stop() }\n  }, [p])\n  return (\n    <div className=\"w-full max-w-md\">\n      <svg viewBox=\"0 0 420 220\" className=\"w-full overflow-visible\">\n        <path ref={path} d={D} fill=\"none\" stroke=\"none\" />\n        <motion.path d={D} fill=\"none\" stroke=\"#5c5c66\" strokeWidth=\"1.5\" strokeDasharray=\"4 6\" style={{ pathLength: p }} />\n        <g transform={`translate(${s.x} ${s.y}) rotate(${s.a})`}>\n          <path d=\"M14 0 L-10 -9 L-5 0 L-10 9 Z\" fill=\"#ededef\" />\n          <path d=\"M14 0 L-5 0 L-10 9 Z\" fill=\"#8a8a93\" />\n        </g>\n      </svg>\n      <motion.div animate={{ opacity: s.v > 0.97 ? 1 : 0, y: s.v > 0.97 ? 0 : 6 }} className=\"text-center text-sm text-tx\">✓ {message}</motion.div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

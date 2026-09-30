@@ -1,0 +1,64 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "lean-grid",
+  "title": "Lean Grid",
+  "type": "registry:component",
+  "description": "Tiles that lean toward the pointer in 3D",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "src/kavyn/lean-grid.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/lean-grid.jsx",
+      "content": "'use client'\n\nimport { useEffect, useRef } from 'react'\n\nconst APPS = ['GitHub', 'Slack', 'Linear', 'Figma', 'Stripe', 'Notion', 'Vercel', 'Sentry', 'Postgres', 'Resend', 'Discord', 'Jira']\n\n// An integrations wall where every tile leans toward the pointer, like it is paying attention.\nexport default function LeanGrid({ items = APPS, strength = 18, className = '' }) {\n  const box = useRef(null)\n  const list = Array.isArray(items) && items.length ? items : APPS\n  useEffect(() => {\n    const el = box.current\n    if (!el) return\n    const tiles = [...el.querySelectorAll('[data-tile]')]\n    let raf = 0, px = null, py = null\n    const k = Math.min(40, Math.max(0, Number(strength) || 18))\n    const paint = () => {\n      raf = 0\n      for (const t of tiles) {\n        if (px === null) { t.style.transform = ''; t.style.setProperty('--glow', '0'); continue }\n        const r = t.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2\n        const dx = px - cx, dy = py - cy, d = Math.hypot(dx, dy) || 1, near = Math.max(0, 1 - d / 420)\n        t.style.transform = `perspective(500px) rotateY(${(dx / d) * k * near}deg) rotateX(${(-dy / d) * k * near}deg) translateZ(${near * 14}px)`\n        t.style.setProperty('--glow', near.toFixed(2))\n      }\n    }\n    const move = (e) => { px = e.clientX; py = e.clientY; if (!raf) raf = requestAnimationFrame(paint) }\n    const leave = () => { px = null; if (!raf) raf = requestAnimationFrame(paint) }\n    el.addEventListener('pointermove', move); el.addEventListener('pointerleave', leave)\n    return () => { cancelAnimationFrame(raf); el.removeEventListener('pointermove', move); el.removeEventListener('pointerleave', leave) }\n  }, [strength, list.length])\n  return (\n    <div ref={box} className={`grid h-full min-h-72 w-full place-items-center bg-bg p-6 ${className}`}>\n      <div className=\"grid w-full max-w-md grid-cols-3 gap-3 sm:grid-cols-4\">\n        {list.map((a) => (\n          <div key={a} data-tile style={{ '--glow': 0 }}\n            className=\"grid aspect-square place-items-center rounded-2xl border border-line bg-panel text-center text-[11px] text-mute transition-transform duration-200 ease-out will-change-transform [box-shadow:0_0_0_1px_rgba(255,106,43,calc(var(--glow)*.5)),0_10px_30px_-10px_rgba(255,106,43,calc(var(--glow)*.45))]\">\n            <div><div className=\"mx-auto mb-1.5 grid size-7 place-items-center rounded-lg bg-panel2 font-mono text-xs text-tx\">{a.slice(0, 1)}</div>{a}</div>\n          </div>\n        ))}\n      </div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

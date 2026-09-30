@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pixel-melt-button",
+  "title": "Pixel Melt Button",
+  "type": "registry:component",
+  "description": "Label melts into pixels on success",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/pixel-melt-button.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/pixel-melt-button.jsx",
+      "content": "'use client'\n\nimport { useMemo, useState } from 'react'\nimport { motion, AnimatePresence } from 'motion/react'\n\nexport default function PixelMeltButton({ label = 'Submit form', done = 'Received' }) {\n  const [phase, setPhase] = useState('idle')\n  const px = useMemo(() => Array.from({ length: 64 }, (_, i) => ({\n    x: (i % 16) * 7 + 12, y: Math.floor(i / 16) * 5 + 14, d: Math.random() * 0.35, fall: 24 + Math.random() * 30,\n  })), [])\n\n  const go = () => {\n    if (phase !== 'idle') return\n    setPhase('melt')\n    setTimeout(() => setPhase('done'), 700)\n    setTimeout(() => setPhase('idle'), 2400)\n  }\n\n  return (\n    <button onClick={go} className=\"relative h-12 w-[136px] overflow-visible rounded-xl bg-tx text-sm font-medium text-bg\">\n      <AnimatePresence>\n        {phase === 'idle' && <motion.span key=\"l\" exit={{ opacity: 0 }} transition={{ duration: 0.1 }} className=\"absolute inset-0 grid place-items-center\">{label}</motion.span>}\n        {phase === 'done' && (\n          <motion.span key=\"d\" initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ opacity: 0 }} transition={{ type: 'spring', stiffness: 500, damping: 20 }} className=\"absolute inset-0 grid place-items-center\">\n            ✓ {done}\n          </motion.span>\n        )}\n      </AnimatePresence>\n      {phase === 'melt' && px.map((p, i) => (\n        <motion.span\n          key={i}\n          className=\"absolute size-[5px] rounded-[1px] bg-bg\"\n          style={{ left: p.x, top: p.y }}\n          initial={{ y: 0, opacity: 1 }}\n          animate={{ y: p.fall, opacity: 0, scale: 0.4 }}\n          transition={{ delay: p.d, duration: 0.5, ease: [0.5, 0, 0.9, 0.4] }}\n        />\n      ))}\n    </button>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

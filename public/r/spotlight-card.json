@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spotlight-card",
+  "title": "Spotlight Card",
+  "type": "registry:component",
+  "description": "Cursor light that also lights the border under it",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/spotlight-card.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/spotlight-card.jsx",
+      "content": "'use client'\n\nimport { motion, useMotionTemplate, useMotionValue } from 'motion/react'\n\n// A soft light follows the cursor across the card and lights up its border.\nexport default function SpotlightCard({ title = 'Zero-config SSL', body = 'Certificates issue and renew on their own. You never touch a cron job.', tag = 'Security' }) {\n  const x = useMotionValue(-200), y = useMotionValue(-200)\n  const bg = useMotionTemplate`radial-gradient(260px circle at ${x}px ${y}px, rgba(255,106,43,0.14), transparent 70%)`\n  const border = useMotionTemplate`radial-gradient(180px circle at ${x}px ${y}px, rgba(255,106,43,0.9), transparent 70%)`\n  const move = (e) => { const r = e.currentTarget.getBoundingClientRect(); x.set(e.clientX - r.left); y.set(e.clientY - r.top) }\n  return (\n    <div onPointerMove={move} onPointerLeave={() => { x.set(-200); y.set(-200) }} className=\"group relative w-[340px] max-w-full rounded-2xl p-px\">\n      <motion.div className=\"absolute inset-0 rounded-2xl\" style={{ background: border }} />\n      <div className=\"absolute inset-px rounded-[15px] bg-panel\" />\n      <motion.div className=\"absolute inset-px rounded-[15px]\" style={{ background: bg }} />\n      <div className=\"relative p-6\">\n        <span className=\"rounded-full border border-line2 px-2 py-0.5 text-[11px] text-mute\">{tag}</span>\n        <h3 className=\"mt-4 text-lg font-medium tracking-tight text-tx\">{title}</h3>\n        <p className=\"mt-2 text-sm leading-6 text-mute\">{body}</p>\n      </div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}
