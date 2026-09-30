@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from 'motion/react'
 
 export default function RingWeave({ size = 56, label = 'Syncing' }) {

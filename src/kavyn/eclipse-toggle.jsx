@@ -1,3 +1,5 @@
+'use client'
+
 
 
 import { useState } from 'react'
@@ -11,7 +13,8 @@ const STARS = [
 ]
 const spring = { type: 'spring', stiffness: 380, damping: 24 }
 
-export default function EclipseToggle({ defaultMode = 'dark', size = 44, onToggle }) {
+/** @param {{ defaultMode?: any, size?: any, onToggle?: any }} props */
+export default function EclipseToggle({ defaultMode = 'dark', size = 44, onToggle = undefined }) {
   const [mode, setMode] = useState(defaultMode)
   const dark = mode === 'dark'
   const flip = () => {

@@ -1,8 +1,11 @@
+'use client'
+
 import { useCanvasLoop } from './canvas-loop'
 
 // A grid of dots on springs. Move through it and it gives way, then settles.
 // Quiet enough for a hero or an empty state.
-export default function JellyGrid({ gap = 26, color = '#ff6a2b', radius = 110, className = '', children }) {
+/** @param {{ gap?: any, color?: any, radius?: any, className?: any, children?: any }} props */
+export default function JellyGrid({ gap = 26, color = '#ff6a2b', radius = 110, className = '', children = undefined }) {
   const host = useCanvasLoop((ctx, s) => {
     let dots = [], cols = 0, rows = 0
     const g = Math.max(12, Number(gap) || 26)

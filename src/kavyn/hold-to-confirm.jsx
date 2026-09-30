@@ -1,7 +1,10 @@
+'use client'
+
 import { useRef, useState } from 'react'
 import { motion, useMotionValue, animate, AnimatePresence } from 'motion/react'
 
-export default function HoldToConfirm({ label = 'Hold to delete', duration = 1.4, onConfirm }) {
+/** @param {{ label?: any, duration?: any, onConfirm?: any }} props */
+export default function HoldToConfirm({ label = 'Hold to delete', duration = 1.4, onConfirm = undefined }) {
   const p = useMotionValue(0)
   const ctl = useRef(null)
   const [done, setDone] = useState(false)

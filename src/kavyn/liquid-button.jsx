@@ -1,8 +1,11 @@
+'use client'
+
 import { useId, useState } from 'react'
 import { motion } from 'motion/react'
 
 // Gooey button: blobs merge and split through an SVG filter when you hover or press.
-export default function LiquidButton({ children = 'Get started', onClick }) {
+/** @param {{ children?: any, onClick?: any }} props */
+export default function LiquidButton({ children = 'Get started', onClick = undefined }) {
   const [hot, setHot] = useState(false)
   const id = useId().replace(/:/g, '')
   const blobs = [[-46, 0], [46, 0], [0, -18], [0, 18]]

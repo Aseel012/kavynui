@@ -1,3 +1,5 @@
+'use client'
+
 import { useCanvasLoop, clamp } from './canvas-loop'
 
 // A promo tag hanging on a chain. Grab it, swing it, let it go.

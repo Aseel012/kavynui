@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 
@@ -15,7 +17,8 @@ function Digit({ d }) {
   )
 }
 
-export default function OdometerFigures({ value, prefix = '$', auto = true }) {
+/** @param {{ value?: any, prefix?: any, auto?: any }} props */
+export default function OdometerFigures({ value = undefined, prefix = '$', auto = true }) {
   const [v, setV] = useState(value ?? 48210)
   useEffect(() => { if (value != null) setV(value) }, [value])
   useEffect(() => {

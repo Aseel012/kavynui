@@ -1,3 +1,5 @@
+'use client'
+
 import { useCanvasLoop, clamp } from './canvas-loop'
 
 // A launch banner made of cloth. It breathes in a light wind; drag any part to pull it.

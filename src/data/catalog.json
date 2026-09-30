@@ -10,7 +10,7 @@
       "id": "data",
       "name": "Maps & Data",
       "blurb": "Dashboards, maps and live metrics",
-      "count": 8
+      "count": 9
     },
     {
       "id": "shaders",
@@ -105,6 +105,10 @@
       "deps": [
         "traffic-map.jsx",
         "world-dots.js"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -116,6 +120,10 @@
       "useCase": "SaaS landing page",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -127,6 +135,10 @@
       "useCase": "Features section",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -138,6 +150,10 @@
       "useCase": "Social proof",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -153,6 +169,10 @@
       "deps": [
         "edge-globe.jsx",
         "world-dots.js"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -164,6 +184,10 @@
       "useCase": "Changelog page",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -175,6 +199,10 @@
       "useCase": "Auth screen",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -186,6 +214,10 @@
       "useCase": "Pricing page FAQ",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -197,6 +229,10 @@
       "useCase": "Public status page",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -209,6 +245,10 @@
       "tags": [
         "new",
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -223,6 +263,9 @@
       ],
       "deps": [
         "world-dots.js"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -237,6 +280,9 @@
       ],
       "deps": [
         "world-dots.js"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -248,6 +294,10 @@
       "useCase": "Service health",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -259,6 +309,9 @@
       "useCase": "Performance widget",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -270,6 +323,10 @@
       "useCase": "Firewall activity",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -281,6 +338,10 @@
       "useCase": "Traffic breakdown",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -292,6 +353,10 @@
       "useCase": "Usage patterns",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -304,6 +369,10 @@
       "tags": [
         "new",
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -315,6 +384,10 @@
       "useCase": "Primary CTA",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -324,7 +397,11 @@
       "family": "actions",
       "description": "Edge heat-shimmer builds as the cursor gets closer",
       "useCase": "Checkout \"Pay now\"",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "magnet-pill",
@@ -333,7 +410,11 @@
       "family": "actions",
       "description": "Label drifts toward the cursor, pill stretches back",
       "useCase": "Newsletter signup",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "hold-to-confirm",
@@ -344,6 +425,10 @@
       "useCase": "Delete account",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -353,7 +438,11 @@
       "family": "actions",
       "description": "Fill floods in from the exact entry point",
       "useCase": "Pricing CTA",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "split-flap-button",
@@ -362,7 +451,11 @@
       "family": "actions",
       "description": "Label flips like a departures board on state change",
       "useCase": "Seat booking",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "stamp-button",
@@ -373,6 +466,10 @@
       "useCase": "Approve invoice",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -382,7 +479,11 @@
       "family": "actions",
       "description": "A spark orbits the border while work runs",
       "useCase": "AI \"Generate\"",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "fuse-button",
@@ -393,6 +494,10 @@
       "useCase": "Undo send",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -404,6 +509,10 @@
       "useCase": "Photo upload",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -415,6 +524,10 @@
       "useCase": "Form submit",
       "tags": [
         "new"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -426,6 +539,9 @@
       "useCase": "Dev-tool headline",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -437,6 +553,9 @@
       "useCase": "\"Thinking\" label",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -448,6 +567,10 @@
       "useCase": "Hero tagline",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -457,7 +580,11 @@
       "family": "type",
       "description": "Digits roll with a mechanical overshoot",
       "useCase": "Revenue dashboard",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "ink-write",
@@ -466,7 +593,11 @@
       "family": "type",
       "description": "Strokes draw in along a handwritten path",
       "useCase": "Onboarding welcome",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "redact-reveal",
@@ -477,6 +608,10 @@
       "useCase": "Security product hero",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -488,6 +623,10 @@
       "useCase": "Editorial headline",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -497,7 +636,11 @@
       "family": "type",
       "description": "Types, backspaces and retypes with a live caret",
       "useCase": "AI taglines",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "weight-wave",
@@ -508,6 +651,10 @@
       "useCase": "Brand headline",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -517,7 +664,11 @@
       "family": "type",
       "description": "Outline copies trail behind the text",
       "useCase": "Event landing",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "scan-line-text",
@@ -526,7 +677,11 @@
       "family": "type",
       "description": "A CRT scan line passes and sharpens the words",
       "useCase": "Dev tool launch",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "dial-text",
@@ -537,6 +692,10 @@
       "useCase": "Password reset",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -546,7 +705,11 @@
       "family": "type",
       "description": "A marker stroke draws under the key phrase",
       "useCase": "Blog emphasis",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "notif-stack",
@@ -557,6 +720,10 @@
       "useCase": "Activity inbox",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -568,6 +735,10 @@
       "useCase": "Product pillars",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -579,6 +750,10 @@
       "useCase": "Item details",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -588,7 +763,11 @@
       "family": "interactive",
       "description": "Magnifier follows the cursor with live zoom",
       "useCase": "Product photos",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "deck-shuffle",
@@ -597,7 +776,11 @@
       "family": "interactive",
       "description": "Top card flicks away with real physics",
       "useCase": "Onboarding tips",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "vinyl-deck",
@@ -608,6 +791,10 @@
       "useCase": "Podcast player",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -617,7 +804,11 @@
       "family": "interactive",
       "description": "Angled blade wipes between two images",
       "useCase": "Photo editor",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "globe-pins",
@@ -626,7 +817,10 @@
       "family": "interactive",
       "description": "Dot-matrix globe turns with pulsing pins",
       "useCase": "Office locations",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "react"
+      ]
     },
     {
       "slug": "terminal-replay",
@@ -635,7 +829,11 @@
       "family": "interactive",
       "description": "Recorded terminal session with real timing",
       "useCase": "CLI docs",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "palette-fan",
@@ -646,6 +844,10 @@
       "useCase": "Theme picker",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -657,6 +859,10 @@
       "useCase": "Membership card",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -668,6 +874,10 @@
       "useCase": "Delivery tracking",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -677,7 +887,11 @@
       "family": "interactive",
       "description": "Photos drop, settle and can be rearranged",
       "useCase": "Travel portfolio",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "waveform-scrubber",
@@ -686,7 +900,11 @@
       "family": "interactive",
       "description": "Bars react to hover, click to seek",
       "useCase": "Voice notes",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "paper-fold-reveal",
@@ -698,6 +916,10 @@
       "tags": [
         "original",
         "new"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -707,16 +929,24 @@
       "family": "scenes",
       "description": "App layers separate isometrically on scroll",
       "useCase": "Infra \"how it works\"",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "turntable-viewer",
       "name": "Turntable Viewer",
       "export": "TurntableViewer",
       "family": "scenes",
-      "description": "Drag to spin a product through 360\u00b0",
+      "description": "Drag to spin a product through 360°",
       "useCase": "Sneaker store",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "cube-metrics",
@@ -725,7 +955,11 @@
       "family": "scenes",
       "description": "KPI cube rolls face to face",
       "useCase": "Analytics summary",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "paper-plane-path",
@@ -734,7 +968,11 @@
       "family": "scenes",
       "description": "Plane flies along the scroll path",
       "useCase": "Send confirmation",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "server-rack",
@@ -745,6 +983,10 @@
       "useCase": "Status page",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -756,6 +998,10 @@
       "useCase": "Docs hints",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -767,6 +1013,10 @@
       "useCase": "Feature card",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -778,6 +1028,9 @@
       "useCase": "Recommended plan",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -789,6 +1042,10 @@
       "useCase": "Fintech features",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -798,7 +1055,11 @@
       "family": "bento",
       "description": "Events snap along a scroll rail",
       "useCase": "Changelog",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "masonry-drift",
@@ -807,7 +1068,11 @@
       "family": "bento",
       "description": "Columns drift at different speeds",
       "useCase": "Portfolio",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "pricing-morph",
@@ -818,6 +1083,10 @@
       "useCase": "SaaS pricing",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -827,7 +1096,11 @@
       "family": "bento",
       "description": "Hovered cell sharpens, the rest blur back",
       "useCase": "Feature overview",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "kanban-flow",
@@ -836,7 +1109,11 @@
       "family": "bento",
       "description": "Cards glide between columns on their own",
       "useCase": "Project tool hero",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "stat-wall",
@@ -845,7 +1122,11 @@
       "family": "bento",
       "description": "Tiles count up in a checkerboard stagger",
       "useCase": "Impact report",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "device-unveil",
@@ -856,6 +1137,10 @@
       "useCase": "App launch",
       "tags": [
         "new"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -865,7 +1150,11 @@
       "family": "marquee",
       "description": "Price ticker with colored deltas",
       "useCase": "Crypto dashboard",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "review-rail",
@@ -874,7 +1163,11 @@
       "family": "marquee",
       "description": "Two opposing rows that pause on hover",
       "useCase": "Social proof",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "footnote-pop",
@@ -885,6 +1178,10 @@
       "useCase": "Docs and blogs",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -894,7 +1191,11 @@
       "family": "marquee",
       "description": "Avatars orbit a central mark",
       "useCase": "Community page",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "badge-rain",
@@ -905,6 +1206,9 @@
       "useCase": "Tech stack",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -914,7 +1218,11 @@
       "family": "marquee",
       "description": "Hover pulls a ribbon across the row",
       "useCase": "Job listings",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "logo-constellation",
@@ -923,7 +1231,11 @@
       "family": "marquee",
       "description": "Logos linked by lines that pulse",
       "useCase": "Integrations",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "reaction-burst",
@@ -935,6 +1247,10 @@
       "tags": [
         "original",
         "new"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -944,7 +1260,11 @@
       "family": "loaders",
       "description": "Three dots inhale and exhale in sequence",
       "useCase": "AI thinking",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "ring-weave",
@@ -953,7 +1273,11 @@
       "family": "loaders",
       "description": "Two rings interlock and swap",
       "useCase": "Syncing",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "stitch-progress",
@@ -964,6 +1288,10 @@
       "useCase": "File upload",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -973,7 +1301,11 @@
       "family": "loaders",
       "description": "Blocks drop and stack into a row",
       "useCase": "Build logs",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "hourglass-flip",
@@ -984,6 +1316,10 @@
       "useCase": "Queue position",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -995,6 +1331,10 @@
       "useCase": "Connecting",
       "tags": [
         "new"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -1006,6 +1346,10 @@
       "useCase": "App launcher",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -1015,7 +1359,11 @@
       "family": "nav",
       "description": "A lens slides between items and magnifies",
       "useCase": "Marketing nav",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "pocket-nav",
@@ -1024,7 +1372,11 @@
       "family": "nav",
       "description": "Nav folds into a floating pill on scroll",
       "useCase": "Long landing pages",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "crumb-fold",
@@ -1035,6 +1387,10 @@
       "useCase": "File manager",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -1044,7 +1400,11 @@
       "family": "nav",
       "description": "Menu items fan down like cards",
       "useCase": "Mobile menu",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "command-rail",
@@ -1053,7 +1413,11 @@
       "family": "nav",
       "description": "Side rail with key hints, expands on hover",
       "useCase": "Dashboards",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "section-beads",
@@ -1064,6 +1428,10 @@
       "useCase": "Docs pages",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -1073,7 +1441,11 @@
       "family": "nav",
       "description": "Bottom sheet with snap points",
       "useCase": "Mobile checkout",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "flow-chips",
@@ -1082,7 +1454,11 @@
       "family": "nav",
       "description": "Filter chips reorder with FLIP motion",
       "useCase": "Store filters",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "stepper-morph",
@@ -1091,7 +1467,11 @@
       "family": "nav",
       "description": "Step line morphs into a check",
       "useCase": "Onboarding",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "workspace-shuffle",
@@ -1102,6 +1482,10 @@
       "useCase": "SaaS switcher",
       "tags": [
         "new"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -1113,6 +1497,9 @@
       "useCase": "Outdoor brand",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -1122,7 +1509,10 @@
       "family": "bg",
       "description": "Dot field swells like a tide",
       "useCase": "Product hero",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "react"
+      ]
     },
     {
       "slug": "grain-leak",
@@ -1131,7 +1521,11 @@
       "family": "bg",
       "description": "Film grain with a slow light leak",
       "useCase": "Agency site",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "blueprint",
@@ -1140,7 +1534,11 @@
       "family": "bg",
       "description": "Drafting grid with lines drawing in",
       "useCase": "Architecture",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "night-transit",
@@ -1151,6 +1549,9 @@
       "useCase": "Travel app",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -1162,6 +1563,9 @@
       "useCase": "Weather app",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -1171,7 +1575,11 @@
       "family": "bg",
       "description": "Traces carry pulses across a board",
       "useCase": "AI infra",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "ink-smoke",
@@ -1180,7 +1588,11 @@
       "family": "bg",
       "description": "Monochrome smoke drifts and folds",
       "useCase": "Luxury brand",
-      "tags": []
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "dune-ridges",
@@ -1191,6 +1603,10 @@
       "useCase": "Retreat booking",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -1202,6 +1618,10 @@
       "useCase": "Portfolio hero",
       "tags": [
         "new"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
@@ -1216,6 +1636,9 @@
       "useCase": "Hero backdrop",
       "deps": [
         "gl-canvas.js"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -1230,6 +1653,9 @@
       "useCase": "Launch page",
       "deps": [
         "gl-canvas.js"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -1244,6 +1670,9 @@
       "useCase": "Sign-up screen",
       "deps": [
         "gl-canvas.js"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -1258,6 +1687,9 @@
       "useCase": "Event page",
       "deps": [
         "gl-canvas.js"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -1272,6 +1704,9 @@
       "useCase": "Dev tool hero",
       "deps": [
         "gl-canvas.js"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -1287,6 +1722,9 @@
       "useCase": "Travel landing",
       "deps": [
         "gl-canvas.js"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -1299,7 +1737,11 @@
       "family": "scroll",
       "layout": "fill",
       "description": "The story scrolls while the picture stays pinned and changes",
-      "useCase": "Product tour"
+      "useCase": "Product tour",
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "tags": [
@@ -1311,7 +1753,11 @@
       "family": "scroll",
       "layout": "fill",
       "description": "Ridges, sun and words moving at different depths",
-      "useCase": "Travel story"
+      "useCase": "Travel story",
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "tags": [
@@ -1323,7 +1769,11 @@
       "family": "scroll",
       "layout": "fill",
       "description": "Top progress bar and a ring with minutes left",
-      "useCase": "Blog post"
+      "useCase": "Blog post",
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "tags": [
@@ -1335,7 +1785,11 @@
       "family": "scroll",
       "layout": "fill",
       "description": "Scroll down, the rail of case studies moves left",
-      "useCase": "Portfolio"
+      "useCase": "Portfolio",
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "tags": [
@@ -1347,7 +1801,11 @@
       "family": "scroll",
       "layout": "fill",
       "description": "A paragraph that lights up word by word as you read",
-      "useCase": "About page"
+      "useCase": "About page",
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "tags": [
@@ -1360,7 +1818,11 @@
       "family": "scroll",
       "layout": "fill",
       "description": "The headline steps back and the product grows to fill the view",
-      "useCase": "Product reveal"
+      "useCase": "Product reveal",
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "tags": [
@@ -1375,6 +1837,9 @@
       "useCase": "Sale badge",
       "deps": [
         "canvas-loop.js"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -1390,6 +1855,9 @@
       "useCase": "Launch announcement",
       "deps": [
         "canvas-loop.js"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -1405,6 +1873,9 @@
       "useCase": "Onboarding interests",
       "deps": [
         "canvas-loop.js"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -1420,6 +1891,9 @@
       "useCase": "Empty state",
       "deps": [
         "canvas-loop.js"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -1433,7 +1907,11 @@
       "family": "physics",
       "layout": "fill",
       "description": "Cards you can throw; they keep momentum and bounce",
-      "useCase": "Moodboard"
+      "useCase": "Moodboard",
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "tags": [
@@ -1448,6 +1926,9 @@
       "useCase": "Hero backdrop",
       "deps": [
         "canvas-loop.js"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -1463,6 +1944,9 @@
       "useCase": "Creative portfolio",
       "deps": [
         "canvas-loop.js"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -1475,7 +1959,11 @@
       "family": "cursor",
       "layout": "fill",
       "description": "A custom cursor that wraps whatever link you hover",
-      "useCase": "Agency header"
+      "useCase": "Agency header",
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "tags": [
@@ -1488,7 +1976,10 @@
       "family": "cursor",
       "layout": "fill",
       "description": "Tiles that lean toward the pointer in 3D",
-      "useCase": "Integrations wall"
+      "useCase": "Integrations wall",
+      "dependencies": [
+        "react"
+      ]
     },
     {
       "tags": [
@@ -1499,7 +1990,11 @@
       "export": "SwipeStack",
       "family": "scenes",
       "description": "A 3D card stack: swipe right to save, left to pass",
-      "useCase": "Job matching"
+      "useCase": "Job matching",
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "tags": [
@@ -1510,7 +2005,11 @@
       "export": "RingCarousel",
       "family": "scenes",
       "description": "Cards on a 3D ring you drag or turn with arrow keys",
-      "useCase": "Template picker"
+      "useCase": "Template picker",
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "tags": [
@@ -1522,7 +2021,11 @@
       "export": "LayerExplode",
       "family": "scenes",
       "description": "A card that splits into its design layers in 3D",
-      "useCase": "Design system page"
+      "useCase": "Design system page",
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "tags": [
@@ -1537,6 +2040,9 @@
       "useCase": "Brand hero",
       "deps": [
         "canvas-loop.js"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -1554,6 +2060,9 @@
       "deps": [
         "canvas-loop.js",
         "dust-letters.jsx"
+      ],
+      "dependencies": [
+        "react"
       ]
     },
     {
@@ -1566,7 +2075,11 @@
       "tags": [
         "original"
       ],
-      "deps": []
+      "deps": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
     },
     {
       "slug": "apple-keyboard",
@@ -1577,22 +2090,47 @@
       "useCase": "Device mockups and typing demos",
       "tags": [
         "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
       ]
     },
     {
-    "slug": "share-sheet",
-    "name": "Share Sheet",
-    "export": "ShareSheet",
-    "family": "interactive",
-    "description": "Animated share sheet with social destinations, copy confirmation, real QR download, message and compact variants",
-    "useCase": "Article sharing and product links",
-    "tags": [
-      "original"
-    ],
-    "deps": [
-      "share-sheet-qr.js"
-    ]
-  }
-
+      "slug": "share-sheet",
+      "name": "Share Sheet",
+      "export": "ShareSheet",
+      "family": "interactive",
+      "description": "Animated share sheet with social destinations, copy confirmation, real QR download, message and compact variants",
+      "useCase": "Article sharing and product links",
+      "tags": [
+        "original"
+      ],
+      "deps": [
+        "share-sheet-qr.js"
+      ],
+      "dependencies": [
+        "motion",
+        "react",
+        "react-dom"
+      ]
+    },
+    {
+      "slug": "commit-grove",
+      "name": "Commit Grove",
+      "export": "CommitGrove",
+      "family": "data",
+      "description": "Daily contribution calendar with a green intensity scale, keyboard day navigation and expanding workspace highlights",
+      "useCase": "Developer profiles and team activity",
+      "tags": [
+        "new",
+        "original"
+      ],
+      "layout": "inline",
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    }
   ]
 }

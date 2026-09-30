@@ -1,9 +1,12 @@
+'use client'
+
 import { useState } from 'react'
 import { motion } from 'motion/react'
 
 const LINES = ['M40 200 H360', 'M40 200 V80 H200 V200', 'M200 120 H360 V200', 'M110 200 V150 H150 V200', 'M250 150 H310 V120', 'M40 80 L120 40 L200 80']
 
-export default function Blueprint({ children }) {
+/** @param {{ children?: any }} props */
+export default function Blueprint({ children = undefined }) {
   const [k, setK] = useState(0)
   return (
     <div onClick={() => setK(k + 1)} className="relative size-full min-h-64 overflow-hidden bg-[#0a0e14]">

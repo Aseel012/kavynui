@@ -1,3 +1,5 @@
+'use client'
+
 import { useCanvasLoop } from './canvas-loop'
 import { sampleText } from './dust-letters'
 

@@ -1,3 +1,5 @@
+'use client'
+
 import { useRef, useState } from 'react'
 import { motion, useMotionValue, useSpring, useTransform, useMotionValueEvent } from 'motion/react'
 
@@ -7,7 +9,8 @@ const TEMPLATES = [
 ]
 
 // A template gallery on a 3D ring. Drag or use arrow keys to turn it.
-export default function RingCarousel({ items = TEMPLATES, onSelect, className = '' }) {
+/** @param {{ items?: any, onSelect?: any, className?: any }} props */
+export default function RingCarousel({ items = TEMPLATES, onSelect = undefined, className = '' }) {
   const list = (Array.isArray(items) && items.length ? items : TEMPLATES).slice(0, 12)
   const n = list.length, step = 360 / n, radius = Math.round(90 / Math.tan(Math.PI / n)) + 20
   const rot = useMotionValue(0)

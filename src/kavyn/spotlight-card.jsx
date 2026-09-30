@@ -1,3 +1,5 @@
+'use client'
+
 import { motion, useMotionTemplate, useMotionValue } from 'motion/react'
 
 // A soft light follows the cursor across the card and lights up its border.

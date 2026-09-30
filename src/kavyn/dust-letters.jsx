@@ -1,3 +1,5 @@
+'use client'
+
 import { useCanvasLoop } from './canvas-loop'
 
 // Turns text into target points by drawing it off screen and reading the pixels.

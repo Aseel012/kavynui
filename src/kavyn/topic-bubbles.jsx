@@ -1,3 +1,5 @@
+'use client'
+
 import { useRef, useState } from 'react'
 import { useCanvasLoop, clamp } from './canvas-loop'
 
@@ -5,7 +7,8 @@ const TOPICS = ['Design', 'React', 'Motion', 'Rust', 'AI', 'Go', 'Type', 'CSS', 
 
 // An interest picker for onboarding. Topics drop in with real weight.
 // Tap to pick, drag to throw. A hidden list of buttons keeps it usable by keyboard.
-export default function TopicBubbles({ topics = TOPICS, color = '#ff6a2b', onChange, className = '' }) {
+/** @param {{ topics?: any, color?: any, onChange?: any, className?: any }} props */
+export default function TopicBubbles({ topics = TOPICS, color = '#ff6a2b', onChange = undefined, className = '' }) {
   const list = (Array.isArray(topics) && topics.length ? topics : TOPICS).slice(0, 24).map(String)
   const [picked, setPicked] = useState([])
   const pickedRef = useRef(new Set())

@@ -1,3 +1,5 @@
+'use client'
+
 import { useShader, hexToRgb } from './gl-canvas'
 
 const FRAG = `
@@ -19,7 +21,8 @@ void main(){
 }`
 
 // Light dancing on a pool floor. Pull the pattern toward the pointer.
-export default function ShaderCaustics({ color = '#29c6d6', speed = 1, className = '', children }) {
+/** @param {{ color?: any, speed?: any, className?: any, children?: any }} props */
+export default function ShaderCaustics({ color = '#29c6d6', speed = 1, className = '', children = undefined }) {
   const host = useShader(FRAG, { uniforms: { uA: hexToRgb(color, [0.16, 0.78, 0.84]) }, speed })
   return (
     <div ref={host} className={`relative h-full min-h-72 w-full overflow-hidden bg-[#05090c] ${className}`}

@@ -1,6 +1,9 @@
+'use client'
+
 import { useEffect, useRef } from 'react'
 
-export default function RainGlass({ children, drops = 70 }) {
+/** @param {{ children?: any, drops?: any }} props */
+export default function RainGlass({ children = undefined, drops = 70 }) {
   const ref = useRef(null)
   useEffect(() => {
     const c = ref.current, ctx = c.getContext('2d')

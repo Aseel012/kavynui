@@ -1,9 +1,12 @@
+'use client'
+
 import { useState } from 'react'
 import { motion } from 'motion/react'
 
 const BLADES = 6
 
-export default function ShutterButton({ label = 'Upload photo', onClick }) {
+/** @param {{ label?: any, onClick?: any }} props */
+export default function ShutterButton({ label = 'Upload photo', onClick = undefined }) {
   const [open, setOpen] = useState(false)
   return (
     <button

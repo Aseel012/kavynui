@@ -1,3 +1,5 @@
+'use client'
+
 import { useShader, hexToRgb, NOISE } from './gl-canvas'
 
 const FRAG = NOISE + `
@@ -20,7 +22,8 @@ void main(){
 }`
 
 // Aurora curtains with fine vertical rays over a starfield.
-export default function ShaderVeil({ from = '#2fe39a', to = '#8b5cf6', speed = 1, className = '', children }) {
+/** @param {{ from?: any, to?: any, speed?: any, className?: any, children?: any }} props */
+export default function ShaderVeil({ from = '#2fe39a', to = '#8b5cf6', speed = 1, className = '', children = undefined }) {
   const host = useShader(FRAG, { uniforms: { uA: hexToRgb(from, [0.18, 0.89, 0.6]), uB: hexToRgb(to, [0.55, 0.36, 0.96]) }, speed })
   return (
     <div ref={host} className={`relative h-full min-h-72 w-full overflow-hidden bg-[#06070b] ${className}`}

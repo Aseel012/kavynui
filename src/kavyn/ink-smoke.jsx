@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from 'motion/react'
 
 const BLOBS = [
@@ -6,7 +8,8 @@ const BLOBS = [
   { s: 200, x: ['30%', '70%', '40%', '30%'], y: ['60%', '40%', '0%', '60%'], d: 26, o: 0.06 },
 ]
 
-export default function InkSmoke({ children }) {
+/** @param {{ children?: any }} props */
+export default function InkSmoke({ children = undefined }) {
   return (
     <div className="relative size-full min-h-64 overflow-hidden bg-bg">
       <svg className="absolute size-0"><filter id="ink-smoke-f"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="3"><animate attributeName="baseFrequency" dur="30s" values="0.012;0.018;0.012" repeatCount="indefinite" /></feTurbulence><feDisplacementMap in="SourceGraphic" scale="90" /></filter></svg>

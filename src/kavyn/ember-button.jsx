@@ -1,7 +1,10 @@
+'use client'
+
 import { useEffect, useRef } from 'react'
 import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from 'motion/react'
 
-export default function EmberButton({ children = 'Pay now', range = 220, onClick }) {
+/** @param {{ children?: any, range?: any, onClick?: any }} props */
+export default function EmberButton({ children = 'Pay now', range = 220, onClick = undefined }) {
   const ref = useRef(null)
   const heat = useMotionValue(0)
   const angle = useMotionValue(0)

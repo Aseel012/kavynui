@@ -1,3 +1,5 @@
+'use client'
+
 // A light band sweeps across muted text. For "thinking" and in-progress labels.
 export default function ShimmerText({ children = 'Generating preview…', speed = 2.2, className = '' }) {
   return (

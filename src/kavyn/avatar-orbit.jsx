@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from 'motion/react'
 
 const PEOPLE = ['AK', 'MS', 'RJ', 'PN', 'DV', 'SL', 'TK', 'IB']

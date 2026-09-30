@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef } from 'react'
 
 // Shared WebGL runner for the shader backgrounds.

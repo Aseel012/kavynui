@@ -1,8 +1,11 @@
+'use client'
+
 import { motion } from 'motion/react'
 
 const wave = (y, a, ph) => { let d = `M0 ${y}`; for (let x = 0; x <= 800; x += 40) d += ` Q ${x + 20} ${y + Math.sin((x + ph) / 90) * a - a} ${x + 40} ${y + Math.sin((x + 40 + ph) / 90) * a}`; return d + ' L800 300 L0 300 Z' }
 
-export default function DuneRidges({ children, ridges = 5 }) {
+/** @param {{ children?: any, ridges?: any }} props */
+export default function DuneRidges({ children = undefined, ridges = 5 }) {
   return (
     <div className="relative size-full min-h-64 overflow-hidden bg-[linear-gradient(#1a1410,#0b0908)]">
       <div className="absolute left-1/2 top-[18%] size-20 -translate-x-1/2 rounded-full bg-[#f3c58f]/80 blur-[2px]" />

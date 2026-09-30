@@ -1,7 +1,10 @@
+'use client'
+
 import { useMemo } from 'react'
 import { motion } from 'motion/react'
 
-export default function CircuitPulse({ children, traces = 12, seed = 7 }) {
+/** @param {{ children?: any, traces?: any, seed?: any }} props */
+export default function CircuitPulse({ children = undefined, traces = 12, seed = 7 }) {
   const paths = useMemo(() => {
     let s = seed; const rnd = () => ((s = (s * 9301 + 49297) % 233280) / 233280)
     return Array.from({ length: traces }, () => {

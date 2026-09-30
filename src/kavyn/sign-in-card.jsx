@@ -1,10 +1,13 @@
+'use client'
+
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 
 const valid = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)
 
 // Block: magic-link sign-in. Validates as you type, shakes on a bad address, confirms with a sent state.
-export default function SignInCard({ product = 'Acme', onSubmit }) {
+/** @param {{ product?: any, onSubmit?: any }} props */
+export default function SignInCard({ product = 'Acme', onSubmit = undefined }) {
   const [email, setEmail] = useState('')
   const [state, setState] = useState('idle')
   const [shake, setShake] = useState(0)

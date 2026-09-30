@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
 
 const GLYPHS = '!<>-_\\/[]{}=+*^?#01'

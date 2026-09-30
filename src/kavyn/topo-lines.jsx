@@ -1,6 +1,9 @@
+'use client'
+
 import { useEffect, useRef } from 'react'
 
-export default function TopoLines({ children, lines = 14, color }) {
+/** @param {{ children?: any, lines?: any, color?: any }} props */
+export default function TopoLines({ children = undefined, lines = 14, color = undefined }) {
   const ref = useRef(null)
   useEffect(() => {
     const c = ref.current, ctx = c.getContext('2d')

@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
 
 const TAGS = ['React', 'Tailwind', 'Motion', 'Vite', 'Postgres', 'Redis', 'Go', 'Rust', 'Figma', 'Stripe', 'Docker', 'Kafka', 'Bun', 'tRPC']

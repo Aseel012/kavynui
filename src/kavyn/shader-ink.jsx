@@ -1,3 +1,5 @@
+'use client'
+
 import { useShader, hexToRgb, NOISE } from './gl-canvas'
 
 const FRAG = NOISE + `
@@ -19,7 +21,8 @@ void main(){
 }`
 
 // Slow ink currents that bend away from the pointer.
-export default function ShaderInk({ from = '#ff6a2b', to = '#3b3bd6', speed = 1, className = '', children }) {
+/** @param {{ from?: any, to?: any, speed?: any, className?: any, children?: any }} props */
+export default function ShaderInk({ from = '#ff6a2b', to = '#3b3bd6', speed = 1, className = '', children = undefined }) {
   const host = useShader(FRAG, { uniforms: { uA: hexToRgb(from), uB: hexToRgb(to, [0.23, 0.23, 0.84]) }, speed })
   return (
     <div ref={host} className={`relative h-full min-h-72 w-full overflow-hidden bg-[#09090a] ${className}`}

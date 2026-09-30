@@ -1,7 +1,10 @@
+'use client'
+
 import { useCanvasLoop } from './canvas-loop'
 
 // A comet follows the pointer: a chain of springs, so the tail swings when you turn.
-export default function CometTrail({ color = '#ff6a2b', length = 26, className = '', children }) {
+/** @param {{ color?: any, length?: any, className?: any, children?: any }} props */
+export default function CometTrail({ color = '#ff6a2b', length = 26, className = '', children = undefined }) {
   const host = useCanvasLoop((ctx, s) => {
     const n = Math.min(60, Math.max(6, Math.round(Number(length) || 26)))
     const pts = Array.from({ length: n }, () => ({ x: s.w / 2, y: s.h / 2 }))

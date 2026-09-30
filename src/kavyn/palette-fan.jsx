@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { motion } from 'motion/react'
 
@@ -6,7 +8,8 @@ const SW = [
   { n: 'Plum', c: '#7d4e8a' }, { n: 'Sand', c: '#d8b27a' }, { n: 'Ash', c: '#8a8a93' },
 ]
 
-export default function PaletteFan({ swatches = SW, onPick }) {
+/** @param {{ swatches?: any, onPick?: any }} props */
+export default function PaletteFan({ swatches = SW, onPick = undefined }) {
   const [open, setOpen] = useState(false)
   const [pick, setPick] = useState(0)
   const mid = (swatches.length - 1) / 2

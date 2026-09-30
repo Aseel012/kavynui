@@ -1,6 +1,9 @@
+'use client'
+
 import { useEffect, useRef } from 'react'
 
-export default function HalftoneTide({ children, gap = 14 }) {
+/** @param {{ children?: any, gap?: any }} props */
+export default function HalftoneTide({ children = undefined, gap = 14 }) {
   const ref = useRef(null)
   useEffect(() => {
     const c = ref.current, ctx = c.getContext('2d')

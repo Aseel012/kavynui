@@ -1,7 +1,10 @@
+'use client'
+
 import { useEffect, useRef } from 'react'
 import { motion } from 'motion/react'
 
-export default function GrainLeak({ children }) {
+/** @param {{ children?: any }} props */
+export default function GrainLeak({ children = undefined }) {
   const ref = useRef(null)
   useEffect(() => {
     const c = ref.current, ctx = c.getContext('2d')

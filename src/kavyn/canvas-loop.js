@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef } from 'react'
 
 // Shared 2D canvas runner for the physics and particle pieces.

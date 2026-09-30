@@ -1,7 +1,10 @@
+'use client'
+
 import { useId, useState } from 'react'
 import { motion } from 'motion/react'
 
-export default function TabLens({ items = ['Product', 'Customers', 'Changelog', 'Docs'], defaultIndex = 0, onChange }) {
+/** @param {{ items?: any, defaultIndex?: any, onChange?: any }} props */
+export default function TabLens({ items = ['Product', 'Customers', 'Changelog', 'Docs'], defaultIndex = 0, onChange = undefined }) {
   const id = useId()
   const [active, setActive] = useState(defaultIndex)
   const [hover, setHover] = useState(null)

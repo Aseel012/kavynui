@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, useReducedMotion } from 'motion/react'
@@ -54,7 +56,8 @@ function QrArt({ url, size = 170, onReady }) {
   return svg ? <img width={size} height={size} alt="Scannable QR code for the shared link" style={{ display: 'block', borderRadius: 7 }} src={`data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`} /> : <p role="alert" style={{ fontSize: 12, lineHeight: 1.5 }}>This link is too long for a QR code.</p>
 }
 
-export default function ShareSheet({ url = sampleUrl, title = 'Share this page', variant = 'default', theme = 'auto', initialOpen = false, onShare }) {
+/** @param {{ url?: any, title?: any, variant?: any, theme?: any, initialOpen?: any, onShare?: any }} props */
+export default function ShareSheet({ url = sampleUrl, title = 'Share this page', variant = 'default', theme = 'auto', initialOpen = false, onShare = undefined }) {
   const [open, setOpen] = useState(initialOpen)
   const [view, setView] = useState('share')
   const [message, setMessage] = useState('')

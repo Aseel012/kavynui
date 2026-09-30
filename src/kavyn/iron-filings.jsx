@@ -1,8 +1,11 @@
+'use client'
+
 import { useCanvasLoop } from './canvas-loop'
 
 // Short strokes that turn to face the pointer like filings around a magnet.
 // When nobody is pointing, a slow magnet drifts on its own.
-export default function IronFilings({ gap = 22, color = '#ff6a2b', className = '', children }) {
+/** @param {{ gap?: any, color?: any, className?: any, children?: any }} props */
+export default function IronFilings({ gap = 22, color = '#ff6a2b', className = '', children = undefined }) {
   const host = useCanvasLoop((ctx, s) => {
     const g = Math.max(12, Number(gap) || 22)
     let idle = 0, mx = s.w / 2, my = s.h / 2

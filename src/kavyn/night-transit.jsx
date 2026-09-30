@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef } from 'react'
 
 // Seeded random so the skyline is the same on every mount.
@@ -26,7 +28,8 @@ function skyline(w, h, { seed, minH, maxH, tone, lit, win }) {
 }
 
 // A night city seen from a moving train: three skyline depths, passing lamps, road light trails.
-export default function NightTransit({ children, speed = 1 }) {
+/** @param {{ children?: any, speed?: any }} props */
+export default function NightTransit({ children = undefined, speed = 1 }) {
   const ref = useRef(null)
   useEffect(() => {
     const c = ref.current

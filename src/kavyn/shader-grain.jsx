@@ -1,3 +1,5 @@
+'use client'
+
 import { useShader, hexToRgb, NOISE } from './gl-canvas'
 
 const FRAG = NOISE + `
@@ -19,7 +21,8 @@ void main(){
 }`
 
 // Warm light through film grain. The grain re-rolls every frame, like real stock.
-export default function ShaderGrain({ tint = '#ff6a2b', grain = 0.09, speed = 1, className = '', children }) {
+/** @param {{ tint?: any, grain?: any, speed?: any, className?: any, children?: any }} props */
+export default function ShaderGrain({ tint = '#ff6a2b', grain = 0.09, speed = 1, className = '', children = undefined }) {
   const host = useShader(FRAG, { uniforms: { uTint: hexToRgb(tint), uGrain: Number(grain) || 0 }, speed, resolution: 0.75 })
   return (
     <div ref={host} className={`relative h-full min-h-72 w-full overflow-hidden bg-[#09090a] ${className}`}

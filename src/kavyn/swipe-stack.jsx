@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'motion/react'
 

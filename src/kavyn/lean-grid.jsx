@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef } from 'react'
 
 const APPS = ['GitHub', 'Slack', 'Linear', 'Figma', 'Stripe', 'Notion', 'Vercel', 'Sentry', 'Postgres', 'Resend', 'Discord', 'Jira']

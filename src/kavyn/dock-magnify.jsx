@@ -1,3 +1,5 @@
+'use client'
+
 import { useRef } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 
@@ -27,7 +29,8 @@ function Item({ mouse, icon, onPick }) {
 }
 
 // macOS-style dock: icons grow with cursor distance on a spring.
-export default function DockMagnify({ items = ICONS, onPick }) {
+/** @param {{ items?: any, onPick?: any }} props */
+export default function DockMagnify({ items = ICONS, onPick = undefined }) {
   const mouse = useMotionValue(Infinity)
   return (
     <div onMouseMove={(e) => mouse.set(e.clientX)} onMouseLeave={() => mouse.set(Infinity)}

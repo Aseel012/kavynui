@@ -1,3 +1,5 @@
+'use client'
+
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'motion/react'
 
@@ -282,13 +284,14 @@ function ArrowCap({ id, ch, pressed, backlit, onPress }) {
   )
 }
 
+/** @param {{ interactive?: any, demo?: any, sound?: any, phrase?: any, backlit?: any, onKey?: any, className?: any }} props */
 export default function AppleKeyboard({
   interactive = true,
   demo = true,
   sound = true,
   phrase = 'hello from kavynui. it types back.',
   backlit = true,
-  onKey,
+  onKey = undefined,
   className = '',
 }) {
   const [pressed, setPressed] = useState({})

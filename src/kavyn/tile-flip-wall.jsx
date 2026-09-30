@@ -1,7 +1,10 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 
-export default function TileFlipWall({ children, cols = 10, rows = 6 }) {
+/** @param {{ children?: any, cols?: any, rows?: any }} props */
+export default function TileFlipWall({ children = undefined, cols = 10, rows = 6 }) {
   const [side, setSide] = useState(false)
   const [origin, setOrigin] = useState([0, 0])
   useEffect(() => { const t = setInterval(() => { setOrigin([Math.floor(Math.random() * cols), Math.floor(Math.random() * rows)]); setSide((s) => !s) }, 3600); return () => clearInterval(t) }, [cols, rows])

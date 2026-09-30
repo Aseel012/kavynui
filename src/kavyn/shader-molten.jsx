@@ -1,3 +1,5 @@
+'use client'
+
 import { useShader, hexToRgb } from './gl-canvas'
 
 const FRAG = `
@@ -23,7 +25,8 @@ void main(){
 }`
 
 // Molten blobs that merge and split. Press to make the pointer blob swell.
-export default function ShaderMolten({ color = '#ff6a2b', speed = 1, className = '', children }) {
+/** @param {{ color?: any, speed?: any, className?: any, children?: any }} props */
+export default function ShaderMolten({ color = '#ff6a2b', speed = 1, className = '', children = undefined }) {
   const host = useShader(FRAG, { uniforms: { uA: hexToRgb(color) }, speed })
   return (
     <div ref={host} className={`relative h-full min-h-72 w-full overflow-hidden bg-[#09090a] ${className}`}
