@@ -6,7 +6,7 @@ import { SITE } from '@/config'
 import templatesData from '@/data/templates.json'
 
 const SPRING = { type: 'spring', stiffness: 260, damping: 28 }
-const templates = templatesData.templates
+const templates = templatesData.templates.filter((t) => t.listed !== false)
 
 // Placeholder art for a template until its final screenshots land: a small
 // product-window wireframe in the template's accent color. When the real PNG
@@ -81,6 +81,12 @@ function TemplateCard({ t }) {
           </div>
         </div>
       </Link>
+      {t.livePreviewUrl && (
+        <div className="mt-3 flex flex-wrap items-center gap-3 px-1">
+          <a href={t.livePreviewUrl} target="_blank" rel="noreferrer" className="inline-flex h-10 items-center rounded-full border border-line px-4 text-sm text-tx transition-colors hover:border-faint/60">Live Preview <span aria-hidden="true" className="ml-2">↗</span></a>
+          {t.buyUrl && <a href={t.buyUrl} className="inline-flex h-10 items-center rounded-full bg-tx px-4 text-sm font-medium text-bg">Get template</a>}
+        </div>
+      )}
     </motion.div>
   )
 }
@@ -119,14 +125,15 @@ function TemplateDetail({ t }) {
               <li key={item} className="flex gap-3 text-sm leading-6 text-mute"><span className="mt-[10px] size-1 shrink-0 rounded-full" style={{ background: t.accent }} />{item}</li>
             ))}
           </ul>
-          <div className="mt-7 flex items-center gap-4">
+          <div className="mt-7 flex flex-wrap items-center gap-3">
+            {t.livePreviewUrl && <a href={t.livePreviewUrl} target="_blank" rel="noreferrer" className="inline-flex h-11 items-center rounded-full border border-line px-5 text-sm text-tx transition-colors hover:border-faint/60">Live Preview <span aria-hidden="true" className="ml-2">↗</span></a>}
             {t.buyUrl ? (
               <a href={t.buyUrl} target="_blank" rel="noreferrer" className="h-11 rounded-full bg-tx px-6 text-sm font-medium leading-[2.75rem] text-bg">{`Get ${t.name} - ${price}`}</a>
             ) : (
               <span className="inline-flex h-11 cursor-not-allowed items-center rounded-full border border-line px-6 text-sm text-mute">{`${t.name} - ${price} - store link lands here`}</span>
             )}
           </div>
-          {!t.buyUrl && <p className="mt-3 text-xs text-faint">{t.previewNote}</p>}
+          {(!t.buyUrl || t.livePreviewUrl) && <p className="mt-3 text-xs text-faint">{t.previewNote}</p>}
         </div>
       </div>
     </section>

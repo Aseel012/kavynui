@@ -69,7 +69,8 @@
       ],
       "accent": "#E2551F",
       "buyUrl": "mailto:neoenzo126@gmail.com?subject=Aperture%20template",
-      "previewNote": "Screenshots from the actual template build"
+      "previewNote": "Screenshots from the actual template build",
+      "listed": false
     },
     {
       "slug": "luma-credit",
@@ -104,6 +105,41 @@
       "accent": "#6CB895",
       "buyUrl": "",
       "previewNote": "Full editable source included; ask the publisher for purchase details"
+    },
+    {
+      "slug": "proof",
+      "name": "PROOF",
+      "niche": "Deployment verification",
+      "tagline": "A release-verification workspace built around evidence, not just a successful build",
+      "description": "An original deployment-verification design with 42 linked screens: landing, authentication, setup, projects, runs, the verification room, changes, results, findings, traces, approvals, reports, settings and administration. A light split workspace with blue preview framing follows a fictional mobile-cart failure from triage to release review. This is an interactive UI concept, not a working verification service.",
+      "screens": 42,
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "responsive": true,
+      "price": 79,
+      "currency": "USD",
+      "status": "available",
+      "preview": "/templates/proof/preview.png",
+      "gallery": [
+        "/templates/proof/landing.png",
+        "/templates/proof/changes.png",
+        "/templates/proof/results.png",
+        "/templates/proof/finding.png"
+      ],
+      "includes": [
+        "42 linked screens with desktop and mobile layouts",
+        "Editable HTML, CSS and JavaScript; no build step",
+        "Interactive navigation, evidence tabs and local search/filter demos",
+        "Fictional data and authored storefront illustrations",
+        "Bundled Inter fonts with their SIL Open Font License"
+      ],
+      "accent": "#3966cf",
+      "buyUrl": "mailto:neoenzo126@gmail.com?subject=PROOF%20template",
+      "livePreviewUrl": "/templates/proof/demo/index.html#workbench",
+      "previewNote": "Actual renders of the editable UI concept. No backend, test runner, repository connection or real payment flow."
     }
   ]
 }
