@@ -17,6 +17,7 @@ export function Note({ tone = 'info', title, children }) {
   )
 }
 
+
 export function Steps({ items }) {
   return (
     <ol className="mt-5 space-y-5 border-l border-line pl-6">
