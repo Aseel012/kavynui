@@ -8,6 +8,7 @@ import ShaderLattice from '@/kavyn/shader-lattice'
 
 const THEME = `@import "tailwindcss";
 
+
 @theme inline {
   --color-bg: var(--bg);
   --color-panel: var(--panel);
