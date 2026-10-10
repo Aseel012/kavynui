@@ -62,7 +62,22 @@ const WIDE = new Set(['ticker-tape', 'review-rail', 'traffic-map'])
 
 // Per-component props used only by the site demo, never by the installed component.
 // Empty by default: demos run components as shipped. Add props only to showcase non-default behavior.
-const DEMO_PROPS = { 'waitlist-form': { autoJoin: true, autoJoinInterval: 4800 } }
+// Local portrait assets (public/avatars/) so the demo is CSP-safe (img-src 'self').
+const WAITLIST_PEOPLE = [
+  { id: 'p1', src: '/avatars/p1.jpg', initials: 'AK', hue: '#d8b27a' },
+  { id: 'p2', src: '/avatars/p2.jpg', initials: 'MS', hue: '#8fb996' },
+  { id: 'p3', src: '/avatars/p3.jpg', initials: 'RJ', hue: '#e8a2b4' },
+  { id: 'p4', src: '/avatars/p4.jpg', initials: 'PN', hue: '#9db4d4' },
+  { id: 'p5', src: '/avatars/p5.jpg', initials: 'DV', hue: '#c9a2e0' },
+  { id: 'p6', src: '/avatars/p6.jpg', initials: 'SL', hue: '#e0a184' },
+  { id: 'p7', src: '/avatars/p7.jpg', initials: 'TK', hue: '#7fb3c8' },
+  { id: 'p8', src: '/avatars/p8.jpg', initials: 'IB', hue: '#b5c48a' },
+  { id: 'p9', src: '/avatars/p9.jpg', initials: 'AR', hue: '#d69bb8' },
+  { id: 'p10', src: '/avatars/p10.jpg', initials: 'NK', hue: '#93b8a4' },
+  { id: 'p11', src: '/avatars/p11.jpg', initials: 'SP', hue: '#c8a883' },
+  { id: 'p12', src: '/avatars/p12.jpg', initials: 'RM', hue: '#a3a3d6' },
+]
+const DEMO_PROPS = { 'waitlist-form': { autoJoin: true, autoJoinInterval: 4800, people: WAITLIST_PEOPLE } }
 
 export function Loading({ label }) {
   return (
