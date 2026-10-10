@@ -2066,22 +2066,6 @@
       ]
     },
     {
-      "slug": "eclipse-toggle",
-      "name": "Eclipse Toggle",
-      "export": "EclipseToggle",
-      "family": "actions",
-      "description": "Sun springs into a crescent moon - rays retract with a stagger, stars pop in",
-      "useCase": "Dark/light theme switch",
-      "tags": [
-        "original"
-      ],
-      "deps": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
       "slug": "apple-keyboard",
       "name": "Apple Keyboard",
       "export": "AppleKeyboard",

@@ -39,8 +39,6 @@ export const GRADIENTS = [
     anim: { name: 'kv-g-pan', css: '@keyframes kv-g-pan { 0% { background-position: 0% 50% } 50% { background-position: 100% 50% } 100% { background-position: 0% 50% } }', value: 'kv-g-pan 10s ease-in-out infinite', size: '250% 250%' } },
   { id: 'carbon-fade', name: 'Carbon Fade', kind: 'Linear', base: '#09090a',
     layers: ['linear-gradient(135deg, #1a1a1f 0%, #09090a 55%)', 'radial-gradient(40% 40% at 90% 10%, rgba(255,255,255,.07), transparent 70%)'] },
-  { id: 'eclipse', name: 'Eclipse', kind: 'Spotlight', base: '#050505',
-    layers: ['radial-gradient(circle at 50% 50%, #050505 22%, rgba(255,106,43,.5) 23%, rgba(255,106,43,.08) 32%, transparent 45%)'] },
   { id: 'glacier', name: 'Glacier', kind: 'Mesh', base: '#050a0e',
     layers: ['radial-gradient(50% 60% at 20% 20%, rgba(186,230,253,.25), transparent 70%)', 'radial-gradient(50% 50% at 80% 80%, rgba(56,189,248,.3), transparent 70%)', 'radial-gradient(30% 30% at 70% 30%, rgba(255,255,255,.12), transparent 70%)'] },
   { id: 'signal-sweep', name: 'Signal Sweep', kind: 'Conic', base: '#060806',
