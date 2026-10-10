@@ -60,6 +60,10 @@ export function Thumb({ children, width = 1120 }) {
 
 const WIDE = new Set(['ticker-tape', 'review-rail', 'traffic-map'])
 
+// Per-component props used only by the site demo, never by the installed component.
+// Empty by default: demos run components as shipped. Add props only to showcase non-default behavior.
+const DEMO_PROPS = { 'waitlist-form': { autoJoin: true, autoJoinInterval: 4800 } }
+
 export function Loading({ label }) {
   return (
     <div className="absolute inset-0 grid place-items-center">
@@ -86,7 +90,7 @@ export function Demo({ item, page, mode = 'frame' }) {
   } else if (item.family === 'blocks') {
     body = mode === 'thumb' ? <Thumb><C /></Thumb> : <C />
   } else {
-    body = <Fit wide={WIDE.has(item.slug)}><C /></Fit>
+    body = <Fit wide={WIDE.has(item.slug)}><C {...(DEMO_PROPS[item.slug] || {})} /></Fit>
   }
   const inline = item.family === 'blocks' && mode !== 'thumb'
   return (

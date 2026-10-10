@@ -2131,6 +2131,17 @@
         "motion",
         "react"
       ]
-    }
+    },
+    {
+    "slug": "waitlist-form",
+    "name": "Waitlist Form",
+    "export": "WaitlistForm",
+    "family": "actions",
+    "description": "Email capture with avatar stack social proof, live join count and success state",
+    "useCase": "Landing page waitlists",
+    "tags": ["original"],
+    "deps": [],
+    "dependencies": ["motion", "react"]
+  }
   ]
 }

@@ -1,6 +1,6 @@
 # kavynUI - full component index
 
-> 138 components in 15 families. Copy any file into a React + Tailwind project and ship it. Source and docs: https://kavynui.com
+> 139 components in 15 families. Copy any file into a React + Tailwind project and ship it. Source and docs: https://kavynui.com
 
 - [Edge Dashboard](https://kavynui.com/components/edge-dashboard) (blocks): Live analytics dashboard with stat tiles, request map and top countries Use case: Admin overview.
 - [Product Hero](https://kavynui.com/components/product-hero) (blocks): Headline and actions beside an app window running a deploy Use case: SaaS landing page.
@@ -140,3 +140,4 @@
 - [Apple Keyboard](https://kavynui.com/components/apple-keyboard) (interactive): Realistic compact Apple-style keyboard; keys light up as you type, physically or on a loop Use case: Device mockups and typing demos.
 - [Share Sheet](https://kavynui.com/components/share-sheet) (interactive): Animated share sheet with social destinations, copy confirmation, real QR download, message and compact variants Use case: Article sharing and product links.
 - [Commit Grove](https://kavynui.com/components/commit-grove) (data): Daily contribution calendar with a green intensity scale, keyboard day navigation and expanding workspace highlights Use case: Developer profiles and team activity.
+- [Waitlist Form](https://kavynui.com/components/waitlist-form) (actions): Email capture with avatar stack social proof, live join count and success state Use case: Landing page waitlists.
