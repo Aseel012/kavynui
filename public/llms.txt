@@ -1,6 +1,6 @@
 # kavynUI
 
-> kavynUI is an open-source (MIT) library of 140 animated React components and blocks - dark-mode-first with a full light theme, minimal, copy-paste owned. Every component ships with a live animation, a real use case and graceful fallbacks (WebGL degrades to CSS gradients, reduced-motion variants). No dependencies beyond React, Tailwind CSS and Motion.
+> kavynUI is an open-source (MIT) library of 139 animated React components and blocks - dark-mode-first with a full light theme, minimal, copy-paste owned. Every component ships with a live animation, a real use case and graceful fallbacks (WebGL degrades to CSS gradients, reduced-motion variants). No dependencies beyond React, Tailwind CSS and Motion.
 
 ## Pages
 
