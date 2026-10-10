@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import { bySlug, familyById, components, neighbors } from '@/lib/catalog'
 import { getSource, parseProps } from '@/lib/registry'
-import { Demo } from '@/site/Preview'
+import { Demo, GROW } from '@/site/Preview'
 import CodeBlock, { CopyButton } from '@/site/CodeBlock'
 import NotFound from './NotFound'
 import InstallCard from '@/site/InstallCard'
@@ -102,7 +102,7 @@ export default function Detail() {
                   </motion.div>
                 </div>
               ) : (
-                <div className="relative h-[380px] overflow-hidden rounded-2xl border border-line bg-bg sm:h-[460px]">
+                <div className={`relative overflow-hidden rounded-2xl border border-line bg-bg ${GROW.has(item.slug) ? 'min-h-[380px] sm:min-h-[460px]' : 'h-[380px] sm:h-[460px]'}`}>
                   <div className="grid-fade pointer-events-none absolute inset-0 opacity-50" />
                   <Demo key={run} item={item} page="detail" />
                 </div>

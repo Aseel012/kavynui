@@ -40,7 +40,7 @@
       "id": "actions",
       "name": "Actions",
       "blurb": "Buttons that react, confirm and celebrate",
-      "count": 12
+      "count": 14
     },
     {
       "id": "type",
@@ -2139,6 +2139,17 @@
     "family": "actions",
     "description": "Email capture with avatar stack social proof, live join count and success state",
     "useCase": "Landing page waitlists",
+    "tags": ["original"],
+    "deps": [],
+    "dependencies": ["motion", "react"]
+  },
+    {
+    "slug": "dropzone",
+    "name": "Dropzone",
+    "export": "Dropzone",
+    "family": "actions",
+    "description": "File upload dropzone with per-file progress, retry and aggregate status",
+    "useCase": "File upload flows",
     "tags": ["original"],
     "deps": [],
     "dependencies": ["motion", "react"]
