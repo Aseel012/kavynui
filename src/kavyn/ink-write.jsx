@@ -11,10 +11,10 @@ export default function InkWrite({ text = 'Welcome, Maya', loop = true }) {
         key={k}
         x="50%" y="78" textAnchor="middle"
         style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontStyle: 'italic', fontSize: 64 }}
-        stroke="var(--tx)" strokeWidth="1.2" strokeDasharray="900"
-        initial={{ strokeDashoffset: 900, fill: 'rgba(237,237,239,0)' }}
-        animate={{ strokeDashoffset: 0, fill: 'rgba(237,237,239,1)' }}
-        transition={{ strokeDashoffset: { duration: 2.4, ease: [0.6, 0, 0.3, 1] }, fill: { delay: 1.9, duration: 0.8 } }}
+        fill="var(--tx)" stroke="var(--tx)" strokeWidth="1.2" strokeDasharray="900"
+        initial={{ strokeDashoffset: 900, fillOpacity: 0 }}
+        animate={{ strokeDashoffset: 0, fillOpacity: 1 }}
+        transition={{ strokeDashoffset: { duration: 2.4, ease: [0.6, 0, 0.3, 1] }, fillOpacity: { delay: 1.9, duration: 0.8 } }}
         onAnimationComplete={() => loop && setTimeout(() => setK((x) => x + 1), 2200)}
       >
         {text}

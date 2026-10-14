@@ -15,13 +15,13 @@ export default function OrbitButton({ label = 'Generate', busyLabel = 'Generatin
       <svg className="pointer-events-none absolute inset-0 size-full overflow-visible">
         <rect x="0" y="0" width="100%" height="100%" rx="11.5" fill="none" stroke="var(--line2)" />
         {busy && (
-          <rect
+          <motion.rect
             x="0" y="0" width="100%" height="100%" rx="11.5" fill="none"
             stroke="#ff6a2b" strokeWidth="1.5" strokeLinecap="round" pathLength="100" strokeDasharray="14 86"
+            initial={{ strokeDashoffset: 0 }} animate={{ strokeDashoffset: -100 }}
+            transition={{ repeat: Infinity, duration: 1.2, ease: 'linear' }}
             style={{ filter: 'drop-shadow(0 0 4px #ff6a2b)' }}
-          >
-            <animate attributeName="stroke-dashoffset" from="0" to="-100" dur={`${1.2}s`} repeatCount="indefinite" />
-          </rect>
+          />
         )}
       </svg>
       <AnimatePresence mode="popLayout" initial={false}>

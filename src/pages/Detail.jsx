@@ -92,7 +92,7 @@ export default function Detail() {
       </div>
 
       <div className="mt-3">
-        <AnimatePresence mode="wait" initial={false}>
+        <AnimatePresence mode="wait">
           {tab === 'preview' ? (
             <motion.div key="p" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.18 }}>
               {isBlock || item.layout === 'inline' ? (

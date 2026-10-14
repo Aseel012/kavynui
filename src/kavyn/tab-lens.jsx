@@ -14,7 +14,7 @@ export default function TabLens({ items = ['Product', 'Customers', 'Changelog', 
       {items.map((it, i) => (
         <button key={it} onPointerEnter={() => setHover(i)} onClick={() => { setActive(i); onChange?.(i) }} className="relative px-4 py-2 text-sm">
           {lens === i && (
-            <motion.span layoutId={id + 'lens'} className="absolute inset-0 rounded-full border border-white/10 bg-white/[0.06] shadow-[inset_0_1px_0_rgba(255,255,255,.08),0_4px_14px_rgba(0,0,0,.4)]" transition={{ type: 'spring', stiffness: 420, damping: 32 }} />
+            <motion.span layoutId={id + 'lens'} className="absolute inset-0 rounded-full border border-tx/10 bg-tx/[0.06] shadow-[inset_0_1px_0_rgba(255,255,255,.08),0_4px_14px_rgba(0,0,0,.4)]" transition={{ type: 'spring', stiffness: 420, damping: 32 }} />
           )}
           <motion.span className="relative inline-block" animate={{ scale: lens === i ? 1.1 : 1, color: active === i ? 'var(--tx)' : lens === i ? 'var(--mute)' : 'var(--mute)' }} transition={{ type: 'spring', stiffness: 420, damping: 26 }}>
             {it}

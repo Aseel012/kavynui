@@ -32,7 +32,7 @@ export default function OdometerFigures({ value = undefined, prefix = '$', auto 
       <span className="text-xs uppercase tracking-widest text-faint">Revenue today</span>
       <div className="flex items-end font-mono text-5xl font-medium leading-none tracking-tight text-tx tabular-nums">
         <span className="mr-1 inline-block h-[1em] leading-none text-mute">{prefix}</span>
-        {s.split('').map((c, i) => (c === ',' ? <span key={i} className="inline-block h-[1em] w-[0.3em] leading-none text-faint">,</span> : <Digit key={s.length - i} d={+c} />))}
+        {s.split('').map((c, i) => (c === ',' ? <span key={`c${i}`} className="inline-block h-[1em] w-[0.3em] leading-none text-faint">,</span> : <Digit key={`d${s.length - i}`} d={+c} />))}
       </div>
     </div>
   )
