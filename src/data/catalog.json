@@ -2137,6 +2137,17 @@
     "tags": ["original"],
     "deps": [],
     "dependencies": ["motion", "react"]
+  },
+  {
+    "slug": "quick-menu",
+    "name": "Quick Menu",
+    "export": "QuickMenu",
+    "family": "actions",
+    "description": "Inline pill that pops a quick option menu above it",
+    "useCase": "Visibility and quick settings",
+    "tags": ["original"],
+    "deps": [],
+    "dependencies": ["motion", "react"]
   }
   ]
 }
