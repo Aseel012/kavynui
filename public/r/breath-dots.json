@@ -12,7 +12,7 @@
       "path": "src/kavyn/breath-dots.jsx",
       "type": "registry:file",
       "target": "@components/kavyn/breath-dots.jsx",
-      "content": "'use client'\n\nimport { motion } from 'motion/react'\n\nexport default function BreathDots({ label = 'Thinking', color = '#ededef' }) {\n  return (\n    <div className=\"flex items-center gap-3 rounded-full border border-line2 bg-panel px-4 py-2.5\">\n      <div className=\"flex items-center gap-1.5\">\n        {[0, 1, 2].map((i) => (\n          <motion.span key={i} className=\"size-2 rounded-full\" style={{ background: color }}\n            animate={{ scale: [0.6, 1.15, 0.6], opacity: [0.3, 1, 0.3] }}\n            transition={{ repeat: Infinity, duration: 1.6, delay: i * 0.22, ease: 'easeInOut' }} />\n        ))}\n      </div>\n      <span className=\"text-sm text-mute\">{label}</span>\n    </div>\n  )\n}\n"
+      "content": "'use client'\n\nimport { motion } from 'motion/react'\n\nexport default function BreathDots({ label = 'Thinking', color = 'var(--tx)' }) {\n  return (\n    <div className=\"flex items-center gap-3 rounded-full border border-line2 bg-panel px-4 py-2.5\">\n      <div className=\"flex items-center gap-1.5\">\n        {[0, 1, 2].map((i) => (\n          <motion.span key={i} className=\"size-2 rounded-full\" style={{ background: color }}\n            animate={{ scale: [0.6, 1.15, 0.6], opacity: [0.3, 1, 0.3] }}\n            transition={{ repeat: Infinity, duration: 1.6, delay: i * 0.22, ease: 'easeInOut' }} />\n        ))}\n      </div>\n      <span className=\"text-sm text-mute\">{label}</span>\n    </div>\n  )\n}\n"
     }
   ],
   "cssVars": {

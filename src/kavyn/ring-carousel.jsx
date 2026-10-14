@@ -5,7 +5,7 @@ import { motion, useMotionValue, useSpring, useTransform, useMotionValueEvent } 
 
 const TEMPLATES = [
   { t: 'Portfolio', c: '#ff6a2b' }, { t: 'SaaS', c: '#3b82f6' }, { t: 'Docs', c: '#22c55e' }, { t: 'Store', c: '#a855f7' },
-  { t: 'Blog', c: '#eab308' }, { t: 'Event', c: '#06b6d4' }, { t: 'Agency', c: '#f43f5e' }, { t: 'Waitlist', c: '#ededef' },
+  { t: 'Blog', c: '#eab308' }, { t: 'Event', c: '#06b6d4' }, { t: 'Agency', c: '#f43f5e' }, { t: 'Waitlist', c: 'var(--tx)' },
 ]
 
 // A template gallery on a 3D ring. Drag or use arrow keys to turn it.
@@ -32,7 +32,7 @@ export default function RingCarousel({ items = TEMPLATES, onSelect = undefined, 
             <div key={it.t} id={`ring-${k}`} role="option" aria-selected={k === active}
               style={{ transform: `rotateY(${k * step}deg) translateZ(${radius}px)` }}
               className={`absolute left-1/2 top-1/2 -ml-[70px] -mt-[90px] h-[180px] w-[140px] rounded-xl border bg-panel p-2.5 transition-opacity [backface-visibility:hidden] ${k === active ? 'border-line2 opacity-100' : 'border-line opacity-60'}`}>
-              <div className="h-24 rounded-md" style={{ background: `linear-gradient(135deg, ${it.c}, #141417)` }} />
+              <div className="h-24 rounded-md" style={{ background: `linear-gradient(135deg, ${it.c}, var(--panel2))` }} />
               <div className="mt-2 h-1.5 w-12 rounded-full bg-line2" /><div className="mt-1.5 h-1.5 w-20 rounded-full bg-line" />
               <div className="mt-3 text-xs font-medium text-tx">{it.t}</div>
             </div>

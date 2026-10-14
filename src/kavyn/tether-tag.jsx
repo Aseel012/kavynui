@@ -3,6 +3,8 @@
 import { useCanvasLoop, clamp } from './canvas-loop'
 
 // A promo tag hanging on a chain. Grab it, swing it, let it go.
+const tk = (n, d) => (typeof document === 'undefined' ? d : getComputedStyle(document.documentElement).getPropertyValue(n).trim() || d)
+
 export default function TetherTag({ label = '30% off', sub = 'Launch week', color = '#ff6a2b', links = 12, className = '' }) {
   const host = useCanvasLoop((ctx, s) => {
     const n = clamp(Math.round(Number(links) || 12), 4, 30)
@@ -35,10 +37,10 @@ export default function TetherTag({ label = '30% off', sub = 'Launch week', colo
           }
         }
         ctx.clearRect(0, 0, s.w, s.h)
-        ctx.fillStyle = '#2a2a30'; ctx.beginPath(); ctx.arc(pts[0].x, pts[0].y, 5, 0, Math.PI * 2); ctx.fill()
+        ctx.fillStyle = tk('--line2', '#2a2a30'); ctx.beginPath(); ctx.arc(pts[0].x, pts[0].y, 5, 0, Math.PI * 2); ctx.fill()
         ctx.lineWidth = 3; ctx.lineCap = 'round'
         for (let i = 0; i < pts.length - 1; i++) {
-          ctx.strokeStyle = i % 2 ? '#5c5c66' : '#8a8a93'
+          ctx.strokeStyle = i % 2 ? tk('--faint', '#5c5c66') : tk('--mute', '#8a8a93')
           ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[i + 1].x, pts[i + 1].y); ctx.stroke()
         }
         const e = end(), b = pts[pts.length - 2], ang = Math.atan2(e.y - b.y, e.x - b.x) - Math.PI / 2
@@ -46,7 +48,7 @@ export default function TetherTag({ label = '30% off', sub = 'Launch week', colo
         ctx.shadowColor = 'rgba(0,0,0,.5)'; ctx.shadowBlur = 16; ctx.shadowOffsetY = 6
         ctx.fillStyle = color; ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(-tagW / 2, 4, tagW, tagH, 12); else ctx.rect(-tagW / 2, 4, tagW, tagH); ctx.fill()
         ctx.shadowColor = 'transparent'
-        ctx.fillStyle = '#09090a'; ctx.beginPath(); ctx.arc(0, 14, 4, 0, Math.PI * 2); ctx.fill()
+        ctx.fillStyle = tk('--bg', '#09090a'); ctx.beginPath(); ctx.arc(0, 14, 4, 0, Math.PI * 2); ctx.fill()
         ctx.fillStyle = '#fff'; ctx.textAlign = 'center'
         ctx.font = '600 20px "Geist Variable", system-ui, sans-serif'; ctx.fillText(String(label), 0, 44)
         ctx.font = '500 11px "Geist Variable", system-ui, sans-serif'; ctx.fillStyle = 'rgba(255,255,255,.8)'; ctx.fillText(String(sub), 0, 60)

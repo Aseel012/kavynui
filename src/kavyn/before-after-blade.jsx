@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 
 const Scene = ({ graded }) => (
-  <div className="absolute inset-0" style={{ filter: graded ? 'none' : 'grayscale(.85) contrast(.8) brightness(.8)' }}>
+  <div className="absolute inset-0" style={{ filter: graded ? 'none' : 'grayscale(.7) contrast(.9) brightness(.95)' }}>
     <div className="absolute inset-0 bg-gradient-to-b from-[#ff9a5a] via-[#e2566b] to-[#2b1a3d]" />
     <div className="absolute bottom-[34%] left-1/2 size-24 -translate-x-1/2 rounded-full bg-[#ffd29a] blur-[1px]" />
     <svg viewBox="0 0 400 300" preserveAspectRatio="none" className="absolute inset-0 size-full">

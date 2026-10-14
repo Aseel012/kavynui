@@ -31,7 +31,7 @@ export default function LedgerBento() {
       </Cell>
       <Cell>
         <div className="text-xs text-faint">USD / INR</div>
-        <motion.div key={fx} initial={{ color: '#ff6a2b' }} animate={{ color: '#ededef' }} transition={{ duration: 1 }} className="mt-1 font-mono text-xl tabular-nums">{fx}</motion.div>
+        <motion.div key={fx} initial={{ color: '#ff6a2b' }} animate={{ color: 'var(--tx)' }} transition={{ duration: 1 }} className="mt-1 font-mono text-xl tabular-nums">{fx}</motion.div>
       </Cell>
       <Cell className="col-span-2 sm:col-span-2">
         <div className="mb-2 text-xs text-faint">Latest</div>

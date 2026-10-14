@@ -19,7 +19,7 @@ export default function ChangelogFeed({ entries = ENTRIES }) {
       <ol className="relative mt-6 border-l border-line pl-6">
         {entries.map((e, i) => (
           <li key={e.v} className="relative pb-6 last:pb-0">
-            <motion.span animate={{ scale: open === i ? 1.3 : 1, backgroundColor: open === i ? '#ff6a2b' : '#2a2a30' }} className="absolute -left-[29px] top-1.5 size-2.5 rounded-full ring-4 ring-bg" />
+            <motion.span animate={{ scale: open === i ? 1.3 : 1, backgroundColor: open === i ? '#ff6a2b' : 'var(--line2)' }} className="absolute -left-[29px] top-1.5 size-2.5 rounded-full ring-4 ring-bg" />
             <button type="button" onClick={() => setOpen(open === i ? -1 : i)} aria-expanded={open === i} className="w-full text-left">
               <div className="flex flex-wrap items-center gap-2 text-xs"><span className="font-mono text-tx">v{e.v}</span><span className="text-faint">{e.d}</span><span className={`rounded-full px-2 py-0.5 text-[10px] ${TONE[e.tag] || 'bg-line text-mute'}`}>{e.tag}</span></div>
               <div className="mt-1 text-[15px] text-tx">{e.t}</div>

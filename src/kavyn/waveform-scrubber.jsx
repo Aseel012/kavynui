@@ -25,7 +25,7 @@ export default function WaveformScrubber({ bars = 56, seconds = 34 }) {
           const f = i / bars
           const played = f <= pos, hov = hover != null && f <= hover
           return (
-            <motion.span key={i} className="flex-1 rounded-full" animate={{ height: `${h * (hov ? 105 : 90)}%`, backgroundColor: played ? '#ff6a2b' : hov ? '#8a8a93' : '#2a2a30' }} transition={{ type: 'spring', stiffness: 400, damping: 25 }} />
+            <motion.span key={i} className="flex-1 rounded-full" animate={{ height: `${h * (hov ? 105 : 90)}%`, backgroundColor: played ? '#ff6a2b' : hov ? 'var(--mute)' : 'var(--line2)' }} transition={{ type: 'spring', stiffness: 400, damping: 25 }} />
           )
         })}
       </div>

@@ -22,7 +22,7 @@ export default function PaperFoldReveal({ panels = DAYS }) {
           initial={false}
           animate={{ rotateX: open ? 0 : -92, opacity: open ? 1 : 0, height: open ? 64 : 0 }}
           transition={{ type: 'spring', stiffness: 170, damping: 20, delay: open ? i * 0.14 : (panels.length - i) * 0.06 }}
-          style={{ transformOrigin: 'top', background: i % 2 ? '#111114' : '#141417' }}
+          style={{ transformOrigin: 'top', background: i % 2 ? 'var(--panel)' : 'var(--panel2)' }}
           className="overflow-hidden border-x border-b border-line2 px-4 last:rounded-b-xl"
         >
           <div className="flex h-16 items-center gap-3">

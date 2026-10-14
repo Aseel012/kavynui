@@ -23,7 +23,7 @@ export default function FuseButton({ seconds = 5, label = 'Undo send' }) {
   return (
     <button onClick={undo} className="relative h-12 min-w-44 rounded-xl bg-panel px-5 text-sm text-tx">
       <svg className="pointer-events-none absolute inset-0 size-full overflow-visible">
-        <rect x="0" y="0" width="100%" height="100%" rx="11.5" fill="none" stroke="#1e1e22" />
+        <rect x="0" y="0" width="100%" height="100%" rx="11.5" fill="none" stroke="var(--line)" />
         {state === 'armed' && (
           <motion.rect
             key={run} x="0" y="0" width="100%" height="100%" rx="11.5" fill="none"

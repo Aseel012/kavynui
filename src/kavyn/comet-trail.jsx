@@ -4,6 +4,8 @@ import { useCanvasLoop } from './canvas-loop'
 
 // A comet follows the pointer: a chain of springs, so the tail swings when you turn.
 /** @param {{ color?: any, length?: any, className?: any, children?: any }} props */
+const tk = (n, d) => (typeof document === 'undefined' ? d : getComputedStyle(document.documentElement).getPropertyValue(n).trim() || d)
+
 export default function CometTrail({ color = '#ff6a2b', length = 26, className = '', children = undefined }) {
   const host = useCanvasLoop((ctx, s) => {
     const n = Math.min(60, Math.max(6, Math.round(Number(length) || 26)))
@@ -16,7 +18,7 @@ export default function CometTrail({ color = '#ff6a2b', length = 26, className =
         if (!p.inside) { idle += s.reduce ? 0 : dt; tx = s.w / 2 + Math.sin(idle * 1.1) * s.w * 0.32; ty = s.h / 2 + Math.sin(idle * 2.2) * s.h * 0.2 }
         pts[0].x += (tx - pts[0].x) * 0.35; pts[0].y += (ty - pts[0].y) * 0.35
         for (let i = 1; i < n; i++) { pts[i].x += (pts[i - 1].x - pts[i].x) * 0.42; pts[i].y += (pts[i - 1].y - pts[i].y) * 0.42 }
-        ctx.fillStyle = 'rgba(9,9,10,0.35)'; ctx.fillRect(0, 0, s.w, s.h)
+        ctx.globalAlpha = 0.35; ctx.fillStyle = tk('--bg', '#09090a'); ctx.fillRect(0, 0, s.w, s.h); ctx.globalAlpha = 1
         ctx.lineCap = 'round'
         for (let i = n - 1; i > 0; i--) {
           const k = 1 - i / n

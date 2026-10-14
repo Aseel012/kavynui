@@ -22,10 +22,10 @@ export default function PaperPlanePath({ message = 'Invoice sent to Priya' }) {
     <div className="w-full max-w-md">
       <svg viewBox="0 0 420 220" className="w-full overflow-visible">
         <path ref={path} d={D} fill="none" stroke="none" />
-        <motion.path d={D} fill="none" stroke="#5c5c66" strokeWidth="1.5" strokeDasharray="4 6" style={{ pathLength: p }} />
+        <motion.path d={D} fill="none" stroke="var(--faint)" strokeWidth="1.5" strokeDasharray="4 6" style={{ pathLength: p }} />
         <g transform={`translate(${s.x} ${s.y}) rotate(${s.a})`}>
-          <path d="M14 0 L-10 -9 L-5 0 L-10 9 Z" fill="#ededef" />
-          <path d="M14 0 L-5 0 L-10 9 Z" fill="#8a8a93" />
+          <path d="M14 0 L-10 -9 L-5 0 L-10 9 Z" fill="var(--tx)" />
+          <path d="M14 0 L-5 0 L-10 9 Z" fill="var(--mute)" />
         </g>
       </svg>
       <motion.div animate={{ opacity: s.v > 0.97 ? 1 : 0, y: s.v > 0.97 ? 0 : 6 }} className="text-center text-sm text-tx">✓ {message}</motion.div>

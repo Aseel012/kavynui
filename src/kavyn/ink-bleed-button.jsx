@@ -29,7 +29,7 @@ export default function InkBleedButton({ children = 'Start building', color = '#
         animate={{ scale: s.on ? 1 : 0 }}
         transition={{ type: 'spring', stiffness: 170, damping: 24 }}
       />
-      <motion.span className="relative" animate={{ color: s.on ? '#09090a' : '#ededef' }} transition={{ duration: 0.25 }}>
+      <motion.span className="relative" animate={{ color: s.on ? '#09090a' : 'var(--tx)' }} transition={{ duration: 0.25 }}>
         {children}
       </motion.span>
     </button>

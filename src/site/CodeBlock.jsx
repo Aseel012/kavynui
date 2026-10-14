@@ -10,10 +10,10 @@ function highlight(line) {
   while ((m = re.exec(line))) {
     if (m.index > last) parts.push([line.slice(last, m.index), ''])
     if (m[1]) parts.push([m[1], 'text-faint'])
-    else if (m[2]) parts.push([m[2], 'text-[#d8b27a]'])
+    else if (m[2]) parts.push([m[2], 'code-str'])
     else if (m[3]) parts.push([m[3], 'text-acc'])
-    else if (m[4]) parts.push([m[4], 'text-[#9ec3e6]'])
-    else parts.push([m[5], KW.test(m[5]) ? 'text-[#c79bf0]' : ''])
+    else if (m[4]) parts.push([m[4], 'code-num'])
+    else parts.push([m[5], KW.test(m[5]) ? 'code-kw' : ''])
     last = re.lastIndex
   }
   if (last < line.length) parts.push([line.slice(last), ''])
@@ -58,7 +58,7 @@ export function CopyButton({ text, onCopy, className = '', label = 'Copy' }) {
 export default function CodeBlock({ code, title, onCopy, maxHeight = 520 }) {
   const lines = code.replace(/\n$/, '').split('\n')
   return (
-    <div className="overflow-hidden rounded-xl border border-line bg-[#0b0b0d]">
+    <div className="overflow-hidden rounded-xl border border-line bg-panel">
       <div className="flex h-10 items-center justify-between border-b border-line px-3">
         <span className="font-mono text-xs text-faint">{title}</span>
         <CopyButton text={code} onCopy={onCopy} />
@@ -66,8 +66,8 @@ export default function CodeBlock({ code, title, onCopy, maxHeight = 520 }) {
       <pre className="overflow-auto p-4 font-mono text-[12.5px] leading-6" style={{ maxHeight }}>
         {lines.map((l, i) => (
           <div key={i} className="flex">
-            <span className="mr-4 w-6 shrink-0 select-none text-right text-[#3a3a42]">{i + 1}</span>
-            <code className="whitespace-pre text-[#cfcfd4]">{highlight(l).map(([t, c], k) => <span key={k} className={c}>{t}</span>)}</code>
+            <span className="mr-4 w-6 shrink-0 select-none text-right text-faint/50">{i + 1}</span>
+            <code className="whitespace-pre text-tx/85">{highlight(l).map(([t, c], k) => <span key={k} className={c}>{t}</span>)}</code>
           </div>
         ))}
       </pre>

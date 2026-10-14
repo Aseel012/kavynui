@@ -40,7 +40,7 @@ export default function CatalogSidebar({ onNav, autoFocus = false }) {
   return (
     <div className="flex h-full flex-col">
       <div className="px-3 pb-3 pt-4">
-        <label className="flex h-9 items-center gap-2 rounded-lg border border-line2 bg-panel px-2.5 focus-within:border-[#3a3a42]">
+        <label className="flex h-9 items-center gap-2 rounded-lg border border-line2 bg-panel px-2.5 focus-within:border-faint">
           <svg viewBox="0 0 24 24" className="size-3.5 shrink-0 text-faint" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
           <input ref={input} value={q} onChange={(e) => setQ(e.target.value.slice(0, 80))} onKeyDown={onKey} placeholder="Filter" aria-label="Filter components"
             className="min-w-0 flex-1 bg-transparent text-[13px] text-tx outline-none placeholder:text-faint" />

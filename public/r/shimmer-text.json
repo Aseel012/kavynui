@@ -10,7 +10,7 @@
       "path": "src/kavyn/shimmer-text.jsx",
       "type": "registry:file",
       "target": "@components/kavyn/shimmer-text.jsx",
-      "content": "'use client'\n\n// A light band sweeps across muted text. For \"thinking\" and in-progress labels.\nexport default function ShimmerText({ children = 'Generating preview…', speed = 2.2, className = '' }) {\n  return (\n    <span className={`relative inline-block text-lg font-medium tracking-tight ${className}`}>\n      <style>{`@keyframes kv-shimmer{from{background-position:150% 0}to{background-position:-50% 0}}`}</style>\n      <span\n        className=\"bg-clip-text text-transparent\"\n        style={{\n          backgroundImage: 'linear-gradient(100deg, #5c5c66 35%, #ededef 50%, #5c5c66 65%)',\n          backgroundSize: '220% 100%',\n          animation: `kv-shimmer ${speed}s linear infinite`,\n        }}\n      >{children}</span>\n    </span>\n  )\n}\n"
+      "content": "'use client'\n\n// A light band sweeps across muted text. For \"thinking\" and in-progress labels.\nexport default function ShimmerText({ children = 'Generating preview…', speed = 2.2, className = '' }) {\n  return (\n    <span className={`relative inline-block text-lg font-medium tracking-tight ${className}`}>\n      <style>{`@keyframes kv-shimmer{from{background-position:150% 0}to{background-position:-50% 0}}`}</style>\n      <span\n        className=\"bg-clip-text text-transparent\"\n        style={{\n          backgroundImage: 'linear-gradient(100deg, var(--faint) 35%, var(--tx) 50%, var(--faint) 65%)',\n          backgroundSize: '220% 100%',\n          animation: `kv-shimmer ${speed}s linear infinite`,\n        }}\n      >{children}</span>\n    </span>\n  )\n}\n"
     }
   ],
   "cssVars": {

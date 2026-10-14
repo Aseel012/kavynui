@@ -21,7 +21,7 @@ export default function DeviceUnveil({ app = 'Streak' }) {
           whileInView={{ clipPath: 'inset(0% 0 0 0 round 22px)' }}
           viewport={{ amount: 0.5 }}
           transition={{ delay: 0.5, duration: 0.9, ease: [0.7, 0, 0.2, 1] }}
-          className="flex size-full flex-col gap-2 rounded-[22px] bg-gradient-to-b from-[#1b1310] to-panel p-3 pt-8"
+          className="flex size-full flex-col gap-2 rounded-[22px] bg-gradient-to-b from-[color-mix(in_oklab,var(--panel)_85%,#ff6a2b)] to-panel p-3 pt-8"
         >
           <div className="text-[11px] text-mute">Good morning</div>
           <div className="text-lg font-semibold text-tx">{app}</div>

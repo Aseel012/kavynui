@@ -16,7 +16,7 @@ export default function TabLens({ items = ['Product', 'Customers', 'Changelog', 
           {lens === i && (
             <motion.span layoutId={id + 'lens'} className="absolute inset-0 rounded-full border border-white/10 bg-white/[0.06] shadow-[inset_0_1px_0_rgba(255,255,255,.08),0_4px_14px_rgba(0,0,0,.4)]" transition={{ type: 'spring', stiffness: 420, damping: 32 }} />
           )}
-          <motion.span className="relative inline-block" animate={{ scale: lens === i ? 1.1 : 1, color: active === i ? '#ededef' : lens === i ? '#d0d0d6' : '#8a8a93' }} transition={{ type: 'spring', stiffness: 420, damping: 26 }}>
+          <motion.span className="relative inline-block" animate={{ scale: lens === i ? 1.1 : 1, color: active === i ? 'var(--tx)' : lens === i ? 'var(--mute)' : 'var(--mute)' }} transition={{ type: 'spring', stiffness: 420, damping: 26 }}>
             {it}
           </motion.span>
           {active === i && <motion.span layoutId={id + 'dot'} className="absolute bottom-0.5 left-1/2 size-1 -translate-x-1/2 rounded-full bg-acc" />}

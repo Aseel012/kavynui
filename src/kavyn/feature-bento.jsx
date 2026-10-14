@@ -21,7 +21,7 @@ function Tile({ className = '', title, body, children }) {
 function Regions() {
   const [on, setOn] = useState(0)
   useEffect(() => { const id = setInterval(() => setOn((n) => (n + 1) % 12), 500); return () => clearInterval(id) }, [])
-  return <div className="absolute inset-0 grid place-items-center p-6"><div className="grid grid-cols-6 gap-2">{Array.from({ length: 12 }, (_, i) => <motion.span key={i} animate={{ backgroundColor: i === on ? '#ff6a2b' : '#1e1e22', scale: i === on ? 1.1 : 1 }} className="size-7 rounded-md @3xl:size-8" />)}</div></div>
+  return <div className="absolute inset-0 grid place-items-center p-6"><div className="grid grid-cols-6 gap-2">{Array.from({ length: 12 }, (_, i) => <motion.span key={i} animate={{ backgroundColor: i === on ? '#ff6a2b' : 'var(--line)', scale: i === on ? 1.1 : 1 }} className="size-7 rounded-md @3xl:size-8" />)}</div></div>
 }
 function Rollback() {
   const [v, setV] = useState(3)
@@ -29,7 +29,7 @@ function Rollback() {
   return (
     <div className="absolute inset-0 flex items-center justify-center gap-2 p-6">
       {[1, 2, 3].map((n) => (
-        <motion.div key={n} animate={{ opacity: n === v ? 1 : 0.35, y: n === v ? -6 : 0, borderColor: n === v ? '#ff6a2b' : '#2a2a30' }} className="rounded-lg border bg-bg px-3 py-2 font-mono text-xs text-tx">v1.{n}</motion.div>
+        <motion.div key={n} animate={{ opacity: n === v ? 1 : 0.35, y: n === v ? -6 : 0, borderColor: n === v ? '#ff6a2b' : 'var(--line2)' }} className="rounded-lg border bg-bg px-3 py-2 font-mono text-xs text-tx">v1.{n}</motion.div>
       ))}
     </div>
   )

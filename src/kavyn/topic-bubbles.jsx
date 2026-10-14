@@ -58,12 +58,14 @@ export default function TopicBubbles({ topics = TOPICS, color = '#ff6a2b', onCha
         }
         ctx.clearRect(0, 0, s.w, s.h)
         ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = '500 13px "Geist Variable", system-ui, sans-serif'
+        const cs = getComputedStyle(document.documentElement)
+        const tok = (n, d) => cs.getPropertyValue(n).trim() || d
         for (const b of balls) {
           const on = pickedRef.current.has(b.name)
           ctx.beginPath(); ctx.arc(b.x, b.y, b.r * b.s, 0, Math.PI * 2)
-          ctx.fillStyle = on ? color : '#141417'; ctx.fill()
-          ctx.lineWidth = 1; ctx.strokeStyle = on ? color : '#2a2a30'; ctx.stroke()
-          ctx.fillStyle = on ? '#09090a' : '#ededef'; ctx.fillText(b.name, b.x, b.y + 1)
+          ctx.fillStyle = on ? color : tok('--panel2', '#141417'); ctx.fill()
+          ctx.lineWidth = 1; ctx.strokeStyle = on ? color : tok('--line2', '#2a2a30'); ctx.stroke()
+          ctx.fillStyle = on ? '#09090a' : tok('--tx', '#ededef'); ctx.fillText(b.name, b.x, b.y + 1)
         }
       },
     }

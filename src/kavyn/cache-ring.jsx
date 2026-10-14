@@ -15,7 +15,7 @@ export default function CacheRing({ label = 'Cache hit ratio', values = [0.82, 0
   return (
     <div className="flex w-[360px] max-w-full items-center gap-5 rounded-2xl border border-line bg-panel p-4">
       <svg width={size * 0.62} height={size * 0.62} viewBox={`0 0 ${size} ${size}`} className="-rotate-90 shrink-0">
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="#1e1e22" strokeWidth="12" />
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="var(--line)" strokeWidth="12" />
         <motion.circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="#ff6a2b" strokeWidth="12" strokeLinecap="round" style={{ strokeDasharray: dash }} />
       </svg>
       <div>

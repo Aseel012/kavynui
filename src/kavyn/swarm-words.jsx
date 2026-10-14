@@ -6,6 +6,8 @@ import { sampleText } from './dust-letters'
 const WORDS = ['Build', 'Ship', 'Repeat']
 
 // A swarm of particles that re-forms into each word in turn. For hero taglines.
+const tk = (n, d) => (typeof document === 'undefined' ? d : getComputedStyle(document.documentElement).getPropertyValue(n).trim() || d)
+
 export default function SwarmWords({ words = WORDS, color = '#ff6a2b', hold = 2.4, className = '' }) {
   const list = (Array.isArray(words) && words.length ? words : WORDS).map(String)
   const host = useCanvasLoop((ctx, s) => {
@@ -32,7 +34,7 @@ export default function SwarmWords({ words = WORDS, color = '#ff6a2b', hold = 2.
           timer = 0; idx = (idx + 1) % sets.length; assign()
           for (const p of parts) { const a = p.seed * Math.PI * 2; p.vx += Math.cos(a) * 220; p.vy += Math.sin(a) * 220 }
         }
-        ctx.fillStyle = 'rgba(9,9,10,0.3)'; ctx.fillRect(0, 0, s.w, s.h)
+        ctx.globalAlpha = 0.3; ctx.fillStyle = tk('--bg', '#09090a'); ctx.fillRect(0, 0, s.w, s.h); ctx.globalAlpha = 1
         const pr = s.pointer
         for (const p of parts) {
           const dx = p.x - pr.x, dy = p.y - pr.y, d = Math.hypot(dx, dy)
@@ -41,7 +43,7 @@ export default function SwarmWords({ words = WORDS, color = '#ff6a2b', hold = 2.
           p.vy += (p.ty - p.y) * 14 * dt + Math.cos(t * 2 + p.seed * 20) * 6 * dt
           p.vx *= 0.9; p.vy *= 0.9; p.x += p.vx * dt * 3; p.y += p.vy * dt * 3
           const sp = Math.min(1, Math.hypot(p.vx, p.vy) / 60)
-          ctx.fillStyle = sp > 0.35 ? color : '#ededef'
+          ctx.fillStyle = sp > 0.35 ? color : tk('--tx', '#ededef')
           ctx.fillRect(p.x, p.y, 1.8, 1.8)
         }
       },

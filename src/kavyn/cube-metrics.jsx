@@ -25,7 +25,7 @@ export default function CubeMetrics({ kpis = KPIS, every = 2400 }) {
           ))}
         </motion.div>
       </div>
-      <div className="flex gap-1.5">{kpis.map((_, f) => <motion.button key={f} onClick={() => setI(f + Math.floor(i / kpis.length) * kpis.length)} animate={{ width: i % kpis.length === f ? 18 : 6, backgroundColor: i % kpis.length === f ? '#ff6a2b' : '#2a2a30' }} className="h-1.5 rounded-full" />)}</div>
+      <div className="flex gap-1.5">{kpis.map((_, f) => <motion.button key={f} onClick={() => setI(f + Math.floor(i / kpis.length) * kpis.length)} animate={{ width: i % kpis.length === f ? 18 : 6, backgroundColor: i % kpis.length === f ? '#ff6a2b' : 'var(--line2)' }} className="h-1.5 rounded-full" />)}</div>
     </div>
   )
 }

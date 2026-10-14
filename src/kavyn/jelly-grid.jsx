@@ -5,6 +5,8 @@ import { useCanvasLoop } from './canvas-loop'
 // A grid of dots on springs. Move through it and it gives way, then settles.
 // Quiet enough for a hero or an empty state.
 /** @param {{ gap?: any, color?: any, radius?: any, className?: any, children?: any }} props */
+const tk = (n, d) => (typeof document === 'undefined' ? d : getComputedStyle(document.documentElement).getPropertyValue(n).trim() || d)
+
 export default function JellyGrid({ gap = 26, color = '#ff6a2b', radius = 110, className = '', children = undefined }) {
   const host = useCanvasLoop((ctx, s) => {
     let dots = [], cols = 0, rows = 0
@@ -37,7 +39,7 @@ export default function JellyGrid({ gap = 26, color = '#ff6a2b', radius = 110, c
           const off = Math.min(1, Math.hypot(d.x - d.hx, d.y - d.hy) / 18)
           if (x < cols - 1) { const e = dots[y * cols + x + 1]; ctx.strokeStyle = `rgba(42,42,48,${0.5 + off * 0.5})`; ctx.beginPath(); ctx.moveTo(d.x, d.y); ctx.lineTo(e.x, e.y); ctx.stroke() }
           if (y < rows - 1) { const e = dots[(y + 1) * cols + x]; ctx.strokeStyle = `rgba(42,42,48,${0.5 + off * 0.5})`; ctx.beginPath(); ctx.moveTo(d.x, d.y); ctx.lineTo(e.x, e.y); ctx.stroke() }
-          ctx.fillStyle = off > 0.15 ? color : '#5c5c66'
+          ctx.fillStyle = off > 0.15 ? color : tk('--faint', '#5c5c66')
           ctx.globalAlpha = 0.5 + off * 0.5
           ctx.beginPath(); ctx.arc(d.x, d.y, 1.4 + off * 1.6, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1
         }

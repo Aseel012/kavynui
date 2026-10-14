@@ -12,7 +12,7 @@ export default function StepperMorph({ steps = STEPS }) {
       <div className="flex items-center">
         {steps.map((st, i) => (
           <div key={st} className="flex flex-1 items-center last:flex-none">
-            <motion.div animate={{ backgroundColor: i < s ? '#ff6a2b' : '#0f0f11', borderColor: i <= s ? '#ff6a2b' : '#2a2a30', scale: i === s ? 1.12 : 1 }} transition={{ type: 'spring', stiffness: 400, damping: 24 }} className="grid size-8 shrink-0 place-items-center rounded-full border text-xs">
+            <motion.div animate={{ backgroundColor: i < s ? '#ff6a2b' : 'var(--panel)', borderColor: i <= s ? '#ff6a2b' : 'var(--line2)', scale: i === s ? 1.12 : 1 }} transition={{ type: 'spring', stiffness: 400, damping: 24 }} className="grid size-8 shrink-0 place-items-center rounded-full border text-xs">
               <AnimatePresence mode="wait" initial={false}>
                 {i < s ? (
                   <motion.svg key="c" viewBox="0 0 24 24" className="size-4" initial={{ scale: 0, rotate: -40 }} animate={{ scale: 1, rotate: 0 }} exit={{ scale: 0 }}><motion.path d="M5 12l5 5 9-10" fill="none" stroke="#09090a" strokeWidth="3" strokeLinecap="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} /></motion.svg>

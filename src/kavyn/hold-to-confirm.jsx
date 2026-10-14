@@ -31,7 +31,7 @@ export default function HoldToConfirm({ label = 'Hold to delete', duration = 1.4
       <motion.span style={{ scaleX: p }} className="absolute inset-0 origin-left bg-red-500/10" />
       <span className="relative grid size-7 place-items-center">
         <svg viewBox="0 0 28 28" className="absolute inset-0 -rotate-90">
-          <circle cx="14" cy="14" r="12" fill="none" stroke="#2a2a30" strokeWidth="2" />
+          <circle cx="14" cy="14" r="12" fill="none" stroke="var(--line2)" strokeWidth="2" />
           <motion.circle cx="14" cy="14" r="12" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" style={{ pathLength: p }} />
         </svg>
         <AnimatePresence mode="wait">

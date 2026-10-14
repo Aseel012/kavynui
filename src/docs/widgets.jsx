@@ -121,7 +121,7 @@ export function SpringPlayground() {
           </button>
           <span className="mt-2 text-center text-[11px] text-faint">Tap the track to replay</span>
           <svg viewBox={`0 0 ${W} ${H}`} className="mt-3 w-full">
-            <line x1="0" x2={W} y1={H - 12 - (1 / Math.max(1.2, peak)) * (H - 24)} y2={H - 12 - (1 / Math.max(1.2, peak)) * (H - 24)} stroke="#2a2a30" strokeDasharray="3 4" />
+            <line x1="0" x2={W} y1={H - 12 - (1 / Math.max(1.2, peak)) * (H - 24)} y2={H - 12 - (1 / Math.max(1.2, peak)) * (H - 24)} stroke="var(--line2)" strokeDasharray="3 4" />
             <path d={d} fill="none" stroke="#ff6a2b" strokeWidth="1.6" />
           </svg>
         </div>

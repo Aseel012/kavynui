@@ -33,7 +33,7 @@ export default function TerminalReplay({ session = SESSION, title = 'zsh - my-ap
     return () => { alive = false }
   }, [session])
   return (
-    <div className="w-full max-w-md overflow-hidden rounded-xl border border-line2 bg-[#0b0b0d] font-mono text-[12.5px]">
+    <div className="w-full max-w-md overflow-hidden rounded-xl border border-line2 bg-panel font-mono text-[12.5px]">
       <div className="flex items-center gap-1.5 border-b border-line px-3 py-2">
         {[0, 1, 2].map((i) => <span key={i} className="size-2.5 rounded-full bg-line2" />)}
         <span className="ml-2 text-[11px] text-faint">{title}</span>

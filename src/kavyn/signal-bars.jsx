@@ -8,7 +8,7 @@ export default function SignalBars({ bars = 5, label = 'Connecting to printer' }
       <div className="flex h-10 items-end gap-1">
         {Array.from({ length: bars }).map((_, i) => (
           <motion.span key={i} className="block w-2 rounded-sm bg-tx" style={{ height: 8 + (i * 32) / Math.max(bars - 1, 1) }}
-            animate={{ backgroundColor: ['#2a2a30', '#ededef', i === bars - 1 ? '#ff6a2b' : '#ededef', '#2a2a30'] }}
+            animate={{ backgroundColor: ['var(--line2)', 'var(--tx)', i === bars - 1 ? '#ff6a2b' : 'var(--tx)', 'var(--line2)'] }}
             transition={{ repeat: Infinity, duration: 2, delay: i * 0.18, times: [0, 0.2, 0.7, 1] }} />
         ))}
       </div>

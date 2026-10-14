@@ -9,9 +9,9 @@ export default function HourglassFlip({ seconds = 2.4, position = 12 }) {
   return (
     <div className="flex items-center gap-5">
       <motion.svg viewBox="0 0 40 60" className="h-20 w-14" animate={{ rotate: flip * 180 }} transition={{ type: 'spring', stiffness: 200, damping: 14 }}>
-        <path d="M6 4 H34 M6 56 H34" stroke="#ededef" strokeWidth="2.5" strokeLinecap="round" />
-        <path d="M9 6 C9 20, 31 22, 31 6 Z M9 54 C9 40, 31 38, 31 54 Z" fill="none" stroke="#5c5c66" strokeWidth="1.5" />
-        <path d="M9 6 C9 20, 20 28, 20 30 C20 28, 31 20, 31 6 M9 54 C9 40, 20 32, 20 30 C20 32, 31 40, 31 54" fill="none" stroke="#5c5c66" strokeWidth="1.5" />
+        <path d="M6 4 H34 M6 56 H34" stroke="var(--tx)" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M9 6 C9 20, 31 22, 31 6 Z M9 54 C9 40, 31 38, 31 54 Z" fill="none" stroke="var(--faint)" strokeWidth="1.5" />
+        <path d="M9 6 C9 20, 20 28, 20 30 C20 28, 31 20, 31 6 M9 54 C9 40, 20 32, 20 30 C20 32, 31 40, 31 54" fill="none" stroke="var(--faint)" strokeWidth="1.5" />
         <clipPath id="hg-top"><path d="M9 6 C9 20, 20 28, 20 30 C20 28, 31 20, 31 6 Z" /></clipPath>
         <clipPath id="hg-bot"><path d="M9 54 C9 40, 20 32, 20 30 C20 32, 31 40, 31 54 Z" /></clipPath>
         <g clipPath={flip % 2 ? 'url(#hg-bot)' : 'url(#hg-top)'}>

@@ -50,3 +50,7 @@ body { background: var(--bg); color: var(--tx); font-family: var(--font-sans); -
 .no-scrollbar { scrollbar-width: none; } .no-scrollbar::-webkit-scrollbar { display: none; }
 .grid-fade { background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 24px 24px; mask-image: radial-gradient(circle at center, #000 30%, transparent 75%); }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+
+/* Code viewer syntax colors: readable on the dark panel and on the light one. */
+.code-str { color: #d8b27a; } .code-num { color: #9ec3e6; } .code-kw { color: #c79bf0; }
+.light .code-str { color: #9a5b00; } .light .code-num { color: #1d6fb8; } .light .code-kw { color: #8a3fc4; }

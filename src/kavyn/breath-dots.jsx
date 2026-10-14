@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react'
 
-export default function BreathDots({ label = 'Thinking', color = '#ededef' }) {
+export default function BreathDots({ label = 'Thinking', color = 'var(--tx)' }) {
   return (
     <div className="flex items-center gap-3 rounded-full border border-line2 bg-panel px-4 py-2.5">
       <div className="flex items-center gap-1.5">

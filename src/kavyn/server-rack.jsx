@@ -15,7 +15,7 @@ export default function ServerRack({ units = 6, rps = 9 }) {
     return () => clearInterval(t)
   }, [units, rps])
   return (
-    <div className="w-64 rounded-xl border border-line2 bg-[#0b0b0d] p-2">
+    <div className="w-64 rounded-xl border border-line2 bg-panel p-2">
       {hits.map((h, i) => (
         <div key={i} className="mb-1.5 flex h-8 items-center gap-2 rounded-md border border-line bg-panel px-2 last:mb-0">
           <span className="font-mono text-[9px] text-faint">U{String(i + 1).padStart(2, '0')}</span>

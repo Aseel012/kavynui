@@ -9,6 +9,8 @@ const PINS = [
   { lat: 1.35, lon: 103.82, label: 'Singapore' },
 ]
 
+const tk = (n, d) => (typeof document === 'undefined' ? d : getComputedStyle(document.documentElement).getPropertyValue(n).trim() || d)
+
 export default function GlobePins({ pins = PINS, size = 280, speed = 0.12 }) {
   const ref = useRef(null)
   useEffect(() => {
@@ -32,7 +34,7 @@ export default function GlobePins({ pins = PINS, size = 280, speed = 0.12 }) {
       const dt = now - last; last = now
       if (!dragging) rot += (speed * dt) / 1000
       ctx.clearRect(0, 0, size, size)
-      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fillStyle = '#0f0f11'; ctx.fill()
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fillStyle = tk('--panel', '#0f0f11'); ctx.fill()
       const lite = document.documentElement.classList.contains('light')
       for (const p of pts) { const [x, y, z] = proj(p); if (z < 0) continue; ctx.fillStyle = lite ? `rgba(20,20,23,${0.1 + z * 0.4})` : `rgba(237,237,239,${0.08 + z * 0.35})`; ctx.fillRect(x, y, 1.4, 1.4) }
       const pulse = (now / 1400) % 1

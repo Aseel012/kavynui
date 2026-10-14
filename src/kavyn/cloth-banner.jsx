@@ -3,7 +3,9 @@
 import { useCanvasLoop, clamp } from './canvas-loop'
 
 // A launch banner made of cloth. It breathes in a light wind; drag any part to pull it.
-export default function ClothBanner({ colors = ['#ff6a2b', '#ededef'], wind = 1, className = '' }) {
+const tk = (n, d) => (typeof document === 'undefined' ? d : getComputedStyle(document.documentElement).getPropertyValue(n).trim() || d)
+
+export default function ClothBanner({ colors = ['#ff6a2b', 'var(--tx)'], wind = 1, className = '' }) {
   const host = useCanvasLoop((ctx, s) => {
     const cols = 18, rows = 11
     let pts = [], links = [], held = null, gap = 10, ox = 0
@@ -22,7 +24,7 @@ export default function ClothBanner({ colors = ['#ff6a2b', '#ededef'], wind = 1,
       }
     }
     build()
-    const palette = Array.isArray(colors) && colors.length ? colors : ['#ff6a2b', '#ededef']
+    const palette = Array.isArray(colors) && colors.length ? colors : ['#ff6a2b', 'var(--tx)']
     return {
       resize: build,
       down(p) {
@@ -47,18 +49,18 @@ export default function ClothBanner({ colors = ['#ff6a2b', '#ededef'], wind = 1,
           if (!B.pin) { B.x -= dx * f; B.y -= dy * f }
         }
         ctx.clearRect(0, 0, s.w, s.h)
-        ctx.strokeStyle = '#2a2a30'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(ox - 16, 24); ctx.lineTo(s.w - ox + 16, 24); ctx.stroke()
+        ctx.strokeStyle = tk('--line2', '#2a2a30'); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(ox - 16, 24); ctx.lineTo(s.w - ox + 16, 24); ctx.stroke()
         for (let y = 0; y < rows - 1; y++) for (let x = 0; x < cols - 1; x++) {
           const a = pts[y * cols + x], b = pts[y * cols + x + 1], c = pts[(y + 1) * cols + x + 1], d = pts[(y + 1) * cols + x]
           const shade = clamp(0.55 + ((b.x - a.x) - gap) * 0.04 + (d.y - a.y - gap) * -0.02 + (a.x - d.x) * 0.02, 0.25, 1.1)
           const band = Math.floor(y / 2) % palette.length
-          ctx.fillStyle = palette[band]; ctx.globalAlpha = 1
+          ctx.fillStyle = /^var\(/.test(palette[band]) ? tk(palette[band].slice(4, -1).trim(), '#ededef') : palette[band]; ctx.globalAlpha = 1
           ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.lineTo(c.x, c.y); ctx.lineTo(d.x, d.y); ctx.closePath(); ctx.fill()
           ctx.fillStyle = shade < 1 ? `rgba(0,0,0,${(1 - shade) * 0.8})` : `rgba(255,255,255,${(shade - 1) * 0.6})`
           ctx.fill()
         }
         ctx.globalAlpha = 1
-        for (const q of pts) if (q.pin) { ctx.fillStyle = '#8a8a93'; ctx.beginPath(); ctx.arc(q.x, q.y, 3, 0, Math.PI * 2); ctx.fill() }
+        for (const q of pts) if (q.pin) { ctx.fillStyle = tk('--mute', '#8a8a93'); ctx.beginPath(); ctx.arc(q.x, q.y, 3, 0, Math.PI * 2); ctx.fill() }
       },
     }
   }, [JSON.stringify(colors), wind])

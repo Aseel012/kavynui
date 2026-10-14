@@ -8,7 +8,7 @@ const SEQ = [{ keys: ['⌘', 'K'], label: 'Open command menu' }, { keys: ['⌘',
 function Cap({ k, down }) {
   return (
     <motion.kbd
-      animate={{ y: down ? 4 : 0, boxShadow: down ? '0 0px 0 #1e1e22, 0 0 0 1px #ff6a2b55' : '0 4px 0 #1e1e22, 0 0 0 0px #ff6a2b00' }}
+      animate={{ y: down ? 4 : 0, boxShadow: down ? '0 0px 0 var(--line), 0 0 0 1px #ff6a2b55' : '0 4px 0 var(--line), 0 0 0 0px #ff6a2b00' }}
       transition={{ type: 'spring', stiffness: 700, damping: 24 }}
       className="grid h-14 min-w-14 place-items-center rounded-xl border border-line2 bg-panel2 px-3 font-sans text-xl text-tx"
     >

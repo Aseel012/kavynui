@@ -5,8 +5,8 @@ import { motion, useScroll, useTransform } from 'motion/react'
 
 const RIDGES = [
   { d: 'M0 120 L60 70 L110 100 L170 40 L240 95 L300 60 L360 110 L400 80 L400 200 L0 200Z', c: '#26262d', speed: 0.15 },
-  { d: 'M0 140 L50 110 L120 150 L190 90 L250 135 L320 100 L400 145 L400 200 L0 200Z', c: '#1b1b20', speed: 0.35 },
-  { d: 'M0 165 L70 140 L140 170 L210 130 L290 168 L350 145 L400 170 L400 200 L0 200Z', c: '#111114', speed: 0.6 },
+  { d: 'M0 140 L50 110 L120 150 L190 90 L250 135 L320 100 L400 145 L400 200 L0 200Z', c: 'color-mix(in oklab, var(--bg) 78%, #6b5a78)', speed: 0.35 },
+  { d: 'M0 165 L70 140 L140 170 L210 130 L290 168 L350 145 L400 170 L400 200 L0 200Z', c: 'color-mix(in oklab, var(--bg) 60%, #3a3040)', speed: 0.6 },
 ]
 
 // A travel-style story. Ridges, sun and words move at different depths as you scroll.
@@ -14,7 +14,7 @@ export default function DepthStory({ title = 'Into the ridge', subtitle = 'Four 
   const box = useRef(null), track = useRef(null)
   const { scrollYProgress: p } = useScroll({ container: box, target: track, offset: ['start start', 'end end'] })
   const sunY = useTransform(p, [0, 1], ['10%', '70%'])
-  const sky = useTransform(p, [0, 1], ['#1a1210', '#07070a'])
+  const sky = useTransform(p, [0, 1], ['color-mix(in oklab, var(--bg) 70%, #ffb99a)', 'var(--bg)'])
   const titleY = useTransform(p, [0, 0.4], ['0%', '-60%'])
   const titleO = useTransform(p, [0, 0.35], [1, 0])
   const endO = useTransform(p, [0.6, 0.85], [0, 1])
@@ -37,7 +37,7 @@ export default function DepthStory({ title = 'Into the ridge', subtitle = 'Four 
               <path d={r.d} fill={r.c} />
             </motion.svg>
           ))}
-          <div className="absolute inset-x-0 bottom-0 h-[22%] bg-[#0b0b0d]" />
+          <div className="absolute inset-x-0 bottom-0 h-[22%] bg-panel" />
           <motion.div style={{ opacity: endO, y: endY }} className="absolute inset-x-0 bottom-[8%] z-10 text-center">
             <div className="text-[11px] uppercase tracking-widest text-acc">Day one</div>
             <div className="mt-1 text-sm text-tx">Camp at 2,900 m, under the ridge line.</div>

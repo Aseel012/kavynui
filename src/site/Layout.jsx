@@ -28,7 +28,7 @@ function SearchButton({ onClick, compact }) {
     </button>
   )
   return (
-    <button onClick={onClick} className="flex h-8 w-56 items-center gap-2 rounded-lg border border-line2 bg-panel pl-3 pr-1.5 text-sm text-faint hover:border-[#3a3a42]">
+    <button onClick={onClick} className="flex h-8 w-56 items-center gap-2 rounded-lg border border-line2 bg-panel pl-3 pr-1.5 text-sm text-faint hover:border-faint">
       <svg viewBox="0 0 24 24" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
       <span className="flex-1 text-left">Search</span>
       <kbd className="rounded border border-line2 px-1.5 font-mono text-[10px]">⌘K</kbd>

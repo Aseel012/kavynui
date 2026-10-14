@@ -8,7 +8,7 @@ export default function ShimmerText({ children = 'Generating preview…', speed 
       <span
         className="bg-clip-text text-transparent"
         style={{
-          backgroundImage: 'linear-gradient(100deg, #5c5c66 35%, #ededef 50%, #5c5c66 65%)',
+          backgroundImage: 'linear-gradient(100deg, var(--faint) 35%, var(--tx) 50%, var(--faint) 65%)',
           backgroundSize: '220% 100%',
           animation: `kv-shimmer ${speed}s linear infinite`,
         }}
