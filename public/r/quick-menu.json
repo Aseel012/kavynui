@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "quick-menu",
+  "title": "Quick Menu",
+  "type": "registry:component",
+  "description": "Inline pill that pops a quick option menu above it",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/quick-menu.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/quick-menu.jsx",
+      "content": "'use client'\n\nimport { useEffect, useId, useRef, useState } from 'react'\nimport { motion, AnimatePresence } from 'motion/react'\n\nconst Icon = ({ children, filled = false }) => (\n  <svg viewBox=\"0 0 24 24\" className=\"size-[18px] shrink-0\" fill={filled ? 'currentColor' : 'none'} stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\" strokeLinejoin=\"round\" aria-hidden=\"true\">{children}</svg>\n)\nconst LockIcon = () => <Icon filled><path d=\"M7 10V8a5 5 0 0 1 10 0v2\" fill=\"none\" /><rect x=\"5\" y=\"10\" width=\"14\" height=\"11\" rx=\"2.5\" stroke=\"none\" /></Icon>\nconst GlobeIcon = () => <Icon><circle cx=\"12\" cy=\"12\" r=\"9\" /><path d=\"M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9S14.6 18.4 12 21M12 3C9.4 5.6 8.1 8.6 8.1 12s1.3 6.4 3.9 9\" /></Icon>\n\nconst DEFAULT_OPTIONS = [\n  { value: 'private', label: 'Private', icon: <LockIcon /> },\n  { value: 'public', label: 'Public', icon: <GlobeIcon /> },\n]\n\nconst SPRING = { type: 'spring', stiffness: 520, damping: 34, mass: 0.7 }\nconst BLUR_IN = { opacity: 0, scale: 0.84, y: 10, filter: 'blur(8px)' }\n\n/** @param {{ options?: any, value?: any, defaultValue?: any, onChange?: any, closeOnSelect?: any, className?: any }} props */\nexport default function QuickMenu({ options = DEFAULT_OPTIONS, value = undefined, defaultValue = undefined, onChange = undefined, closeOnSelect = true, className = '' }) {\n  const [inner, setInner] = useState(defaultValue ?? options[0]?.value)\n  const current = value !== undefined ? value : inner\n  const [open, setOpen] = useState(false)\n  const root = useRef(null)\n  const id = useId()\n  const active = options.find((o) => o.value === current) ?? options[0]\n\n  useEffect(() => {\n    if (!open) return\n    const away = (e) => { if (root.current && !root.current.contains(e.target)) setOpen(false) }\n    const esc = (e) => { if (e.key === 'Escape') setOpen(false) }\n    document.addEventListener('pointerdown', away)\n    document.addEventListener('keydown', esc)\n    return () => { document.removeEventListener('pointerdown', away); document.removeEventListener('keydown', esc) }\n  }, [open])\n\n  const pick = (o) => {\n    if (value === undefined) setInner(o.value)\n    onChange?.(o.value, o)\n    if (closeOnSelect) setOpen(false)\n  }\n\n  return (\n    <div ref={root} className={`relative inline-flex ${className}`}>\n      <AnimatePresence>\n        {open && (\n          <motion.div\n            id={id} role=\"menu\"\n            initial={BLUR_IN} animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }} exit={{ ...BLUR_IN, transition: { duration: 0.16 } }}\n            transition={SPRING}\n            style={{ transformOrigin: '50% 100%' }}\n            className=\"absolute bottom-[calc(100%+12px)] left-1/2 z-10 -translate-x-1/2\"\n          >\n            <div className=\"relative flex gap-1.5 rounded-[20px] bg-line p-1.5 shadow-[0_12px_30px_-12px_rgba(0,0,0,.25)]\">\n              {options.map((o) => {\n                const on = o.value === current\n                return (\n                  <button\n                    key={o.value} type=\"button\" role=\"menuitemradio\" aria-checked={on} onClick={() => pick(o)}\n                    className={`flex h-11 items-center gap-2 whitespace-nowrap rounded-[14px] bg-panel px-4 text-[15px] font-medium outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-acc/60 ${on ? 'text-tx' : 'text-faint hover:text-mute'}`}\n                  >\n                    {o.icon}{o.label}\n                  </button>\n                )\n              })}\n              <span aria-hidden=\"true\" className=\"absolute left-1/2 top-full size-4 -translate-x-1/2 -translate-y-[8px] rotate-45 rounded-[4px] bg-line\" />\n            </div>\n          </motion.div>\n        )}\n      </AnimatePresence>\n      <motion.button\n        layout type=\"button\" aria-haspopup=\"menu\" aria-expanded={open} aria-controls={open ? id : undefined}\n        onClick={() => setOpen((v) => !v)}\n        transition={SPRING}\n        style={{ borderRadius: 999 }}\n        className=\"flex h-11 items-center gap-2 bg-line px-4 text-[15px] font-medium text-mute outline-none focus-visible:ring-2 focus-visible:ring-acc/60\"\n      >\n        <AnimatePresence mode=\"popLayout\" initial={false}>\n          <motion.span\n            key={active?.value} layout=\"position\"\n            initial={{ opacity: 0, scale: 0.8, filter: 'blur(6px)' }} animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }} exit={{ opacity: 0, scale: 0.8, filter: 'blur(6px)' }}\n            transition={{ duration: 0.26, ease: [0.3, 0.7, 0.2, 1] }}\n            className=\"flex items-center gap-2\"\n          >\n            {active?.icon}{active?.label}\n          </motion.span>\n        </AnimatePresence>\n        <motion.svg layout=\"position\" viewBox=\"0 0 24 24\" className=\"size-4 shrink-0 text-faint\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2.2\" strokeLinecap=\"round\" strokeLinejoin=\"round\" animate={{ rotate: open ? 180 : 0 }} transition={SPRING} aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\" /></motion.svg>\n      </motion.button>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)"
+    },
+    "light": {
+      "bg": "#fafafa",
+      "panel": "#ffffff",
+      "panel2": "#f0f0f3",
+      "line": "#e6e6ea",
+      "line2": "#d6d6dd",
+      "tx": "#141417",
+      "mute": "#5f5f6b",
+      "faint": "#a2a2ab",
+      "acc": "#e14e0b"
+    },
+    "dark": {
+      "bg": "#09090a",
+      "panel": "#0f0f11",
+      "panel2": "#141417",
+      "line": "#1e1e22",
+      "line2": "#2a2a30",
+      "tx": "#ededef",
+      "mute": "#8a8a93",
+      "faint": "#5c5c66",
+      "acc": "#ff6a2b"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#fafafa",
+      "--panel": "#ffffff",
+      "--panel2": "#f0f0f3",
+      "--line": "#e6e6ea",
+      "--line2": "#d6d6dd",
+      "--tx": "#141417",
+      "--mute": "#5f5f6b",
+      "--faint": "#a2a2ab",
+      "--acc": "#e14e0b"
+    }
+  }
+}

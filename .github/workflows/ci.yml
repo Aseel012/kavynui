@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Static checks (catalog, stray files, CSP)
+        run: node scripts/check.mjs
+      - name: Build
+        run: npm run build
+      - name: Serve build
+        run: |
+          npx vite preview --host 127.0.0.1 --port 4173 &
+          npx --yes wait-on http://127.0.0.1:4173 --timeout 30000
+      - name: Registry check
+        run: npm run registry:verify
+      - name: Smoke test (key routes, fails on console errors)
+        env:
+          BASE: http://127.0.0.1:4173
+        run: node scripts/smoke.mjs --only /,/components,/docs,/blog,/about,quick-menu,waitlist-form

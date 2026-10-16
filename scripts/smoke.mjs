@@ -25,9 +25,9 @@ for (const r of routes) {
   const page = await browser.newPage()
   if (process.env.LIGHT) await page.evaluateOnNewDocument(() => { try { localStorage.setItem('kavynui.theme', 'light') } catch (e) {} })
   await page.setViewport(process.env.MOBILE ? { width: 390, height: 844, deviceScaleFactor: 2, isMobile: true, hasTouch: true } : { width: 1280, height: 860 })
-  page.on('console', (m) => { if (m.type() === 'error' || m.type() === 'warning') errors.push(`[${m.type()}] ${current}: ${m.text()}`) })
+  page.on('console', (m) => { if ((m.location()?.url || '').includes('/_vercel/')) return; if (m.type() === 'error' || m.type() === 'warning') errors.push(`[${m.type()}] ${current}: ${m.text()}`) })
   page.on('pageerror', (e) => errors.push(`[pageerror] ${current}: ${e.message}`))
-  page.on('requestfailed', (r) => errors.push(`[requestfailed] ${current}: ${r.url()}`))
+  page.on('requestfailed', (r) => r.url().includes('/_vercel/') || errors.push(`[requestfailed] ${current}: ${r.url()}`))
   // load, then wait for real request quiet. (Chrome's networkidle lifecycle event can stall behind a busy WebGL canvas in headless.)
   try { await page.goto(BASE + r, { waitUntil: 'load', timeout: 15000 }); await page.waitForNetworkIdle({ idleTime: 500, timeout: 15000 }) } catch (e) { errors.push(`[goto] ${r}: ${e.message}`) }
   await new Promise((res) => setTimeout(res, 900))

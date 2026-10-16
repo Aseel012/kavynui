@@ -5,3 +5,16 @@ dist
 .env.local
 .env.*.local
 .vercel
+
+# scratch / delivery leftovers: never commit these
+*.patch
+*.diff
+*.tar.gz
+*.zip
+*.zip.txt
+*.orig
+*.rej
+kavyn-*-fix*/
+kavyn-*-files*
+coverage
+*.log
