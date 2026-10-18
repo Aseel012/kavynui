@@ -4,7 +4,7 @@
 npx shadcn@latest add https://kavynui.com/r/liquid-button.json
 ```
 
-138 React components, blocks and backgrounds. Choose a component at [kavynui.com](https://kavynui.com), then copy its install command. Requires React and a shadcn-initialized Tailwind v4 project. Source files, local helpers, npm dependencies and theme tokens are installed together.
+140 React components, blocks and backgrounds. Choose a component at [kavynui.com](https://kavynui.com), then copy its install command. Requires React and a shadcn-initialized Tailwind v4 project. Source files, local helpers, npm dependencies and theme tokens are installed together.
 
 For shorter commands, merge this into `components.json`:
 
