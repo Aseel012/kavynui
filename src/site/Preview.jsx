@@ -89,7 +89,8 @@ const WAITLIST_PEOPLE = ['AK', 'MS', 'RJ', 'PN', 'DV', 'SL', 'TK', 'IB', 'AR', '
 const DEMO_PROPS = {
   'waitlist-form': { autoJoin: true, autoJoinInterval: 4800, people: WAITLIST_PEOPLE },
   dropzone: { autoDemo: true },
-  'avatar-upload': { demoSrc: '/avatars/p3.jpg' },
+  // Replace public/avatars/pfp.jpg to change the profile photo shown in every Avatar Upload demo.
+  'avatar-upload': { demoSrc: '/avatars/pfp.jpg' },
 }
 
 export function Loading({ label }) {

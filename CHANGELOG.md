@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11 home page
+
+- Rebuilt the home page centered: new headline, a "New" pill and install command for the latest component, then live components straight away in a tabbed showcase.
+- Removed the "Everything, by job" list.
+- The home page is now driven entirely by `catalog.json` (`featured`, `new` + `added`, `kit`); see "Adding a component" in the README.
+- Avatar Upload demo photo is `public/avatars/pfp.jpg`: replace that file to change it.
+- Catalog tiles keep the full component name visible; the use case truncates instead.
+
 ## 2026-11 redesign
 
 ### Design

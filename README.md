@@ -26,6 +26,16 @@ npm run dev
 npm run build
 ```
 
+## Adding a component
+
+1. Put the file in `src/kavyn/<slug>.jsx` with a default export.
+2. Add an entry to `src/data/catalog.json` (slug, name, export, family, description, useCase, tags).
+3. Optional fields drive the home page, with no edits to `Home.jsx`:
+   - `"tags": ["featured"]`: shown in the live showcase under its family tab.
+   - `"tags": ["new"]` plus `"added": "YYYY-MM-DD"`: a tile in "Just added"; the newest also gets the hero pill and install command.
+   - `"kit": { "role": "Pricing", "on": true }` (sections only): appears in "Assemble a page", switched on by default when `on` is true.
+4. `npm run build` regenerates the registry, sitemap and llms.txt. `npm test` checks the entry is valid.
+
 ## Test
 
 ```bash

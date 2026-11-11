@@ -10,11 +10,11 @@ export default function Card({ item, page = 'components' }) {
         <LazyDemo item={item} page={page} mode="thumb" />
       </div>
       <Link to={`/components/${item.slug}`} className="mt-3 flex items-baseline justify-between gap-3 px-1">
-        <span className="flex min-w-0 items-center gap-2">
-          <h3 className="truncate text-[15px] font-medium text-tx">{item.name}</h3>
+        <span className="flex shrink-0 items-center gap-2">
+          <h3 className="text-[15px] font-medium text-tx">{item.name}</h3>
           {item.tags.includes('new') && <span className="rounded-full bg-panel2 px-1.5 py-px text-[11px] text-mute">New</span>}
         </span>
-        <span className="truncate text-[13px] text-faint group-hover:text-mute">{item.useCase}</span>
+        <span className="min-w-0 truncate text-[13px] text-faint group-hover:text-mute">{item.useCase}</span>
       </Link>
     </motion.article>
   )

@@ -87,7 +87,11 @@
       "dependencies": [
         "motion",
         "react"
-      ]
+      ],
+      "kit": {
+        "role": "Hero",
+        "on": true
+      }
     },
     {
       "slug": "feature-bento",
@@ -102,7 +106,11 @@
       "dependencies": [
         "motion",
         "react"
-      ]
+      ],
+      "kit": {
+        "role": "Features",
+        "on": true
+      }
     },
     {
       "slug": "proof-wall",
@@ -117,7 +125,11 @@
       "dependencies": [
         "motion",
         "react"
-      ]
+      ],
+      "kit": {
+        "role": "Social proof",
+        "on": false
+      }
     },
     {
       "slug": "pricing-morph",
@@ -132,7 +144,11 @@
       "dependencies": [
         "motion",
         "react"
-      ]
+      ],
+      "kit": {
+        "role": "Pricing",
+        "on": true
+      }
     },
     {
       "slug": "faq-accordion",
@@ -147,7 +163,11 @@
       "dependencies": [
         "motion",
         "react"
-      ]
+      ],
+      "kit": {
+        "role": "FAQ",
+        "on": true
+      }
     },
     {
       "slug": "globe-cta",
@@ -166,7 +186,11 @@
       "dependencies": [
         "motion",
         "react"
-      ]
+      ],
+      "kit": {
+        "role": "Call to action",
+        "on": false
+      }
     },
     {
       "slug": "wordmark-footer",
@@ -182,7 +206,11 @@
       "dependencies": [
         "motion",
         "react"
-      ]
+      ],
+      "kit": {
+        "role": "Footer",
+        "on": true
+      }
     },
     {
       "slug": "changelog-feed",
@@ -256,7 +284,8 @@
       "description": "Gooey blobs merge and split on hover",
       "useCase": "Primary CTA",
       "tags": [
-        "original"
+        "original",
+        "featured"
       ],
       "dependencies": [
         "motion",
@@ -270,7 +299,9 @@
       "family": "buttons",
       "description": "Label drifts toward the cursor, pill stretches back",
       "useCase": "Newsletter signup",
-      "tags": [],
+      "tags": [
+        "featured"
+      ],
       "dependencies": [
         "motion",
         "react"
@@ -323,7 +354,8 @@
       "description": "Ring fills while held, then snaps to a check",
       "useCase": "Delete account",
       "tags": [
-        "original"
+        "original",
+        "featured"
       ],
       "dependencies": [
         "motion",
@@ -338,7 +370,8 @@
       "description": "Email capture with avatar stack social proof, live join count and success state",
       "useCase": "Landing page waitlists",
       "tags": [
-        "original"
+        "original",
+        "featured"
       ],
       "deps": [],
       "dependencies": [
@@ -355,8 +388,10 @@
       "description": "Pick or drop a photo, see it cropped round, watch the ring fill, then replace or remove it",
       "tags": [
         "new",
-        "original"
-      ]
+        "original",
+        "featured"
+      ],
+      "added": "2026-11-11"
     },
     {
       "slug": "dropzone",
@@ -382,7 +417,8 @@
       "description": "Inline pill that pops a quick option menu above it",
       "useCase": "Visibility and quick settings",
       "tags": [
-        "original"
+        "original",
+        "featured"
       ],
       "deps": [],
       "dependencies": [
@@ -410,7 +446,9 @@
       "family": "nav",
       "description": "A lens slides between items and magnifies",
       "useCase": "Marketing nav",
-      "tags": [],
+      "tags": [
+        "featured"
+      ],
       "dependencies": [
         "motion",
         "react"
@@ -424,7 +462,8 @@
       "description": "Icons grow with cursor distance on a spring",
       "useCase": "App launcher",
       "tags": [
-        "original"
+        "original",
+        "featured"
       ],
       "dependencies": [
         "motion",
@@ -520,7 +559,9 @@
       "family": "nav",
       "description": "Step line morphs into a check",
       "useCase": "Onboarding",
-      "tags": [],
+      "tags": [
+        "featured"
+      ],
       "dependencies": [
         "motion",
         "react"
@@ -549,7 +590,8 @@
       "description": "The last word rolls to the next, letter by letter",
       "useCase": "Hero tagline",
       "tags": [
-        "original"
+        "original",
+        "featured"
       ],
       "dependencies": [
         "motion",
@@ -564,7 +606,8 @@
       "description": "Letters decode from noise, left to right, again on hover",
       "useCase": "Dev-tool headline",
       "tags": [
-        "original"
+        "original",
+        "featured"
       ],
       "dependencies": [
         "react"
@@ -617,7 +660,9 @@
       "family": "type",
       "description": "Digits roll with a mechanical overshoot",
       "useCase": "Revenue dashboard",
-      "tags": [],
+      "tags": [
+        "featured"
+      ],
       "dependencies": [
         "motion",
         "react"
@@ -845,7 +890,8 @@
       "description": "Panels share a row; the active one expands",
       "useCase": "Product pillars",
       "tags": [
-        "original"
+        "original",
+        "featured"
       ],
       "dependencies": [
         "motion",
@@ -875,7 +921,8 @@
       "description": "Notifications pile up; tap to fan them out",
       "useCase": "Activity inbox",
       "tags": [
-        "original"
+        "original",
+        "featured"
       ],
       "dependencies": [
         "motion",
@@ -921,7 +968,9 @@
       "family": "interactive",
       "description": "Angled blade wipes between two images",
       "useCase": "Photo editor",
-      "tags": [],
+      "tags": [
+        "featured"
+      ],
       "dependencies": [
         "motion",
         "react"
@@ -1028,7 +1077,8 @@
       "description": "90-day status bars that rise in, with a per-day tooltip",
       "useCase": "Service health",
       "tags": [
-        "original"
+        "original",
+        "featured"
       ],
       "dependencies": [
         "motion",
@@ -1072,7 +1122,8 @@
       "description": "Top countries by traffic, re-ranking as shares shift",
       "useCase": "Traffic breakdown",
       "tags": [
-        "original"
+        "original",
+        "featured"
       ],
       "dependencies": [
         "motion",
@@ -1103,7 +1154,8 @@
       "useCase": "Cache hit ratio",
       "tags": [
         "new",
-        "original"
+        "original",
+        "featured"
       ],
       "dependencies": [
         "motion",

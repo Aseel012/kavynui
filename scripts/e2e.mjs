@@ -40,6 +40,23 @@ async function test(name, fn) {
   finally { await page?.close?.() }
 }
 
+await test('home: hero pill links to the newest component from catalog.json', async () => {
+  const p = await open('/')
+  const href = await p.$eval('main a[href^="/components/"]', (a) => a.getAttribute('href'))
+  assert(href === '/components/avatar-upload', `pill points to ${href}`)
+  return p
+})
+
+await test('home: showcase tabs switch to that family\'s live components', async () => {
+  const p = await open('/')
+  const names = () => p.$$eval('[role=tabpanel] a span:first-child', (s) => s.map((x) => x.textContent))
+  assert((await names()).includes('Liquid Button'), 'buttons not shown first')
+  await clickText(p, 'button', 'Forms & inputs')
+  await p.waitForFunction(() => [...document.querySelectorAll('[role=tabpanel] a span:first-child')].some((s) => s.textContent === 'Avatar Upload'))
+  assert(await p.$eval('[role=tab][aria-selected=true]', (t) => t.textContent) === 'Forms & inputs', 'tab state wrong')
+  return p
+})
+
 await test('home: page kit adds a section to the command and the page file', async () => {
   const p = await open('/')
   const before = await text(p, '[data-testid=kit-command]')
