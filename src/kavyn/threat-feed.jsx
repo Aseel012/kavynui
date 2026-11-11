@@ -37,8 +37,8 @@ export default function ThreatFeed({ rows = 5, interval = 1400 }) {
       <ul className="relative">
         <AnimatePresence initial={false}>
           {items.map((it, i) => (
-            <motion.li key={it.id} layout initial={{ opacity: 0, y: -18, backgroundColor: 'rgba(255,106,43,0.10)' }}
-              animate={{ opacity: 1 - i * 0.12, y: 0, backgroundColor: 'rgba(255,106,43,0)' }} exit={{ opacity: 0 }}
+            <motion.li key={it.id} layout initial={{ opacity: 0, y: -18, backgroundColor: 'var(--panel2)' }}
+              animate={{ opacity: 1 - i * 0.12, y: 0, backgroundColor: 'var(--panel)' }} exit={{ opacity: 0 }}
               transition={{ type: 'spring', stiffness: 380, damping: 32, backgroundColor: { duration: 1.2 } }}
               className="grid grid-cols-[34px_1fr_auto] items-center gap-3 border-b border-line px-4 py-2.5 text-xs last:border-0">
               <span className="rounded bg-panel2 px-1.5 py-0.5 text-center font-mono text-[10px] text-mute">{it.cc}</span>

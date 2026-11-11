@@ -4,11 +4,11 @@ import { useLayoutEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
 
 const WORK = [
-  { t: 'Northwind Air', k: 'Booking app', g: 'from-[#ff6a2b] to-[#7a1f0a]' },
-  { t: 'Ledgerly', k: 'Finance dashboard', g: 'from-[#3b82f6] to-[#0b1d4a]' },
-  { t: 'Fieldnote', k: 'Writing tool', g: 'from-[#22c55e] to-[#07301a]' },
-  { t: 'Parcel', k: 'Delivery tracker', g: 'from-[#a855f7] to-[#2a0b4a]' },
-  { t: 'Tidewater', k: 'Weather', g: 'from-[#06b6d4] to-[#032a33]' },
+  { t: 'Northwind Air', k: 'Booking app', g: 'from-[#a8644a] to-[#2e1810]' },
+  { t: 'Ledgerly', k: 'Finance dashboard', g: 'from-[#8a8556] to-[#24220f]' },
+  { t: 'Fieldnote', k: 'Writing tool', g: 'from-[#6b7f5a] to-[#1b2216]' },
+  { t: 'Parcel', k: 'Delivery tracker', g: 'from-[#7a4a63] to-[#24131c]' },
+  { t: 'Tidewater', k: 'Weather', g: 'from-[#b9b4ab] to-[#3a3833]' },
 ]
 
 // Case studies on a sideways rail. Scrolling down moves the rail left.

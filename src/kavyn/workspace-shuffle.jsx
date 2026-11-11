@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 
-const WS = [{ n: 'Acme Studio', c: '#ff6a2b', m: 12 }, { n: 'Personal', c: '#6b8f5e', m: 1 }, { n: 'Side project', c: '#3f7cac', m: 3 }]
+const WS = [{ n: 'Acme Studio', c: '#c8a27a', m: 12 }, { n: 'Personal', c: '#6b7f5a', m: 1 }, { n: 'Side project', c: '#7a4a63', m: 3 }]
 
 export default function WorkspaceShuffle({ workspaces = WS }) {
   const [order, setOrder] = useState(workspaces.map((_, i) => i))

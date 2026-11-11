@@ -32,12 +32,12 @@ writeFileSync(join(root, 'public/robots.txt'), `User-agent: *\nAllow: /\n\nSitem
 const fams = catalog.families.map((f) => `- ${f.name}: ${f.blurb}`).join('\n')
 writeFileSync(join(root, 'public/llms.txt'), `# kavynUI
 
-> kavynUI is an open-source (MIT) library of ${catalog.components.length} animated React components and blocks - dark-mode-first with a full light theme, minimal, copy-paste owned. Every component ships with a live animation, a real use case and graceful fallbacks (WebGL degrades to CSS gradients, reduced-motion variants). No dependencies beyond React, Tailwind CSS and Motion.
+> kavynUI is an open-source (MIT) library of ${catalog.components.length} animated React components and page sections, monochrome (iOS system grays) with dark and light themes, copy-paste owned. Every component ships with a live animation, a real use case and graceful fallbacks (WebGL degrades to CSS gradients, reduced-motion variants). No dependencies beyond React, Tailwind CSS and Motion.
 
 ## Pages
 
 - [Components](${SITE}/components): full searchable catalog of every component and block
-- [Blocks](${SITE}/blocks): whole page sections
+- [Sections](${SITE}/blocks): whole page sections (hero, features, pricing, FAQ, CTA, footer)
 - [Backgrounds](${SITE}/backgrounds): gradient and shader backgrounds
 - [Templates](${SITE}/templates): complete end-to-end product designs by Enzo, sold as source-you-own templates; the component library stays free (MIT)
 - [Docs](${SITE}/docs): installation, theming, usage, motion, accessibility
@@ -53,10 +53,15 @@ ${fams}
 - Every component respects prefers-reduced-motion and works in light and dark mode.
 - WebGL pieces render a CSS gradient first and only fade in the GPU version when it runs; they pause off-screen and in background tabs.
 - License: MIT. Attribution appreciated, not required.
-- Full component index: ${SITE}/llms-full.txt
+- Full component index with install commands: ${SITE}/llms-full.txt
+- shadcn registry index (full source for every item): ${SITE}/r/index.json
+- Install any item: npx shadcn@latest add ${SITE}/r/<slug>.json
+- Register the whole library once: npx shadcn@latest registry add @kavynui=${SITE}/r/{name}.json
+  then search with \`npx shadcn@latest search @kavynui -q <words>\` and install with \`npx shadcn@latest add @kavynui/<slug>\`
+- Agents: \`npx shadcn@latest mcp init\` gives your coding agent shadcn's MCP server, which searches and installs from registered registries.
 `)
 
-const lines = catalog.components.map((c) => `- [${c.name}](${SITE}/components/${c.slug}) (${c.family}): ${c.description} Use case: ${c.useCase}.`)
+const lines = catalog.families.map((f) => [`## ${f.name}`, '', ...catalog.components.filter((c) => c.family === f.id).map((c) => `- [${c.name}](${SITE}/components/${c.slug}): ${c.description}. Use case: ${c.useCase}. Install: \`npx shadcn@latest add ${SITE}/r/${c.slug}.json\``), ''].join('\n'))
 writeFileSync(join(root, 'public/llms-full.txt'), `# kavynUI - full component index
 
 > ${catalog.components.length} components in ${catalog.families.length} families. Copy any file into a React + Tailwind project and ship it. Source and docs: ${SITE}

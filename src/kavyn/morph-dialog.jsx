@@ -17,7 +17,7 @@ export default function MorphDialog({ title = 'Edge Functions', meta = 'v2.4 · 
     <div className="relative grid h-[300px] w-[360px] max-w-full place-items-center">
       <motion.button layoutId={`card-${id}`} type="button" onClick={() => setOpen(true)} style={{ borderRadius: 16 }}
         className="w-60 border border-line2 bg-panel p-4 text-left">
-        <motion.div layoutId={`art-${id}`} className="h-20 rounded-lg bg-[linear-gradient(135deg,#ff6a2b,#3a1206)]" />
+        <motion.div layoutId={`art-${id}`} className="h-20 rounded-lg bg-[linear-gradient(135deg,#c8a27a,#3d2b1c)]" />
         <motion.div layoutId={`t-${id}`} className="mt-3 text-sm font-medium text-tx">{title}</motion.div>
         <motion.div layoutId={`m-${id}`} className="text-xs text-mute">{meta}</motion.div>
       </motion.button>
@@ -27,7 +27,7 @@ export default function MorphDialog({ title = 'Edge Functions', meta = 'v2.4 · 
             <motion.div className="absolute inset-0 z-10 rounded-2xl bg-bg/70 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setOpen(false)} />
             <motion.div layoutId={`card-${id}`} role="dialog" aria-modal="true" aria-label={title} style={{ borderRadius: 20 }}
               className="absolute inset-3 z-20 overflow-hidden border border-line2 bg-panel p-5">
-              <motion.div layoutId={`art-${id}`} className="h-24 rounded-xl bg-[linear-gradient(135deg,#ff6a2b,#3a1206)]" />
+              <motion.div layoutId={`art-${id}`} className="h-24 rounded-xl bg-[linear-gradient(135deg,#c8a27a,#3d2b1c)]" />
               <div className="mt-4 flex items-start justify-between">
                 <div>
                   <motion.div layoutId={`t-${id}`} className="text-base font-medium text-tx">{title}</motion.div>

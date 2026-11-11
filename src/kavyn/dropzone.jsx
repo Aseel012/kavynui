@@ -1,26 +1,24 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 
-// Reference accent (royal indigo sampled from the source video), not the site token.
-const ACCENT = '#3962f9'
-const RED = '#f43f5e'
+const RED = '#e5484d'
 
 const EXT_COLORS = {
-  pdf: '#ef4444',
-  png: '#a855f7',
-  jpg: '#3b82f6',
-  jpeg: '#3b82f6',
-  gif: '#ec4899',
-  svg: '#f59e0b',
-  xlsx: '#22c55e',
-  xls: '#22c55e',
-  csv: '#22c55e',
-  doc: '#3b82f6',
-  docx: '#3b82f6',
-  pptx: '#f97316',
-  mp4: '#f59e0b',
-  mov: '#f59e0b',
-  mp3: '#8b5cf6',
+  pdf: '#e5484d',
+  png: '#c8a27a',
+  jpg: '#c8a27a',
+  jpeg: '#c8a27a',
+  gif: '#c8a27a',
+  svg: '#c8a27a',
+  xlsx: '#30a46c',
+  xls: '#30a46c',
+  csv: '#30a46c',
+  doc: '#a1a1a6',
+  docx: '#a1a1a6',
+  pptx: '#e5793c',
+  mp4: '#d6409f',
+  mov: '#d6409f',
+  mp3: '#b07fd6',
   zip: '#8b8b96',
   txt: '#8b8b96',
   json: '#8b8b96',
@@ -29,7 +27,9 @@ const extOf = (name) => (name.includes('.') ? name.split('.').pop().toLowerCase(
 const extColor = (ext) => EXT_COLORS[ext] || '#8b8b96'
 
 let uid = 0
-const fmtMB = (b) => (b / 1e6).toFixed(1)
+// The unit follows the total ("120 of 980 KB", "1.2 of 4.2 MB") so a pair never mixes units.
+const fmtSize = (b, total = b) => (total < 1e6 ? `${Math.max(b > 0 ? 1 : 0, Math.round(b / 1e3))}` : (b / 1e6).toFixed(1))
+const unit = (total) => (total < 1e6 ? 'KB' : 'MB')
 // Deterministic per-name upload rate so the demo tells the same story every load.
 const rateOf = (name) => {
   let h = 0
@@ -83,9 +83,8 @@ function FanIcon({ active }) {
       </div>
       <div
         className={`absolute left-1/2 top-0 grid h-[46px] w-[46px] -translate-x-1/2 place-items-center rounded-[13px] border transition-all duration-300 ${
-          active ? 'shadow-[0_10px_24px_rgba(57,98,249,0.30)]' : 'border-line2 bg-panel2 text-tx shadow-sm'
+          active ? 'border-tx bg-tx text-bg shadow-[0_10px_24px_rgba(0,0,0,0.35)]' : 'border-line2 bg-panel2 text-tx shadow-sm'
         }`}
-        style={active ? { color: ACCENT, borderColor: `${ACCENT}55`, backgroundColor: 'var(--panel)' } : undefined}
       >
         <UploadGlyph />
       </div>
@@ -238,9 +237,8 @@ export default function Dropzone({
           onClick={pick}
           onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && pick()}
           className={`grid cursor-pointer place-items-center rounded-[20px] border-2 px-6 py-10 text-center outline-none transition-all duration-300 ${
-            drag ? 'border-solid' : 'border-dashed border-line2 hover:border-faint/60'
+            drag ? 'border-solid border-tx bg-panel2 shadow-[0_0_0_4px_color-mix(in_oklab,var(--tx)_10%,transparent)]' : 'border-dashed border-line2 hover:border-faint/60'
           }`}
-          style={drag ? { borderColor: ACCENT, backgroundColor: `${ACCENT}0d`, boxShadow: `0 0 0 4px ${ACCENT}1f` } : undefined}
         >
           <input ref={inputRef} type="file" multiple className="hidden" onChange={(e) => { addFiles([...e.target.files].map((file) => ({ name: file.name, size: file.size, file }))); e.target.value = '' }} />
           <FanIcon active={drag} />
@@ -248,7 +246,7 @@ export default function Dropzone({
             {drag ? (
               <>Release to upload {dragCount > 0 ? `${dragCount} file${dragCount === 1 ? '' : 's'}` : 'files'}</>
             ) : (
-              <>Drop files here or <span className="font-semibold" style={{ color: ACCENT }}>browse</span></>
+              <>Drop files here or <span className="font-semibold underline decoration-line2 underline-offset-4">browse</span></>
             )}
           </div>
           <div className="mt-1.5 text-sm text-mute">{label} · up to {maxSizeMB} MB each</div>
@@ -275,20 +273,25 @@ export default function Dropzone({
                     </div>
                     <div className={`mt-0.5 text-[13px] ${f.status === 'error' || f.status === 'toolarge' ? '' : 'text-mute'}`} style={f.status === 'error' || f.status === 'toolarge' ? { color: RED } : undefined}>
                       {f.status === 'uploading' && (
-                        <>{fmtMB(f.loaded)} of {fmtMB(f.size)} MB · {f.size - f.loaded < f.size * f.rate * 1.5 ? 'almost done' : `${Math.ceil((f.size - f.loaded) / (f.size * f.rate))}s left`}</>
+                        <>{fmtSize(f.loaded, f.size)} of {fmtSize(f.size)} {unit(f.size)} · {f.size - f.loaded < f.size * f.rate * 1.5 ? 'almost done' : `${Math.ceil((f.size - f.loaded) / (f.size * f.rate))}s left`}</>
                       )}
-                      {f.status === 'done' && <>{fmtMB(f.size)} MB</>}
+                      {f.status === 'done' && <>{fmtSize(f.size)} {unit(f.size)}</>}
                       {f.status === 'error' && (f.errorMsg || 'Upload failed')}
                       {f.status === 'toolarge' && `Too large – max ${maxSizeMB} MB`}
                     </div>
+                    <AnimatePresence initial={false}>
                     {(f.status === 'uploading' || f.status === 'error') && (
-                      <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-line2/70">
-                        <div
-                          className={`h-full rounded-full transition-[width] duration-150 ease-linear ${f.status === 'error' ? '' : 'bg-tx'}`}
-                          style={f.status === 'error' ? { width: `${Math.round((f.loaded / f.size) * 100)}%`, backgroundColor: RED } : { width: `${Math.round((f.loaded / f.size) * 100)}%` }}
+                      <motion.div key="bar" initial={{ opacity: 0, height: 0, marginTop: 0 }} animate={{ opacity: 1, height: 6, marginTop: 10 }} exit={{ opacity: 0, height: 0, marginTop: 0 }} transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden rounded-full bg-line2/70">
+                        <motion.div
+                          className={`h-full origin-left rounded-full ${f.status === 'error' ? '' : 'bg-tx'}`}
+                          style={f.status === 'error' ? { backgroundColor: RED } : undefined}
+                          initial={{ scaleX: 0 }}
+                          animate={{ scaleX: f.size ? f.loaded / f.size : 0 }}
+                          transition={{ type: 'spring', stiffness: 90, damping: 22, restDelta: 0.001 }}
                         />
-                      </div>
+                      </motion.div>
                     )}
+                    </AnimatePresence>
                   </div>
                   {f.status === 'error' && (
                     <button type="button" onClick={() => retry(f.id)} aria-label="Retry upload" className="shrink-0 text-faint transition-colors hover:text-tx"><RetryIcon /></button>
@@ -305,7 +308,7 @@ export default function Dropzone({
         {files.length === 0 ? (
           <span className="text-faint">No files yet</span>
         ) : active.length > 0 ? (
-          <span className="text-mute">Uploading {active.length} of {files.length} · {fmtMB(loadedSum)} of {fmtMB(sizeSum)} MB</span>
+          <span className="text-mute">Uploading {active.length} of {files.length} · {fmtSize(loadedSum, sizeSum)} of {fmtSize(sizeSum)} {unit(sizeSum)}</span>
         ) : (
           <>
             <span className="flex items-center gap-1.5 text-mute">

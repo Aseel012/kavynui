@@ -1,167 +1,143 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
-import { bySlug } from '@/lib/catalog'
-import { Demo, LazyDemo } from '@/site/Preview'
+import { justAdded, showcase, stats } from '@/lib/home'
+import { LazyDemo } from '@/site/Preview'
+import Card from '@/site/Card'
+import PageKit from '@/site/PageKit'
+import { CopyButton } from '@/site/CodeBlock'
 import { GRADIENTS, styleOf } from '@/data/gradients'
-import CodeBlock from '@/site/CodeBlock'
-import { GitHubLink } from '@/site/Layout'
 import { useSEO, SITE_JSONLD } from '@/lib/seo'
-import { posts } from '@/data/posts'
+import { SITE } from '@/config'
 
-const STAGE = [
-  { slug: 'edge-dashboard', label: 'Dashboard', url: 'app.example.com/analytics' },
-  { slug: 'product-hero', label: 'Landing', url: 'example.com' },
-  { slug: 'sign-in-card', label: 'Sign in', url: 'example.com/login' },
-  { slug: 'status-board', label: 'Status', url: 'status.example.com' },
-]
-const PIECES = ['liquid-button', 'text-scramble', 'dock-magnify', 'uptime-bars', 'hold-to-confirm', 'notif-stack']
-const spring = { type: 'spring', stiffness: 260, damping: 28 }
+const chevron = <svg viewBox="0 0 24 24" className="size-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden><path d="m9 6 6 6-6 6" /></svg>
+const rise = { initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: '-80px' }, transition: { type: 'spring', stiffness: 160, damping: 24 } }
 
-function Stage() {
-  const [on, setOn] = useState(0)
-  const [auto, setAuto] = useState(true)
-  useEffect(() => {
-    if (!auto) return
-    const id = setInterval(() => !document.hidden && setOn((n) => (n + 1) % STAGE.length), 9000)
-    return () => clearInterval(id)
-  }, [auto])
-  const s = STAGE[on]
+function Title({ title, sub }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-line2 bg-panel shadow-[0_40px_120px_-30px_rgba(255,106,43,.18)]">
-      <div className="flex items-center gap-3 border-b border-line px-3 py-2.5">
-        <div className="hidden gap-1.5 sm:flex"><span className="size-2.5 rounded-full bg-line2" /><span className="size-2.5 rounded-full bg-line2" /><span className="size-2.5 rounded-full bg-line2" /></div>
-        <div className="no-scrollbar flex flex-1 gap-1 overflow-x-auto" role="tablist">
-          {STAGE.map((t, i) => (
-            <button key={t.slug} type="button" role="tab" aria-selected={on === i} onClick={() => { setOn(i); setAuto(false) }} className="relative shrink-0 rounded-md px-3 py-1 text-xs">
-              {on === i && <motion.span layoutId="stage-on" className="absolute inset-0 rounded-md bg-line2" transition={{ type: 'spring', stiffness: 480, damping: 36 }} />}
-              <span className={`relative ${on === i ? 'text-tx' : 'text-mute hover:text-tx'}`}>{t.label}</span>
-            </button>
-          ))}
-        </div>
-        <span className="hidden truncate rounded-md bg-bg px-3 py-1 font-mono text-[11px] text-faint md:block">{s.url}</span>
+    <motion.div {...rise} className="mx-auto mb-10 max-w-2xl text-center">
+      <h2 className="text-[32px] font-semibold leading-[1.05] tracking-[-0.035em] text-tx sm:text-[44px]">{title}</h2>
+      {sub && <p className="mt-3 text-[17px] leading-7 text-mute">{sub}</p>}
+    </motion.div>
+  )
+}
+
+// A one-line command with a copy button.
+function Command({ cmd }) {
+  return (
+    <div className="flex w-full max-w-lg items-center gap-2 rounded-full bg-panel py-1.5 pl-4 pr-1.5">
+      <span className="text-faint" aria-hidden>$</span>
+      <code className="min-w-0 flex-1 truncate text-left font-mono text-[12px] text-tx/85">{cmd}</code>
+      <CopyButton text={cmd} />
+    </div>
+  )
+}
+
+function Showcase() {
+  const groups = showcase()
+  const [active, setActive] = useState(groups[0]?.id)
+  const group = groups.find((g) => g.id === active) || groups[0]
+  if (!group) return null
+  return (
+    <div>
+      <div className="no-scrollbar mx-auto mb-6 flex w-fit max-w-full gap-1 overflow-x-auto rounded-full bg-panel p-1" role="tablist" aria-label="Component kinds">
+        {groups.map((g) => (
+          <button key={g.id} type="button" role="tab" aria-selected={g.id === group.id} onClick={() => setActive(g.id)} className="relative shrink-0 rounded-full px-4 py-2 text-[14px]">
+            {g.id === group.id && <motion.span layoutId="home-tab" className="absolute inset-0 rounded-full bg-line2" transition={{ type: 'spring', stiffness: 500, damping: 38 }} />}
+            <span className={`relative ${g.id === group.id ? 'text-tx' : 'text-mute hover:text-tx'}`}>{g.name}</span>
+          </button>
+        ))}
       </div>
-      <div className="relative min-h-[420px] bg-bg p-2 sm:p-4">
-        <AnimatePresence mode="wait">
-          <motion.div key={s.slug} initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} exit={{ opacity: 0, y: -10, filter: 'blur(4px)' }} transition={{ duration: 0.3 }}>
-            <Demo item={bySlug[s.slug]} page="home" />
+      <div className="rounded-[32px] bg-panel p-2">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div key={group.id} role="tabpanel" initial={{ opacity: 0, scale: 0.985 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.985 }} transition={{ duration: 0.22 }}
+            className="grid gap-2 md:grid-cols-3">
+            {group.items.map((c) => (
+              <div key={c.slug} className="flex flex-col overflow-hidden rounded-[26px] bg-bg">
+                <div className="relative h-64 sm:h-80"><LazyDemo item={c} page="home" /></div>
+                <Link to={`/components/${c.slug}`} className="group flex items-center justify-between gap-3 px-5 pb-4 text-[14px]">
+                  <span className="text-tx">{c.name}</span>
+                  <span className="flex items-center gap-1 truncate text-faint group-hover:text-mute">{c.useCase}{chevron}</span>
+                </Link>
+              </div>
+            ))}
           </motion.div>
         </AnimatePresence>
-      </div>
-      <div className="flex items-center justify-between border-t border-line px-4 py-2.5 text-xs">
-        <span className="text-mute">{bySlug[s.slug]?.name} <span className="text-faint">· block</span></span>
-        <Link to={`/components/${s.slug}`} className="text-tx hover:text-acc">Get the code →</Link>
       </div>
     </div>
   )
 }
 
 export default function Home() {
-  useSEO({ title: 'kavynUI - animated React components and blocks', description: 'Copy-paste animated React components, blocks and backgrounds: WebGL shaders, scroll scenes, physics, 3D and particle text. Open source, MIT.', path: '/', jsonLd: SITE_JSONLD })
+  const { components: total, sections } = stats()
+  const fresh = justAdded()
+  const newest = fresh[0]
+  useSEO({ title: 'kavynUI - animated React components and page sections', description: `${total} animated React components and ${sections} page sections. Install any of them with the shadcn CLI or copy the file. Open source, MIT.`, path: '/', jsonLd: SITE_JSONLD })
+
   return (
-    <>
-      <section className="relative overflow-hidden border-b border-line">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_40%_at_50%_0%,rgba(255,106,43,.12),transparent)]" />
-        <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-12 sm:px-6 sm:pt-16">
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={spring} className="mb-8 flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">
-            <h1 className="max-w-md text-3xl font-semibold tracking-[-0.04em] text-tx sm:text-[44px] sm:leading-[1.05]">Copy the section.<br /><span className="text-mute">Ship the product.</span></h1>
-            <div className="flex items-center gap-2">
-              <Link to="/components" className="flex h-10 items-center rounded-full bg-tx px-5 text-sm font-medium text-bg transition-transform active:scale-95">Open library</Link>
-            </div>
-          </motion.div>
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ ...spring, delay: 0.08 }}><Stage /></motion.div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <div className="mb-6 flex items-end justify-between">
-          <h2 className="text-xl font-medium tracking-tight text-tx">Pieces</h2>
-          <Link to="/components" className="text-sm text-mute hover:text-tx">Library →</Link>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {PIECES.map((slug) => bySlug[slug] && (
-            <div key={slug} className="overflow-hidden rounded-2xl border border-line bg-panel">
-              <div className="relative h-56 bg-bg"><LazyDemo item={bySlug[slug]} page="home" /></div>
-              <Link to={`/components/${slug}`} className="flex items-center justify-between border-t border-line px-4 py-3 text-sm">
-                <span className="text-tx">{bySlug[slug].name}</span><span className="truncate pl-3 text-faint">{bySlug[slug].useCase}</span>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-y border-line bg-panel/40">
-        <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 py-16 sm:px-6 md:grid-cols-[1fr_1.2fr]">
-          <div>
-            <div className="text-xs uppercase tracking-[0.12em] text-acc">Maps & data</div>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-tx sm:text-3xl">See where your traffic lives</h2>
-            <p className="mt-3 max-w-sm text-mute">Dotted world maps, a draggable globe, uptime, latency and threat feeds. Canvas-drawn, light, and fed by your own data.</p>
-            <div className="mt-6 flex flex-wrap gap-2 text-sm">
-              {['traffic-map', 'edge-globe', 'latency-stream', 'threat-feed', 'region-bars'].map((s) => <Link key={s} to={`/components/${s}`} className="rounded-full border border-line2 px-3 py-1 text-mute hover:text-tx">{bySlug[s]?.name}</Link>)}
-            </div>
+    <div>
+      <section className="mx-auto max-w-[1600px] px-4 pt-16 text-center sm:px-8 sm:pt-24">
+        <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ type: 'spring', stiffness: 170, damping: 24 }} className="flex flex-col items-center">
+          {newest && (
+            <Link to={`/components/${newest.slug}`} className="mb-7 flex items-center gap-2 rounded-full bg-panel py-1 pl-1 pr-3 text-[13px] text-mute transition-colors hover:text-tx">
+              <span className="rounded-full bg-tx px-2 py-0.5 text-[12px] font-medium text-bg">New</span>{newest.name}{chevron}
+            </Link>
+          )}
+          <h1 className="max-w-4xl text-[46px] font-semibold leading-[0.98] tracking-[-0.05em] text-tx sm:text-[84px]">Build interfaces<br />people remember.</h1>
+          <p className="mt-6 max-w-xl text-[17px] leading-7 text-mute sm:text-[19px] sm:leading-8">{total} animated React components and {sections} full page sections, each one a single file you own. Register the library once, then add anything by name.</p>
+          <div className="mt-9 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row">
+            <Link to="/components" className="flex h-12 w-full items-center justify-center rounded-full bg-tx px-6 text-[15px] font-medium text-bg transition-transform active:scale-95 sm:w-auto">Browse components</Link>
+            <Command cmd={`npx shadcn@latest registry add @kavynui=${SITE.url}/r/{name}.json`} />
           </div>
-          <div className="relative h-[340px] sm:h-[400px]"><LazyDemo item={bySlug['edge-globe']} page="home" /></div>
-        </div>
+        </motion.div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <div className="mb-6 flex items-end justify-between">
-          <h2 className="text-xl font-medium tracking-tight text-tx">Backgrounds</h2>
-          <Link to="/backgrounds" className="text-sm text-mute hover:text-tx">All backgrounds →</Link>
-        </div>
+
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-8">
+        <section aria-label="Live components" className="pt-14 sm:pt-20">
+          <Showcase />
+          <p className="mt-4 text-center text-[13px] text-faint">Live, not screenshots. Hover, drag, type and click.</p>
+        </section>
+
+        <section id="page-kit" className="scroll-mt-20 pt-28 sm:pt-40">
+          <Title title="Assemble a page." sub="Switch sections on and off. The preview stacks the real blocks, and you get one install command and the page file." />
+          <PageKit />
+        </section>
+
+        {fresh.length > 0 && (
+          <section className="pt-28 sm:pt-40">
+            <Title title="Just added." sub="New pieces land here first." />
+            <div className="grid gap-x-5 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+              {fresh.map((c) => <Card key={c.slug} item={c} page="home" />)}
+            </div>
+          </section>
+        )}
+      </div>
+
+      <section className="pt-28 sm:pt-40">
+        <div className="px-4"><Title title="Backgrounds with a job." sub="Plain CSS, each named for the product it suits." /></div>
         <style>{[...new Set(GRADIENTS.filter((g) => g.anim).map((g) => g.anim.css))].join('\n')}</style>
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-          {GRADIENTS.slice(0, 6).map((g) => (
-            <Link key={g.id} to={`/backgrounds?bg=${g.id}`} className="group relative h-32 overflow-hidden rounded-2xl border border-line sm:h-40" style={styleOf(g)}>
-              <span className="absolute bottom-3 left-3 text-sm text-white/85">{g.name}</span>
-              <span className="absolute bottom-3 right-3 text-xs text-white/60 opacity-0 transition-opacity group-hover:opacity-100">Code →</span>
+        <div className="no-scrollbar mx-auto flex max-w-[1280px] snap-x gap-4 overflow-x-auto scroll-px-4 px-4 pb-2 sm:scroll-px-8 sm:px-8 xl:justify-center">
+          {GRADIENTS.slice(0, 5).map((g) => (
+            <Link key={g.id} to={`/backgrounds?bg=${g.id}`} className="group w-60 shrink-0 snap-start text-left">
+              <div className="h-40 rounded-[24px] ring-1 ring-inset ring-line transition-transform duration-300 group-hover:scale-[0.97]" style={styleOf(g)} />
+              <div className="mt-3 px-1 text-[15px] text-tx">{g.name}</div>
+              <div className="px-1 text-[13px] text-mute">{g.use}</div>
             </Link>
           ))}
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
-        <div className="grid gap-8 rounded-2xl border border-line bg-panel p-6 sm:p-10 md:grid-cols-2">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-tx">No package. Just the file.</h2>
-            <ol className="mt-5 space-y-3 text-sm text-mute">
-              {['Install motion', 'Copy a component into src/components/kavyn', 'Import it and ship'].map((t, i) => (
-                <li key={t} className="flex items-center gap-3"><span className="grid size-6 place-items-center rounded-full border border-line2 font-mono text-[11px] text-tx">{i + 1}</span>{t}</li>
-              ))}
-            </ol>
-            <Link to="/docs/installation" className="mt-6 inline-block text-sm text-acc">Installation guide →</Link>
-          </div>
-          <CodeBlock title="Analytics.jsx" code={`import EdgeDashboard from '@/components/kavyn/edge-dashboard'\n\nexport default function Analytics() {\n  return <EdgeDashboard />\n}`} maxHeight={240} />
+      <section className="mx-auto flex max-w-2xl flex-col items-center px-4 pb-32 pt-32 text-center sm:pb-44 sm:pt-44">
+        <motion.h2 {...rise} className="text-[40px] font-semibold leading-[1] tracking-[-0.045em] text-tx sm:text-[64px]">Your agent can use it too.</motion.h2>
+        <p className="mt-4 max-w-md text-[17px] leading-7 text-mute">Once the library is registered, Claude Code, Cursor and other MCP clients can search it and install components by name.</p>
+        <div className="mt-8 flex w-full justify-center"><Command cmd="npx shadcn@latest mcp init" /></div>
+        <div className="mt-6 flex flex-wrap justify-center gap-x-5 gap-y-2 text-[14px] text-mute">
+          <a href="/llms.txt" className="hover:text-tx">llms.txt</a>
+          <a href="/r/registry.json" className="hover:text-tx">Registry index</a>
+          <Link to="/docs/installation" className="hover:text-tx">Installation</Link>
         </div>
       </section>
-
-      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
-        <div className="mb-6 flex items-end justify-between">
-          <h2 className="text-xl font-medium tracking-tight text-tx">From the blog</h2>
-          <Link to="/blog" className="text-sm text-mute hover:text-tx">All posts →</Link>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.slice(0, 3).map((p) => (
-            <Link key={p.slug} to={`/blog/${p.slug}`} className="group rounded-2xl border border-line bg-panel p-5 hover:border-line2">
-              <div className="text-xs text-faint">{new Date(`${p.date}T00:00:00`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} · {p.minutes} min</div>
-              <div className="mt-2 font-medium tracking-tight text-tx group-hover:text-acc">{p.title}</div>
-              <p className="mt-2 line-clamp-2 text-sm leading-6 text-mute">{p.excerpt}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
-        <div className="flex flex-col items-start justify-between gap-6 rounded-2xl border border-line p-6 sm:flex-row sm:items-center sm:p-8">
-          <div>
-            <h2 className="text-xl font-semibold tracking-tight text-tx">Open source</h2>
-            <p className="mt-1 text-sm text-mute">Free to use under the MIT license. Built in the open.</p>
-          </div>
-          <div className="flex items-center gap-2">
-            <GitHubLink />
-          </div>
-        </div>
-      </section>
-    </>
+    </div>
   )
 }

@@ -9,13 +9,13 @@ import ExternalLink from './ExternalLink'
 import NetworkStatus from './NetworkStatus'
 import ErrorBoundary from './ErrorBoundary'
 
-const LINKS = [{ to: '/components', label: 'Components' }, { to: '/blocks', label: 'Blocks' }, { to: '/backgrounds', label: 'Backgrounds' }, { to: '/templates', label: 'Templates' }, { to: '/docs', label: 'Docs' }]
+const LINKS = [{ to: '/components', label: 'Components' }, { to: '/blocks', label: 'Sections' }, { to: '/backgrounds', label: 'Backgrounds' }, { to: '/templates', label: 'Templates' }, { to: '/docs', label: 'Docs' }]
 const MOBILE = [{ to: '/', label: 'Home' }, ...LINKS, { to: '/blog', label: 'Blog' }, { to: '/about', label: 'About' }]
 
 const GH = 'M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0C17.3 4.8 18.3 5.1 18.3 5.1c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z'
 
 // GitHub link. Until VITE_GITHUB_URL is set it renders as a disabled "coming soon" icon.
-export function GitHubLink({ className = '' }) {
+function GitHubLink({ className = '' }) {
   const icon = <svg viewBox="0 0 24 24" className="size-4" fill="currentColor" aria-hidden><path d={GH} /></svg>
   if (!SITE.github) return <span title="GitHub repo coming soon" aria-label="GitHub (coming soon)" className={`grid size-9 cursor-default place-items-center rounded-lg border border-line2 bg-panel text-faint ${className}`}>{icon}</span>
   return <ExternalLink href={SITE.github} aria-label="GitHub" className={`grid size-9 place-items-center rounded-lg border border-line2 bg-panel text-mute hover:text-tx ${className}`}>{icon}</ExternalLink>
@@ -55,7 +55,7 @@ export default function Layout() {
   return (
     <div className="flex min-h-dvh flex-col">
       <header className="sticky top-0 z-40 border-b border-line bg-bg/80 backdrop-blur-md">
-        <div className="mx-auto flex h-14 max-w-7xl items-center gap-6 px-4 sm:px-6">
+        <div className="mx-auto flex h-14 max-w-[1600px] items-center gap-6 px-4 sm:px-8">
           <Logo />
           <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
             {LINKS.map((l) => (
@@ -98,28 +98,24 @@ export default function Layout() {
       <main className="flex-1"><ErrorBoundary resetKey={loc.pathname}><Outlet context={{ openSearch: () => setPal(true) }} /></ErrorBoundary></main>
 
       <footer className="border-t border-line">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.4fr_repeat(3,1fr)]">
+        <div className="mx-auto grid max-w-[1600px] gap-10 px-4 py-14 sm:px-8 md:grid-cols-[1.6fr_repeat(3,1fr)]">
           <div>
             <Logo />
-            <p className="mt-3 max-w-xs text-sm text-mute">Open-source motion components and blocks for React.</p>
+            <p className="mt-3 max-w-xs text-[15px] leading-6 text-mute">Animated React components and page sections. One file each, yours to edit.</p>
             <div className="mt-5 flex gap-2"><GitHubLink /><ThemeToggle /></div>
           </div>
           {[
-            ['Library', [['/components', 'All components'], ['/blocks', 'Blocks'], ['/backgrounds', 'Backgrounds'], ['/components?family=data', 'Maps & Data']]],
+            ['Library', [['/components', 'Components'], ['/blocks', 'Sections'], ['/backgrounds', 'Backgrounds'], ['/templates', 'Templates']]],
             ['Docs', [['/docs', 'Introduction'], ['/docs/installation', 'Installation'], ['/docs/theming', 'Theming'], ['/docs/motion', 'Motion']]],
             ['Project', [['/about', 'About'], ['/blog', 'Blog'], ['/privacy', 'Privacy'], ['/terms', 'Terms']]],
           ].map(([h, links]) => (
             <div key={h}>
-              <div className="text-sm text-tx">{h}</div>
-              <ul className="mt-3 space-y-2 text-sm">{links.map(([to, label]) => <li key={to}><Link to={to} className="text-mute hover:text-tx">{label}</Link></li>)}</ul>
+              <div className="text-[13px] text-faint">{h}</div>
+              <ul className="mt-3 space-y-2.5 text-[15px]">{links.map(([to, label]) => <li key={to}><Link to={to} className="text-mute hover:text-tx">{label}</Link></li>)}</ul>
             </div>
           ))}
         </div>
-        <div className="border-t border-line">
-          <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 text-xs text-faint sm:flex-row sm:justify-between sm:px-6">
-            <span>© {new Date().getFullYear()} kavynUI · {SITE.license} license</span>
-          </div>
-        </div>
+        <div className="mx-auto max-w-[1600px] px-4 pb-8 text-[13px] text-faint sm:px-8">© {new Date().getFullYear()} kavynUI. {SITE.license} license. <a href="/llms.txt" className="hover:text-tx">llms.txt</a></div>
       </footer>
       <NetworkStatus />
 

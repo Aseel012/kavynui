@@ -11,13 +11,13 @@ function Nav({ onNav }) {
     <nav aria-label="Docs" className="space-y-6">
       {DOCS.map((g) => (
         <div key={g.group}>
-          <div className="px-2.5 text-[11px] font-medium uppercase tracking-[0.08em] text-faint">{g.group}</div>
+          <div className="px-2.5 text-[13px] font-medium text-faint">{g.group}</div>
           <ul className="mt-1.5 space-y-px">
             {g.pages.map((p) => (
               <li key={p.id}>
-                <NavLink to={p.id === 'introduction' ? '/docs' : `/docs/${p.id}`} end onClick={onNav} className="group relative block rounded-md px-2.5 py-1.5 text-[13px]">
+                <NavLink to={p.id === 'introduction' ? '/docs' : `/docs/${p.id}`} end onClick={onNav} className="group relative block rounded-[10px] px-2.5 py-1.5 text-[14px]">
                   {({ isActive }) => (<>
-                    {isActive && <motion.span layoutId="doc-on" className="absolute inset-0 rounded-md bg-line" transition={{ type: 'spring', stiffness: 500, damping: 38 }} />}
+                    {isActive && <motion.span layoutId="doc-on" className="absolute inset-0 rounded-[10px] bg-panel2" transition={{ type: 'spring', stiffness: 500, damping: 38 }} />}
                     <span className={`relative ${isActive ? 'text-tx' : 'text-mute group-hover:text-tx'}`}>{p.title}</span>
                   </>)}
                 </NavLink>
@@ -47,7 +47,7 @@ function Toc({ items }) {
         {items.map(([id, t]) => (
           <li key={id}>
             <button type="button" onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })}
-              className={`-ml-px border-l pl-3 text-left text-[13px] transition-colors ${on === id ? 'border-acc text-tx' : 'border-transparent text-mute hover:text-tx'}`}>{t}</button>
+              className={`-ml-px border-l pl-3 text-left text-[13px] transition-colors ${on === id ? 'border-tx text-tx' : 'border-transparent text-mute hover:text-tx'}`}>{t}</button>
           </li>
         ))}
       </ul>
@@ -68,7 +68,7 @@ export default function Docs() {
   const href = (p) => (p.id === 'introduction' ? '/docs' : `/docs/${p.id}`)
 
   return (
-    <div className="mx-auto flex max-w-[1400px]">
+    <div className="mx-auto flex max-w-[1600px]">
       <aside className="sticky top-14 hidden h-[calc(100dvh-3.5rem)] w-60 shrink-0 overflow-y-auto border-r border-line px-3 py-6 lg:block"><Nav /></aside>
 
       <div className="min-w-0 flex-1">

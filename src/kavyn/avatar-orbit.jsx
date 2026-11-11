@@ -3,7 +3,7 @@
 import { motion } from 'motion/react'
 
 const PEOPLE = ['AK', 'MS', 'RJ', 'PN', 'DV', 'SL', 'TK', 'IB']
-const HUES = ['#ff6a2b', '#ededef', '#8a8a93', '#d8b27a', '#6b8f5e', '#3f7cac', '#7d4e8a', '#5c5c66']
+const HUES = ['#a8644a', '#f5f5f7', '#8e8e93', '#c8a27a', '#6b7f5a', '#8a8556', '#7a4a63', '#636366']
 
 function Ring({ people, r, dur, dir, off }) {
   return (

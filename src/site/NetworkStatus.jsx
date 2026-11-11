@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 
-export function useOnline() {
+function useOnline() {
   const [on, setOn] = useState(() => (typeof navigator === 'undefined' ? true : navigator.onLine !== false))
   useEffect(() => {
     const up = () => setOn(true), down = () => setOn(false)

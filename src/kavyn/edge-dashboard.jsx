@@ -23,7 +23,7 @@ function Stat({ label, value, unit = '', delta, seed, live }) {
       <div className="flex items-center justify-between text-xs"><span className="text-mute">{label}</span><span className={delta >= 0 ? 'text-emerald-400' : 'text-rose-400'}>{delta >= 0 ? '▲' : '▼'} {Math.abs(delta)}%</span></div>
       <div className="mt-2 font-mono text-2xl tabular-nums tracking-tight text-tx">{fmt(v)}<span className="ml-1 text-sm text-faint">{unit}</span></div>
       <svg viewBox="0 0 100 30" className="mt-2 h-8 w-full" preserveAspectRatio="none">
-        <motion.path d={d} fill="none" stroke="#ff6a2b" strokeWidth="1.5" vectorEffect="non-scaling-stroke" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.2, ease: 'easeOut' }} />
+        <motion.path d={d} fill="none" stroke="var(--acc)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.2, ease: 'easeOut' }} />
       </svg>
     </div>
   )

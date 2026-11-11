@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "@fontsource-variable/geist";
+@import "@fontsource-variable/inter";
 @import "@fontsource-variable/geist-mono";
 
 /* Tokens are indirections so the .light class can re-theme everything at runtime. */
@@ -13,44 +13,50 @@
   --color-mute: var(--mute);
   --color-faint: var(--faint);
   --color-acc: var(--acc);
-  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
+  --color-acc-fg: var(--acc-fg);
+  /* SF Pro on Apple devices, Inter everywhere else. */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Geist Mono Variable", Menlo, monospace;
 }
 
+/* Dark follows iOS system colors: true black, grouped grays, monochrome accent. */
 :root {
-  --bg: #09090a;
-  --panel: #0f0f11;
-  --panel2: #141417;
-  --line: #1e1e22;
-  --line2: #2a2a30;
-  --tx: #ededef;
-  --mute: #8a8a93;
-  --faint: #5c5c66;
-  --acc: #ff6a2b;
+  --bg: #000000;
+  --panel: #141416;
+  --panel2: #1f1f22;
+  --line: #262628;
+  --line2: #3a3a3d;
+  --tx: #f5f5f7;
+  --mute: #a1a1a6;
+  --faint: #6e6e73;
+  --acc: #f5f5f7;
+  --acc-fg: #000000;
   color-scheme: dark;
 }
 
 .light {
-  --bg: #fafafa;
-  --panel: #ffffff;
-  --panel2: #f0f0f3;
-  --line: #e6e6ea;
-  --line2: #d6d6dd;
-  --tx: #141417;
-  --mute: #5f5f6b;
-  --faint: #a2a2ab;
-  --acc: #e14e0b;
+  --bg: #ffffff;
+  --panel: #f5f5f7;
+  --panel2: #e8e8ed;
+  --line: #e5e5ea;
+  --line2: #d2d2d7;
+  --tx: #1d1d1f;
+  --mute: #6e6e73;
+  --faint: #a1a1a6;
+  --acc: #1d1d1f;
+  --acc-fg: #ffffff;
   color-scheme: light;
 }
 
 html { background: var(--bg); }
-body { background: var(--bg); color: var(--tx); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
-::selection { background: color-mix(in oklab, var(--acc) 35%, transparent); }
+body { background: var(--bg); color: var(--tx); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+::selection { background: color-mix(in oklab, var(--tx) 22%, transparent); }
+:focus-visible { outline: 2px solid var(--tx); outline-offset: 2px; border-radius: 8px; }
 * { scrollbar-width: thin; scrollbar-color: var(--line2) transparent; }
 .no-scrollbar { scrollbar-width: none; } .no-scrollbar::-webkit-scrollbar { display: none; }
-.grid-fade { background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 24px 24px; mask-image: radial-gradient(circle at center, #000 30%, transparent 75%); }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+.grid-fade { background-image: radial-gradient(var(--line2) 1px, transparent 1.2px); background-size: 20px 20px; mask-image: radial-gradient(circle at center, #000 25%, transparent 72%); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
 
-/* Code viewer syntax colors: readable on the dark panel and on the light one. */
-.code-str { color: #d8b27a; } .code-num { color: #9ec3e6; } .code-kw { color: #c79bf0; }
-.light .code-str { color: #9a5b00; } .light .code-num { color: #1d6fb8; } .light .code-kw { color: #8a3fc4; }
+/* Code viewer syntax colors: readable on the dark panel and on the light one. No blue. */
+.code-str { color: #e3c08d; } .code-num { color: #f2a7a0; } .code-kw { color: #c9c9ce; font-weight: 500; } .code-tag { color: #f5f5f7; }
+.light .code-str { color: #8a5a00; } .light .code-num { color: #b0372b; } .light .code-kw { color: #3a3a3c; } .light .code-tag { color: #1d1d1f; }

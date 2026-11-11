@@ -34,7 +34,7 @@ export default function LeanGrid({ items = APPS, strength = 18, className = '' }
       <div className="grid w-full max-w-md grid-cols-3 gap-3 sm:grid-cols-4">
         {list.map((a) => (
           <div key={a} data-tile style={{ '--glow': 0 }}
-            className="grid aspect-square place-items-center rounded-2xl border border-line bg-panel text-center text-[11px] text-mute transition-transform duration-200 ease-out will-change-transform [box-shadow:0_0_0_1px_rgba(255,106,43,calc(var(--glow)*.5)),0_10px_30px_-10px_rgba(255,106,43,calc(var(--glow)*.45))]">
+            className="grid aspect-square place-items-center rounded-2xl border border-line bg-panel text-center text-[11px] text-mute transition-transform duration-200 ease-out will-change-transform [box-shadow:0_0_0_1px_rgb(from_var(--tx)_r_g_b_/_calc(var(--glow)*.5)),0_10px_30px_-10px_rgb(from_var(--tx)_r_g_b_/_calc(var(--glow)*.45))]">
             <div><div className="mx-auto mb-1.5 grid size-7 place-items-center rounded-lg bg-panel2 font-mono text-xs text-tx">{a.slice(0, 1)}</div>{a}</div>
           </div>
         ))}

@@ -21,5 +21,8 @@ export default defineConfig(({ mode }) => ({
   plugins: [react(), tailwindcss(), siteUrlHtml(mode)],
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   build: { chunkSizeWarningLimit: 900 },
+  // Tests run through Vitest's own transformer; match the app's automatic JSX runtime.
+  esbuild: { jsx: 'automatic' },
+  test: { environment: 'jsdom', include: ['tests/unit/**/*.test.{js,jsx}'], setupFiles: ['tests/unit/setup.js'], css: false },
 }))
 

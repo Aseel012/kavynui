@@ -25,7 +25,7 @@ export function sampleText(text, w, h, step) {
 // A headline made of dust. Sweep through it and the grains scatter, then drift home.
 const tk = (n, d) => (typeof document === 'undefined' ? d : getComputedStyle(document.documentElement).getPropertyValue(n).trim() || d)
 
-export default function DustLetters({ text = 'kavyn', color = '#ff6a2b', density = 4, className = '' }) {
+export default function DustLetters({ text = 'kavyn', color = undefined, density = 4, className = '' }) {
   const host = useCanvasLoop((ctx, s) => {
     let parts = []
     const step = Math.max(2, Math.round(Number(density) || 4))
@@ -50,7 +50,7 @@ export default function DustLetters({ text = 'kavyn', color = '#ff6a2b', density
         }
         ctx.fillStyle = tk('--tx', '#ededef')
         for (const q of parts) if (q.hot < 0.2) ctx.fillRect(q.x, q.y, step * 0.55, step * 0.55)
-        ctx.fillStyle = color
+        ctx.fillStyle = color || tk('--mute', '#a1a1a6')
         for (const q of parts) if (q.hot >= 0.2) ctx.fillRect(q.x, q.y, step * 0.6, step * 0.6)
       },
     }

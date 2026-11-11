@@ -8,7 +8,7 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -16,17 +16,28 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Lint (unused code, hook rules)
+        run: npm run lint
       - name: Static checks (catalog, stray files, CSP)
         run: node scripts/check.mjs
+      - name: Unit tests (catalog, search, colors, contrast, backgrounds, upload components)
+        run: npm test
       - name: Build
         run: npm run build
       - name: Serve build
         run: |
           npx vite preview --host 127.0.0.1 --port 4173 &
           npx --yes wait-on http://127.0.0.1:4173 --timeout 30000
-      - name: Registry check
+      - name: Registry check (shadcn schema, byte-identical sources)
         run: npm run registry:verify
-      - name: Smoke test (key routes, fails on console errors)
+      - name: End-to-end tests
         env:
           BASE: http://127.0.0.1:4173
-        run: node scripts/smoke.mjs --only /,/components,/docs,/blog,/about,quick-menu,waitlist-form
+        run: npm run e2e
+      - name: Regression smoke, every route (dark, light, mobile)
+        env:
+          BASE: http://127.0.0.1:4173
+        run: |
+          node scripts/smoke.mjs
+          LIGHT=1 node scripts/smoke.mjs
+          MOBILE=1 node scripts/smoke.mjs

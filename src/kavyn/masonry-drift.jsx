@@ -3,8 +3,8 @@
 import { motion } from 'motion/react'
 
 const T = [
-  ['from-[#ff6a2b] to-[#6b1f0a]', 140], ['from-[#2a2a30] to-[#0f0f11]', 90], ['from-[#d8b27a] to-[#5a3d1a]', 120],
-  ['from-[#3f7cac] to-[#0f2233]', 160], ['from-[#6b8f5e] to-[#1a2615]', 100], ['from-[#7d4e8a] to-[#1f1025]', 130],
+  ['from-[#a8644a] to-[#2e1810]', 140], ['from-[#3a3a3d] to-[#111112]', 90], ['from-[#c8a27a] to-[#3d2b1c]', 120],
+  ['from-[#8a8556] to-[#24220f]', 160], ['from-[#6b7f5a] to-[#1b2216]', 100], ['from-[#7a4a63] to-[#24131c]', 130],
 ]
 
 function Col({ speed, offset }) {

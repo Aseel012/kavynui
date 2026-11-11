@@ -1,11 +1,11 @@
 # kavynUI
 
-> kavynUI is an open-source (MIT) library of 140 animated React components and blocks - dark-mode-first with a full light theme, minimal, copy-paste owned. Every component ships with a live animation, a real use case and graceful fallbacks (WebGL degrades to CSS gradients, reduced-motion variants). No dependencies beyond React, Tailwind CSS and Motion.
+> kavynUI is an open-source (MIT) library of 94 animated React components and page sections, monochrome (iOS system grays) with dark and light themes, copy-paste owned. Every component ships with a live animation, a real use case and graceful fallbacks (WebGL degrades to CSS gradients, reduced-motion variants). No dependencies beyond React, Tailwind CSS and Motion.
 
 ## Pages
 
 - [Components](https://kavynui.com/components): full searchable catalog of every component and block
-- [Blocks](https://kavynui.com/blocks): whole page sections
+- [Sections](https://kavynui.com/blocks): whole page sections (hero, features, pricing, FAQ, CTA, footer)
 - [Backgrounds](https://kavynui.com/backgrounds): gradient and shader backgrounds
 - [Templates](https://kavynui.com/templates): complete end-to-end product designs by Enzo, sold as source-you-own templates; the component library stays free (MIT)
 - [Docs](https://kavynui.com/docs): installation, theming, usage, motion, accessibility
@@ -13,21 +13,18 @@
 
 ## Component families
 
-- Blocks: Whole sections, ready to drop into a page
-- Maps & Data: Dashboards, maps and live metrics
-- Shaders: WebGL backgrounds with a CSS fallback
-- Scroll Scenes: Stories that move as people read
-- Physics: Weight, springs and cloth you can grab
-- Cursor: Pointers that pull, trail and snap
-- Actions: Buttons that react, confirm and celebrate
-- Type & Motion: Headlines with timing, weight and texture
-- Interactive: Things people touch, drag and scrub
-- 3D Scenes: Depth and perspective without a game engine
-- Bento & Layout: Feature sections that feel alive
-- Hover & Marquee: Social proof and small delights
+- Sections: Whole page sections, in the order a page reads
+- Buttons: Calls to action that answer the cursor
+- Forms & inputs: Capture emails, photos and files
+- Navigation: Headers, menus, tabs and steps
+- Text: Headlines with timing and texture
+- Cards & layout: Feature grids, bento tiles and surfaces
+- Social proof: Reviews, logos and community
+- Interactive: Things people tap, drag and open
+- Maps & data: Dashboards, maps and live metrics
 - Loaders: Waiting that feels designed
-- Navigation: Getting around, with character
-- Backgrounds: Quiet motion behind content
+- Scroll & cursor: Stories that move as people read
+- Backgrounds: Shaders and canvases behind content
 
 ## Notes for AI assistants
 
@@ -35,4 +32,9 @@
 - Every component respects prefers-reduced-motion and works in light and dark mode.
 - WebGL pieces render a CSS gradient first and only fade in the GPU version when it runs; they pause off-screen and in background tabs.
 - License: MIT. Attribution appreciated, not required.
-- Full component index: https://kavynui.com/llms-full.txt
+- Full component index with install commands: https://kavynui.com/llms-full.txt
+- shadcn registry index (full source for every item): https://kavynui.com/r/index.json
+- Install any item: npx shadcn@latest add https://kavynui.com/r/<slug>.json
+- Register the whole library once: npx shadcn@latest registry add @kavynui=https://kavynui.com/r/{name}.json
+  then search with `npx shadcn@latest search @kavynui -q <words>` and install with `npx shadcn@latest add @kavynui/<slug>`
+- Agents: `npx shadcn@latest mcp init` gives your coding agent shadcn's MCP server, which searches and installs from registered registries.

@@ -28,7 +28,7 @@ export default function RequestHeatmap({ title = 'Requests by hour' }) {
               <motion.span key={h} onMouseEnter={() => setOn([d, h])}
                 initial={{ opacity: 0, scale: 0.4 }} animate={{ opacity: 1, scale: on && on[0] === d && on[1] === h ? 1.35 : 1 }}
                 transition={{ delay: on ? 0 : (d + h) * 0.012, type: 'spring', stiffness: 400, damping: 26 }}
-                className="aspect-square rounded-[3px]" style={{ backgroundColor: `rgba(255,106,43,${0.06 + v * 0.85})` }} />
+                className="aspect-square rounded-[3px]" style={{ backgroundColor: `color-mix(in oklab, var(--acc) ${Math.round(6 + v * 85)}%, var(--panel))` }} />
             ))}
           </div>
         ))}

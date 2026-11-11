@@ -8,7 +8,7 @@ const TOPICS = ['Design', 'React', 'Motion', 'Rust', 'AI', 'Go', 'Type', 'CSS', 
 // An interest picker for onboarding. Topics drop in with real weight.
 // Tap to pick, drag to throw. A hidden list of buttons keeps it usable by keyboard.
 /** @param {{ topics?: any, color?: any, onChange?: any, className?: any }} props */
-export default function TopicBubbles({ topics = TOPICS, color = '#ff6a2b', onChange = undefined, className = '' }) {
+export default function TopicBubbles({ topics = TOPICS, color = undefined, onChange = undefined, className = '' }) {
   const list = (Array.isArray(topics) && topics.length ? topics : TOPICS).slice(0, 24).map(String)
   const [picked, setPicked] = useState([])
   const pickedRef = useRef(new Set())
@@ -23,7 +23,7 @@ export default function TopicBubbles({ topics = TOPICS, color = '#ff6a2b', onCha
   toggleRef.current = toggle
 
   const host = useCanvasLoop((ctx, s) => {
-    ctx.font = '500 13px "Geist Variable", system-ui, sans-serif'
+    ctx.font = '500 13px -apple-system, BlinkMacSystemFont, "Inter Variable", system-ui, sans-serif'
     const balls = list.map((name, i) => {
       const r = clamp(ctx.measureText(name).width / 2 + 16, 26, 48)
       return { name, r, x: ((i * 97) % Math.max(1, s.w - 2 * r)) + r, y: -60 - i * 45, vx: (i % 2 ? 1 : -1) * 20, vy: 0, s: 1 }
@@ -57,15 +57,16 @@ export default function TopicBubbles({ topics = TOPICS, color = '#ff6a2b', onCha
           }
         }
         ctx.clearRect(0, 0, s.w, s.h)
-        ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = '500 13px "Geist Variable", system-ui, sans-serif'
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = '500 13px -apple-system, BlinkMacSystemFont, "Inter Variable", system-ui, sans-serif'
         const cs = getComputedStyle(document.documentElement)
         const tok = (n, d) => cs.getPropertyValue(n).trim() || d
+        const pickedFill = color || tok('--acc', '#f5f5f7')
         for (const b of balls) {
           const on = pickedRef.current.has(b.name)
           ctx.beginPath(); ctx.arc(b.x, b.y, b.r * b.s, 0, Math.PI * 2)
-          ctx.fillStyle = on ? color : tok('--panel2', '#141417'); ctx.fill()
-          ctx.lineWidth = 1; ctx.strokeStyle = on ? color : tok('--line2', '#2a2a30'); ctx.stroke()
-          ctx.fillStyle = on ? '#09090a' : tok('--tx', '#ededef'); ctx.fillText(b.name, b.x, b.y + 1)
+          ctx.fillStyle = on ? pickedFill : tok('--panel2', '#1f1f22'); ctx.fill()
+          ctx.lineWidth = 1; ctx.strokeStyle = on ? pickedFill : tok('--line2', '#3a3a3d'); ctx.stroke()
+          ctx.fillStyle = on ? tok('--acc-fg', '#000000') : tok('--tx', '#f5f5f7'); ctx.fillText(b.name, b.x, b.y + 1)
         }
       },
     }

@@ -23,7 +23,7 @@ export default function LiquidButton({ children = 'Get started', onClick = undef
             transition={{ type: 'spring', stiffness: 180, damping: 12, delay: i * 0.03 }} />
         ))}
       </div>
-      <span className="relative text-sm font-medium text-black">{children}</span>
+      <span className="relative text-sm font-medium text-acc-fg">{children}</span>
     </button>
   )
 }

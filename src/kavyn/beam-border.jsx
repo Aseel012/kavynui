@@ -2,7 +2,7 @@
 
 // A single light beam travels around the card edge. Good for the one card you want seen.
 /** @param {{ children?: any, speed?: any, color?: any, className?: any }} props */
-export default function BeamBorder({ children = undefined, speed = 4, color = '#ff6a2b', className = '' }) {
+export default function BeamBorder({ children = undefined, speed = 4, color = 'var(--acc)', className = '' }) {
   return (
     <div className={`relative w-[340px] max-w-full overflow-hidden rounded-2xl p-px ${className}`}>
       <style>{`@property --kv-a{syntax:'<angle>';initial-value:0deg;inherits:false}@keyframes kv-beam{to{--kv-a:360deg}}`}</style>

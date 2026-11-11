@@ -11,7 +11,7 @@ function highlight(line) {
     if (m.index > last) parts.push([line.slice(last, m.index), ''])
     if (m[1]) parts.push([m[1], 'text-faint'])
     else if (m[2]) parts.push([m[2], 'code-str'])
-    else if (m[3]) parts.push([m[3], 'text-acc'])
+    else if (m[3]) parts.push([m[3], 'code-tag'])
     else if (m[4]) parts.push([m[4], 'code-num'])
     else parts.push([m[5], KW.test(m[5]) ? 'code-kw' : ''])
     last = re.lastIndex
@@ -44,7 +44,7 @@ export function CopyButton({ text, onCopy, className = '', label = 'Copy' }) {
         setState(ok ? 'ok' : 'fail'); if (ok) onCopy?.()
         setTimeout(() => setState('idle'), 1400)
       }}
-      className={`relative h-7 shrink-0 overflow-hidden rounded-md border border-line2 bg-panel px-2.5 text-xs text-mute hover:text-tx disabled:opacity-40 ${className}`}
+      className={`relative h-7 shrink-0 overflow-hidden rounded-full bg-panel2 px-3 text-xs text-mute transition-colors hover:text-tx disabled:opacity-40 ${className}`}
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.span key={state} initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -10, opacity: 0 }} transition={{ type: 'spring', stiffness: 500, damping: 30 }} className="block">
@@ -58,8 +58,8 @@ export function CopyButton({ text, onCopy, className = '', label = 'Copy' }) {
 export default function CodeBlock({ code, title, onCopy, maxHeight = 520 }) {
   const lines = code.replace(/\n$/, '').split('\n')
   return (
-    <div className="overflow-hidden rounded-xl border border-line bg-panel">
-      <div className="flex h-10 items-center justify-between border-b border-line px-3">
+    <div className="overflow-hidden rounded-[18px] border border-line bg-panel">
+      <div className="flex h-11 items-center justify-between border-b border-line pl-4 pr-2">
         <span className="font-mono text-xs text-faint">{title}</span>
         <CopyButton text={code} onCopy={onCopy} />
       </div>

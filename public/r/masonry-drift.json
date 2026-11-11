@@ -12,7 +12,7 @@
       "path": "src/kavyn/masonry-drift.jsx",
       "type": "registry:file",
       "target": "@components/kavyn/masonry-drift.jsx",
-      "content": "'use client'\n\nimport { motion } from 'motion/react'\n\nconst T = [\n  ['from-[#ff6a2b] to-[#6b1f0a]', 140], ['from-[#2a2a30] to-[#0f0f11]', 90], ['from-[#d8b27a] to-[#5a3d1a]', 120],\n  ['from-[#3f7cac] to-[#0f2233]', 160], ['from-[#6b8f5e] to-[#1a2615]', 100], ['from-[#7d4e8a] to-[#1f1025]', 130],\n]\n\nfunction Col({ speed, offset }) {\n  const tiles = [...T.slice(offset), ...T.slice(0, offset)]\n  return (\n    <div className=\"h-full overflow-hidden\">\n      <motion.div animate={{ y: ['0%', '-50%'] }} transition={{ repeat: Infinity, ease: 'linear', duration: speed }} className=\"flex flex-col gap-2\">\n        {[...tiles, ...tiles].map(([g, h], i) => <div key={i} className={`rounded-lg bg-gradient-to-br ${g}`} style={{ height: h }} />)}\n      </motion.div>\n    </div>\n  )\n}\n\nexport default function MasonryDrift({ speeds = [22, 30, 18] }) {\n  return (\n    <div className=\"grid h-72 w-full max-w-md grid-cols-3 gap-2 overflow-hidden rounded-2xl border border-line p-2 [mask-image:linear-gradient(transparent,#000_15%,#000_85%,transparent)]\">\n      {speeds.map((s, i) => <Col key={i} speed={s} offset={i * 2} />)}\n    </div>\n  )\n}\n"
+      "content": "'use client'\n\nimport { motion } from 'motion/react'\n\nconst T = [\n  ['from-[#a8644a] to-[#2e1810]', 140], ['from-[#3a3a3d] to-[#111112]', 90], ['from-[#c8a27a] to-[#3d2b1c]', 120],\n  ['from-[#8a8556] to-[#24220f]', 160], ['from-[#6b7f5a] to-[#1b2216]', 100], ['from-[#7a4a63] to-[#24131c]', 130],\n]\n\nfunction Col({ speed, offset }) {\n  const tiles = [...T.slice(offset), ...T.slice(0, offset)]\n  return (\n    <div className=\"h-full overflow-hidden\">\n      <motion.div animate={{ y: ['0%', '-50%'] }} transition={{ repeat: Infinity, ease: 'linear', duration: speed }} className=\"flex flex-col gap-2\">\n        {[...tiles, ...tiles].map(([g, h], i) => <div key={i} className={`rounded-lg bg-gradient-to-br ${g}`} style={{ height: h }} />)}\n      </motion.div>\n    </div>\n  )\n}\n\nexport default function MasonryDrift({ speeds = [22, 30, 18] }) {\n  return (\n    <div className=\"grid h-72 w-full max-w-md grid-cols-3 gap-2 overflow-hidden rounded-2xl border border-line p-2 [mask-image:linear-gradient(transparent,#000_15%,#000_85%,transparent)]\">\n      {speeds.map((s, i) => <Col key={i} speed={s} offset={i * 2} />)}\n    </div>\n  )\n}\n"
     }
   ],
   "cssVars": {
@@ -25,42 +25,46 @@
       "color-tx": "var(--tx)",
       "color-mute": "var(--mute)",
       "color-faint": "var(--faint)",
-      "color-acc": "var(--acc)"
+      "color-acc": "var(--acc)",
+      "color-acc-fg": "var(--acc-fg)"
     },
     "light": {
-      "bg": "#fafafa",
-      "panel": "#ffffff",
-      "panel2": "#f0f0f3",
-      "line": "#e6e6ea",
-      "line2": "#d6d6dd",
-      "tx": "#141417",
-      "mute": "#5f5f6b",
-      "faint": "#a2a2ab",
-      "acc": "#e14e0b"
+      "bg": "#ffffff",
+      "panel": "#f5f5f7",
+      "panel2": "#e8e8ed",
+      "line": "#e5e5ea",
+      "line2": "#d2d2d7",
+      "tx": "#1d1d1f",
+      "mute": "#6e6e73",
+      "faint": "#a1a1a6",
+      "acc": "#1d1d1f",
+      "acc-fg": "#ffffff"
     },
     "dark": {
-      "bg": "#09090a",
-      "panel": "#0f0f11",
-      "panel2": "#141417",
-      "line": "#1e1e22",
-      "line2": "#2a2a30",
-      "tx": "#ededef",
-      "mute": "#8a8a93",
-      "faint": "#5c5c66",
-      "acc": "#ff6a2b"
+      "bg": "#000000",
+      "panel": "#141416",
+      "panel2": "#1f1f22",
+      "line": "#262628",
+      "line2": "#3a3a3d",
+      "tx": "#f5f5f7",
+      "mute": "#a1a1a6",
+      "faint": "#6e6e73",
+      "acc": "#f5f5f7",
+      "acc-fg": "#000000"
     }
   },
   "css": {
     ".light": {
-      "--bg": "#fafafa",
-      "--panel": "#ffffff",
-      "--panel2": "#f0f0f3",
-      "--line": "#e6e6ea",
-      "--line2": "#d6d6dd",
-      "--tx": "#141417",
-      "--mute": "#5f5f6b",
-      "--faint": "#a2a2ab",
-      "--acc": "#e14e0b"
+      "--bg": "#ffffff",
+      "--panel": "#f5f5f7",
+      "--panel2": "#e8e8ed",
+      "--line": "#e5e5ea",
+      "--line2": "#d2d2d7",
+      "--tx": "#1d1d1f",
+      "--mute": "#6e6e73",
+      "--faint": "#a1a1a6",
+      "--acc": "#1d1d1f",
+      "--acc-fg": "#ffffff"
     }
   }
 }

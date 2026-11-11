@@ -18,7 +18,7 @@ export default function ProductHero({ title = 'Ship the site. Skip the servers.'
   const done = n >= LOG.length
   return (
     <section className="@container relative w-full overflow-hidden rounded-2xl border border-line bg-bg">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(255,106,43,.14),transparent)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,color-mix(in_oklab,var(--acc)_14%,transparent),transparent)]" />
       <div className="relative grid items-center gap-10 p-6 @4xl:grid-cols-2 @4xl:p-12">
         <div>
           <motion.h2 initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="text-3xl font-semibold tracking-[-0.035em] text-tx @2xl:text-5xl">{title}</motion.h2>

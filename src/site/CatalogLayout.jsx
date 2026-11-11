@@ -6,8 +6,8 @@ import ErrorBoundary from './ErrorBoundary'
 import { bySlug, familyById } from '@/lib/catalog'
 
 const titleFor = (path) => {
-  if (path.startsWith('/blocks')) return 'Blocks'
-  if (path.startsWith('/backgrounds')) return 'Gradient backgrounds'
+  if (path.startsWith('/blocks')) return 'Sections'
+  if (path.startsWith('/backgrounds')) return 'CSS backgrounds'
   const slug = path.split('/')[2]
   if (slug && bySlug[slug]) return `${familyById[bySlug[slug].family]?.name} / ${bySlug[slug].name}`
   return 'All components'
@@ -30,14 +30,14 @@ export default function CatalogLayout() {
     return () => window.removeEventListener('keydown', k)
   }, [open])
   return (
-    <div className="mx-auto flex max-w-[1400px]">
+    <div className="mx-auto flex max-w-[1600px]">
       <aside className="sticky top-14 hidden h-[calc(100dvh-3.5rem)] w-64 shrink-0 border-r border-line lg:block">
         <CatalogSidebar />
       </aside>
 
       <div className="min-w-0 flex-1">
         <div className="sticky top-14 z-20 flex h-11 items-center gap-3 border-b border-line bg-bg/85 px-4 backdrop-blur-md lg:hidden">
-          <button type="button" onClick={() => setOpen(true)} aria-label="Open catalog" className="flex h-7 items-center gap-2 rounded-md border border-line2 bg-panel px-2.5 text-xs text-tx">
+          <button type="button" onClick={() => setOpen(true)} aria-label="Open catalog" className="flex h-8 items-center gap-2 rounded-full bg-panel2 px-3 text-xs text-tx">
             <svg viewBox="0 0 24 24" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 6h16M4 12h10M4 18h16" /></svg>Browse
           </button>
           <span className="truncate text-xs text-mute">{titleFor(loc.pathname)}</span>

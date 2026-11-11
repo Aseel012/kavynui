@@ -10,7 +10,7 @@
       "path": "src/kavyn/shader-ink.jsx",
       "type": "registry:file",
       "target": "@components/kavyn/shader-ink.jsx",
-      "content": "'use client'\n\nimport { useShader, hexToRgb, NOISE } from './gl-canvas'\n\nconst FRAG = NOISE + `\nuniform vec3 uA;uniform vec3 uB;\nvoid main(){\n  vec2 p=(gl_FragCoord.xy-.5*uRes)/uRes.y;\n  vec2 m=(uMouse.xy-.5)*vec2(uRes.x/uRes.y,1.);\n  p+=(p-m)*.25*exp(-3.*length(p-m));\n  float t=uTime*.12;\n  vec2 q=vec2(fbm(p*1.4+t),fbm(p*1.4+vec2(5.2,1.3)-t));\n  vec2 r=vec2(fbm(p*1.4+3.5*q+vec2(1.7,9.2)+t*.6),fbm(p*1.4+3.5*q+vec2(8.3,2.8)-t*.4));\n  float f=fbm(p*1.4+3.5*r);\n  vec3 col=vec3(.03,.03,.04);\n  col=mix(col,uA,clamp(f*f*1.8,0.,1.));\n  col=mix(col,uB,clamp(length(q)*.55,0.,1.)*.55);\n  col+=vec3(.9)*pow(clamp(r.x,0.,1.),6.)*.35;\n  col*=smoothstep(1.3,.2,length(p));\n  gl_FragColor=vec4(col,1.);\n}`\n\n// Slow ink currents that bend away from the pointer.\n/** @param {{ from?: any, to?: any, speed?: any, className?: any, children?: any }} props */\nexport default function ShaderInk({ from = '#ff6a2b', to = '#3b3bd6', speed = 1, className = '', children = undefined }) {\n  const host = useShader(FRAG, { uniforms: { uA: hexToRgb(from), uB: hexToRgb(to, [0.23, 0.23, 0.84]) }, speed })\n  return (\n    <div ref={host} className={`relative h-full min-h-72 w-full overflow-hidden bg-[#09090a] ${className}`}\n      style={{ backgroundImage: `radial-gradient(70% 60% at 30% 40%, ${from}40, transparent 70%), radial-gradient(60% 60% at 75% 60%, ${to}40, transparent 70%)` }}>\n      <div className=\"pointer-events-none relative z-10 grid h-full min-h-72 place-items-center p-6\">{children}</div>\n    </div>\n  )\n}\n"
+      "content": "'use client'\n\nimport { useShader, hexToRgb, NOISE } from './gl-canvas'\n\nconst FRAG = NOISE + `\nuniform vec3 uA;uniform vec3 uB;\nvoid main(){\n  vec2 p=(gl_FragCoord.xy-.5*uRes)/uRes.y;\n  vec2 m=(uMouse.xy-.5)*vec2(uRes.x/uRes.y,1.);\n  p+=(p-m)*.25*exp(-3.*length(p-m));\n  float t=uTime*.12;\n  vec2 q=vec2(fbm(p*1.4+t),fbm(p*1.4+vec2(5.2,1.3)-t));\n  vec2 r=vec2(fbm(p*1.4+3.5*q+vec2(1.7,9.2)+t*.6),fbm(p*1.4+3.5*q+vec2(8.3,2.8)-t*.4));\n  float f=fbm(p*1.4+3.5*r);\n  vec3 col=vec3(.03,.03,.04);\n  col=mix(col,uA,clamp(f*f*1.8,0.,1.));\n  col=mix(col,uB,clamp(length(q)*.55,0.,1.)*.55);\n  col+=vec3(.9)*pow(clamp(r.x,0.,1.),6.)*.35;\n  col*=smoothstep(1.3,.2,length(p));\n  gl_FragColor=vec4(col,1.);\n}`\n\n// Slow ink currents that bend away from the pointer.\n/** @param {{ from?: any, to?: any, speed?: any, className?: any, children?: any }} props */\nexport default function ShaderInk({ from = '#c8a27a', to = '#6e2f45', speed = 1, className = '', children = undefined }) {\n  const host = useShader(FRAG, { uniforms: { uA: hexToRgb(from), uB: hexToRgb(to, [0.23, 0.23, 0.84]) }, speed })\n  return (\n    <div ref={host} className={`relative h-full min-h-72 w-full overflow-hidden bg-[#09090a] ${className}`}\n      style={{ backgroundImage: `radial-gradient(70% 60% at 30% 40%, ${from}40, transparent 70%), radial-gradient(60% 60% at 75% 60%, ${to}40, transparent 70%)` }}>\n      <div className=\"pointer-events-none relative z-10 grid h-full min-h-72 place-items-center p-6\">{children}</div>\n    </div>\n  )\n}\n"
     },
     {
       "path": "src/kavyn/gl-canvas.js",
@@ -29,42 +29,46 @@
       "color-tx": "var(--tx)",
       "color-mute": "var(--mute)",
       "color-faint": "var(--faint)",
-      "color-acc": "var(--acc)"
+      "color-acc": "var(--acc)",
+      "color-acc-fg": "var(--acc-fg)"
     },
     "light": {
-      "bg": "#fafafa",
-      "panel": "#ffffff",
-      "panel2": "#f0f0f3",
-      "line": "#e6e6ea",
-      "line2": "#d6d6dd",
-      "tx": "#141417",
-      "mute": "#5f5f6b",
-      "faint": "#a2a2ab",
-      "acc": "#e14e0b"
+      "bg": "#ffffff",
+      "panel": "#f5f5f7",
+      "panel2": "#e8e8ed",
+      "line": "#e5e5ea",
+      "line2": "#d2d2d7",
+      "tx": "#1d1d1f",
+      "mute": "#6e6e73",
+      "faint": "#a1a1a6",
+      "acc": "#1d1d1f",
+      "acc-fg": "#ffffff"
     },
     "dark": {
-      "bg": "#09090a",
-      "panel": "#0f0f11",
-      "panel2": "#141417",
-      "line": "#1e1e22",
-      "line2": "#2a2a30",
-      "tx": "#ededef",
-      "mute": "#8a8a93",
-      "faint": "#5c5c66",
-      "acc": "#ff6a2b"
+      "bg": "#000000",
+      "panel": "#141416",
+      "panel2": "#1f1f22",
+      "line": "#262628",
+      "line2": "#3a3a3d",
+      "tx": "#f5f5f7",
+      "mute": "#a1a1a6",
+      "faint": "#6e6e73",
+      "acc": "#f5f5f7",
+      "acc-fg": "#000000"
     }
   },
   "css": {
     ".light": {
-      "--bg": "#fafafa",
-      "--panel": "#ffffff",
-      "--panel2": "#f0f0f3",
-      "--line": "#e6e6ea",
-      "--line2": "#d6d6dd",
-      "--tx": "#141417",
-      "--mute": "#5f5f6b",
-      "--faint": "#a2a2ab",
-      "--acc": "#e14e0b"
+      "--bg": "#ffffff",
+      "--panel": "#f5f5f7",
+      "--panel2": "#e8e8ed",
+      "--line": "#e5e5ea",
+      "--line2": "#d2d2d7",
+      "--tx": "#1d1d1f",
+      "--mute": "#6e6e73",
+      "--faint": "#a1a1a6",
+      "--acc": "#1d1d1f",
+      "--acc-fg": "#ffffff"
     }
   }
 }

@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react'
 import { motion } from 'motion/react'
 
-export default function InkBleedButton({ children = 'Start building', color = '#ff6a2b' }) {
+export default function InkBleedButton({ children = 'Start building', color = 'var(--acc)' }) {
   const ref = useRef(null)
   const [s, setS] = useState({ x: 0, y: 0, on: false, r: 0 })
 
@@ -29,7 +29,7 @@ export default function InkBleedButton({ children = 'Start building', color = '#
         animate={{ scale: s.on ? 1 : 0 }}
         transition={{ type: 'spring', stiffness: 170, damping: 24 }}
       />
-      <motion.span className="relative" animate={{ color: s.on ? '#09090a' : 'var(--tx)' }} transition={{ duration: 0.25 }}>
+      <motion.span className="relative" animate={{ color: s.on ? 'var(--acc-fg)' : 'var(--tx)' }} transition={{ duration: 0.25 }}>
         {children}
       </motion.span>
     </button>

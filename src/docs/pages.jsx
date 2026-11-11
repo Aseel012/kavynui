@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { H2, P, C, Code, Note, Steps, Table, Tabs, SpringPlayground, ThemeLab } from './widgets'
+import { H2, P, C, Code, Note, Steps, Table, SpringPlayground, ThemeLab } from './widgets'
 import { Fit } from '@/site/Preview'
 import HoldToConfirm from '@/kavyn/hold-to-confirm'
 import FlipWords from '@/kavyn/flip-words'
@@ -12,19 +12,27 @@ const THEME = `@import "tailwindcss";
 @theme inline {
   --color-bg: var(--bg);
   --color-panel: var(--panel);
+  --color-panel2: var(--panel2);
   --color-line: var(--line);
+  --color-line2: var(--line2);
   --color-tx: var(--tx);
   --color-mute: var(--mute);
+  --color-faint: var(--faint);
   --color-acc: var(--acc);
+  --color-acc-fg: var(--acc-fg);
 }
 
 :root {
-  --bg: #09090a;
-  --panel: #0f0f11;
-  --line: #1e1e22;
-  --tx: #ededef;
-  --mute: #8a8a93;
-  --acc: #ff6a2b;
+  --bg: #000000;
+  --panel: #141416;
+  --panel2: #1f1f22;
+  --line: #262628;
+  --line2: #3a3a3d;
+  --tx: #f5f5f7;
+  --mute: #a1a1a6;
+  --faint: #6e6e73;
+  --acc: #f5f5f7;
+  --acc-fg: #000000;
 }`
 
 const L = ({ to, children }) => <Link to={to} className="text-tx underline decoration-line2 underline-offset-4 hover:decoration-tx">{children}</Link>
@@ -39,7 +47,7 @@ export const DOCS = [
       <Live h="h-48"><FlipWords /></Live>
       <H2 id="what">What you get</H2>
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
-        {[['Components', 'Buttons, type, loaders, navigation, 3D scenes. Each one does a job.', '/components'], ['Blocks', 'Full sections: dashboards, heroes, sign-in, status pages.', '/blocks'], ['Maps & data', 'Dotted world maps, globes, live charts and feeds.', '/components?family=data'], ['Backgrounds', 'Gradient backgrounds as plain CSS, with copyable code.', '/backgrounds']].map(([t, b, to]) => (
+        {[['Components', 'Buttons, type, loaders, navigation, 3D scenes. Each one does a job.', '/components'], ['Sections', 'Full page sections: hero, features, pricing, FAQ, footer.', '/blocks'], ['Maps & data', 'Dotted world maps, globes, live charts and feeds.', '/components?family=data'], ['Backgrounds', 'Gradient backgrounds as plain CSS, with copyable code.', '/backgrounds']].map(([t, b, to]) => (
           <Link key={t} to={to} className="rounded-xl border border-line bg-panel p-4 transition-colors hover:border-line2"><div className="text-[15px] text-tx">{t}</div><p className="mt-1 text-sm text-mute">{b}</p></Link>
         ))}
       </div>
@@ -48,7 +56,7 @@ export const DOCS = [
         ['You own the code', 'No package to install. Copy a file into your project and edit it freely.'],
         ['Every piece has a use', 'Each component lists the real screen it was made for.'],
         ['Springs, not timers', 'Animations can be interrupted without jumping.'],
-        ['Quiet by default', 'Dark, minimal tokens that pick up your brand color.'],
+        ['Quiet by default', 'Monochrome tokens in iOS grays that pick up your brand color.'],
       ]} />
       <H2 id="next">Next steps</H2>
       <P>Set up a project in <L to="/docs/installation">Installation</L>, then add the tokens from <L to="/docs/theming">Theming</L>.</P>
@@ -64,15 +72,15 @@ export const DOCS = [
       <P>Components use hooks and browser APIs, so mark each file as a client component.</P>
       <Code title="components/kavyn/hold-to-confirm.jsx" code={`'use client'\n\nimport { useState } from 'react'\n// ...rest of the component`} />
     </>) },
-    { id: 'theming', title: 'Theming', lead: 'Nine color tokens. Change them once and every component follows.', toc: [['tokens', 'Tokens'], ['brand', 'Brand color'], ['light', 'Light mode']], body: () => (<>
+    { id: 'theming', title: 'Theming', lead: 'Ten color tokens. Change them once and every component follows.', toc: [['tokens', 'Tokens'], ['brand', 'Brand color'], ['light', 'Light mode']], body: () => (<>
       <H2 id="tokens">Tokens</H2>
       <ThemeLab />
       <Code title="src/index.css" code={THEME} />
       <H2 id="brand">Brand color</H2>
-      <P>Most of the personality comes from <C>--color-acc</C>. Swap it for your brand color and keep the neutrals. Pick a color that still reads on a near-black background.</P>
+      <P>The accent ships as the text color, so the library reads as black and white. Swap <C>--acc</C> for your brand color and set <C>--acc-fg</C> to the text color that sits on it.</P>
       <H2 id="light">Light mode</H2>
       <P>Override the token values under a class. Components only read the tokens, so nothing else changes. This site ships a <C>.light</C> class and a toggle in the navbar.</P>
-      <Code title="src/index.css" code={`.light {\n  --bg: #fafafa;\n  --panel: #ffffff;\n  --line: #e6e6ea;\n  --tx: #141417;\n  --mute: #5f5f6b;\n}`} />
+      <Code title="src/index.css" code={`.light {\n  --bg: #ffffff;\n  --panel: #f5f5f7;\n  --panel2: #e8e8ed;\n  --line: #e5e5ea;\n  --line2: #d2d2d7;\n  --tx: #1d1d1f;\n  --mute: #6e6e73;\n  --faint: #a1a1a6;\n  --acc: #1d1d1f;\n  --acc-fg: #ffffff;\n}`} />
     </>) },
     { id: 'usage', title: 'Usage', lead: 'Import, pass props, ship.', toc: [['basic', 'Basic'], ['props', 'Props'], ['compose', 'Composing']], body: () => (<>
       <Live><HoldToConfirm /></Live>
@@ -101,7 +109,7 @@ export const DOCS = [
       <P>Wrap your app in <C>MotionConfig</C> and Motion will respect the system setting. CSS animations in kavynUI also stop under <C>prefers-reduced-motion</C>.</P>
       <Code title="main.jsx" code={`import { MotionConfig } from 'motion/react'\n\n<MotionConfig reducedMotion="user">\n  <App />\n</MotionConfig>`} />
     </>) },
-    { id: 'blocks', title: 'Blocks', lead: 'Blocks size themselves to their container, not the window.', toc: [['container', 'Container queries'], ['edit', 'Editing content']], body: () => (<>
+    { id: 'blocks', title: 'Sections', lead: 'Sections size themselves to their container, not the window.', toc: [['container', 'Container queries'], ['edit', 'Editing content']], body: () => (<>
       <H2 id="container">Container queries</H2>
       <P>Every block starts with Tailwind's <C>@container</C> class and uses <C>@3xl:</C> style variants. Put a block in a narrow sidebar and it switches to its mobile layout, even on a wide screen. Use the viewport switch on any block page to see it.</P>
       <Code title="pattern" code={`<section className="@container">\n  <div className="grid gap-3 @3xl:grid-cols-3">…</div>\n</section>`} />
@@ -124,16 +132,16 @@ export const DOCS = [
       <H2 id="anim">Animated backgrounds</H2>
       <P>Animated ones move <C>background-position</C> or a registered custom property, which the browser can run cheaply. The copied CSS includes a reduced-motion rule.</P>
     </>) },
-    { id: 'shaders', title: 'Shaders & scroll', lead: 'GPU backgrounds, scroll scenes and physics that degrade gracefully.', toc: [['shaders', 'Shader backgrounds'], ['fallback', 'Fallbacks'], ['scroll', 'Scroll scenes'], ['physics', 'Physics and cursor']], body: () => (<>
+    { id: 'shaders', title: 'Shaders & scroll', lead: 'GPU backgrounds, scroll scenes and physics that degrade gracefully.', toc: [['shaders', 'Shader backgrounds'], ['fallback', 'Fallbacks'], ['scroll', 'Scroll scenes'], ['physics', 'Canvas and cursor']], body: () => (<>
       <div className="relative mt-5 h-72 overflow-hidden rounded-2xl border border-line"><ShaderLattice><span className="text-sm font-medium text-tx">Your content here</span></ShaderLattice></div>
       <H2 id="shaders">Shader backgrounds</H2>
-      <P>The <L to="/components?family=shaders">Shaders</L> family runs a small fragment shader through <C>gl-canvas.js</C>. Copy that file once; every shader imports it. Put content inside as children, the same way you use a CSS background.</P>
-      <Code title="usage" code={`<ShaderInk from="#ff6a2b" to="#3b3bd6">\n  <h1>Launch day</h1>\n</ShaderInk>`} />
+      <P>The <L to="/components?family=bg">Backgrounds</L> family runs a small fragment shader through <C>gl-canvas.js</C>. Copy that file once; every shader imports it. Put content inside as children, the same way you use a CSS background.</P>
+      <Code title="usage" code={`<ShaderInk from="#c8a27a" to="#6e2f45">\n  <h1>Launch day</h1>\n</ShaderInk>`} />
       <H2 id="fallback">Fallbacks</H2>
       <P>Each shader paints a CSS gradient first and fades the canvas in only once WebGL is running. If WebGL is off, blocked, software-only or lost mid-session, the gradient stays and nothing errors. Rendering starts below screen resolution and steps down further if frames run slow. The loop pauses off screen and in hidden tabs, and reduced motion renders one still frame.</P>
       <H2 id="scroll">Scroll scenes</H2>
-      <P><L to="/components?family=scroll">Scroll Scenes</L> scroll inside their own box, so they work in a card, a modal or a full page. Size the box with <C>className</C>, for example <C>h-screen</C> for a full-page story.</P>
-      <H2 id="physics">Physics and cursor</H2>
+      <P><L to="/components?family=scroll">Scroll & cursor</L> scroll inside their own box, so they work in a card, a modal or a full page. Size the box with <C>className</C>, for example <C>h-screen</C> for a full-page story.</P>
+      <H2 id="physics">Canvas and cursor</H2>
       <P>Canvas pieces share <C>canvas-loop.js</C>, which sizes the canvas, caps pixel ratio at 2, pauses off screen and tracks the pointer. Anything you can tap also works by keyboard or has a hidden list of real buttons.</P>
     </>) },
     { id: 'accessibility', title: 'Accessibility', lead: 'Motion should never be the only way to understand something.', toc: [['checklist', 'Checklist']], body: () => (<>

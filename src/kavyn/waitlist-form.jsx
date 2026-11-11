@@ -1,21 +1,21 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 
 const POOL = [
   { id: 'p1', src: 'https://randomuser.me/api/portraits/women/44.jpg', initials: 'AK', hue: '#d8b27a' },
   { id: 'p2', src: 'https://randomuser.me/api/portraits/men/32.jpg', initials: 'MS', hue: '#8fb996' },
   { id: 'p3', src: 'https://randomuser.me/api/portraits/women/68.jpg', initials: 'RJ', hue: '#e8a2b4' },
-  { id: 'p4', src: 'https://randomuser.me/api/portraits/men/75.jpg', initials: 'PN', hue: '#9db4d4' },
+  { id: 'p4', src: 'https://randomuser.me/api/portraits/men/75.jpg', initials: 'PN', hue: '#b9b4ab' },
   { id: 'p5', src: 'https://randomuser.me/api/portraits/women/12.jpg', initials: 'DV', hue: '#c9a2e0' },
   { id: 'p6', src: 'https://randomuser.me/api/portraits/men/41.jpg', initials: 'SL', hue: '#e0a184' },
-  { id: 'p7', src: 'https://randomuser.me/api/portraits/women/29.jpg', initials: 'TK', hue: '#7fb3c8' },
+  { id: 'p7', src: 'https://randomuser.me/api/portraits/women/29.jpg', initials: 'TK', hue: '#c8a27a' },
   { id: 'p8', src: 'https://randomuser.me/api/portraits/men/56.jpg', initials: 'IB', hue: '#b5c48a' },
   { id: 'p9', src: 'https://randomuser.me/api/portraits/women/33.jpg', initials: 'AR', hue: '#d69bb8' },
   { id: 'p10', src: 'https://randomuser.me/api/portraits/men/18.jpg', initials: 'NK', hue: '#93b8a4' },
   { id: 'p11', src: 'https://randomuser.me/api/portraits/women/51.jpg', initials: 'SP', hue: '#c8a883' },
-  { id: 'p12', src: 'https://randomuser.me/api/portraits/men/85.jpg', initials: 'RM', hue: '#a3a3d6' },
+  { id: 'p12', src: 'https://randomuser.me/api/portraits/men/85.jpg', initials: 'RM', hue: '#a1a1a6' },
 ]
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -74,17 +74,17 @@ export default function WaitlistForm({
   const n = people.length
   const heads = n ? Array.from({ length: Math.min(visible, n) }, (_, i) => people[(start + i) % n]) : []
 
-  const pushOne = () => {
+  const pushOne = useCallback(() => {
     setJoined((j) => j + 1)
     if (n) setStart((s) => (s - 1 + n) % n)
-  }
+  }, [n])
 
   // Demo-only conveyor: off by default so production counts stay real. Enable with autoJoin.
   useEffect(() => {
     if (!autoJoin || !n) return
     const t = setInterval(pushOne, autoJoinInterval)
     return () => clearInterval(t)
-  }, [autoJoin, autoJoinInterval, n])
+  }, [autoJoin, autoJoinInterval, n, pushOne])
 
   const submit = async (e) => {
     e.preventDefault()

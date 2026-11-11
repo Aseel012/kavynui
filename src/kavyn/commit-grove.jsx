@@ -79,7 +79,7 @@ export default function CommitGrove({ year = 2026, data = undefined, workspaces 
   return <section data-commit-grove data-theme={theme} style={style} className="grove-card rounded-[24px] border border-line2 bg-bg p-4 text-tx sm:p-5">
     <style>{`
       .grove-card { --g0:var(--grove-dark-0,#17271e); --g1:var(--grove-dark-1,#244b34); --g2:var(--grove-dark-2,#377149); --g3:var(--grove-dark-3,#53a96a); --g4:var(--grove-dark-4,#8ae49d); }
-      .light .grove-card:not([data-theme="dark"]), .grove-card[data-theme="light"] { --g0:var(--grove-light-0,#e5eee7); --g1:var(--grove-light-1,#c4ddca); --g2:var(--grove-light-2,#8fbf9d); --g3:var(--grove-light-3,#579b6b); --g4:var(--grove-light-4,#267844); }
+      .light .grove-card:not([data-theme="dark"]), :root:not(.dark) .grove-card:not([data-theme="dark"]), .grove-card[data-theme="light"] { --g0:var(--grove-light-0,#e5eee7); --g1:var(--grove-light-1,#c4ddca); --g2:var(--grove-light-2,#8fbf9d); --g3:var(--grove-light-3,#579b6b); --g4:var(--grove-light-4,#267844); }
       .grove-card[data-theme="light"] { color:#19191e; background:#fafafa; border-color:#dedee5; }
       .grove-card[data-theme="dark"] { color:#ededf0; background:#09090a; border-color:#303036; }
       .grove-muted { opacity:.62; }

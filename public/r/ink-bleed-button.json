@@ -12,7 +12,7 @@
       "path": "src/kavyn/ink-bleed-button.jsx",
       "type": "registry:file",
       "target": "@components/kavyn/ink-bleed-button.jsx",
-      "content": "'use client'\n\nimport { useRef, useState } from 'react'\nimport { motion } from 'motion/react'\n\nexport default function InkBleedButton({ children = 'Start building', color = '#ff6a2b' }) {\n  const ref = useRef(null)\n  const [s, setS] = useState({ x: 0, y: 0, on: false, r: 0 })\n\n  const at = (e, on) => {\n    const b = ref.current.getBoundingClientRect()\n    const x = e.clientX - b.left, y = e.clientY - b.top\n    const r = Math.hypot(Math.max(x, b.width - x), Math.max(y, b.height - y))\n    setS({ x, y, on, r })\n  }\n\n  return (\n    <button\n      ref={ref}\n      onPointerEnter={(e) => at(e, true)}\n      onPointerLeave={(e) => at(e, false)}\n      className=\"relative h-12 overflow-hidden rounded-xl border border-line2 bg-panel px-7 text-sm font-medium text-tx\"\n    >\n      <motion.span\n        aria-hidden\n        className=\"absolute rounded-full\"\n        style={{ left: s.x, top: s.y, width: s.r * 2, height: s.r * 2, marginLeft: -s.r, marginTop: -s.r, background: color }}\n        initial={false}\n        animate={{ scale: s.on ? 1 : 0 }}\n        transition={{ type: 'spring', stiffness: 170, damping: 24 }}\n      />\n      <motion.span className=\"relative\" animate={{ color: s.on ? '#09090a' : 'var(--tx)' }} transition={{ duration: 0.25 }}>\n        {children}\n      </motion.span>\n    </button>\n  )\n}\n"
+      "content": "'use client'\n\nimport { useRef, useState } from 'react'\nimport { motion } from 'motion/react'\n\nexport default function InkBleedButton({ children = 'Start building', color = 'var(--acc)' }) {\n  const ref = useRef(null)\n  const [s, setS] = useState({ x: 0, y: 0, on: false, r: 0 })\n\n  const at = (e, on) => {\n    const b = ref.current.getBoundingClientRect()\n    const x = e.clientX - b.left, y = e.clientY - b.top\n    const r = Math.hypot(Math.max(x, b.width - x), Math.max(y, b.height - y))\n    setS({ x, y, on, r })\n  }\n\n  return (\n    <button\n      ref={ref}\n      onPointerEnter={(e) => at(e, true)}\n      onPointerLeave={(e) => at(e, false)}\n      className=\"relative h-12 overflow-hidden rounded-xl border border-line2 bg-panel px-7 text-sm font-medium text-tx\"\n    >\n      <motion.span\n        aria-hidden\n        className=\"absolute rounded-full\"\n        style={{ left: s.x, top: s.y, width: s.r * 2, height: s.r * 2, marginLeft: -s.r, marginTop: -s.r, background: color }}\n        initial={false}\n        animate={{ scale: s.on ? 1 : 0 }}\n        transition={{ type: 'spring', stiffness: 170, damping: 24 }}\n      />\n      <motion.span className=\"relative\" animate={{ color: s.on ? 'var(--acc-fg)' : 'var(--tx)' }} transition={{ duration: 0.25 }}>\n        {children}\n      </motion.span>\n    </button>\n  )\n}\n"
     }
   ],
   "cssVars": {
@@ -25,42 +25,46 @@
       "color-tx": "var(--tx)",
       "color-mute": "var(--mute)",
       "color-faint": "var(--faint)",
-      "color-acc": "var(--acc)"
+      "color-acc": "var(--acc)",
+      "color-acc-fg": "var(--acc-fg)"
     },
     "light": {
-      "bg": "#fafafa",
-      "panel": "#ffffff",
-      "panel2": "#f0f0f3",
-      "line": "#e6e6ea",
-      "line2": "#d6d6dd",
-      "tx": "#141417",
-      "mute": "#5f5f6b",
-      "faint": "#a2a2ab",
-      "acc": "#e14e0b"
+      "bg": "#ffffff",
+      "panel": "#f5f5f7",
+      "panel2": "#e8e8ed",
+      "line": "#e5e5ea",
+      "line2": "#d2d2d7",
+      "tx": "#1d1d1f",
+      "mute": "#6e6e73",
+      "faint": "#a1a1a6",
+      "acc": "#1d1d1f",
+      "acc-fg": "#ffffff"
     },
     "dark": {
-      "bg": "#09090a",
-      "panel": "#0f0f11",
-      "panel2": "#141417",
-      "line": "#1e1e22",
-      "line2": "#2a2a30",
-      "tx": "#ededef",
-      "mute": "#8a8a93",
-      "faint": "#5c5c66",
-      "acc": "#ff6a2b"
+      "bg": "#000000",
+      "panel": "#141416",
+      "panel2": "#1f1f22",
+      "line": "#262628",
+      "line2": "#3a3a3d",
+      "tx": "#f5f5f7",
+      "mute": "#a1a1a6",
+      "faint": "#6e6e73",
+      "acc": "#f5f5f7",
+      "acc-fg": "#000000"
     }
   },
   "css": {
     ".light": {
-      "--bg": "#fafafa",
-      "--panel": "#ffffff",
-      "--panel2": "#f0f0f3",
-      "--line": "#e6e6ea",
-      "--line2": "#d6d6dd",
-      "--tx": "#141417",
-      "--mute": "#5f5f6b",
-      "--faint": "#a2a2ab",
-      "--acc": "#e14e0b"
+      "--bg": "#ffffff",
+      "--panel": "#f5f5f7",
+      "--panel2": "#e8e8ed",
+      "--line": "#e5e5ea",
+      "--line2": "#d2d2d7",
+      "--tx": "#1d1d1f",
+      "--mute": "#6e6e73",
+      "--faint": "#a1a1a6",
+      "--acc": "#1d1d1f",
+      "--acc-fg": "#ffffff"
     }
   }
 }
