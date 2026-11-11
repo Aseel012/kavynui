@@ -5,10 +5,10 @@ import { motion, AnimatePresence } from 'motion/react'
 
 const FEED = [
   { t: 'Deploy succeeded', s: 'main · 41s', c: 'bg-emerald-400' },
-  { t: 'New sign-up', s: 'priya@studio.dev', c: 'bg-sky-400' },
+  { t: 'New sign-up', s: 'priya@studio.dev', c: 'bg-tx' },
   { t: 'Payment received', s: '₹2,400 · Pro plan', c: 'bg-acc' },
   { t: 'Spike detected', s: '/api/search · 3.2k rpm', c: 'bg-amber-400' },
-  { t: 'Comment on PR #212', s: 'Looks good, ship it', c: 'bg-violet-400' },
+  { t: 'Comment on PR #212', s: 'Looks good, ship it', c: 'bg-mute' },
 ]
 
 // Notifications stack like cards. Collapsed it shows a pile; click to fan them out.

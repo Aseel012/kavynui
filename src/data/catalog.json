@@ -2,115 +2,78 @@
   "families": [
     {
       "id": "blocks",
-      "name": "Blocks",
-      "blurb": "Whole sections, ready to drop into a page",
-      "count": 10
+      "name": "Sections",
+      "blurb": "Whole page sections, in the order a page reads",
+      "count": 11
     },
     {
-      "id": "data",
-      "name": "Maps & Data",
-      "blurb": "Dashboards, maps and live metrics",
-      "count": 9
-    },
-    {
-      "id": "shaders",
-      "name": "Shaders",
-      "blurb": "WebGL backgrounds with a CSS fallback",
+      "id": "buttons",
+      "name": "Buttons",
+      "blurb": "Calls to action that answer the cursor",
       "count": 6
     },
     {
-      "id": "scroll",
-      "name": "Scroll Scenes",
-      "blurb": "Stories that move as people read",
-      "count": 6
-    },
-    {
-      "id": "physics",
-      "name": "Physics",
-      "blurb": "Weight, springs and cloth you can grab",
-      "count": 5
-    },
-    {
-      "id": "cursor",
-      "name": "Cursor",
-      "blurb": "Pointers that pull, trail and snap",
+      "id": "forms",
+      "name": "Forms & inputs",
+      "blurb": "Capture emails, photos and files",
       "count": 4
     },
     {
-      "id": "actions",
-      "name": "Actions",
-      "blurb": "Buttons that react, confirm and celebrate",
-      "count": 14
+      "id": "nav",
+      "name": "Navigation",
+      "blurb": "Headers, menus, tabs and steps",
+      "count": 11
     },
     {
       "id": "type",
-      "name": "Type & Motion",
-      "blurb": "Headlines with timing, weight and texture",
-      "count": 15
+      "name": "Text",
+      "blurb": "Headlines with timing and texture",
+      "count": 8
+    },
+    {
+      "id": "cards",
+      "name": "Cards & layout",
+      "blurb": "Feature grids, bento tiles and surfaces",
+      "count": 10
+    },
+    {
+      "id": "proof",
+      "name": "Social proof",
+      "blurb": "Reviews, logos and community",
+      "count": 3
     },
     {
       "id": "interactive",
       "name": "Interactive",
-      "blurb": "Things people touch, drag and scrub",
-      "count": 15
-    },
-    {
-      "id": "scenes",
-      "name": "3D Scenes",
-      "blurb": "Depth and perspective without a game engine",
-      "count": 9
-    },
-    {
-      "id": "bento",
-      "name": "Bento & Layout",
-      "blurb": "Feature sections that feel alive",
+      "blurb": "Things people tap, drag and open",
       "count": 10
     },
     {
-      "id": "marquee",
-      "name": "Hover & Marquee",
-      "blurb": "Social proof and small delights",
-      "count": 8
+      "id": "data",
+      "name": "Maps & data",
+      "blurb": "Dashboards, maps and live metrics",
+      "count": 9
     },
     {
       "id": "loaders",
       "name": "Loaders",
       "blurb": "Waiting that feels designed",
-      "count": 6
+      "count": 4
     },
     {
-      "id": "nav",
-      "name": "Navigation",
-      "blurb": "Getting around, with character",
-      "count": 11
+      "id": "scroll",
+      "name": "Scroll & cursor",
+      "blurb": "Stories that move as people read",
+      "count": 7
     },
     {
       "id": "bg",
       "name": "Backgrounds",
-      "blurb": "Quiet motion behind content",
-      "count": 10
+      "blurb": "Shaders and canvases behind content",
+      "count": 11
     }
   ],
   "components": [
-    {
-      "slug": "edge-dashboard",
-      "name": "Edge Dashboard",
-      "export": "EdgeDashboard",
-      "family": "blocks",
-      "description": "Live analytics dashboard with stat tiles, request map and top countries",
-      "useCase": "Admin overview",
-      "tags": [
-        "original"
-      ],
-      "deps": [
-        "traffic-map.jsx",
-        "world-dots.js"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
     {
       "slug": "product-hero",
       "name": "Product Hero",
@@ -157,6 +120,36 @@
       ]
     },
     {
+      "slug": "pricing-morph",
+      "name": "Pricing Morph",
+      "export": "PricingMorph",
+      "family": "blocks",
+      "description": "Plan cards reshape when billing changes",
+      "useCase": "SaaS pricing",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "faq-accordion",
+      "name": "FAQ Accordion",
+      "export": "FaqAccordion",
+      "family": "blocks",
+      "description": "One-open-at-a-time questions with a plus that becomes a minus",
+      "useCase": "Pricing page FAQ",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "slug": "globe-cta",
       "name": "Globe CTA",
       "export": "GlobeCta",
@@ -169,6 +162,22 @@
       "deps": [
         "edge-globe.jsx",
         "world-dots.js"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "wordmark-footer",
+      "name": "Wordmark Footer",
+      "export": "WordmarkFooter",
+      "family": "blocks",
+      "description": "Link columns over a giant wordmark that rises in",
+      "useCase": "Site footer",
+      "tags": [
+        "new",
+        "original"
       ],
       "dependencies": [
         "motion",
@@ -206,21 +215,6 @@
       ]
     },
     {
-      "slug": "faq-accordion",
-      "name": "FAQ Accordion",
-      "export": "FaqAccordion",
-      "family": "blocks",
-      "description": "One-open-at-a-time questions with a plus that becomes a minus",
-      "useCase": "Pricing page FAQ",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
       "slug": "status-board",
       "name": "Status Board",
       "export": "StatusBoard",
@@ -236,18 +230,759 @@
       ]
     },
     {
-      "slug": "wordmark-footer",
-      "name": "Wordmark Footer",
-      "export": "WordmarkFooter",
+      "slug": "edge-dashboard",
+      "name": "Edge Dashboard",
+      "export": "EdgeDashboard",
       "family": "blocks",
-      "description": "Link columns over a giant wordmark that rises in",
-      "useCase": "Site footer",
+      "description": "Live analytics dashboard with stat tiles, request map and top countries",
+      "useCase": "Admin overview",
       "tags": [
-        "new",
+        "original"
+      ],
+      "deps": [
+        "traffic-map.jsx",
+        "world-dots.js"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "liquid-button",
+      "name": "Liquid Button",
+      "export": "LiquidButton",
+      "family": "buttons",
+      "description": "Gooey blobs merge and split on hover",
+      "useCase": "Primary CTA",
+      "tags": [
         "original"
       ],
       "dependencies": [
         "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "magnet-pill",
+      "name": "Magnet Pill",
+      "export": "MagnetPill",
+      "family": "buttons",
+      "description": "Label drifts toward the cursor, pill stretches back",
+      "useCase": "Newsletter signup",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "ink-bleed-button",
+      "name": "Ink Bleed Button",
+      "export": "InkBleedButton",
+      "family": "buttons",
+      "description": "Fill floods in from the exact entry point",
+      "useCase": "Pricing CTA",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "ember-button",
+      "name": "Ember Button",
+      "export": "EmberButton",
+      "family": "buttons",
+      "description": "Edge heat-shimmer builds as the cursor gets closer",
+      "useCase": "Checkout \"Pay now\"",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "orbit-button",
+      "name": "Orbit Button",
+      "export": "OrbitButton",
+      "family": "buttons",
+      "description": "A spark orbits the border while work runs",
+      "useCase": "AI \"Generate\"",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "hold-to-confirm",
+      "name": "Hold to Confirm",
+      "export": "HoldToConfirm",
+      "family": "buttons",
+      "description": "Ring fills while held, then snaps to a check",
+      "useCase": "Delete account",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "waitlist-form",
+      "name": "Waitlist Form",
+      "export": "WaitlistForm",
+      "family": "forms",
+      "description": "Email capture with avatar stack social proof, live join count and success state",
+      "useCase": "Landing page waitlists",
+      "tags": [
+        "original"
+      ],
+      "deps": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "avatar-upload",
+      "name": "Avatar Upload",
+      "export": "AvatarUpload",
+      "family": "forms",
+      "useCase": "Profile photo in settings",
+      "description": "Pick or drop a photo, see it cropped round, watch the ring fill, then replace or remove it",
+      "tags": [
+        "new",
+        "original"
+      ]
+    },
+    {
+      "slug": "dropzone",
+      "name": "Dropzone",
+      "export": "Dropzone",
+      "family": "forms",
+      "description": "File upload dropzone with per-file progress, retry and aggregate status",
+      "useCase": "File upload flows",
+      "tags": [
+        "original"
+      ],
+      "deps": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "quick-menu",
+      "name": "Quick Menu",
+      "export": "QuickMenu",
+      "family": "forms",
+      "description": "Inline pill that pops a quick option menu above it",
+      "useCase": "Visibility and quick settings",
+      "tags": [
+        "original"
+      ],
+      "deps": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "pocket-nav",
+      "name": "Pocket Nav",
+      "export": "PocketNav",
+      "family": "nav",
+      "description": "Nav folds into a floating pill on scroll",
+      "useCase": "Long landing pages",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "tab-lens",
+      "name": "Tab Lens",
+      "export": "TabLens",
+      "family": "nav",
+      "description": "A lens slides between items and magnifies",
+      "useCase": "Marketing nav",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "dock-magnify",
+      "name": "Dock Magnify",
+      "export": "DockMagnify",
+      "family": "nav",
+      "description": "Icons grow with cursor distance on a spring",
+      "useCase": "App launcher",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "command-rail",
+      "name": "Command Rail",
+      "export": "CommandRail",
+      "family": "nav",
+      "description": "Side rail with key hints, expands on hover",
+      "useCase": "Dashboards",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "crumb-fold",
+      "name": "Crumb Fold",
+      "export": "CrumbFold",
+      "family": "nav",
+      "description": "Deep breadcrumbs fold into dots",
+      "useCase": "File manager",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "stack-menu",
+      "name": "Stack Menu",
+      "export": "StackMenu",
+      "family": "nav",
+      "description": "Menu items fan down like cards",
+      "useCase": "Mobile menu",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "section-beads",
+      "name": "Section Beads",
+      "export": "SectionBeads",
+      "family": "nav",
+      "description": "Beads fill as you read each section",
+      "useCase": "Docs pages",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "snap-sheet",
+      "name": "Snap Sheet",
+      "export": "SnapSheet",
+      "family": "nav",
+      "description": "Bottom sheet with snap points",
+      "useCase": "Mobile checkout",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "flow-chips",
+      "name": "Flow Chips",
+      "export": "FlowChips",
+      "family": "nav",
+      "description": "Filter chips reorder with FLIP motion",
+      "useCase": "Store filters",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "stepper-morph",
+      "name": "Stepper Morph",
+      "export": "StepperMorph",
+      "family": "nav",
+      "description": "Step line morphs into a check",
+      "useCase": "Onboarding",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "workspace-shuffle",
+      "name": "Workspace Shuffle",
+      "export": "WorkspaceShuffle",
+      "family": "nav",
+      "description": "Workspaces slide in as a card stack",
+      "useCase": "SaaS switcher",
+      "tags": [
+        "new"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "flip-words",
+      "name": "Flip Words",
+      "export": "FlipWords",
+      "family": "type",
+      "description": "The last word rolls to the next, letter by letter",
+      "useCase": "Hero tagline",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "text-scramble",
+      "name": "Text Scramble",
+      "export": "TextScramble",
+      "family": "type",
+      "description": "Letters decode from noise, left to right, again on hover",
+      "useCase": "Dev-tool headline",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "slug": "caret-rewrite",
+      "name": "Caret Rewrite",
+      "export": "CaretRewrite",
+      "family": "type",
+      "description": "Types, backspaces and retypes with a live caret",
+      "useCase": "AI taglines",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "shimmer-text",
+      "name": "Shimmer Text",
+      "export": "ShimmerText",
+      "family": "type",
+      "description": "A light band sweeps across muted text",
+      "useCase": "\"Thinking\" label",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "slug": "highlighter-sweep",
+      "name": "Highlighter Sweep",
+      "export": "HighlighterSweep",
+      "family": "type",
+      "description": "A marker stroke draws under the key phrase",
+      "useCase": "Blog emphasis",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "odometer-figures",
+      "name": "Odometer Figures",
+      "export": "OdometerFigures",
+      "family": "type",
+      "description": "Digits roll with a mechanical overshoot",
+      "useCase": "Revenue dashboard",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "weight-wave",
+      "name": "Weight Wave",
+      "export": "WeightWave",
+      "family": "type",
+      "description": "Variable-font weight ripples under the cursor",
+      "useCase": "Brand headline",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "dust-letters",
+      "name": "Dust Letters",
+      "export": "DustLetters",
+      "family": "type",
+      "layout": "fill",
+      "description": "A headline of dust that scatters and drifts home",
+      "useCase": "Brand hero",
+      "deps": [
+        "canvas-loop.js"
+      ],
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "slug": "spotlight-card",
+      "name": "Spotlight Card",
+      "export": "SpotlightCard",
+      "family": "cards",
+      "description": "Cursor light that also lights the border under it",
+      "useCase": "Feature card",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "beam-border",
+      "name": "Beam Border",
+      "export": "BeamBorder",
+      "family": "cards",
+      "description": "A single beam travels around the card edge",
+      "useCase": "Recommended plan",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "slug": "ledger-bento",
+      "name": "Ledger Bento",
+      "export": "LedgerBento",
+      "family": "cards",
+      "description": "Finance cells update in place",
+      "useCase": "Fintech features",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "stat-wall",
+      "name": "Stat Wall",
+      "export": "StatWall",
+      "family": "cards",
+      "description": "Tiles count up in a checkerboard stagger",
+      "useCase": "Impact report",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "focus-grid",
+      "name": "Focus Grid",
+      "export": "FocusGrid",
+      "family": "cards",
+      "description": "Hovered cell sharpens, the rest blur back",
+      "useCase": "Feature overview",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "timeline-rail",
+      "name": "Timeline Rail",
+      "export": "TimelineRail",
+      "family": "cards",
+      "description": "Events snap along a scroll rail",
+      "useCase": "Changelog",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "masonry-drift",
+      "name": "Masonry Drift",
+      "export": "MasonryDrift",
+      "family": "cards",
+      "description": "Columns drift at different speeds",
+      "useCase": "Portfolio",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "device-unveil",
+      "name": "Device Unveil",
+      "export": "DeviceUnveil",
+      "family": "cards",
+      "description": "Device frame reveals the UI on scroll",
+      "useCase": "App launch",
+      "tags": [
+        "new"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "tilt-pass",
+      "name": "Tilt Pass",
+      "export": "TiltPass",
+      "family": "cards",
+      "description": "Card tilts in 3D with glare that tracks light",
+      "useCase": "Membership card",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "tags": [
+        "new",
+        "original"
+      ],
+      "slug": "layer-explode",
+      "name": "Layer Explode",
+      "export": "LayerExplode",
+      "family": "cards",
+      "description": "A card that splits into its design layers in 3D",
+      "useCase": "Design system page",
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "review-rail",
+      "name": "Review Rail",
+      "export": "ReviewRail",
+      "family": "proof",
+      "description": "Two opposing rows that pause on hover",
+      "useCase": "Social proof",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "logo-constellation",
+      "name": "Logo Constellation",
+      "export": "LogoConstellation",
+      "family": "proof",
+      "description": "Logos linked by lines that pulse",
+      "useCase": "Integrations",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "avatar-orbit",
+      "name": "Avatar Orbit",
+      "export": "AvatarOrbit",
+      "family": "proof",
+      "description": "Avatars orbit a central mark",
+      "useCase": "Community page",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "expand-cards",
+      "name": "Expand Cards",
+      "export": "ExpandCards",
+      "family": "interactive",
+      "description": "Panels share a row; the active one expands",
+      "useCase": "Product pillars",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "morph-dialog",
+      "name": "Morph Dialog",
+      "export": "MorphDialog",
+      "family": "interactive",
+      "description": "A card morphs into a dialog with a shared layout",
+      "useCase": "Item details",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "notif-stack",
+      "name": "Notification Stack",
+      "export": "NotifStack",
+      "family": "interactive",
+      "description": "Notifications pile up; tap to fan them out",
+      "useCase": "Activity inbox",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "share-sheet",
+      "name": "Share Sheet",
+      "export": "ShareSheet",
+      "family": "interactive",
+      "description": "Animated share sheet with social destinations, copy confirmation, real QR download, message and compact variants",
+      "useCase": "Article sharing and product links",
+      "tags": [
+        "original"
+      ],
+      "deps": [
+        "share-sheet-qr.js"
+      ],
+      "dependencies": [
+        "motion",
+        "react",
+        "react-dom"
+      ]
+    },
+    {
+      "slug": "terminal-replay",
+      "name": "Terminal Replay",
+      "export": "TerminalReplay",
+      "family": "interactive",
+      "description": "Recorded terminal session with real timing",
+      "useCase": "CLI docs",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "before-after-blade",
+      "name": "Before / After Blade",
+      "export": "BeforeAfterBlade",
+      "family": "interactive",
+      "description": "Angled blade wipes between two images",
+      "useCase": "Photo editor",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "lens-loupe",
+      "name": "Lens Loupe",
+      "export": "LensLoupe",
+      "family": "interactive",
+      "description": "Magnifier follows the cursor with live zoom",
+      "useCase": "Product photos",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "isometric-stack",
+      "name": "Isometric Stack",
+      "export": "IsometricStack",
+      "family": "interactive",
+      "description": "App layers separate isometrically on scroll",
+      "useCase": "Infra \"how it works\"",
+      "tags": [],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "slug": "shortcut-caps",
+      "name": "Shortcut Caps",
+      "export": "ShortcutCaps",
+      "family": "interactive",
+      "description": "Keycaps press in sequence to teach a shortcut",
+      "useCase": "Docs hints",
+      "tags": [
+        "original"
+      ],
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "topic-bubbles",
+      "name": "Topic Bubbles",
+      "export": "TopicBubbles",
+      "family": "interactive",
+      "layout": "fill",
+      "description": "Topics drop in with weight; tap to pick, drag to throw",
+      "useCase": "Onboarding interests",
+      "deps": [
+        "canvas-loop.js"
+      ],
+      "dependencies": [
         "react"
       ]
     },
@@ -376,878 +1111,17 @@
       ]
     },
     {
-      "slug": "liquid-button",
-      "name": "Liquid Button",
-      "export": "LiquidButton",
-      "family": "actions",
-      "description": "Gooey blobs merge and split on hover",
-      "useCase": "Primary CTA",
+      "slug": "commit-grove",
+      "name": "Commit Grove",
+      "export": "CommitGrove",
+      "family": "data",
+      "description": "Daily contribution calendar with a green intensity scale, keyboard day navigation and expanding workspace highlights",
+      "useCase": "Developer profiles and team activity",
       "tags": [
+        "new",
         "original"
       ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "ember-button",
-      "name": "Ember Button",
-      "export": "EmberButton",
-      "family": "actions",
-      "description": "Edge heat-shimmer builds as the cursor gets closer",
-      "useCase": "Checkout \"Pay now\"",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "magnet-pill",
-      "name": "Magnet Pill",
-      "export": "MagnetPill",
-      "family": "actions",
-      "description": "Label drifts toward the cursor, pill stretches back",
-      "useCase": "Newsletter signup",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "hold-to-confirm",
-      "name": "Hold to Confirm",
-      "export": "HoldToConfirm",
-      "family": "actions",
-      "description": "Ring fills while held, then snaps to a check",
-      "useCase": "Delete account",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "ink-bleed-button",
-      "name": "Ink Bleed Button",
-      "export": "InkBleedButton",
-      "family": "actions",
-      "description": "Fill floods in from the exact entry point",
-      "useCase": "Pricing CTA",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "split-flap-button",
-      "name": "Split Flap Button",
-      "export": "SplitFlapButton",
-      "family": "actions",
-      "description": "Label flips like a departures board on state change",
-      "useCase": "Seat booking",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "stamp-button",
-      "name": "Stamp Button",
-      "export": "StampButton",
-      "family": "actions",
-      "description": "Squash-and-press that leaves an embossed seal",
-      "useCase": "Approve invoice",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "orbit-button",
-      "name": "Orbit Button",
-      "export": "OrbitButton",
-      "family": "actions",
-      "description": "A spark orbits the border while work runs",
-      "useCase": "AI \"Generate\"",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "fuse-button",
-      "name": "Fuse Button",
-      "export": "FuseButton",
-      "family": "actions",
-      "description": "A spark burns along the border as a countdown",
-      "useCase": "Undo send",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "shutter-button",
-      "name": "Shutter Button",
-      "export": "ShutterButton",
-      "family": "actions",
-      "description": "Aperture blades open to reveal the icon",
-      "useCase": "Photo upload",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "pixel-melt-button",
-      "name": "Pixel Melt Button",
-      "export": "PixelMeltButton",
-      "family": "actions",
-      "description": "Label melts into pixels on success",
-      "useCase": "Form submit",
-      "tags": [
-        "new"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "text-scramble",
-      "name": "Text Scramble",
-      "export": "TextScramble",
-      "family": "type",
-      "description": "Letters decode from noise, left to right, again on hover",
-      "useCase": "Dev-tool headline",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "slug": "shimmer-text",
-      "name": "Shimmer Text",
-      "export": "ShimmerText",
-      "family": "type",
-      "description": "A light band sweeps across muted text",
-      "useCase": "\"Thinking\" label",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "slug": "flip-words",
-      "name": "Flip Words",
-      "export": "FlipWords",
-      "family": "type",
-      "description": "The last word rolls to the next, letter by letter",
-      "useCase": "Hero tagline",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "odometer-figures",
-      "name": "Odometer Figures",
-      "export": "OdometerFigures",
-      "family": "type",
-      "description": "Digits roll with a mechanical overshoot",
-      "useCase": "Revenue dashboard",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "ink-write",
-      "name": "Ink Write",
-      "export": "InkWrite",
-      "family": "type",
-      "description": "Strokes draw in along a handwritten path",
-      "useCase": "Onboarding welcome",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "redact-reveal",
-      "name": "Redact Reveal",
-      "export": "RedactReveal",
-      "family": "type",
-      "description": "Black bars slide off words one by one",
-      "useCase": "Security product hero",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "kerning-breath",
-      "name": "Kerning Breath",
-      "export": "KerningBreath",
-      "family": "type",
-      "description": "Letter spacing follows scroll velocity",
-      "useCase": "Editorial headline",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "caret-rewrite",
-      "name": "Caret Rewrite",
-      "export": "CaretRewrite",
-      "family": "type",
-      "description": "Types, backspaces and retypes with a live caret",
-      "useCase": "AI taglines",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "weight-wave",
-      "name": "Weight Wave",
-      "export": "WeightWave",
-      "family": "type",
-      "description": "Variable-font weight ripples under the cursor",
-      "useCase": "Brand headline",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "echo-headline",
-      "name": "Echo Headline",
-      "export": "EchoHeadline",
-      "family": "type",
-      "description": "Outline copies trail behind the text",
-      "useCase": "Event landing",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "scan-line-text",
-      "name": "Scan Line Text",
-      "export": "ScanLineText",
-      "family": "type",
-      "description": "A CRT scan line passes and sharpens the words",
-      "useCase": "Dev tool launch",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "dial-text",
-      "name": "Dial Text",
-      "export": "DialText",
-      "family": "type",
-      "description": "Each letter spins on a combination-lock wheel",
-      "useCase": "Password reset",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "highlighter-sweep",
-      "name": "Highlighter Sweep",
-      "export": "HighlighterSweep",
-      "family": "type",
-      "description": "A marker stroke draws under the key phrase",
-      "useCase": "Blog emphasis",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "notif-stack",
-      "name": "Notification Stack",
-      "export": "NotifStack",
-      "family": "interactive",
-      "description": "Notifications pile up; tap to fan them out",
-      "useCase": "Activity inbox",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "expand-cards",
-      "name": "Expand Cards",
-      "export": "ExpandCards",
-      "family": "interactive",
-      "description": "Panels share a row; the active one expands",
-      "useCase": "Product pillars",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "morph-dialog",
-      "name": "Morph Dialog",
-      "export": "MorphDialog",
-      "family": "interactive",
-      "description": "A card morphs into a dialog with a shared layout",
-      "useCase": "Item details",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "lens-loupe",
-      "name": "Lens Loupe",
-      "export": "LensLoupe",
-      "family": "interactive",
-      "description": "Magnifier follows the cursor with live zoom",
-      "useCase": "Product photos",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "deck-shuffle",
-      "name": "Deck Shuffle",
-      "export": "DeckShuffle",
-      "family": "interactive",
-      "description": "Top card flicks away with real physics",
-      "useCase": "Onboarding tips",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "vinyl-deck",
-      "name": "Vinyl Deck",
-      "export": "VinylDeck",
-      "family": "interactive",
-      "description": "Record spins, drag the platter to scrub",
-      "useCase": "Podcast player",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "before-after-blade",
-      "name": "Before / After Blade",
-      "export": "BeforeAfterBlade",
-      "family": "interactive",
-      "description": "Angled blade wipes between two images",
-      "useCase": "Photo editor",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "globe-pins",
-      "name": "Globe Pins",
-      "export": "GlobePins",
-      "family": "interactive",
-      "description": "Dot-matrix globe turns with pulsing pins",
-      "useCase": "Office locations",
-      "tags": [],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "slug": "terminal-replay",
-      "name": "Terminal Replay",
-      "export": "TerminalReplay",
-      "family": "interactive",
-      "description": "Recorded terminal session with real timing",
-      "useCase": "CLI docs",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "palette-fan",
-      "name": "Palette Fan",
-      "export": "PaletteFan",
-      "family": "interactive",
-      "description": "Swatches fan out like paint chips",
-      "useCase": "Theme picker",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "tilt-pass",
-      "name": "Tilt Pass",
-      "export": "TiltPass",
-      "family": "interactive",
-      "description": "Card tilts in 3D with glare that tracks light",
-      "useCase": "Membership card",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "route-draw",
-      "name": "Route Draw",
-      "export": "RouteDraw",
-      "family": "interactive",
-      "description": "Route line draws between stops, marker follows",
-      "useCase": "Delivery tracking",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "polaroid-drop",
-      "name": "Polaroid Drop",
-      "export": "PolaroidDrop",
-      "family": "interactive",
-      "description": "Photos drop, settle and can be rearranged",
-      "useCase": "Travel portfolio",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "waveform-scrubber",
-      "name": "Waveform Scrubber",
-      "export": "WaveformScrubber",
-      "family": "interactive",
-      "description": "Bars react to hover, click to seek",
-      "useCase": "Voice notes",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "paper-fold-reveal",
-      "name": "Paper Fold Reveal",
-      "export": "PaperFoldReveal",
-      "family": "interactive",
-      "description": "Content unfolds panel by panel like a map",
-      "useCase": "Trip itinerary",
-      "tags": [
-        "original",
-        "new"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "isometric-stack",
-      "name": "Isometric Stack",
-      "export": "IsometricStack",
-      "family": "scenes",
-      "description": "App layers separate isometrically on scroll",
-      "useCase": "Infra \"how it works\"",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "turntable-viewer",
-      "name": "Turntable Viewer",
-      "export": "TurntableViewer",
-      "family": "scenes",
-      "description": "Drag to spin a product through 360°",
-      "useCase": "Sneaker store",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "cube-metrics",
-      "name": "Cube Metrics",
-      "export": "CubeMetrics",
-      "family": "scenes",
-      "description": "KPI cube rolls face to face",
-      "useCase": "Analytics summary",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "paper-plane-path",
-      "name": "Paper Plane Path",
-      "export": "PaperPlanePath",
-      "family": "scenes",
-      "description": "Plane flies along the scroll path",
-      "useCase": "Send confirmation",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "server-rack",
-      "name": "Server Rack",
-      "export": "ServerRack",
-      "family": "scenes",
-      "description": "Rack LEDs blink with each request",
-      "useCase": "Status page",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "shortcut-caps",
-      "name": "Shortcut Caps",
-      "export": "ShortcutCaps",
-      "family": "scenes",
-      "description": "Keycaps press in sequence to teach a shortcut",
-      "useCase": "Docs hints",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "spotlight-card",
-      "name": "Spotlight Card",
-      "export": "SpotlightCard",
-      "family": "bento",
-      "description": "Cursor light that also lights the border under it",
-      "useCase": "Feature card",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "beam-border",
-      "name": "Beam Border",
-      "export": "BeamBorder",
-      "family": "bento",
-      "description": "A single beam travels around the card edge",
-      "useCase": "Recommended plan",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "slug": "ledger-bento",
-      "name": "Ledger Bento",
-      "export": "LedgerBento",
-      "family": "bento",
-      "description": "Finance cells update in place",
-      "useCase": "Fintech features",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "timeline-rail",
-      "name": "Timeline Rail",
-      "export": "TimelineRail",
-      "family": "bento",
-      "description": "Events snap along a scroll rail",
-      "useCase": "Changelog",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "masonry-drift",
-      "name": "Masonry Drift",
-      "export": "MasonryDrift",
-      "family": "bento",
-      "description": "Columns drift at different speeds",
-      "useCase": "Portfolio",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "pricing-morph",
-      "name": "Pricing Morph",
-      "export": "PricingMorph",
-      "family": "bento",
-      "description": "Plan cards reshape when billing changes",
-      "useCase": "SaaS pricing",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "focus-grid",
-      "name": "Focus Grid",
-      "export": "FocusGrid",
-      "family": "bento",
-      "description": "Hovered cell sharpens, the rest blur back",
-      "useCase": "Feature overview",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "kanban-flow",
-      "name": "Kanban Flow",
-      "export": "KanbanFlow",
-      "family": "bento",
-      "description": "Cards glide between columns on their own",
-      "useCase": "Project tool hero",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "stat-wall",
-      "name": "Stat Wall",
-      "export": "StatWall",
-      "family": "bento",
-      "description": "Tiles count up in a checkerboard stagger",
-      "useCase": "Impact report",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "device-unveil",
-      "name": "Device Unveil",
-      "export": "DeviceUnveil",
-      "family": "bento",
-      "description": "Device frame reveals the UI on scroll",
-      "useCase": "App launch",
-      "tags": [
-        "new"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "ticker-tape",
-      "name": "Ticker Tape",
-      "export": "TickerTape",
-      "family": "marquee",
-      "description": "Price ticker with colored deltas",
-      "useCase": "Crypto dashboard",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "review-rail",
-      "name": "Review Rail",
-      "export": "ReviewRail",
-      "family": "marquee",
-      "description": "Two opposing rows that pause on hover",
-      "useCase": "Social proof",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "footnote-pop",
-      "name": "Footnote Pop",
-      "export": "FootnotePop",
-      "family": "marquee",
-      "description": "Superscript opens an inline source card",
-      "useCase": "Docs and blogs",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "avatar-orbit",
-      "name": "Avatar Orbit",
-      "export": "AvatarOrbit",
-      "family": "marquee",
-      "description": "Avatars orbit a central mark",
-      "useCase": "Community page",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "badge-rain",
-      "name": "Badge Rain",
-      "export": "BadgeRain",
-      "family": "marquee",
-      "description": "Tags fall and pile up with physics",
-      "useCase": "Tech stack",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "slug": "ribbon-rows",
-      "name": "Ribbon Rows",
-      "export": "RibbonRows",
-      "family": "marquee",
-      "description": "Hover pulls a ribbon across the row",
-      "useCase": "Job listings",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "logo-constellation",
-      "name": "Logo Constellation",
-      "export": "LogoConstellation",
-      "family": "marquee",
-      "description": "Logos linked by lines that pulse",
-      "useCase": "Integrations",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "reaction-burst",
-      "name": "Reaction Burst",
-      "export": "ReactionBurst",
-      "family": "marquee",
-      "description": "Reactions float up and fade on click",
-      "useCase": "Live comments",
-      "tags": [
-        "original",
-        "new"
-      ],
+      "layout": "inline",
       "dependencies": [
         "motion",
         "react"
@@ -1295,34 +1169,6 @@
       ]
     },
     {
-      "slug": "block-builder",
-      "name": "Block Builder",
-      "export": "BlockBuilder",
-      "family": "loaders",
-      "description": "Blocks drop and stack into a row",
-      "useCase": "Build logs",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "hourglass-flip",
-      "name": "Hourglass Flip",
-      "export": "HourglassFlip",
-      "family": "loaders",
-      "description": "Sand drains, glass flips",
-      "useCase": "Queue position",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
       "slug": "signal-bars",
       "name": "Signal Bars",
       "export": "SignalBars",
@@ -1338,153 +1184,201 @@
       ]
     },
     {
-      "slug": "dock-magnify",
-      "name": "Dock Magnify",
-      "export": "DockMagnify",
-      "family": "nav",
-      "description": "Icons grow with cursor distance on a spring",
-      "useCase": "App launcher",
+      "tags": [
+        "new",
+        "original"
+      ],
+      "slug": "zoom-portal",
+      "name": "Zoom Portal",
+      "export": "ZoomPortal",
+      "family": "scroll",
+      "layout": "fill",
+      "description": "The headline steps back and the product grows to fill the view",
+      "useCase": "Product reveal",
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "tags": [
         "original"
       ],
+      "slug": "pinned-chapters",
+      "name": "Pinned Chapters",
+      "export": "PinnedChapters",
+      "family": "scroll",
+      "layout": "fill",
+      "description": "The story scrolls while the picture stays pinned and changes",
+      "useCase": "Product tour",
       "dependencies": [
         "motion",
         "react"
       ]
     },
     {
-      "slug": "tab-lens",
-      "name": "Tab Lens",
-      "export": "TabLens",
-      "family": "nav",
-      "description": "A lens slides between items and magnifies",
-      "useCase": "Marketing nav",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "pocket-nav",
-      "name": "Pocket Nav",
-      "export": "PocketNav",
-      "family": "nav",
-      "description": "Nav folds into a floating pill on scroll",
-      "useCase": "Long landing pages",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "crumb-fold",
-      "name": "Crumb Fold",
-      "export": "CrumbFold",
-      "family": "nav",
-      "description": "Deep breadcrumbs fold into dots",
-      "useCase": "File manager",
       "tags": [
         "original"
       ],
+      "slug": "word-light",
+      "name": "Word Light",
+      "export": "WordLight",
+      "family": "scroll",
+      "layout": "fill",
+      "description": "A paragraph that lights up word by word as you read",
+      "useCase": "About page",
       "dependencies": [
         "motion",
         "react"
       ]
     },
     {
-      "slug": "stack-menu",
-      "name": "Stack Menu",
-      "export": "StackMenu",
-      "family": "nav",
-      "description": "Menu items fan down like cards",
-      "useCase": "Mobile menu",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "command-rail",
-      "name": "Command Rail",
-      "export": "CommandRail",
-      "family": "nav",
-      "description": "Side rail with key hints, expands on hover",
-      "useCase": "Dashboards",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "section-beads",
-      "name": "Section Beads",
-      "export": "SectionBeads",
-      "family": "nav",
-      "description": "Beads fill as you read each section",
-      "useCase": "Docs pages",
       "tags": [
         "original"
       ],
+      "slug": "sideways-gallery",
+      "name": "Sideways Gallery",
+      "export": "SidewaysGallery",
+      "family": "scroll",
+      "layout": "fill",
+      "description": "Scroll down, the rail of case studies moves left",
+      "useCase": "Portfolio",
       "dependencies": [
         "motion",
         "react"
       ]
     },
     {
-      "slug": "snap-sheet",
-      "name": "Snap Sheet",
-      "export": "SnapSheet",
-      "family": "nav",
-      "description": "Bottom sheet with snap points",
-      "useCase": "Mobile checkout",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "flow-chips",
-      "name": "Flow Chips",
-      "export": "FlowChips",
-      "family": "nav",
-      "description": "Filter chips reorder with FLIP motion",
-      "useCase": "Store filters",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "stepper-morph",
-      "name": "Stepper Morph",
-      "export": "StepperMorph",
-      "family": "nav",
-      "description": "Step line morphs into a check",
-      "useCase": "Onboarding",
-      "tags": [],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "workspace-shuffle",
-      "name": "Workspace Shuffle",
-      "export": "WorkspaceShuffle",
-      "family": "nav",
-      "description": "Workspaces slide in as a card stack",
-      "useCase": "SaaS switcher",
       "tags": [
-        "new"
+        "original"
+      ],
+      "slug": "reading-meter",
+      "name": "Reading Meter",
+      "export": "ReadingMeter",
+      "family": "scroll",
+      "layout": "fill",
+      "description": "Top progress bar and a ring with minutes left",
+      "useCase": "Blog post",
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "snap-cursor",
+      "name": "Snap Cursor",
+      "export": "SnapCursor",
+      "family": "scroll",
+      "layout": "fill",
+      "description": "A custom cursor that wraps whatever link you hover",
+      "useCase": "Agency header",
+      "dependencies": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "tags": [
+        "new",
+        "original"
+      ],
+      "slug": "lean-grid",
+      "name": "Lean Grid",
+      "export": "LeanGrid",
+      "family": "scroll",
+      "layout": "fill",
+      "description": "Tiles that lean toward the pointer in 3D",
+      "useCase": "Integrations wall",
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "shader-grain",
+      "name": "Film Grain",
+      "export": "ShaderGrain",
+      "family": "bg",
+      "description": "Warm light through live film grain, drawn on the GPU",
+      "useCase": "Hero backdrop",
+      "deps": [
+        "gl-canvas.js"
       ],
       "dependencies": [
-        "motion",
+        "react"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "shader-ink",
+      "name": "Ink Current",
+      "export": "ShaderInk",
+      "family": "bg",
+      "description": "Slow fluid currents that bend away from the pointer",
+      "useCase": "Launch page",
+      "deps": [
+        "gl-canvas.js"
+      ],
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "shader-veil",
+      "name": "Polar Veil",
+      "export": "ShaderVeil",
+      "family": "bg",
+      "description": "Aurora curtains with fine rays over a starfield",
+      "useCase": "Sign-up screen",
+      "deps": [
+        "gl-canvas.js"
+      ],
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "tags": [
+        "original"
+      ],
+      "slug": "shader-lattice",
+      "name": "Wave Lattice",
+      "export": "ShaderLattice",
+      "family": "bg",
+      "description": "A dot grid carrying waves, rippling out from the pointer",
+      "useCase": "Dev tool hero",
+      "deps": [
+        "gl-canvas.js"
+      ],
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "tags": [
+        "new",
+        "original"
+      ],
+      "slug": "shader-caustics",
+      "name": "Pool Light",
+      "export": "ShaderCaustics",
+      "family": "bg",
+      "description": "Light dancing on a pool floor, pulled toward the pointer",
+      "useCase": "Travel landing",
+      "deps": [
+        "gl-canvas.js"
+      ],
+      "dependencies": [
         "react"
       ]
     },
@@ -1541,34 +1435,6 @@
       ]
     },
     {
-      "slug": "night-transit",
-      "name": "Night Transit",
-      "export": "NightTransit",
-      "family": "bg",
-      "description": "A night city from a moving train: three skyline depths, passing lamps, road light trails",
-      "useCase": "Travel app",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "slug": "rain-glass",
-      "name": "Rain Glass",
-      "export": "RainGlass",
-      "family": "bg",
-      "description": "Droplets gather and run on glass",
-      "useCase": "Weather app",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
       "slug": "circuit-pulse",
       "name": "Circuit Pulse",
       "export": "CircuitPulse",
@@ -1593,561 +1459,6 @@
         "motion",
         "react"
       ]
-    },
-    {
-      "slug": "dune-ridges",
-      "name": "Dune Ridges",
-      "export": "DuneRidges",
-      "family": "bg",
-      "description": "Ridges shift slowly like wind on sand",
-      "useCase": "Retreat booking",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "tile-flip-wall",
-      "name": "Tile Flip Wall",
-      "export": "TileFlipWall",
-      "family": "bg",
-      "description": "Tiles flip to reveal an image",
-      "useCase": "Portfolio hero",
-      "tags": [
-        "new"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "shader-grain",
-      "name": "Film Grain",
-      "export": "ShaderGrain",
-      "family": "shaders",
-      "description": "Warm light through live film grain, drawn on the GPU",
-      "useCase": "Hero backdrop",
-      "deps": [
-        "gl-canvas.js"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "shader-ink",
-      "name": "Ink Current",
-      "export": "ShaderInk",
-      "family": "shaders",
-      "description": "Slow fluid currents that bend away from the pointer",
-      "useCase": "Launch page",
-      "deps": [
-        "gl-canvas.js"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "shader-veil",
-      "name": "Polar Veil",
-      "export": "ShaderVeil",
-      "family": "shaders",
-      "description": "Aurora curtains with fine rays over a starfield",
-      "useCase": "Sign-up screen",
-      "deps": [
-        "gl-canvas.js"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "shader-molten",
-      "name": "Molten Glass",
-      "export": "ShaderMolten",
-      "family": "shaders",
-      "description": "Blobs that merge and split; press to grow your own",
-      "useCase": "Event page",
-      "deps": [
-        "gl-canvas.js"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "shader-lattice",
-      "name": "Wave Lattice",
-      "export": "ShaderLattice",
-      "family": "shaders",
-      "description": "A dot grid carrying waves, rippling out from the pointer",
-      "useCase": "Dev tool hero",
-      "deps": [
-        "gl-canvas.js"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "new",
-        "original"
-      ],
-      "slug": "shader-caustics",
-      "name": "Pool Light",
-      "export": "ShaderCaustics",
-      "family": "shaders",
-      "description": "Light dancing on a pool floor, pulled toward the pointer",
-      "useCase": "Travel landing",
-      "deps": [
-        "gl-canvas.js"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "pinned-chapters",
-      "name": "Pinned Chapters",
-      "export": "PinnedChapters",
-      "family": "scroll",
-      "layout": "fill",
-      "description": "The story scrolls while the picture stays pinned and changes",
-      "useCase": "Product tour",
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "depth-story",
-      "name": "Depth Story",
-      "export": "DepthStory",
-      "family": "scroll",
-      "layout": "fill",
-      "description": "Ridges, sun and words moving at different depths",
-      "useCase": "Travel story",
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "reading-meter",
-      "name": "Reading Meter",
-      "export": "ReadingMeter",
-      "family": "scroll",
-      "layout": "fill",
-      "description": "Top progress bar and a ring with minutes left",
-      "useCase": "Blog post",
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "sideways-gallery",
-      "name": "Sideways Gallery",
-      "export": "SidewaysGallery",
-      "family": "scroll",
-      "layout": "fill",
-      "description": "Scroll down, the rail of case studies moves left",
-      "useCase": "Portfolio",
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "word-light",
-      "name": "Word Light",
-      "export": "WordLight",
-      "family": "scroll",
-      "layout": "fill",
-      "description": "A paragraph that lights up word by word as you read",
-      "useCase": "About page",
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "new",
-        "original"
-      ],
-      "slug": "zoom-portal",
-      "name": "Zoom Portal",
-      "export": "ZoomPortal",
-      "family": "scroll",
-      "layout": "fill",
-      "description": "The headline steps back and the product grows to fill the view",
-      "useCase": "Product reveal",
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "tether-tag",
-      "name": "Tether Tag",
-      "export": "TetherTag",
-      "family": "physics",
-      "layout": "fill",
-      "description": "A promo tag on a chain you can grab and swing",
-      "useCase": "Sale badge",
-      "deps": [
-        "canvas-loop.js"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "cloth-banner",
-      "name": "Cloth Banner",
-      "export": "ClothBanner",
-      "family": "physics",
-      "layout": "fill",
-      "description": "A striped banner of real cloth, moving in the wind",
-      "useCase": "Launch announcement",
-      "deps": [
-        "canvas-loop.js"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "topic-bubbles",
-      "name": "Topic Bubbles",
-      "export": "TopicBubbles",
-      "family": "physics",
-      "layout": "fill",
-      "description": "Topics drop in with weight; tap to pick, drag to throw",
-      "useCase": "Onboarding interests",
-      "deps": [
-        "canvas-loop.js"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "jelly-grid",
-      "name": "Jelly Grid",
-      "export": "JellyGrid",
-      "family": "physics",
-      "layout": "fill",
-      "description": "Dots on springs that give way and settle back",
-      "useCase": "Empty state",
-      "deps": [
-        "canvas-loop.js"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "new",
-        "original"
-      ],
-      "slug": "toss-deck",
-      "name": "Toss Deck",
-      "export": "TossDeck",
-      "family": "physics",
-      "layout": "fill",
-      "description": "Cards you can throw; they keep momentum and bounce",
-      "useCase": "Moodboard",
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "iron-filings",
-      "name": "Iron Filings",
-      "export": "IronFilings",
-      "family": "cursor",
-      "layout": "fill",
-      "description": "Strokes that turn to face the pointer like filings",
-      "useCase": "Hero backdrop",
-      "deps": [
-        "canvas-loop.js"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "comet-trail",
-      "name": "Comet Trail",
-      "export": "CometTrail",
-      "family": "cursor",
-      "layout": "fill",
-      "description": "A spring-chain comet that swings behind the pointer",
-      "useCase": "Creative portfolio",
-      "deps": [
-        "canvas-loop.js"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "snap-cursor",
-      "name": "Snap Cursor",
-      "export": "SnapCursor",
-      "family": "cursor",
-      "layout": "fill",
-      "description": "A custom cursor that wraps whatever link you hover",
-      "useCase": "Agency header",
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "new",
-        "original"
-      ],
-      "slug": "lean-grid",
-      "name": "Lean Grid",
-      "export": "LeanGrid",
-      "family": "cursor",
-      "layout": "fill",
-      "description": "Tiles that lean toward the pointer in 3D",
-      "useCase": "Integrations wall",
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "swipe-stack",
-      "name": "Swipe Stack",
-      "export": "SwipeStack",
-      "family": "scenes",
-      "description": "A 3D card stack: swipe right to save, left to pass",
-      "useCase": "Job matching",
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "ring-carousel",
-      "name": "Ring Carousel",
-      "export": "RingCarousel",
-      "family": "scenes",
-      "description": "Cards on a 3D ring you drag or turn with arrow keys",
-      "useCase": "Template picker",
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "new",
-        "original"
-      ],
-      "slug": "layer-explode",
-      "name": "Layer Explode",
-      "export": "LayerExplode",
-      "family": "scenes",
-      "description": "A card that splits into its design layers in 3D",
-      "useCase": "Design system page",
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "original"
-      ],
-      "slug": "dust-letters",
-      "name": "Dust Letters",
-      "export": "DustLetters",
-      "family": "type",
-      "layout": "fill",
-      "description": "A headline of dust that scatters and drifts home",
-      "useCase": "Brand hero",
-      "deps": [
-        "canvas-loop.js"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "tags": [
-        "new",
-        "original"
-      ],
-      "slug": "swarm-words",
-      "name": "Swarm Words",
-      "export": "SwarmWords",
-      "family": "type",
-      "layout": "fill",
-      "description": "Particles that re-form into each word in turn",
-      "useCase": "Hero tagline",
-      "deps": [
-        "canvas-loop.js",
-        "dust-letters.jsx"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "slug": "apple-keyboard",
-      "name": "Apple Keyboard",
-      "export": "AppleKeyboard",
-      "family": "interactive",
-      "description": "Realistic compact Apple-style keyboard; keys light up as you type, physically or on a loop",
-      "useCase": "Device mockups and typing demos",
-      "tags": [
-        "original"
-      ],
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-      "slug": "share-sheet",
-      "name": "Share Sheet",
-      "export": "ShareSheet",
-      "family": "interactive",
-      "description": "Animated share sheet with social destinations, copy confirmation, real QR download, message and compact variants",
-      "useCase": "Article sharing and product links",
-      "tags": [
-        "original"
-      ],
-      "deps": [
-        "share-sheet-qr.js"
-      ],
-      "dependencies": [
-        "motion",
-        "react",
-        "react-dom"
-      ]
-    },
-    {
-      "slug": "commit-grove",
-      "name": "Commit Grove",
-      "export": "CommitGrove",
-      "family": "data",
-      "description": "Daily contribution calendar with a green intensity scale, keyboard day navigation and expanding workspace highlights",
-      "useCase": "Developer profiles and team activity",
-      "tags": [
-        "new",
-        "original"
-      ],
-      "layout": "inline",
-      "dependencies": [
-        "motion",
-        "react"
-      ]
-    },
-    {
-    "slug": "waitlist-form",
-    "name": "Waitlist Form",
-    "export": "WaitlistForm",
-    "family": "actions",
-    "description": "Email capture with avatar stack social proof, live join count and success state",
-    "useCase": "Landing page waitlists",
-    "tags": ["original"],
-    "deps": [],
-    "dependencies": ["motion", "react"]
-  },
-    {
-    "slug": "dropzone",
-    "name": "Dropzone",
-    "export": "Dropzone",
-    "family": "actions",
-    "description": "File upload dropzone with per-file progress, retry and aggregate status",
-    "useCase": "File upload flows",
-    "tags": ["original"],
-    "deps": [],
-    "dependencies": ["motion", "react"]
-  },
-  {
-    "slug": "quick-menu",
-    "name": "Quick Menu",
-    "export": "QuickMenu",
-    "family": "actions",
-    "description": "Inline pill that pops a quick option menu above it",
-    "useCase": "Visibility and quick settings",
-    "tags": ["original"],
-    "deps": [],
-    "dependencies": ["motion", "react"]
-  }
+    }
   ]
 }

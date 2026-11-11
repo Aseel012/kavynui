@@ -10,7 +10,7 @@
       "path": "src/kavyn/shader-veil.jsx",
       "type": "registry:file",
       "target": "@components/kavyn/shader-veil.jsx",
-      "content": "'use client'\n\nimport { useShader, hexToRgb, NOISE } from './gl-canvas'\n\nconst FRAG = NOISE + `\nuniform vec3 uA;uniform vec3 uB;\nvoid main(){\n  vec2 uv=gl_FragCoord.xy/uRes;float x=uv.x*(uRes.x/uRes.y)*1.6;float t=uTime*.18;\n  vec3 col=mix(vec3(.02,.025,.04),vec3(.05,.04,.08),uv.y);\n  for(int i=0;i<3;i++){\n    float fi=float(i);\n    float base=.45+fi*.08+.1*sin(x*.9+t*(1.+fi*.4)+fi*2.1)+.06*fbm(vec2(x*1.5+t,fi*3.));\n    float d=uv.y-base;\n    float rays=.55+.45*noise(vec2(x*14.+fi*7.,t*3.));\n    float curtain=smoothstep(-.015,.01,d)*exp(-max(d,0.)*(5.+fi*2.))*rays;\n    vec3 c=mix(uA,uB,clamp(d*3.+fi*.3,0.,1.));\n    col+=c*curtain*(.5-fi*.1);\n  }\n  float s=hash(floor(gl_FragCoord.xy/2.));\n  col+=vec3(step(.9975,s))*(.4+.6*sin(uTime*2.+s*50.))*smoothstep(.3,.9,uv.y);\n  gl_FragColor=vec4(col,1.);\n}`\n\n// Aurora curtains with fine vertical rays over a starfield.\n/** @param {{ from?: any, to?: any, speed?: any, className?: any, children?: any }} props */\nexport default function ShaderVeil({ from = '#2fe39a', to = '#8b5cf6', speed = 1, className = '', children = undefined }) {\n  const host = useShader(FRAG, { uniforms: { uA: hexToRgb(from, [0.18, 0.89, 0.6]), uB: hexToRgb(to, [0.55, 0.36, 0.96]) }, speed })\n  return (\n    <div ref={host} className={`relative h-full min-h-72 w-full overflow-hidden bg-[#06070b] ${className}`}\n      style={{ backgroundImage: `linear-gradient(to top, transparent 35%, ${from}30 55%, ${to}25 75%, transparent)` }}>\n      <div className=\"pointer-events-none relative z-10 grid h-full min-h-72 place-items-center p-6\">{children}</div>\n    </div>\n  )\n}\n"
+      "content": "'use client'\n\nimport { useShader, hexToRgb, NOISE } from './gl-canvas'\n\nconst FRAG = NOISE + `\nuniform vec3 uA;uniform vec3 uB;\nvoid main(){\n  vec2 uv=gl_FragCoord.xy/uRes;float x=uv.x*(uRes.x/uRes.y)*1.6;float t=uTime*.18;\n  vec3 col=mix(vec3(.02,.025,.04),vec3(.05,.04,.08),uv.y);\n  for(int i=0;i<3;i++){\n    float fi=float(i);\n    float base=.45+fi*.08+.1*sin(x*.9+t*(1.+fi*.4)+fi*2.1)+.06*fbm(vec2(x*1.5+t,fi*3.));\n    float d=uv.y-base;\n    float rays=.55+.45*noise(vec2(x*14.+fi*7.,t*3.));\n    float curtain=smoothstep(-.015,.01,d)*exp(-max(d,0.)*(5.+fi*2.))*rays;\n    vec3 c=mix(uA,uB,clamp(d*3.+fi*.3,0.,1.));\n    col+=c*curtain*(.5-fi*.1);\n  }\n  float s=hash(floor(gl_FragCoord.xy/2.));\n  col+=vec3(step(.9975,s))*(.4+.6*sin(uTime*2.+s*50.))*smoothstep(.3,.9,uv.y);\n  gl_FragColor=vec4(col,1.);\n}`\n\n// Aurora curtains with fine vertical rays over a starfield.\n/** @param {{ from?: any, to?: any, speed?: any, className?: any, children?: any }} props */\nexport default function ShaderVeil({ from = '#5fe0a0', to = '#b07fd6', speed = 1, className = '', children = undefined }) {\n  const host = useShader(FRAG, { uniforms: { uA: hexToRgb(from, [0.18, 0.89, 0.6]), uB: hexToRgb(to, [0.55, 0.36, 0.96]) }, speed })\n  return (\n    <div ref={host} className={`relative h-full min-h-72 w-full overflow-hidden bg-[#06070b] ${className}`}\n      style={{ backgroundImage: `linear-gradient(to top, transparent 35%, ${from}30 55%, ${to}25 75%, transparent)` }}>\n      <div className=\"pointer-events-none relative z-10 grid h-full min-h-72 place-items-center p-6\">{children}</div>\n    </div>\n  )\n}\n"
     },
     {
       "path": "src/kavyn/gl-canvas.js",
@@ -29,42 +29,46 @@
       "color-tx": "var(--tx)",
       "color-mute": "var(--mute)",
       "color-faint": "var(--faint)",
-      "color-acc": "var(--acc)"
+      "color-acc": "var(--acc)",
+      "color-acc-fg": "var(--acc-fg)"
     },
     "light": {
-      "bg": "#fafafa",
-      "panel": "#ffffff",
-      "panel2": "#f0f0f3",
-      "line": "#e6e6ea",
-      "line2": "#d6d6dd",
-      "tx": "#141417",
-      "mute": "#5f5f6b",
-      "faint": "#a2a2ab",
-      "acc": "#e14e0b"
+      "bg": "#ffffff",
+      "panel": "#f5f5f7",
+      "panel2": "#e8e8ed",
+      "line": "#e5e5ea",
+      "line2": "#d2d2d7",
+      "tx": "#1d1d1f",
+      "mute": "#6e6e73",
+      "faint": "#a1a1a6",
+      "acc": "#1d1d1f",
+      "acc-fg": "#ffffff"
     },
     "dark": {
-      "bg": "#09090a",
-      "panel": "#0f0f11",
-      "panel2": "#141417",
-      "line": "#1e1e22",
-      "line2": "#2a2a30",
-      "tx": "#ededef",
-      "mute": "#8a8a93",
-      "faint": "#5c5c66",
-      "acc": "#ff6a2b"
+      "bg": "#000000",
+      "panel": "#141416",
+      "panel2": "#1f1f22",
+      "line": "#262628",
+      "line2": "#3a3a3d",
+      "tx": "#f5f5f7",
+      "mute": "#a1a1a6",
+      "faint": "#6e6e73",
+      "acc": "#f5f5f7",
+      "acc-fg": "#000000"
     }
   },
   "css": {
     ".light": {
-      "--bg": "#fafafa",
-      "--panel": "#ffffff",
-      "--panel2": "#f0f0f3",
-      "--line": "#e6e6ea",
-      "--line2": "#d6d6dd",
-      "--tx": "#141417",
-      "--mute": "#5f5f6b",
-      "--faint": "#a2a2ab",
-      "--acc": "#e14e0b"
+      "--bg": "#ffffff",
+      "--panel": "#f5f5f7",
+      "--panel2": "#e8e8ed",
+      "--line": "#e5e5ea",
+      "--line2": "#d2d2d7",
+      "--tx": "#1d1d1f",
+      "--mute": "#6e6e73",
+      "--faint": "#a1a1a6",
+      "--acc": "#1d1d1f",
+      "--acc-fg": "#ffffff"
     }
   }
 }

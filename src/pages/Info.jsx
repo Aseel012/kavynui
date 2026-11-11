@@ -2,7 +2,6 @@ import { useSEO } from '@/lib/seo'
 import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { SITE } from '@/config'
-import CodeBlock from '@/site/CodeBlock'
 import TrafficMap from '@/kavyn/traffic-map'
 import { components, families } from '@/lib/catalog'
 

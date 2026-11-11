@@ -12,8 +12,9 @@ export default function EmberButton({ children = 'Pay now', range = 220, onClick
   const a = useSpring(angle, { stiffness: 120, damping: 20 })
   const glow = useTransform(h, [0, 1], [0, 0.9])
   const blur = useTransform(h, [0, 1], [0, 18])
-  const bg = useMotionTemplate`conic-gradient(from ${a}deg, transparent 0deg, #ff6a2b 40deg, #ffb46b 70deg, transparent 130deg, transparent 360deg)`
-  const shadow = useMotionTemplate`0 0 ${blur}px rgba(255,106,43,${glow})`
+  const bg = useMotionTemplate`conic-gradient(from ${a}deg, transparent 0deg, var(--mute) 40deg, var(--tx) 70deg, transparent 130deg, transparent 360deg)`
+  const glowPct = useTransform(glow, (g) => Math.round(g * 40))
+  const shadow = useMotionTemplate`0 0 ${blur}px color-mix(in oklab, var(--tx) ${glowPct}%, transparent)`
 
   useEffect(() => {
     const move = (e) => {

@@ -36,7 +36,7 @@ export default function ReadingMeter({ title = 'Six rules for interface motion',
       <div className="absolute bottom-4 right-4 z-10 flex items-center gap-2 rounded-full border border-line bg-panel/90 py-1.5 pl-1.5 pr-3 backdrop-blur" role="status" aria-live="polite">
         <svg viewBox="0 0 36 36" className="size-7 -rotate-90" aria-hidden>
           <circle cx="18" cy="18" r="15" fill="none" stroke="var(--line2)" strokeWidth="3" />
-          <motion.circle cx="18" cy="18" r="15" fill="none" stroke="#ff6a2b" strokeWidth="3" strokeLinecap="round" style={{ pathLength: prog }} />
+          <motion.circle cx="18" cy="18" r="15" fill="none" stroke="var(--acc)" strokeWidth="3" strokeLinecap="round" style={{ pathLength: prog }} />
         </svg>
         <span className="text-xs tabular-nums text-tx">{left ? `${left} min left` : 'Done'}</span>
       </div>

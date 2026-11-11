@@ -10,7 +10,7 @@
       "path": "src/kavyn/shader-caustics.jsx",
       "type": "registry:file",
       "target": "@components/kavyn/shader-caustics.jsx",
-      "content": "'use client'\n\nimport { useShader, hexToRgb } from './gl-canvas'\n\nconst FRAG = `\nuniform vec3 uA;\nvoid main(){\n  vec2 uv=gl_FragCoord.xy/uRes.y;float t=uTime*.4;\n  vec2 m=uMouse.xy*vec2(uRes.x/uRes.y,1.);\n  vec2 p=uv*5.+(m-uv)*.6*exp(-2.*length(uv-m));\n  float c=0.;\n  for(int i=0;i<4;i++){\n    float fi=float(i);\n    p+=vec2(sin(p.y*1.13+t+fi*1.7),cos(p.x*1.27-t*.8+fi*2.3))*.55;\n    c+=.12/(.08+abs(sin(p.x)*sin(p.y)));\n  }\n  c=pow(c*.18,2.2);\n  vec3 deep=vec3(.02,.05,.07);\n  vec3 col=deep+uA*.25*(1.-gl_FragCoord.y/uRes.y)+uA*c*.55+vec3(.9,1.,1.)*pow(c,3.)*.12;\n  gl_FragColor=vec4(min(col,vec3(1.)),1.);\n}`\n\n// Light dancing on a pool floor. Pull the pattern toward the pointer.\n/** @param {{ color?: any, speed?: any, className?: any, children?: any }} props */\nexport default function ShaderCaustics({ color = '#29c6d6', speed = 1, className = '', children = undefined }) {\n  const host = useShader(FRAG, { uniforms: { uA: hexToRgb(color, [0.16, 0.78, 0.84]) }, speed })\n  return (\n    <div ref={host} className={`relative h-full min-h-72 w-full overflow-hidden bg-[#05090c] ${className}`}\n      style={{ backgroundImage: `radial-gradient(80% 60% at 50% 100%, ${color}40, transparent 70%)` }}>\n      <div className=\"pointer-events-none relative z-10 grid h-full min-h-72 place-items-center p-6\">{children}</div>\n    </div>\n  )\n}\n"
+      "content": "'use client'\n\nimport { useShader, hexToRgb } from './gl-canvas'\n\nconst FRAG = `\nuniform vec3 uA;\nvoid main(){\n  vec2 uv=gl_FragCoord.xy/uRes.y;float t=uTime*.4;\n  vec2 m=uMouse.xy*vec2(uRes.x/uRes.y,1.);\n  vec2 p=uv*5.+(m-uv)*.6*exp(-2.*length(uv-m));\n  float c=0.;\n  for(int i=0;i<4;i++){\n    float fi=float(i);\n    p+=vec2(sin(p.y*1.13+t+fi*1.7),cos(p.x*1.27-t*.8+fi*2.3))*.55;\n    c+=.12/(.08+abs(sin(p.x)*sin(p.y)));\n  }\n  c=pow(c*.18,2.2);\n  vec3 deep=vec3(.02,.05,.07);\n  vec3 col=deep+uA*.25*(1.-gl_FragCoord.y/uRes.y)+uA*c*.55+vec3(.9,1.,1.)*pow(c,3.)*.12;\n  gl_FragColor=vec4(min(col,vec3(1.)),1.);\n}`\n\n// Light dancing on a pool floor. Pull the pattern toward the pointer.\n/** @param {{ color?: any, speed?: any, className?: any, children?: any }} props */\nexport default function ShaderCaustics({ color = '#e8d3a2', speed = 1, className = '', children = undefined }) {\n  const host = useShader(FRAG, { uniforms: { uA: hexToRgb(color, [0.16, 0.78, 0.84]) }, speed })\n  return (\n    <div ref={host} className={`relative h-full min-h-72 w-full overflow-hidden bg-[#0a0907] ${className}`}\n      style={{ backgroundImage: `radial-gradient(80% 60% at 50% 100%, ${color}40, transparent 70%)` }}>\n      <div className=\"pointer-events-none relative z-10 grid h-full min-h-72 place-items-center p-6\">{children}</div>\n    </div>\n  )\n}\n"
     },
     {
       "path": "src/kavyn/gl-canvas.js",
@@ -29,42 +29,46 @@
       "color-tx": "var(--tx)",
       "color-mute": "var(--mute)",
       "color-faint": "var(--faint)",
-      "color-acc": "var(--acc)"
+      "color-acc": "var(--acc)",
+      "color-acc-fg": "var(--acc-fg)"
     },
     "light": {
-      "bg": "#fafafa",
-      "panel": "#ffffff",
-      "panel2": "#f0f0f3",
-      "line": "#e6e6ea",
-      "line2": "#d6d6dd",
-      "tx": "#141417",
-      "mute": "#5f5f6b",
-      "faint": "#a2a2ab",
-      "acc": "#e14e0b"
+      "bg": "#ffffff",
+      "panel": "#f5f5f7",
+      "panel2": "#e8e8ed",
+      "line": "#e5e5ea",
+      "line2": "#d2d2d7",
+      "tx": "#1d1d1f",
+      "mute": "#6e6e73",
+      "faint": "#a1a1a6",
+      "acc": "#1d1d1f",
+      "acc-fg": "#ffffff"
     },
     "dark": {
-      "bg": "#09090a",
-      "panel": "#0f0f11",
-      "panel2": "#141417",
-      "line": "#1e1e22",
-      "line2": "#2a2a30",
-      "tx": "#ededef",
-      "mute": "#8a8a93",
-      "faint": "#5c5c66",
-      "acc": "#ff6a2b"
+      "bg": "#000000",
+      "panel": "#141416",
+      "panel2": "#1f1f22",
+      "line": "#262628",
+      "line2": "#3a3a3d",
+      "tx": "#f5f5f7",
+      "mute": "#a1a1a6",
+      "faint": "#6e6e73",
+      "acc": "#f5f5f7",
+      "acc-fg": "#000000"
     }
   },
   "css": {
     ".light": {
-      "--bg": "#fafafa",
-      "--panel": "#ffffff",
-      "--panel2": "#f0f0f3",
-      "--line": "#e6e6ea",
-      "--line2": "#d6d6dd",
-      "--tx": "#141417",
-      "--mute": "#5f5f6b",
-      "--faint": "#a2a2ab",
-      "--acc": "#e14e0b"
+      "--bg": "#ffffff",
+      "--panel": "#f5f5f7",
+      "--panel2": "#e8e8ed",
+      "--line": "#e5e5ea",
+      "--line2": "#d2d2d7",
+      "--tx": "#1d1d1f",
+      "--mute": "#6e6e73",
+      "--faint": "#a1a1a6",
+      "--acc": "#1d1d1f",
+      "--acc-fg": "#ffffff"
     }
   }
 }

@@ -1,10 +1,11 @@
 import { useState } from 'react'
 
-export const THEME_KEY = 'kavynui.theme'
+const THEME_KEY = 'kavynui.theme'
 
-export function applyTheme(t) {
+function applyTheme(t) {
   document.documentElement.classList.toggle('light', t === 'light')
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', t === 'light' ? '#fafafa' : '#09090a')
+  document.documentElement.classList.toggle('dark', t !== 'light')
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', t === 'light' ? '#ffffff' : '#000000')
 }
 
 // Sun/moon toggle. Dark is the default; the choice persists in local storage.

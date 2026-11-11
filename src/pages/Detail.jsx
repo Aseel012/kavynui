@@ -15,10 +15,10 @@ const fileOf = (slug) => `${slug}.jsx`
 
 function Seg({ value, options, onChange, id }) {
   return (
-    <div className="flex rounded-lg border border-line2 bg-panel p-0.5">
+    <div className="flex rounded-[10px] bg-panel2 p-0.5">
       {options.map((o) => (
-        <button key={o.id} type="button" onClick={() => onChange(o.id)} className="relative px-3 py-1.5 text-[13px]">
-          {value === o.id && <motion.span layoutId={id} className="absolute inset-0 rounded-md bg-line" transition={{ type: 'spring', stiffness: 480, damping: 34 }} />}
+        <button key={o.id} type="button" onClick={() => onChange(o.id)} aria-pressed={value === o.id} className="relative px-3.5 py-1.5 text-[13px]">
+          {value === o.id && <motion.span layoutId={id} className="absolute inset-0 rounded-[8px] bg-line2 shadow-[0_1px_3px_rgba(0,0,0,.2)]" transition={{ type: 'spring', stiffness: 480, damping: 34 }} />}
           <span className={`relative ${value === o.id ? 'text-tx' : 'text-mute'}`}>{o.label}</span>
         </button>
       ))}
@@ -59,23 +59,36 @@ export default function Detail() {
   const related = components.filter((c) => c.family === item.family && c.slug !== item.slug).slice(0, 4)
   const main = files?.[0]?.code
   const props = main ? parseProps(main) : []
+  const aiSpec = [
+    `# ${item.name} (kavynUI)`,
+    `${item.description}. Use case: ${item.useCase}.`,
+    '',
+    `Install: npx shadcn@latest add ${SITE.url}/r/${item.slug}.json`,
+    `Files: ${[fileOf(item.slug), ...(item.deps || [])].map((f) => `components/kavyn/${f}`).join(', ')}`,
+    `Import: import ${item.export} from '@/components/kavyn/${item.slug}'`,
+    'Requires: React 18+, Tailwind CSS v4, motion. Colors come from the kavynUI theme tokens (bg, panel, panel2, line, line2, tx, mute, faint, acc, acc-fg).',
+    '',
+    'Props:',
+    ...(props.length ? props.map((p) => `- ${p.name}: ${p.type}, default ${p.default}`) : ['- none']),
+  ].join('\n')
   const usage = `import ${item.export} from '@/components/kavyn/${item.slug}'\n\nexport default function Page() {\n  return <${item.export} />\n}`
 
   return (
-    <div className="mx-auto max-w-5xl px-4 pb-24 pt-8 sm:px-8 sm:pt-10">
+    <div className="mx-auto max-w-6xl px-4 pb-24 pt-8 sm:px-8 sm:pt-10">
       <nav className="flex items-center gap-2 text-[13px] text-faint" aria-label="Breadcrumb">
-        <Link to="/components" className="hover:text-tx">Library</Link><span>/</span>
+        <Link to="/components" className="hover:text-tx">Components</Link><span>/</span>
         <Link to={`/components?family=${fam?.id}`} className="hover:text-tx">{fam?.name}</Link>
       </nav>
 
       <header className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-3xl font-semibold tracking-[-0.03em] text-tx">{item.name}</h1>
-          <p className="mt-2 max-w-lg text-mute">{item.description}.</p>
+          <h1 className="text-[34px] font-semibold tracking-[-0.035em] text-tx">{item.name}</h1>
+          <p className="mt-2 max-w-lg text-[17px] leading-7 text-mute">{item.description}.</p>
         </div>
         <div className="flex flex-wrap items-center gap-2 text-xs">
-          <span className="rounded-full border border-line2 px-2.5 py-1 text-mute">Use case: <span className="text-tx">{item.useCase}</span></span>
-          {item.tags?.includes('new') && <span className="rounded-full bg-acc/15 px-2.5 py-1 text-acc">New</span>}
+          <span className="rounded-full bg-panel2 px-3 py-1.5 text-mute">For <span className="text-tx">{item.useCase}</span></span>
+          <CopyButton text={aiSpec} label="Copy for AI" />
+          <a href={`/r/${item.slug}.json`} className="flex h-7 items-center rounded-full border border-line2 px-3 text-mute hover:text-tx">Registry JSON</a>
         </div>
       </header>
 
@@ -86,7 +99,7 @@ export default function Detail() {
         {tab === 'preview' && (
           <div className="flex items-center gap-2">
             {isBlock && <div className="hidden md:block"><Seg id="dt-vp" value={vp} onChange={setVp} options={VIEWPORTS} /></div>}
-            <button type="button" onClick={() => setRun(run + 1)} className="h-8 rounded-lg border border-line2 bg-panel px-3 text-xs text-mute hover:text-tx">↻ Replay</button>
+            <button type="button" onClick={() => setRun(run + 1)} className="h-8 rounded-full bg-panel2 px-3.5 text-xs text-mute hover:text-tx">Replay</button>
           </div>
         )}
       </div>
@@ -96,13 +109,13 @@ export default function Detail() {
           {tab === 'preview' ? (
             <motion.div key="p" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.18 }}>
               {isBlock || item.layout === 'inline' ? (
-                <div className="rounded-2xl border border-line bg-panel/40 p-2 sm:p-4">
+                <div className="rounded-[22px] border border-line bg-panel/50 p-2 sm:p-4">
                   <motion.div layout className="mx-auto" style={{ width: VIEWPORTS.find((v) => v.id === vp)?.w, maxWidth: '100%' }} transition={{ type: 'spring', stiffness: 260, damping: 32 }}>
                     <Demo key={run} item={item} page="detail" />
                   </motion.div>
                 </div>
               ) : (
-                <div className={`relative overflow-hidden rounded-2xl border border-line bg-bg ${GROW.has(item.slug) ? 'min-h-[380px] sm:min-h-[460px]' : 'h-[380px] sm:h-[460px]'}`}>
+                <div className={`relative overflow-hidden rounded-[22px] border border-line bg-bg ${GROW.has(item.slug) ? 'min-h-[380px] sm:min-h-[460px]' : 'h-[380px] sm:h-[460px]'}`}>
                   <div className="grid-fade pointer-events-none absolute inset-0 opacity-50" />
                   <Demo key={run} item={item} page="detail" />
                 </div>
@@ -170,7 +183,7 @@ export default function Detail() {
         <aside className="space-y-2">
           <h2 className="mb-1 text-sm text-faint">More in {fam?.name}</h2>
           {related.map((r) => (
-            <Link key={r.slug} to={`/components/${r.slug}`} className="block rounded-xl border border-line bg-panel px-4 py-3 transition-colors hover:border-line2">
+            <Link key={r.slug} to={`/components/${r.slug}`} className="block rounded-[16px] bg-panel px-4 py-3 transition-colors hover:bg-panel2">
               <div className="text-sm text-tx">{r.name}</div><div className="mt-0.5 line-clamp-1 text-xs text-mute">{r.description}</div>
             </Link>
           ))}

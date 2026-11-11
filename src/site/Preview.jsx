@@ -41,7 +41,7 @@ export function Fit({ children, pad = 16, wide = false }) {
 
 // Renders a block at a narrow width (so it reflows tall), scaled to the thumbnail's width:
 // the whole block stays visible edge to edge; tall blocks crop at the bottom, short ones center.
-export function Thumb({ children, width = 680 }) {
+function Thumb({ children, width = 680 }) {
   const ref = useRef(null), inner = useRef(null)
   const [fit, setFit] = useState({ s: 0, y: 0 })
   useLayoutEffect(() => {
@@ -78,37 +78,18 @@ export function Thumb({ children, width = 680 }) {
   )
 }
 
-const WIDE = new Set(['ticker-tape', 'review-rail', 'traffic-map'])
+const WIDE = new Set(['review-rail', 'traffic-map'])
 // Grows downward at natural size on the detail page instead of being Fit-scaled into the fixed pane.
-export const GROW = new Set(['dropzone', 'card-swap'])
+export const GROW = new Set(['dropzone'])
 
 // Per-component props used only by the site demo, never by the installed component.
-// Empty by default: demos run components as shipped. Add props only to showcase non-default behavior.
-// Local portrait assets (public/avatars/) so the demo is CSP-safe (img-src 'self').
-const WAITLIST_PEOPLE = [
-  { id: 'p1', src: '/avatars/p1.jpg', initials: 'AK', hue: '#d8b27a' },
-  { id: 'p2', src: '/avatars/p2.jpg', initials: 'MS', hue: '#8fb996' },
-  { id: 'p3', src: '/avatars/p3.jpg', initials: 'RJ', hue: '#e8a2b4' },
-  { id: 'p4', src: '/avatars/p4.jpg', initials: 'PN', hue: '#9db4d4' },
-  { id: 'p5', src: '/avatars/p5.jpg', initials: 'DV', hue: '#c9a2e0' },
-  { id: 'p6', src: '/avatars/p6.jpg', initials: 'SL', hue: '#e0a184' },
-  { id: 'p7', src: '/avatars/p7.jpg', initials: 'TK', hue: '#7fb3c8' },
-  { id: 'p8', src: '/avatars/p8.jpg', initials: 'IB', hue: '#b5c48a' },
-  { id: 'p9', src: '/avatars/p9.jpg', initials: 'AR', hue: '#d69bb8' },
-  { id: 'p10', src: '/avatars/p10.jpg', initials: 'NK', hue: '#93b8a4' },
-  { id: 'p11', src: '/avatars/p11.jpg', initials: 'SP', hue: '#c8a883' },
-  { id: 'p12', src: '/avatars/p12.jpg', initials: 'RM', hue: '#a3a3d6' },
-]
+// Local portrait assets (public/avatars/) keep the demo CSP-safe (img-src 'self').
+const WAITLIST_PEOPLE = ['AK', 'MS', 'RJ', 'PN', 'DV', 'SL', 'TK', 'IB', 'AR', 'NK', 'SP', 'RM']
+  .map((initials, i) => ({ id: `p${i + 1}`, src: `/avatars/p${i + 1}.jpg`, initials, hue: '#3a3a3d' }))
 const DEMO_PROPS = {
-  'card-swap': {
-    cards: [
-      { title: 'High valley', icon: 'mountain', image: '/cards/valley.jpg' },
-    { title: 'Cold blue', icon: 'waves', image: '/cards/sea.jpg' },
-    { title: 'Long way', icon: 'route', image: '/cards/road.jpg' },
-    { title: 'Golden hour', icon: 'sun', image: '/cards/golden.jpg' }],
-  },
   'waitlist-form': { autoJoin: true, autoJoinInterval: 4800, people: WAITLIST_PEOPLE },
   dropzone: { autoDemo: true },
+  'avatar-upload': { demoSrc: '/avatars/p3.jpg' },
 }
 
 export function Loading({ label }) {

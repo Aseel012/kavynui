@@ -17,10 +17,10 @@ export default function OrbitButton({ label = 'Generate', busyLabel = 'Generatin
         {busy && (
           <motion.rect
             x="0" y="0" width="100%" height="100%" rx="11.5" fill="none"
-            stroke="#ff6a2b" strokeWidth="1.5" strokeLinecap="round" pathLength="100" strokeDasharray="14 86"
+            stroke="var(--acc)" strokeWidth="1.5" strokeLinecap="round" pathLength="100" strokeDasharray="14 86"
             initial={{ strokeDashoffset: 0 }} animate={{ strokeDashoffset: -100 }}
             transition={{ repeat: Infinity, duration: 1.2, ease: 'linear' }}
-            style={{ filter: 'drop-shadow(0 0 4px #ff6a2b)' }}
+            style={{ filter: 'drop-shadow(0 0 4px var(--acc))' }}
           />
         )}
       </svg>

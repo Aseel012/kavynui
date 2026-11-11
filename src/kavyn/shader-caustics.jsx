@@ -22,10 +22,10 @@ void main(){
 
 // Light dancing on a pool floor. Pull the pattern toward the pointer.
 /** @param {{ color?: any, speed?: any, className?: any, children?: any }} props */
-export default function ShaderCaustics({ color = '#29c6d6', speed = 1, className = '', children = undefined }) {
+export default function ShaderCaustics({ color = '#e8d3a2', speed = 1, className = '', children = undefined }) {
   const host = useShader(FRAG, { uniforms: { uA: hexToRgb(color, [0.16, 0.78, 0.84]) }, speed })
   return (
-    <div ref={host} className={`relative h-full min-h-72 w-full overflow-hidden bg-[#05090c] ${className}`}
+    <div ref={host} className={`relative h-full min-h-72 w-full overflow-hidden bg-[#0a0907] ${className}`}
       style={{ backgroundImage: `radial-gradient(80% 60% at 50% 100%, ${color}40, transparent 70%)` }}>
       <div className="pointer-events-none relative z-10 grid h-full min-h-72 place-items-center p-6">{children}</div>
     </div>

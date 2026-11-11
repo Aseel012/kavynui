@@ -23,9 +23,9 @@ export default function GrainLeak({ children = undefined }) {
   }, [])
   return (
     <div className="relative size-full min-h-64 overflow-hidden bg-[#0c0b0b]">
-      <motion.div className="absolute -left-1/4 -top-1/3 h-[120%] w-[80%] rounded-full bg-[radial-gradient(closest-side,rgba(255,106,43,.45),rgba(255,60,90,.15),transparent)] blur-2xl"
+      <motion.div className="absolute -left-1/4 -top-1/3 h-[120%] w-[80%] rounded-full bg-[radial-gradient(closest-side,rgba(232,170,110,.42),rgba(168,100,74,.16),transparent)] blur-2xl"
         animate={{ x: ['0%', '40%', '10%', '0%'], y: ['0%', '15%', '30%', '0%'], opacity: [0.5, 0.9, 0.6, 0.5] }} transition={{ repeat: Infinity, duration: 16, ease: 'easeInOut' }} />
-      <motion.div className="absolute -bottom-1/3 -right-1/4 h-[90%] w-[60%] rounded-full bg-[radial-gradient(closest-side,rgba(255,190,120,.25),transparent)] blur-2xl"
+      <motion.div className="absolute -bottom-1/3 -right-1/4 h-[90%] w-[60%] rounded-full bg-[radial-gradient(closest-side,rgba(240,215,170,.22),transparent)] blur-2xl"
         animate={{ x: ['0%', '-30%', '0%'], opacity: [0.3, 0.7, 0.3] }} transition={{ repeat: Infinity, duration: 12, ease: 'easeInOut' }} />
       <canvas ref={ref} className="absolute inset-0 size-full [image-rendering:pixelated] mix-blend-overlay" style={{ opacity: 0.9 }} />
       <div className="relative grid size-full min-h-64 place-items-center">{children}</div>

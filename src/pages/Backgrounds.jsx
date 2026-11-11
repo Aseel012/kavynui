@@ -22,17 +22,17 @@ function Sheet({ g, onClose }) {
     <motion.div className="fixed inset-0 z-50 flex items-end justify-center bg-black/65 backdrop-blur-sm sm:items-center sm:p-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onMouseDown={onClose}>
       <motion.div role="dialog" aria-modal="true" aria-label={g.name} onMouseDown={(e) => e.stopPropagation()}
         initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 30, opacity: 0 }} transition={{ type: 'spring', stiffness: 380, damping: 36 }}
-        className="max-h-[92dvh] w-full max-w-3xl overflow-y-auto rounded-t-2xl border border-line2 bg-panel sm:rounded-2xl">
+        className="max-h-[92dvh] w-full max-w-3xl overflow-y-auto rounded-t-[28px] bg-panel sm:rounded-[28px]">
         <motion.div layoutId={`bg-${g.id}`} className="relative h-56 sm:h-72" style={styleOf(g)}>
-          <div className="absolute inset-0 grid place-items-center"><span className="text-2xl font-semibold tracking-tight text-white/90 drop-shadow">{g.name}</span></div>
+          <div className="absolute inset-0 grid place-items-center text-center"><div><div className="text-2xl font-semibold tracking-tight text-white/90 drop-shadow">{g.name}</div><div className="mt-1 text-sm text-white/60">{g.use}</div></div></div>
           <button type="button" onClick={onClose} aria-label="Close" className="absolute right-3 top-3 grid size-8 place-items-center rounded-full bg-black/40 text-white/80 backdrop-blur hover:text-white">✕</button>
         </motion.div>
         <div className="p-4 sm:p-5">
           <div className="mb-3 flex items-center justify-between">
-            <div className="flex rounded-lg border border-line2 bg-bg p-0.5">
+            <div className="flex rounded-[10px] bg-panel2 p-0.5">
               {TABS.map((t) => (
                 <button key={t.id} type="button" onClick={() => setTab(t.id)} className="relative px-3 py-1.5 text-[13px]">
-                  {tab === t.id && <motion.span layoutId="bg-tab" className="absolute inset-0 rounded-md bg-line" />}
+                  {tab === t.id && <motion.span layoutId="bg-tab" className="absolute inset-0 rounded-[8px] bg-line2" />}
                   <span className={`relative ${tab === t.id ? 'text-tx' : 'text-mute'}`}>{t.label}</span>
                 </button>
               ))}
@@ -51,34 +51,34 @@ export default function Backgrounds() {
   const [kind, setKind] = useState('All')
   const open = GRADIENTS.find((g) => g.id === params.get('bg')) || null
   const list = useMemo(() => GRADIENTS.filter((g) => kind === 'All' || g.kind === kind), [kind])
-  useSEO({ title: 'Backgrounds - kavynUI', description: 'Animated backgrounds: WebGL shaders with CSS fallback, gradient fields and animated CSS scenes.', path: '/backgrounds' })
+  useSEO({ title: 'CSS backgrounds - kavynUI', description: 'Gradient backgrounds as plain CSS, Tailwind or React, each named for the product it suits.', path: '/backgrounds' })
   const setOpen = (g) => { const p = new URLSearchParams(params); g ? p.set('bg', g.id) : p.delete('bg'); setParams(p, { replace: true }) }
   return (
     <div className="px-4 pb-24 sm:px-8">
       <style>{KEYFRAMES}</style>
       <div className="pb-5 pt-8 sm:pt-10">
-        <h1 className="text-2xl font-semibold tracking-[-0.03em] text-tx sm:text-3xl">Gradient backgrounds</h1>
-        <p className="mt-1.5 max-w-lg text-sm text-mute">Plain CSS, no images, no libraries. Open one for CSS, Tailwind and React code.</p>
+        <h1 className="text-[28px] font-semibold tracking-[-0.03em] text-tx sm:text-[34px]">CSS backgrounds</h1>
+        <p className="mt-1.5 max-w-lg text-[15px] text-mute">Plain CSS, no images, no libraries. Each is named for the product it suits. Open one for CSS, Tailwind and React code.</p>
       </div>
       <div className="no-scrollbar -mx-4 mb-5 flex gap-1 overflow-x-auto px-4">
         {KINDS.map((k) => (
-          <button key={k} type="button" onClick={() => setKind(k)} className="relative shrink-0 rounded-lg px-3 py-1.5 text-[13px]">
-            {kind === k && <motion.span layoutId="kind-on" className="absolute inset-0 rounded-lg border border-line2 bg-panel2" transition={{ type: 'spring', stiffness: 460, damping: 34 }} />}
+          <button key={k} type="button" onClick={() => setKind(k)} className="relative shrink-0 rounded-full px-3 py-1.5 text-[13px]">
+            {kind === k && <motion.span layoutId="kind-on" className="absolute inset-0 rounded-full bg-panel2" transition={{ type: 'spring', stiffness: 460, damping: 34 }} />}
             <span className={`relative ${kind === k ? 'text-tx' : 'text-mute hover:text-tx'}`}>{k}</span>
           </button>
         ))}
       </div>
-      <motion.div layout className="grid gap-3 sm:grid-cols-2 2xl:grid-cols-3">
+      <motion.div layout className="grid gap-x-5 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
         <AnimatePresence>
           {list.map((g) => (
             <motion.button key={g.id} type="button" layout onClick={() => setOpen(g)} initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}
-              className="group overflow-hidden rounded-2xl border border-line bg-panel text-left transition-colors hover:border-line2">
-              <motion.div layoutId={`bg-${g.id}`} className="relative h-44" style={styleOf(g)}>
+              className="group text-left">
+              <motion.div layoutId={`bg-${g.id}`} className="relative h-52 overflow-hidden rounded-[22px] ring-1 ring-inset ring-line" style={styleOf(g)}>
                 <span className="absolute bottom-3 right-3 rounded-md bg-black/40 px-2 py-1 text-[11px] text-white/80 opacity-0 backdrop-blur transition-opacity group-hover:opacity-100">Get code</span>
               </motion.div>
-              <div className="flex items-center justify-between px-4 py-3">
-                <span className="text-sm text-tx">{g.name}</span>
-                <span className="text-xs text-faint">{g.kind}{g.anim ? ' · animated' : ''}</span>
+              <div className="mt-3 flex items-baseline justify-between gap-3 px-1">
+                <span className="text-[15px] font-medium text-tx">{g.name}</span>
+                <span className="text-[13px] text-faint">{g.use}{g.anim ? ', animated' : ''}</span>
               </div>
             </motion.button>
           ))}

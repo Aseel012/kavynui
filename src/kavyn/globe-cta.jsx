@@ -11,7 +11,7 @@ export default function GlobeCta({ title = 'Closer to every user', sub = 'Deploy
         <div className="p-8 @3xl:p-12">
           <h2 className="text-3xl font-semibold tracking-[-0.03em] text-tx @2xl:text-4xl">{title}</h2>
           <p className="mt-3 max-w-sm text-mute">{sub}</p>
-          <motion.button type="button" whileHover={{ x: 2 }} whileTap={{ scale: 0.97 }} className="mt-7 inline-flex h-10 items-center gap-2 rounded-full bg-acc px-5 text-sm font-medium text-black">{action} <span aria-hidden>→</span></motion.button>
+          <motion.button type="button" whileHover={{ x: 2 }} whileTap={{ scale: 0.97 }} className="mt-7 inline-flex h-10 items-center gap-2 rounded-full bg-acc px-5 text-sm font-medium text-acc-fg">{action} <span aria-hidden>→</span></motion.button>
         </div>
         <div className="-mb-24 flex justify-center @3xl:-mb-10 @3xl:-mr-8"><EdgeGlobe size={360} /></div>
       </div>

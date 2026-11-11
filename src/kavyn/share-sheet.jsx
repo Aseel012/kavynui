@@ -5,6 +5,12 @@ import { createPortal } from 'react-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import qrcode from './share-sheet-qr.js'
 
+// Light or dark, read from the --bg token itself: works with a .dark class, a .light class, or neither.
+const isLightTheme = () => {
+  const h = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim().replace(/^#(.)(.)(.)$/, '#$1$1$2$2$3$3')
+  return /^#[0-9a-f]{6}/i.test(h) ? [1, 3, 5].reduce((s, i, k) => s + parseInt(h.slice(i, i + 2), 16) * [0.299, 0.587, 0.114][k], 0) > 128 : !document.documentElement.classList.contains('dark')
+}
+
 // ShareSheet: no network requests, no keys, no external images. MIT QR encoder is
 // included separately. A real public https URL should be passed through `url`.
 // `variant`: 'default' | 'message' | 'compact'. `theme`: 'auto' | 'dark' | 'light'.
@@ -72,7 +78,7 @@ export default function ShareSheet({ url = sampleUrl, title = 'Share this page',
   const [siteLight, setSiteLight] = useState(false)
   const [mounted, setMounted] = useState(false)
   useEffect(() => setMounted(true), [])
-  useEffect(() => { const sync = () => setSiteLight(document.documentElement.classList.contains('light') || document.body.classList.contains('light')); sync(); const mo = new MutationObserver(sync); mo.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] }); mo.observe(document.body, { attributes: true, attributeFilter: ['class'] }); return () => mo.disconnect() }, [])
+  useEffect(() => { const sync = () => setSiteLight(isLightTheme() || document.body.classList.contains('light')); sync(); const mo = new MutationObserver(sync); mo.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] }); mo.observe(document.body, { attributes: true, attributeFilter: ['class'] }); return () => mo.disconnect() }, [])
   const resolvedTheme = theme === 'auto' ? (siteLight ? 'light' : 'dark') : theme
   const isCompact = variant === 'compact'
   const isMessage = variant === 'message'

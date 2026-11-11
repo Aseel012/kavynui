@@ -1,167 +1,230 @@
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
-import { bySlug } from '@/lib/catalog'
+import { bySlug, components, families } from '@/lib/catalog'
 import { Demo, LazyDemo } from '@/site/Preview'
 import { GRADIENTS, styleOf } from '@/data/gradients'
-import CodeBlock from '@/site/CodeBlock'
-import { GitHubLink } from '@/site/Layout'
+import CodeBlock, { CopyButton } from '@/site/CodeBlock'
 import { useSEO, SITE_JSONLD } from '@/lib/seo'
-import { posts } from '@/data/posts'
+import { SITE } from '@/config'
 
-const STAGE = [
-  { slug: 'edge-dashboard', label: 'Dashboard', url: 'app.example.com/analytics' },
-  { slug: 'product-hero', label: 'Landing', url: 'example.com' },
-  { slug: 'sign-in-card', label: 'Sign in', url: 'example.com/login' },
-  { slug: 'status-board', label: 'Status', url: 'status.example.com' },
+const MOSAIC = ['avatar-upload', 'flip-words', 'dock-magnify', 'cache-ring', 'liquid-button', 'notif-stack', 'hold-to-confirm', 'tab-lens']
+// Page order, top to bottom. Every entry is a block in the registry.
+const KIT = [
+  { slug: 'product-hero', role: 'Hero' },
+  { slug: 'feature-bento', role: 'Features' },
+  { slug: 'proof-wall', role: 'Social proof' },
+  { slug: 'pricing-morph', role: 'Pricing' },
+  { slug: 'faq-accordion', role: 'FAQ' },
+  { slug: 'globe-cta', role: 'Call to action' },
+  { slug: 'wordmark-footer', role: 'Footer' },
 ]
-const PIECES = ['liquid-button', 'text-scramble', 'dock-magnify', 'uptime-bars', 'hold-to-confirm', 'notif-stack']
-const spring = { type: 'spring', stiffness: 260, damping: 28 }
+const registryUrl = (slug) => `${SITE.url}/r/${slug}.json`
+const chevron = <svg viewBox="0 0 24 24" className="size-4 shrink-0 text-faint" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden><path d="m9 6 6 6-6 6" /></svg>
 
-function Stage() {
-  const [on, setOn] = useState(0)
-  const [auto, setAuto] = useState(true)
-  useEffect(() => {
-    if (!auto) return
-    const id = setInterval(() => !document.hidden && setOn((n) => (n + 1) % STAGE.length), 9000)
-    return () => clearInterval(id)
-  }, [auto])
-  const s = STAGE[on]
+// Renders a block at desktop width and scales it to fit the column, keeping flow height correct.
+function Scaled({ children, width = 1440 }) {
+  const box = useRef(null), inner = useRef(null)
+  const [fit, setFit] = useState({ s: 0, h: 0 })
+  useLayoutEffect(() => {
+    const calc = () => {
+      if (!box.current || !inner.current) return
+      const s = box.current.clientWidth / width, h = inner.current.offsetHeight * s
+      setFit((o) => (Math.abs(o.s - s) < 0.002 && Math.abs(o.h - h) < 1 ? o : { s, h }))
+    }
+    calc()
+    if (typeof ResizeObserver === 'undefined') return
+    const ro = new ResizeObserver(calc)
+    ro.observe(box.current); ro.observe(inner.current)
+    return () => ro.disconnect()
+  }, [width])
   return (
-    <div className="overflow-hidden rounded-2xl border border-line2 bg-panel shadow-[0_40px_120px_-30px_rgba(255,106,43,.18)]">
-      <div className="flex items-center gap-3 border-b border-line px-3 py-2.5">
-        <div className="hidden gap-1.5 sm:flex"><span className="size-2.5 rounded-full bg-line2" /><span className="size-2.5 rounded-full bg-line2" /><span className="size-2.5 rounded-full bg-line2" /></div>
-        <div className="no-scrollbar flex flex-1 gap-1 overflow-x-auto" role="tablist">
-          {STAGE.map((t, i) => (
-            <button key={t.slug} type="button" role="tab" aria-selected={on === i} onClick={() => { setOn(i); setAuto(false) }} className="relative shrink-0 rounded-md px-3 py-1 text-xs">
-              {on === i && <motion.span layoutId="stage-on" className="absolute inset-0 rounded-md bg-line2" transition={{ type: 'spring', stiffness: 480, damping: 36 }} />}
-              <span className={`relative ${on === i ? 'text-tx' : 'text-mute hover:text-tx'}`}>{t.label}</span>
-            </button>
+    <div ref={box} className="relative overflow-hidden" style={{ height: fit.h || 240 }}>
+      <div ref={inner} className="absolute left-0 top-0 p-6" style={{ width, transform: `scale(${fit.s})`, transformOrigin: '0 0', visibility: fit.s ? 'visible' : 'hidden' }}>{children}</div>
+    </div>
+  )
+}
+
+function Switch({ on, onChange, label }) {
+  return (
+    <button type="button" role="switch" aria-checked={on} aria-label={label} onClick={onChange}
+      className={`relative h-[26px] w-[44px] shrink-0 rounded-full transition-colors duration-200 ${on ? 'bg-tx' : 'bg-line2'}`}>
+      <motion.span className="absolute top-[3px] size-5 rounded-full bg-bg shadow-[0_2px_6px_rgba(0,0,0,.25)]" animate={{ left: on ? 21 : 3 }} transition={{ type: 'spring', stiffness: 600, damping: 36 }} />
+    </button>
+  )
+}
+
+function PageKit() {
+  const [on, setOn] = useState(() => new Set(['product-hero', 'feature-bento', 'pricing-morph', 'faq-accordion', 'wordmark-footer']))
+  const picked = KIT.filter((k) => on.has(k.slug))
+  const toggle = (slug) => setOn((s) => { const n = new Set(s); n.has(slug) ? n.delete(slug) : n.add(slug); return n })
+  const command = picked.length ? `npx shadcn@latest add ${picked.map((k) => registryUrl(k.slug)).join(' ')}` : ''
+  const page = useMemo(() => picked.length ? [
+    ...picked.map((k) => `import ${bySlug[k.slug].export} from '@/components/kavyn/${k.slug}'`),
+    '',
+    'export default function Page() {',
+    '  return (',
+    '    <main>',
+    ...picked.map((k) => `      <${bySlug[k.slug].export} />`),
+    '    </main>',
+    '  )',
+    '}',
+  ].join('\n') : '', [picked])
+
+  return (
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-[360px_minmax(0,900px)] lg:justify-between lg:gap-10">
+      <div className="min-w-0 lg:sticky lg:top-20 lg:self-start">
+        <ul className="overflow-hidden rounded-[22px] bg-panel" aria-label="Page sections">
+          {KIT.map((k, i) => (
+            <li key={k.slug} className={`flex items-center gap-3 px-4 py-3 ${i ? 'border-t border-line' : ''}`}>
+              <div className="min-w-0 flex-1">
+                <div className="text-[15px] text-tx">{k.role}</div>
+                <Link to={`/components/${k.slug}`} className="text-[13px] text-mute hover:text-tx">{bySlug[k.slug].name}</Link>
+              </div>
+              <Switch on={on.has(k.slug)} onChange={() => toggle(k.slug)} label={`Include ${k.role}`} />
+            </li>
           ))}
+        </ul>
+        <div className="mt-4 rounded-[22px] bg-panel p-4">
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-[13px] text-mute">{picked.length} {picked.length === 1 ? 'section' : 'sections'}, one command</span>
+            <CopyButton text={command} label="Copy command" />
+          </div>
+          <code data-testid="kit-command" className="mt-3 block max-h-28 overflow-auto break-all font-mono text-[11.5px] leading-5 text-tx/80">{command || 'Turn on a section to get its install command.'}</code>
         </div>
-        <span className="hidden truncate rounded-md bg-bg px-3 py-1 font-mono text-[11px] text-faint md:block">{s.url}</span>
       </div>
-      <div className="relative min-h-[420px] bg-bg p-2 sm:p-4">
-        <AnimatePresence mode="wait">
-          <motion.div key={s.slug} initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} exit={{ opacity: 0, y: -10, filter: 'blur(4px)' }} transition={{ duration: 0.3 }}>
-            <Demo item={bySlug[s.slug]} page="home" />
-          </motion.div>
-        </AnimatePresence>
-      </div>
-      <div className="flex items-center justify-between border-t border-line px-4 py-2.5 text-xs">
-        <span className="text-mute">{bySlug[s.slug]?.name} <span className="text-faint">· block</span></span>
-        <Link to={`/components/${s.slug}`} className="text-tx hover:text-acc">Get the code →</Link>
+
+      <div className="min-w-0">
+        <div className="overflow-hidden rounded-[22px] border border-line bg-bg">
+          <div className="flex h-10 items-center gap-2 border-b border-line bg-panel px-4">
+            <span className="size-2.5 rounded-full bg-line2" /><span className="size-2.5 rounded-full bg-line2" /><span className="size-2.5 rounded-full bg-line2" />
+            <span className="mx-auto rounded-full bg-bg px-3 py-0.5 text-[11px] text-faint">your-site.com</span>
+          </div>
+          <div className="max-h-[720px] overflow-y-auto" data-testid="kit-preview">
+            <AnimatePresence initial={false}>
+              {picked.map((k) => (
+                <motion.div key={k.slug} layout initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ type: 'spring', stiffness: 260, damping: 32 }} className="overflow-hidden border-b border-line last:border-b-0">
+                  <Scaled><Demo item={bySlug[k.slug]} page="home" /></Scaled>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+            {!picked.length && <div className="grid h-72 place-items-center text-sm text-faint">An empty page. Switch a section on.</div>}
+          </div>
+        </div>
+        {page && <div className="mt-4"><CodeBlock title="app/page.jsx" code={page} maxHeight={300} /></div>}
       </div>
     </div>
   )
 }
 
-export default function Home() {
-  useSEO({ title: 'kavynUI - animated React components and blocks', description: 'Copy-paste animated React components, blocks and backgrounds: WebGL shaders, scroll scenes, physics, 3D and particle text. Open source, MIT.', path: '/', jsonLd: SITE_JSONLD })
+function Heading({ title, sub, to, link }) {
   return (
-    <>
-      <section className="relative overflow-hidden border-b border-line">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_40%_at_50%_0%,rgba(255,106,43,.12),transparent)]" />
-        <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-12 sm:px-6 sm:pt-16">
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={spring} className="mb-8 flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">
-            <h1 className="max-w-md text-3xl font-semibold tracking-[-0.04em] text-tx sm:text-[44px] sm:leading-[1.05]">Copy the section.<br /><span className="text-mute">Ship the product.</span></h1>
-            <div className="flex items-center gap-2">
-              <Link to="/components" className="flex h-10 items-center rounded-full bg-tx px-5 text-sm font-medium text-bg transition-transform active:scale-95">Open library</Link>
-            </div>
-          </motion.div>
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ ...spring, delay: 0.08 }}><Stage /></motion.div>
-        </div>
-      </section>
+    <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <h2 className="text-[28px] font-semibold tracking-[-0.03em] text-tx sm:text-[34px]">{title}</h2>
+        {sub && <p className="mt-1.5 max-w-xl text-[15px] leading-6 text-mute">{sub}</p>}
+      </div>
+      {to && <Link to={to} className="flex items-center gap-1 text-[15px] text-mute hover:text-tx">{link}{chevron}</Link>}
+    </div>
+  )
+}
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <div className="mb-6 flex items-end justify-between">
-          <h2 className="text-xl font-medium tracking-tight text-tx">Pieces</h2>
-          <Link to="/components" className="text-sm text-mute hover:text-tx">Library →</Link>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {PIECES.map((slug) => bySlug[slug] && (
-            <div key={slug} className="overflow-hidden rounded-2xl border border-line bg-panel">
-              <div className="relative h-56 bg-bg"><LazyDemo item={bySlug[slug]} page="home" /></div>
-              <Link to={`/components/${slug}`} className="flex items-center justify-between border-t border-line px-4 py-3 text-sm">
-                <span className="text-tx">{bySlug[slug].name}</span><span className="truncate pl-3 text-faint">{bySlug[slug].useCase}</span>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </section>
+export default function Home() {
+  useSEO({ title: 'kavynUI - animated React components and page sections', description: `${components.length} animated React components and page sections. Install any of them with the shadcn CLI or copy the file. Open source, MIT.`, path: '/', jsonLd: SITE_JSONLD })
+  const blocks = components.filter((c) => c.family === 'blocks').length
+  const starter = `npx shadcn@latest add ${registryUrl('avatar-upload')}`
+  const half = Math.ceil(families.length / 2)
 
-      <section className="border-y border-line bg-panel/40">
-        <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 py-16 sm:px-6 md:grid-cols-[1fr_1.2fr]">
-          <div>
-            <div className="text-xs uppercase tracking-[0.12em] text-acc">Maps & data</div>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-tx sm:text-3xl">See where your traffic lives</h2>
-            <p className="mt-3 max-w-sm text-mute">Dotted world maps, a draggable globe, uptime, latency and threat feeds. Canvas-drawn, light, and fed by your own data.</p>
-            <div className="mt-6 flex flex-wrap gap-2 text-sm">
-              {['traffic-map', 'edge-globe', 'latency-stream', 'threat-feed', 'region-bars'].map((s) => <Link key={s} to={`/components/${s}`} className="rounded-full border border-line2 px-3 py-1 text-mute hover:text-tx">{bySlug[s]?.name}</Link>)}
+  return (
+    <div className="mx-auto max-w-[1600px] px-4 sm:px-8">
+      <section className="pb-14 pt-14 sm:pt-24">
+        <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ type: 'spring', stiffness: 200, damping: 26 }}
+          className="grid grid-cols-1 items-end gap-10 lg:grid-cols-[1.3fr_1fr]">
+          <h1 className="text-[44px] font-semibold leading-[0.98] tracking-[-0.045em] text-tx sm:text-[76px]">Copy a section.<br />Ship a page.</h1>
+          <div className="min-w-0 lg:pb-2">
+            <p className="max-w-md text-[17px] leading-7 text-mute">{components.length} animated React components and {blocks} page sections. Each one is a single file you own: add it with the shadcn CLI or paste it in.</p>
+            <div className="mt-6 flex max-w-md items-center gap-2 rounded-full bg-panel py-1.5 pl-4 pr-1.5">
+              <code className="min-w-0 flex-1 truncate font-mono text-[12px] text-tx/85">{starter}</code>
+              <CopyButton text={starter} />
+            </div>
+            <div className="mt-4 flex gap-2">
+              <Link to="/components" className="flex h-11 items-center rounded-full bg-tx px-5 text-[15px] font-medium text-bg transition-transform active:scale-95">Browse components</Link>
+              <a href="#page-kit" className="flex h-11 items-center rounded-full border border-line2 px-5 text-[15px] text-tx hover:bg-panel">Build a page</a>
             </div>
           </div>
-          <div className="relative h-[340px] sm:h-[400px]"><LazyDemo item={bySlug['edge-globe']} page="home" /></div>
-        </div>
+        </motion.div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <div className="mb-6 flex items-end justify-between">
-          <h2 className="text-xl font-medium tracking-tight text-tx">Backgrounds</h2>
-          <Link to="/backgrounds" className="text-sm text-mute hover:text-tx">All backgrounds →</Link>
-        </div>
-        <style>{[...new Set(GRADIENTS.filter((g) => g.anim).map((g) => g.anim.css))].join('\n')}</style>
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-          {GRADIENTS.slice(0, 6).map((g) => (
-            <Link key={g.id} to={`/backgrounds?bg=${g.id}`} className="group relative h-32 overflow-hidden rounded-2xl border border-line sm:h-40" style={styleOf(g)}>
-              <span className="absolute bottom-3 left-3 text-sm text-white/85">{g.name}</span>
-              <span className="absolute bottom-3 right-3 text-xs text-white/60 opacity-0 transition-opacity group-hover:opacity-100">Code →</span>
+      <section aria-label="Live components" className="grid grid-cols-1 gap-px overflow-hidden rounded-[28px] border border-line bg-line sm:grid-cols-2 xl:grid-cols-4">
+        {MOSAIC.map((slug) => bySlug[slug] && (
+          <div key={slug} className="flex flex-col bg-bg">
+            <div className="relative h-72"><LazyDemo item={bySlug[slug]} page="home" /></div>
+            <Link to={`/components/${slug}`} className="flex items-center justify-between gap-3 px-5 pb-4 text-[13px] transition-colors">
+              <span className="text-tx">{bySlug[slug].name}</span>
+              <span className="flex items-center gap-1 truncate text-faint hover:text-mute">{bySlug[slug].useCase}{chevron}</span>
             </Link>
-          ))}
-        </div>
+          </div>
+        ))}
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
-        <div className="grid gap-8 rounded-2xl border border-line bg-panel p-6 sm:p-10 md:grid-cols-2">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-tx">No package. Just the file.</h2>
-            <ol className="mt-5 space-y-3 text-sm text-mute">
-              {['Install motion', 'Copy a component into src/components/kavyn', 'Import it and ship'].map((t, i) => (
-                <li key={t} className="flex items-center gap-3"><span className="grid size-6 place-items-center rounded-full border border-line2 font-mono text-[11px] text-tx">{i + 1}</span>{t}</li>
+      <section id="page-kit" className="scroll-mt-20 pt-24 sm:pt-32">
+        <Heading title="Assemble a page" sub="Switch sections on and off. The preview stacks the real blocks, and you get one install command and the page file that wires them together." />
+        <PageKit />
+      </section>
+
+      <section className="pt-24 sm:pt-32">
+        <Heading title="Everything, by job" sub="Grouped by what you are building, not by how it animates." to="/components" link="All components" />
+        <div className="grid gap-4 lg:grid-cols-2">
+          {[families.slice(0, half), families.slice(half)].map((col, c) => (
+            <ul key={c} className="overflow-hidden rounded-[22px] bg-panel">
+              {col.map((f, i) => (
+                <li key={f.id} className={i ? 'border-t border-line' : ''}>
+                  <Link to={f.id === 'blocks' ? '/blocks' : `/components?family=${f.id}`} className="flex items-center gap-4 px-5 py-4 transition-colors hover:bg-panel2">
+                    <div className="min-w-0 flex-1">
+                      <div className="text-[17px] text-tx">{f.name}</div>
+                      <div className="truncate text-[13px] text-mute">{f.blurb}</div>
+                    </div>
+                    <span className="text-[15px] tabular-nums text-faint">{f.count}</span>{chevron}
+                  </Link>
+                </li>
               ))}
-            </ol>
-            <Link to="/docs/installation" className="mt-6 inline-block text-sm text-acc">Installation guide →</Link>
-          </div>
-          <CodeBlock title="Analytics.jsx" code={`import EdgeDashboard from '@/components/kavyn/edge-dashboard'\n\nexport default function Analytics() {\n  return <EdgeDashboard />\n}`} maxHeight={240} />
+            </ul>
+          ))}
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
-        <div className="mb-6 flex items-end justify-between">
-          <h2 className="text-xl font-medium tracking-tight text-tx">From the blog</h2>
-          <Link to="/blog" className="text-sm text-mute hover:text-tx">All posts →</Link>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.slice(0, 3).map((p) => (
-            <Link key={p.slug} to={`/blog/${p.slug}`} className="group rounded-2xl border border-line bg-panel p-5 hover:border-line2">
-              <div className="text-xs text-faint">{new Date(`${p.date}T00:00:00`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} · {p.minutes} min</div>
-              <div className="mt-2 font-medium tracking-tight text-tx group-hover:text-acc">{p.title}</div>
-              <p className="mt-2 line-clamp-2 text-sm leading-6 text-mute">{p.excerpt}</p>
+      <section className="pt-24 sm:pt-32">
+        <Heading title="Backgrounds" sub="Plain CSS, named for the product they suit." to="/backgrounds" link="All backgrounds" />
+        <style>{[...new Set(GRADIENTS.filter((g) => g.anim).map((g) => g.anim.css))].join('\n')}</style>
+        <div className="no-scrollbar -mx-4 flex snap-x gap-4 overflow-x-auto scroll-px-4 px-4 pb-2 sm:-mx-8 sm:scroll-px-8 sm:px-8">
+          {GRADIENTS.slice(0, 8).map((g) => (
+            <Link key={g.id} to={`/backgrounds?bg=${g.id}`} className="group w-64 shrink-0 snap-start">
+              <div className="h-44 rounded-[22px] ring-1 ring-inset ring-line transition-transform duration-300 group-hover:scale-[0.98]" style={styleOf(g)} />
+              <div className="mt-3 text-[15px] text-tx">{g.name}</div>
+              <div className="text-[13px] text-mute">{g.use}</div>
             </Link>
           ))}
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
-        <div className="flex flex-col items-start justify-between gap-6 rounded-2xl border border-line p-6 sm:flex-row sm:items-center sm:p-8">
-          <div>
-            <h2 className="text-xl font-semibold tracking-tight text-tx">Open source</h2>
-            <p className="mt-1 text-sm text-mute">Free to use under the MIT license. Built in the open.</p>
-          </div>
-          <div className="flex items-center gap-2">
-            <GitHubLink />
-          </div>
-        </div>
+      <section className="pb-28 pt-24 sm:pb-36 sm:pt-32">
+        <Heading title="Readable by agents" sub="Coding agents can find, read and install every component without scraping the site." />
+        <ul className="overflow-hidden rounded-[22px] bg-panel">
+          {[
+            ['llms.txt', 'A plain-text map of the library, with every component, use case and install URL.', `${SITE.url}/llms.txt`],
+            ['Registry index', 'The shadcn registry with full source for every item, schema-valid.', `${SITE.url}/r/index.json`],
+            ['Namespace', 'Add once to components.json, then install by name.', '"registries": { "@kavynui": "' + SITE.url + '/r/{name}.json" }'],
+          ].map(([t, d, v], i) => (
+            <li key={t} className={`flex flex-col gap-3 px-5 py-4 md:flex-row md:items-center ${i ? 'border-t border-line' : ''}`}>
+              <div className="md:w-72"><div className="text-[17px] text-tx">{t}</div><div className="text-[13px] leading-5 text-mute">{d}</div></div>
+              <div className="flex min-w-0 flex-1 items-center gap-2 rounded-[14px] bg-bg py-1.5 pl-3 pr-1.5">
+                <code className="min-w-0 flex-1 truncate font-mono text-[12px] text-tx/85">{v}</code>
+                <CopyButton text={v} />
+              </div>
+            </li>
+          ))}
+        </ul>
       </section>
-    </>
+    </div>
   )
 }

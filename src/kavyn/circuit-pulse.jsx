@@ -19,8 +19,8 @@ export default function CircuitPulse({ children = undefined, traces = 12, seed =
         {paths.map((p, i) => (
           <g key={i}>
             <path d={p.d} fill="none" stroke="var(--line)" strokeWidth="1.5" />
-            <motion.path d={p.d} fill="none" stroke="#ff6a2b" strokeWidth="1.5" strokeLinecap="round" pathLength="1" strokeDasharray="0.12 0.88"
-              initial={{ strokeDashoffset: 1 }} animate={{ strokeDashoffset: -0.12 }} transition={{ repeat: Infinity, duration: 2.4 + (i % 4) * 0.5, delay: i * 0.3, ease: 'easeIn', repeatDelay: 1 }} style={{ filter: 'drop-shadow(0 0 3px #ff6a2b)' }} />
+            <motion.path d={p.d} fill="none" stroke="var(--acc)" strokeWidth="1.5" strokeLinecap="round" pathLength="1" strokeDasharray="0.12 0.88"
+              initial={{ strokeDashoffset: 1 }} animate={{ strokeDashoffset: -0.12 }} transition={{ repeat: Infinity, duration: 2.4 + (i % 4) * 0.5, delay: i * 0.3, ease: 'easeIn', repeatDelay: 1 }} style={{ filter: 'drop-shadow(0 0 3px var(--acc))' }} />
             <circle cx={p.end[0]} cy={p.end[1]} r="2.5" fill="var(--panel2)" stroke="var(--line2)" />
           </g>
         ))}

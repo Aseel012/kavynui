@@ -10,7 +10,7 @@
       "path": "src/kavyn/shader-grain.jsx",
       "type": "registry:file",
       "target": "@components/kavyn/shader-grain.jsx",
-      "content": "'use client'\n\nimport { useShader, hexToRgb, NOISE } from './gl-canvas'\n\nconst FRAG = NOISE + `\nuniform vec3 uTint;uniform float uGrain;\nvoid main(){\n  vec2 uv=gl_FragCoord.xy/uRes;float asp=uRes.x/uRes.y;\n  vec2 p=uv*vec2(asp,1.);float t=uTime*.25;\n  vec2 c1=vec2(asp*(.25+.08*sin(t)),.85+.05*cos(t*1.3));\n  vec2 c2=vec2(asp*(.8+.06*cos(t*.8)),.15+.06*sin(t*1.1));\n  vec2 m=vec2(uMouse.x*asp,uMouse.y);\n  float g1=exp(-2.4*length(p-c1)),g2=exp(-3.2*length(p-c2)),g3=exp(-7.*length(p-m));\n  vec3 col=vec3(.035,.035,.04);\n  col+=uTint*g1*.75+vec3(.35,.4,.9)*g2*.35+uTint*g3*.25;\n  col*=.85+.3*fbm(p*2.+t);\n  float n=hash(gl_FragCoord.xy+fract(uTime*9.)*vec2(91.,37.));\n  col+=(n-.5)*uGrain;\n  col*=1.-.35*length(uv-.5);\n  gl_FragColor=vec4(col,1.);\n}`\n\n// Warm light through film grain. The grain re-rolls every frame, like real stock.\n/** @param {{ tint?: any, grain?: any, speed?: any, className?: any, children?: any }} props */\nexport default function ShaderGrain({ tint = '#ff6a2b', grain = 0.09, speed = 1, className = '', children = undefined }) {\n  const host = useShader(FRAG, { uniforms: { uTint: hexToRgb(tint), uGrain: Number(grain) || 0 }, speed, resolution: 0.75 })\n  return (\n    <div ref={host} className={`relative h-full min-h-72 w-full overflow-hidden bg-[#09090a] ${className}`}\n      style={{ backgroundImage: `radial-gradient(60% 60% at 22% 12%, ${tint}55, transparent 70%), radial-gradient(50% 50% at 82% 88%, #5a66e633, transparent 70%)` }}>\n      <div className=\"pointer-events-none relative z-10 grid h-full min-h-72 place-items-center p-6\">{children}</div>\n    </div>\n  )\n}\n"
+      "content": "'use client'\n\nimport { useShader, hexToRgb, NOISE } from './gl-canvas'\n\nconst FRAG = NOISE + `\nuniform vec3 uTint;uniform float uGrain;\nvoid main(){\n  vec2 uv=gl_FragCoord.xy/uRes;float asp=uRes.x/uRes.y;\n  vec2 p=uv*vec2(asp,1.);float t=uTime*.25;\n  vec2 c1=vec2(asp*(.25+.08*sin(t)),.85+.05*cos(t*1.3));\n  vec2 c2=vec2(asp*(.8+.06*cos(t*.8)),.15+.06*sin(t*1.1));\n  vec2 m=vec2(uMouse.x*asp,uMouse.y);\n  float g1=exp(-2.4*length(p-c1)),g2=exp(-3.2*length(p-c2)),g3=exp(-7.*length(p-m));\n  vec3 col=vec3(.035,.035,.04);\n  col+=uTint*g1*.75+vec3(.35,.4,.9)*g2*.35+uTint*g3*.25;\n  col*=.85+.3*fbm(p*2.+t);\n  float n=hash(gl_FragCoord.xy+fract(uTime*9.)*vec2(91.,37.));\n  col+=(n-.5)*uGrain;\n  col*=1.-.35*length(uv-.5);\n  gl_FragColor=vec4(col,1.);\n}`\n\n// Warm light through film grain. The grain re-rolls every frame, like real stock.\n/** @param {{ tint?: any, grain?: any, speed?: any, className?: any, children?: any }} props */\nexport default function ShaderGrain({ tint = '#d9a066', grain = 0.09, speed = 1, className = '', children = undefined }) {\n  const host = useShader(FRAG, { uniforms: { uTint: hexToRgb(tint), uGrain: Number(grain) || 0 }, speed, resolution: 0.75 })\n  return (\n    <div ref={host} className={`relative h-full min-h-72 w-full overflow-hidden bg-[#09090a] ${className}`}\n      style={{ backgroundImage: `radial-gradient(60% 60% at 22% 12%, ${tint}55, transparent 70%), radial-gradient(50% 50% at 82% 88%, #5a66e633, transparent 70%)` }}>\n      <div className=\"pointer-events-none relative z-10 grid h-full min-h-72 place-items-center p-6\">{children}</div>\n    </div>\n  )\n}\n"
     },
     {
       "path": "src/kavyn/gl-canvas.js",
@@ -29,42 +29,46 @@
       "color-tx": "var(--tx)",
       "color-mute": "var(--mute)",
       "color-faint": "var(--faint)",
-      "color-acc": "var(--acc)"
+      "color-acc": "var(--acc)",
+      "color-acc-fg": "var(--acc-fg)"
     },
     "light": {
-      "bg": "#fafafa",
-      "panel": "#ffffff",
-      "panel2": "#f0f0f3",
-      "line": "#e6e6ea",
-      "line2": "#d6d6dd",
-      "tx": "#141417",
-      "mute": "#5f5f6b",
-      "faint": "#a2a2ab",
-      "acc": "#e14e0b"
+      "bg": "#ffffff",
+      "panel": "#f5f5f7",
+      "panel2": "#e8e8ed",
+      "line": "#e5e5ea",
+      "line2": "#d2d2d7",
+      "tx": "#1d1d1f",
+      "mute": "#6e6e73",
+      "faint": "#a1a1a6",
+      "acc": "#1d1d1f",
+      "acc-fg": "#ffffff"
     },
     "dark": {
-      "bg": "#09090a",
-      "panel": "#0f0f11",
-      "panel2": "#141417",
-      "line": "#1e1e22",
-      "line2": "#2a2a30",
-      "tx": "#ededef",
-      "mute": "#8a8a93",
-      "faint": "#5c5c66",
-      "acc": "#ff6a2b"
+      "bg": "#000000",
+      "panel": "#141416",
+      "panel2": "#1f1f22",
+      "line": "#262628",
+      "line2": "#3a3a3d",
+      "tx": "#f5f5f7",
+      "mute": "#a1a1a6",
+      "faint": "#6e6e73",
+      "acc": "#f5f5f7",
+      "acc-fg": "#000000"
     }
   },
   "css": {
     ".light": {
-      "--bg": "#fafafa",
-      "--panel": "#ffffff",
-      "--panel2": "#f0f0f3",
-      "--line": "#e6e6ea",
-      "--line2": "#d6d6dd",
-      "--tx": "#141417",
-      "--mute": "#5f5f6b",
-      "--faint": "#a2a2ab",
-      "--acc": "#e14e0b"
+      "--bg": "#ffffff",
+      "--panel": "#f5f5f7",
+      "--panel2": "#e8e8ed",
+      "--line": "#e5e5ea",
+      "--line2": "#d2d2d7",
+      "--tx": "#1d1d1f",
+      "--mute": "#6e6e73",
+      "--faint": "#a1a1a6",
+      "--acc": "#1d1d1f",
+      "--acc-fg": "#ffffff"
     }
   }
 }

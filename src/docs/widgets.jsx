@@ -8,9 +8,9 @@ export const C = ({ children }) => <code className="rounded bg-panel2 px-1.5 py-
 export const Code = (p) => <div className="mt-4"><CodeBlock {...p} /></div>
 
 export function Note({ tone = 'info', title, children }) {
-  const t = { info: 'border-sky-400/25 bg-sky-400/[.05] text-sky-300', warn: 'border-amber-400/25 bg-amber-400/[.05] text-amber-300', tip: 'border-acc/25 bg-acc/[.05] text-acc' }[tone]
+  const t = { info: 'bg-panel text-tx', warn: 'bg-amber-400/[.08] text-amber-500', tip: 'bg-panel text-tx' }[tone]
   return (
-    <div className={`mt-5 rounded-xl border px-4 py-3 ${t}`}>
+    <div className={`mt-5 rounded-[16px] px-4 py-3 ${t}`}>
       {title && <div className="text-sm font-medium">{title}</div>}
       <div className="mt-0.5 text-sm leading-6 text-mute">{children}</div>
     </div>
@@ -43,16 +43,6 @@ export function Table({ head, rows }) {
   )
 }
 
-export function Tabs({ tabs }) {
-  const [on, setOn] = useState(0)
-  return (
-    <div className="mt-4">
-      <div className="mb-2 flex gap-1">{tabs.map((t, i) => <button key={t.label} type="button" onClick={() => setOn(i)} className={`rounded-md px-2.5 py-1 text-xs ${on === i ? 'bg-line text-tx' : 'text-mute hover:text-tx'}`}>{t.label}</button>)}</div>
-      <CodeBlock code={tabs[on].code} title={tabs[on].title} />
-    </div>
-  )
-}
-
 // Simulates a damped spring so the curve matches what Motion will do.
 function simulate(k, c, m, n = 180, dt = 1 / 60) {
   let x = 0, v = 0
@@ -70,7 +60,7 @@ function Slider({ label, value, set, min, max, step = 1 }) {
   return (
     <label className="block">
       <div className="flex justify-between text-xs"><span className="text-mute">{label}</span><span className="font-mono text-tx">{value}</span></div>
-      <input type="range" min={min} max={max} step={step} value={value} onChange={(e) => set(Number(e.target.value))} className="mt-2 w-full accent-[#ff6a2b]" aria-label={label} />
+      <input type="range" min={min} max={max} step={step} value={value} onChange={(e) => set(Number(e.target.value))} className="mt-2 w-full accent-[var(--tx)]" aria-label={label} />
     </label>
   )
 }
@@ -102,7 +92,7 @@ export function SpringPlayground() {
           <div className="flex flex-wrap gap-1.5">
             {PRESETS.map((p) => (
               <button key={p.name} type="button" onClick={() => { setK(p.k); setC(p.c); setM(p.m); setSide((s) => !s) }}
-                className={`rounded-full border px-2.5 py-1 text-xs ${p.k === k && p.c === c && p.m === m ? 'border-acc/50 bg-acc/10 text-acc' : 'border-line2 text-mute hover:text-tx'}`}>{p.name}</button>
+                className={`rounded-full border px-2.5 py-1 text-xs ${p.k === k && p.c === c && p.m === m ? 'border-tx bg-tx text-bg' : 'border-line2 text-mute hover:text-tx'}`}>{p.name}</button>
             ))}
           </div>
           <div className="mt-5 space-y-4">
@@ -122,7 +112,7 @@ export function SpringPlayground() {
           <span className="mt-2 text-center text-[11px] text-faint">Tap the track to replay</span>
           <svg viewBox={`0 0 ${W} ${H}`} className="mt-3 w-full">
             <line x1="0" x2={W} y1={H - 12 - (1 / Math.max(1.2, peak)) * (H - 24)} y2={H - 12 - (1 / Math.max(1.2, peak)) * (H - 24)} stroke="var(--line2)" strokeDasharray="3 4" />
-            <path d={d} fill="none" stroke="#ff6a2b" strokeWidth="1.6" />
+            <path d={d} fill="none" stroke="var(--tx)" strokeWidth="1.6" />
           </svg>
         </div>
       </div>
@@ -131,8 +121,8 @@ export function SpringPlayground() {
   )
 }
 
-const SWATCHES = ['#ff6a2b', '#3b82f6', '#10b981', '#a855f7', '#f43f5e', '#eab308']
-const TOKENS = [['bg', '#09090a'], ['panel', '#0f0f11'], ['panel2', '#141417'], ['line', '#1e1e22'], ['line2', '#2a2a30'], ['tx', '#ededef'], ['mute', '#8a8a93'], ['faint', '#5c5c66']]
+const SWATCHES = ['#f5f5f7', '#c8a27a', '#30a46c', '#b07fd6', '#e5484d', '#e5793c']
+const TOKENS = [['bg', '#000000'], ['panel', '#141416'], ['panel2', '#1f1f22'], ['line', '#262628'], ['line2', '#3a3a3d'], ['tx', '#f5f5f7'], ['mute', '#a1a1a6'], ['faint', '#6e6e73']]
 
 export function ThemeLab() {
   const [acc, setAcc] = useState(SWATCHES[0])
@@ -152,7 +142,7 @@ export function ThemeLab() {
           {SWATCHES.map((s) => <button key={s} type="button" onClick={() => setAcc(s)} aria-label={`Accent ${s}`} className={`size-6 rounded-full ring-offset-2 ring-offset-panel ${acc === s ? 'ring-2 ring-tx' : ''}`} style={{ background: s }} />)}
         </div>
         <div className="mt-5 flex flex-wrap items-center gap-3">
-          <button type="button" className="h-9 rounded-lg bg-acc px-4 text-sm font-medium text-black">Primary</button>
+          <button type="button" className="h-9 rounded-full bg-acc px-4 text-sm font-medium text-black">Primary</button>
           <span className="rounded-full bg-acc/15 px-2.5 py-1 text-xs text-acc">New</span>
           <div className="h-1.5 w-40 overflow-hidden rounded-full bg-line"><motion.div className="h-full bg-acc" animate={{ width: ['20%', '85%', '20%'] }} transition={{ duration: 3, repeat: Infinity }} /></div>
           <span className="font-mono text-xs text-mute">--color-acc: <span className="text-tx">{acc}</span></span>

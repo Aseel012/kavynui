@@ -4,7 +4,6 @@ import { lazyRetry, importWithRetry } from './lazyRetry'
 const modules = import.meta.glob('../kavyn/*.jsx')
 const sources = import.meta.glob('../kavyn/*.{jsx,js}', { query: '?raw', import: 'default' })
 
-const slugOf = (p) => p.split('/').pop().replace('.jsx', '')
 const cache = {}
 
 export function getComponent(slug) {
@@ -21,8 +20,6 @@ export async function getSource(slug) {
   try { return await importWithRetry(sources[key]) } catch { return null }
 }
 
-export const registeredSlugs = Object.keys(modules).map(slugOf)
-
 // Pull default props straight out of the component signature.
 export function parseProps(src) {
   const m = src.match(/export default function \w+\(\{([\s\S]*?)\}\)\s*\{/)
@@ -38,7 +35,8 @@ export function parseProps(src) {
   return out.map((s) => s.trim()).filter(Boolean).map((s) => {
     const [name, ...rest] = s.split('=')
     const def = rest.join('=').trim()
-    const type = !def ? (name.trim() === 'children' ? 'ReactNode' : name.trim().startsWith('on') ? 'function' : 'any')
+    const key = name.trim()
+    const type = /^on[A-Z]/.test(key) ? 'function' : key === 'children' ? 'ReactNode' : !def || def === 'undefined' ? 'any'
       : /^['"`]/.test(def) ? 'string' : /^-?\d/.test(def) ? 'number' : /^(true|false)$/.test(def) ? 'boolean' : /^\[/.test(def) ? 'array' : /^[A-Z_]+$/.test(def) ? 'array | object' : 'any'
     return { name: name.trim(), default: def || '-', type }
   })

@@ -1,0 +1,70 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-upload",
+  "title": "Avatar Upload",
+  "type": "registry:component",
+  "description": "Pick or drop a photo, see it cropped round, watch the ring fill, then replace or remove it",
+  "dependencies": [
+    "motion@^12.43.0"
+  ],
+  "files": [
+    {
+      "path": "src/kavyn/avatar-upload.jsx",
+      "type": "registry:file",
+      "target": "@components/kavyn/avatar-upload.jsx",
+      "content": "'use client'\n\nimport { useEffect, useId, useRef, useState } from 'react'\nimport { AnimatePresence, motion, useReducedMotion, useSpring, useTransform } from 'motion/react'\n\nconst spring = { type: 'spring', stiffness: 420, damping: 32 }\n\n// Simulated upload: eases to 100% over ~1.6s with requestAnimationFrame, so the ring never steps.\nfunction fakeUpload(_file, onProgress) {\n  return new Promise((resolve) => {\n    const start = performance.now(), ms = 1600\n    const tick = (now) => {\n      const t = Math.min(1, (now - start) / ms)\n      onProgress(1 - (1 - t) ** 3)\n      if (t < 1) requestAnimationFrame(tick); else resolve()\n    }\n    requestAnimationFrame(tick)\n  })\n}\n\n/** @param {{ initialSrc?: any, size?: any, maxSizeMB?: any, onUpload?: any, onChange?: any, demoSrc?: any, name?: any }} props */\nexport default function AvatarUpload({\n  initialSrc = '',\n  size = 112,\n  maxSizeMB = 5,\n  onUpload = undefined,\n  onChange = undefined,\n  demoSrc = '',\n  name = 'Profile photo',\n}) {\n  const [src, setSrc] = useState(initialSrc)\n  const [status, setStatus] = useState(initialSrc ? 'done' : 'empty') // empty | uploading | done | error\n  const [error, setError] = useState('')\n  const [drag, setDrag] = useState(false)\n  const input = useRef(null)\n  const urlRef = useRef('')\n  const run = useRef(0)\n  const id = useId()\n  const reduce = useReducedMotion()\n  const progress = useSpring(0, { stiffness: 140, damping: 26 })\n  const dash = useTransform(progress, (p) => Math.max(0, Math.min(1, p)))\n\n  const R = size / 2 + 6, C = size + 12\n\n  const release = () => { if (urlRef.current) { URL.revokeObjectURL(urlRef.current); urlRef.current = '' } }\n  useEffect(() => release, [])\n\n  const start = async (file, preview) => {\n    const token = ++run.current\n    setError(''); setSrc(preview); setStatus('uploading'); progress.jump(0)\n    try {\n      await (onUpload || fakeUpload)(file, (p) => token === run.current && progress.set(p))\n      if (token !== run.current) return\n      progress.set(1); setStatus('done'); onChange?.(file)\n    } catch (e) {\n      if (token !== run.current) return\n      setStatus('error'); setError(e?.message || 'Upload failed. Try again.')\n    }\n  }\n\n  const take = (file) => {\n    if (!file) return\n    if (!file.type?.startsWith('image/')) { setError('Choose a JPG, PNG or WebP image.'); return }\n    if (file.size > maxSizeMB * 1e6) { setError(`That photo is over ${maxSizeMB} MB.`); return }\n    release()\n    urlRef.current = URL.createObjectURL(file)\n    start(file, urlRef.current)\n  }\n\n  const remove = () => {\n    run.current++; release(); progress.jump(0)\n    setSrc(''); setStatus('empty'); setError(''); onChange?.(null)\n  }\n\n  // Site demo only: walks through one upload with a local image so the preview is alive.\n  useEffect(() => {\n    if (!demoSrc) return\n    const t = setTimeout(() => start(null, demoSrc), 900)\n    return () => clearTimeout(t)\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [demoSrc])\n\n  const pick = () => input.current?.click()\n  const busy = status === 'uploading'\n\n  return (\n    <div className=\"flex w-[300px] max-w-full flex-col items-center text-center\">\n      <motion.div\n        className=\"relative\"\n        style={{ width: C, height: C }}\n        animate={{ scale: drag ? 1.04 : 1 }}\n        transition={spring}\n        onDragEnter={(e) => { e.preventDefault(); setDrag(true) }}\n        onDragOver={(e) => e.preventDefault()}\n        onDragLeave={() => setDrag(false)}\n        onDrop={(e) => { e.preventDefault(); setDrag(false); take(e.dataTransfer.files?.[0]) }}\n      >\n        <svg className=\"absolute inset-0 -rotate-90\" width={C} height={C} viewBox={`0 0 ${C} ${C}`} aria-hidden>\n          <circle cx={C / 2} cy={C / 2} r={R - 2} fill=\"none\" stroke=\"var(--line2)\" strokeWidth=\"2\" strokeDasharray={src ? '0' : '3 5'} />\n          <motion.circle cx={C / 2} cy={C / 2} r={R - 2} fill=\"none\" stroke=\"var(--tx)\" strokeWidth=\"2.5\" strokeLinecap=\"round\"\n            style={{ pathLength: dash }} animate={{ opacity: busy ? 1 : 0 }} transition={{ duration: 0.3 }} />\n        </svg>\n\n        <button\n          type=\"button\"\n          onClick={pick}\n          disabled={busy}\n          aria-describedby={`${id}-hint`}\n          aria-label={src ? 'Replace profile photo' : 'Upload profile photo'}\n          className=\"group absolute left-1.5 top-1.5 overflow-hidden rounded-full bg-panel2 outline-none ring-offset-2 ring-offset-bg focus-visible:ring-2 focus-visible:ring-tx\"\n          style={{ width: size, height: size }}\n        >\n          <AnimatePresence initial={false} mode=\"popLayout\">\n            {src ? (\n              <motion.img key={src} src={src} alt={name} draggable={false} className=\"size-full object-cover\"\n                initial={reduce ? false : { opacity: 0, scale: 1.12, filter: 'blur(8px)' }}\n                animate={{ opacity: busy ? 0.55 : 1, scale: 1, filter: 'blur(0px)' }}\n                exit={{ opacity: 0 }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }} />\n            ) : (\n              <motion.span key=\"empty\" className=\"grid size-full place-items-center text-faint\" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>\n                <svg viewBox=\"0 0 24 24\" className=\"size-9\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.5\" aria-hidden><circle cx=\"12\" cy=\"8.5\" r=\"3.5\" /><path d=\"M5 19.5c1.4-3 4-4.5 7-4.5s5.6 1.5 7 4.5\" /></svg>\n              </motion.span>\n            )}\n          </AnimatePresence>\n          {!busy && (\n            <span className=\"absolute inset-0 grid place-items-center bg-black/45 text-[12px] font-medium text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100\">\n              {src ? 'Replace' : 'Upload'}\n            </span>\n          )}\n        </button>\n\n        <AnimatePresence>\n          {status === 'done' && src && (\n            <motion.span key=\"ok\" className=\"absolute bottom-2 right-2 grid size-7 place-items-center rounded-full border-2 border-bg bg-tx text-bg\"\n              initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} transition={{ type: 'spring', stiffness: 520, damping: 22 }} aria-hidden>\n              <svg viewBox=\"0 0 24 24\" className=\"size-3.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"3\" strokeLinecap=\"round\" strokeLinejoin=\"round\"><motion.path d=\"M5 12.5l4.5 4.5L19 7.5\" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.12, duration: 0.3 }} /></svg>\n            </motion.span>\n          )}\n        </AnimatePresence>\n      </motion.div>\n\n      <input ref={input} type=\"file\" accept=\"image/*\" className=\"sr-only\" tabIndex={-1} aria-hidden onChange={(e) => { take(e.target.files?.[0]); e.target.value = '' }} />\n\n      <div className=\"mt-4 text-[15px] font-medium text-tx\">{name}</div>\n      <div id={`${id}-hint`} className=\"mt-1 h-5 text-[13px]\" aria-live=\"polite\">\n        <AnimatePresence mode=\"wait\" initial={false}>\n          <motion.span key={error || status} className={error ? 'text-rose-500' : 'text-mute'} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} transition={{ duration: 0.18 }}>\n            {error || (busy ? 'Uploading…' : status === 'done' ? 'Saved' : `Drop or click. JPG, PNG, up to ${maxSizeMB} MB.`)}\n          </motion.span>\n        </AnimatePresence>\n      </div>\n\n      <div className=\"mt-4 flex gap-2\">\n        <button type=\"button\" onClick={pick} disabled={busy} className=\"h-9 rounded-full bg-tx px-4 text-[13px] font-medium text-bg transition-transform active:scale-95 disabled:opacity-40\">\n          {src ? 'Replace' : 'Choose photo'}\n        </button>\n        <AnimatePresence initial={false}>\n          {src && !busy && (\n            <motion.button key=\"rm\" type=\"button\" onClick={remove} initial={{ opacity: 0, width: 0 }} animate={{ opacity: 1, width: 'auto' }} exit={{ opacity: 0, width: 0 }} transition={spring}\n              className=\"h-9 overflow-hidden whitespace-nowrap rounded-full border border-line2 px-4 text-[13px] text-mute hover:text-tx\">\n              Remove\n            </motion.button>\n          )}\n        </AnimatePresence>\n      </div>\n    </div>\n  )\n}\n"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-bg": "var(--bg)",
+      "color-panel": "var(--panel)",
+      "color-panel2": "var(--panel2)",
+      "color-line": "var(--line)",
+      "color-line2": "var(--line2)",
+      "color-tx": "var(--tx)",
+      "color-mute": "var(--mute)",
+      "color-faint": "var(--faint)",
+      "color-acc": "var(--acc)",
+      "color-acc-fg": "var(--acc-fg)"
+    },
+    "light": {
+      "bg": "#ffffff",
+      "panel": "#f5f5f7",
+      "panel2": "#e8e8ed",
+      "line": "#e5e5ea",
+      "line2": "#d2d2d7",
+      "tx": "#1d1d1f",
+      "mute": "#6e6e73",
+      "faint": "#a1a1a6",
+      "acc": "#1d1d1f",
+      "acc-fg": "#ffffff"
+    },
+    "dark": {
+      "bg": "#000000",
+      "panel": "#141416",
+      "panel2": "#1f1f22",
+      "line": "#262628",
+      "line2": "#3a3a3d",
+      "tx": "#f5f5f7",
+      "mute": "#a1a1a6",
+      "faint": "#6e6e73",
+      "acc": "#f5f5f7",
+      "acc-fg": "#000000"
+    }
+  },
+  "css": {
+    ".light": {
+      "--bg": "#ffffff",
+      "--panel": "#f5f5f7",
+      "--panel2": "#e8e8ed",
+      "--line": "#e5e5ea",
+      "--line2": "#d2d2d7",
+      "--tx": "#1d1d1f",
+      "--mute": "#6e6e73",
+      "--faint": "#a1a1a6",
+      "--acc": "#1d1d1f",
+      "--acc-fg": "#ffffff"
+    }
+  }
+}

@@ -3,6 +3,12 @@
 import { useEffect, useRef } from 'react'
 import { worldDots } from './world-dots'
 
+// Light or dark, read from the --bg token itself: works with a .dark class, a .light class, or neither.
+const isLightTheme = () => {
+  const h = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim().replace(/^#(.)(.)(.)$/, '#$1$1$2$2$3$3')
+  return /^#[0-9a-f]{6}/i.test(h) ? [1, 3, 5].reduce((s, i, k) => s + parseInt(h.slice(i, i + 2), 16) * [0.299, 0.587, 0.114][k], 0) > 128 : !document.documentElement.classList.contains('dark')
+}
+
 const HUBS = [[19.07, 72.87], [50.11, 8.68], [38.95, -77.45], [1.35, 103.99], [-23.43, -46.47], [35.77, 140.39], [-33.94, 151.18], [25.25, 55.36]]
 const rad = Math.PI / 180
 const vec = (lat, lon) => [Math.cos(lat * rad) * Math.sin(lon * rad), Math.sin(lat * rad), Math.cos(lat * rad) * Math.cos(lon * rad)]
@@ -14,7 +20,7 @@ const slerp = (a, b, t) => {
 }
 
 // Rotating dotted globe of real land masses with arcs between edge locations. Drag to spin.
-export default function EdgeGlobe({ size = 320, hubs = HUBS, speed = 0.18, color = '255,106,43' }) {
+export default function EdgeGlobe({ size = 320, hubs = HUBS, speed = 0.18, color = undefined }) {
   const ref = useRef(null)
   useEffect(() => {
     const c = ref.current
@@ -36,9 +42,10 @@ export default function EdgeGlobe({ size = 320, hubs = HUBS, speed = 0.18, color
       const dt = Math.min(0.05, (now - last) / 1000); last = now
       if (!drag) rot += speed * dt
       ctx.clearRect(0, 0, size, size)
-      const lite = document.documentElement.classList.contains('light')
+      const lite = isLightTheme()
+      const ink = color || (lite ? '29,29,31' : '245,245,247')
       const g = ctx.createRadialGradient(cx - R * 0.3, cy - R * 0.3, R * 0.1, cx, cy, R)
-      if (lite) { g.addColorStop(0, '#ffffff'); g.addColorStop(1, '#e8e8ec') } else { g.addColorStop(0, '#16161a'); g.addColorStop(1, '#0b0b0d') }
+      if (lite) { g.addColorStop(0, '#ffffff'); g.addColorStop(1, '#e8e8ec') } else { g.addColorStop(0, '#1c1c1e'); g.addColorStop(1, '#050505') }
       ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, R, 0, 6.283); ctx.fill()
       ctx.strokeStyle = lite ? 'rgba(20,20,23,0.16)' : 'rgba(237,237,239,0.08)'; ctx.stroke()
       for (const p of pts) {
@@ -57,7 +64,7 @@ export default function EdgeGlobe({ size = 320, hubs = HUBS, speed = 0.18, color
           const l0 = 1 + Math.sin(t0 * Math.PI) * 0.18, l1 = 1 + Math.sin(t1 * Math.PI) * 0.18
           const p0 = proj(slerp(H[arc.a], H[arc.b], t0), l0), p1 = proj(slerp(H[arc.a], H[arc.b], t1), l1)
           if (p0[2] < -0.1 || p1[2] < -0.1) continue
-          ctx.strokeStyle = `rgba(${color},${(i / 20) * 0.95})`; ctx.lineWidth = 1.3
+          ctx.strokeStyle = `rgba(${ink},${(i / 20) * 0.95})`; ctx.lineWidth = 1.3
           ctx.beginPath(); ctx.moveTo(p0[0], p0[1]); ctx.lineTo(p1[0], p1[1]); ctx.stroke()
         }
       }
@@ -65,9 +72,9 @@ export default function EdgeGlobe({ size = 320, hubs = HUBS, speed = 0.18, color
       for (const h of H) {
         const [x, y, z] = proj(h)
         if (z < 0) continue
-        ctx.strokeStyle = `rgba(${color},${(1 - pulse) * 0.7 * z})`
+        ctx.strokeStyle = `rgba(${ink},${(1 - pulse) * 0.7 * z})`
         ctx.beginPath(); ctx.arc(x, y, 2 + pulse * 9, 0, 6.283); ctx.stroke()
-        ctx.fillStyle = `rgb(${color})`; ctx.beginPath(); ctx.arc(x, y, 2, 0, 6.283); ctx.fill()
+        ctx.fillStyle = `rgb(${ink})`; ctx.beginPath(); ctx.arc(x, y, 2, 0, 6.283); ctx.fill()
       }
       raf = requestAnimationFrame(draw)
     }

@@ -15,7 +15,7 @@ export default function StitchProgress({ file = 'brand-guide.pdf', size = '8.4 M
       <div className="mb-3 flex justify-between text-sm"><span className="text-tx">{file}</span><span className="font-mono text-xs text-mute tabular-nums">{Math.round(p * 100)}%</span></div>
       <svg viewBox={`0 0 ${W} 16`} className="w-full overflow-visible">
         <line x1="0" y1="8" x2={W} y2="8" stroke="var(--line)" strokeWidth="6" strokeLinecap="round" />
-        <motion.path d={Array.from({ length: 30 }, (_, i) => `M${i * 10 + 2} ${i % 2 ? 4 : 12} L${i * 10 + 8} ${i % 2 ? 12 : 4}`).join(' ')} stroke="#ff6a2b" strokeWidth="2" strokeLinecap="round" fill="none"
+        <motion.path d={Array.from({ length: 30 }, (_, i) => `M${i * 10 + 2} ${i % 2 ? 4 : 12} L${i * 10 + 8} ${i % 2 ? 12 : 4}`).join(' ')} stroke="var(--acc)" strokeWidth="2" strokeLinecap="round" fill="none"
           animate={{ pathLength: p }} transition={{ type: 'spring', stiffness: 120, damping: 20 }} />
         <motion.g animate={{ x: p * W }} transition={{ type: 'spring', stiffness: 120, damping: 20 }}>
           <line x1="0" y1="-4" x2="0" y2="20" stroke="var(--tx)" strokeWidth="1.5" />

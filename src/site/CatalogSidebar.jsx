@@ -5,15 +5,15 @@ import { families, components, search } from '@/lib/catalog'
 
 const TOP = [
   { to: '/components', label: 'All components', end: true, icon: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z' },
-  { to: '/blocks', label: 'Blocks', icon: 'M3 5h18v6H3zM3 13h8v6H3zM13 13h8v6h-8z' },
-  { to: '/backgrounds', label: 'Gradient backgrounds', icon: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 0v18M3 12h18' },
+  { to: '/blocks', label: 'Sections', icon: 'M3 5h18v6H3zM3 13h8v6H3zM13 13h8v6h-8z' },
+  { to: '/backgrounds', label: 'CSS backgrounds', icon: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 0v18M3 12h18' },
 ]
 
 function Item({ to, children, end, onNav }) {
   return (
-    <NavLink to={to} end={end} onClick={onNav} className="group relative block rounded-md px-2.5 py-1.5 text-[13px]">
+    <NavLink to={to} end={end} onClick={onNav} className="group relative block rounded-[10px] px-2.5 py-1.5 text-[14px]">
       {({ isActive }) => (<>
-        {isActive && <motion.span layoutId="side-on" className="absolute inset-0 rounded-md bg-line" transition={{ type: 'spring', stiffness: 500, damping: 38 }} />}
+        {isActive && <motion.span layoutId="side-on" className="absolute inset-0 rounded-[10px] bg-panel2" transition={{ type: 'spring', stiffness: 500, damping: 38 }} />}
         <span className={`relative flex items-center gap-2 ${isActive ? 'text-tx' : 'text-mute group-hover:text-tx'}`}>{children}</span>
       </>)}
     </NavLink>
@@ -40,7 +40,7 @@ export default function CatalogSidebar({ onNav, autoFocus = false }) {
   return (
     <div className="flex h-full flex-col">
       <div className="px-3 pb-3 pt-4">
-        <label className="flex h-9 items-center gap-2 rounded-lg border border-line2 bg-panel px-2.5 focus-within:border-faint">
+        <label className="flex h-9 items-center gap-2 rounded-[10px] bg-panel2 px-2.5 focus-within:ring-1 focus-within:ring-line2">
           <svg viewBox="0 0 24 24" className="size-3.5 shrink-0 text-faint" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
           <input ref={input} value={q} onChange={(e) => setQ(e.target.value.slice(0, 80))} onKeyDown={onKey} placeholder="Filter" aria-label="Filter components"
             className="min-w-0 flex-1 bg-transparent text-[13px] text-tx outline-none placeholder:text-faint" />
@@ -63,8 +63,8 @@ export default function CatalogSidebar({ onNav, autoFocus = false }) {
           return (
             <div key={g.id} className="mb-4">
               <button type="button" onClick={() => setClosed((c) => ({ ...c, [g.id]: !c[g.id] }))} aria-expanded={!shut}
-                className="flex w-full items-center justify-between px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-faint hover:text-mute">
-                {g.name}
+                className="flex w-full items-center justify-between px-2.5 py-1 text-[13px] font-medium text-faint hover:text-mute">
+                <span>{g.name} <span className="font-normal tabular-nums">{g.items.length}</span></span>
                 <motion.svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth="2" animate={{ rotate: shut ? -90 : 0 }}><path d="m6 9 6 6 6-6" /></motion.svg>
               </button>
               <AnimatePresence initial={false}>
@@ -74,7 +74,7 @@ export default function CatalogSidebar({ onNav, autoFocus = false }) {
                       {g.items.map((c) => (
                         <Item key={c.slug} to={`/components/${c.slug}`} onNav={() => { setQ(''); onNav?.() }}>
                           <span className="truncate">{c.name}</span>
-                          {c.tags?.includes('new') && <span className="ml-auto size-1.5 shrink-0 rounded-full bg-acc" title="New" />}
+                          {c.tags?.includes('new') && <span className="ml-auto size-1.5 shrink-0 rounded-full bg-tx" title="New" />}
                         </Item>
                       ))}
                     </div>

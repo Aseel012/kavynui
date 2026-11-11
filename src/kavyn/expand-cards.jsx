@@ -4,10 +4,10 @@ import { useState } from 'react'
 import { motion } from 'motion/react'
 
 const PANELS = [
-  { t: 'Observe', s: 'Every request, logged at the edge.', g: 'linear-gradient(160deg,#ff6a2b,#7a1f00)' },
-  { t: 'Protect', s: 'Rules that update themselves.', g: 'linear-gradient(160deg,#3b82f6,#0b1e4a)' },
-  { t: 'Cache', s: 'Static and dynamic, close to users.', g: 'linear-gradient(160deg,#10b981,#053d2c)' },
-  { t: 'Route', s: 'Smart paths around congestion.', g: 'linear-gradient(160deg,#a855f7,#2e0a52)' },
+  { t: 'Observe', s: 'Every request, logged at the edge.', g: 'linear-gradient(160deg,#a8644a,#2e1810)' },
+  { t: 'Protect', s: 'Rules that update themselves.', g: 'linear-gradient(160deg,#6b7f5a,#1b2216)' },
+  { t: 'Cache', s: 'Static and dynamic, close to users.', g: 'linear-gradient(160deg,#c8a27a,#3d2b1c)' },
+  { t: 'Route', s: 'Smart paths around congestion.', g: 'linear-gradient(160deg,#7a4a63,#24131c)' },
 ]
 
 // Panels share a row; the active one expands on hover or tap, the rest compress.

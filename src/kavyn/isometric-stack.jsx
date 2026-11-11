@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 
 const LAYERS = [
-  { n: 'Edge', c: '#ff6a2b' }, { n: 'API', c: '#ededef' }, { n: 'Queue', c: '#8a8a93' }, { n: 'Postgres', c: '#5c5c66' },
+  { n: 'Edge', c: '#f5f5f7' }, { n: 'API', c: '#c7c7cc' }, { n: 'Queue', c: '#8a8a93' }, { n: 'Postgres', c: '#5c5c66' },
 ]
 
 export default function IsometricStack({ layers = LAYERS }) {
