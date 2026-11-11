@@ -35,3 +35,6 @@
 - Full component index with install commands: https://kavynui.com/llms-full.txt
 - shadcn registry index (full source for every item): https://kavynui.com/r/index.json
 - Install any item: npx shadcn@latest add https://kavynui.com/r/<slug>.json
+- Register the whole library once: npx shadcn@latest registry add @kavynui=https://kavynui.com/r/{name}.json
+  then search with `npx shadcn@latest search @kavynui -q <words>` and install with `npx shadcn@latest add @kavynui/<slug>`
+- Agents: `npx shadcn@latest mcp init` gives your coding agent shadcn's MCP server, which searches and installs from registered registries.

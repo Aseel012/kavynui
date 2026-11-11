@@ -57,6 +57,29 @@ await test('home: showcase tabs switch to that family\'s live components', async
   return p
 })
 
+await test('home: only site-wide commands, each shown once', async () => {
+  const p = await open('/')
+  const cmds = await p.$$eval('main code', (cs) => cs.map((c) => c.textContent).filter((t) => t.startsWith('npx ')))
+  const outsideKit = cmds.filter((c) => !c.includes('/r/product-hero.json'))
+  assert(outsideKit.length === 2, `expected 2 commands, got ${JSON.stringify(outsideKit)}`)
+  assert(outsideKit.some((c) => c.includes('registry add @kavynui=')) && outsideKit.includes('npx shadcn@latest mcp init'), JSON.stringify(outsideKit))
+  assert(new Set(outsideKit).size === outsideKit.length, 'a command is repeated')
+  return p
+})
+
+await test('sidebar: group count sits at the right edge in the same font as the name', async () => {
+  const p = await open('/components')
+  const r = await p.$eval('nav[aria-label=Catalog] button[aria-expanded]', (b) => {
+    const [name, count] = b.children
+    const cs = (e) => { const s = getComputedStyle(e); return [s.fontFamily, s.fontSize, s.fontWeight, s.fontVariantNumeric, s.color].join('|') }
+    return { same: cs(name) === cs(count), gap: Math.round(b.getBoundingClientRect().right - parseFloat(getComputedStyle(b).paddingRight) - count.getBoundingClientRect().right), last: b.lastElementChild === count, text: count.textContent }
+  })
+  assert(r.same, 'count font differs from name')
+  assert(r.last && r.gap <= 1, `count not at the right edge (gap ${r.gap}px)`)
+  assert(/^\d+$/.test(r.text), `count text "${r.text}"`)
+  return p
+})
+
 await test('home: page kit adds a section to the command and the page file', async () => {
   const p = await open('/')
   const before = await text(p, '[data-testid=kit-command]')

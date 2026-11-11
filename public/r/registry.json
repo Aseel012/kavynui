@@ -1,0 +1,6531 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "kavynui",
+  "homepage": "https://kavynui.com",
+  "items": [
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "product-hero",
+      "title": "Product Hero",
+      "type": "registry:block",
+      "description": "Headline and actions beside an app window running a deploy",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/product-hero.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/product-hero.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "feature-bento",
+      "title": "Feature Bento",
+      "type": "registry:block",
+      "description": "Four feature tiles, each with its own small live demo",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/feature-bento.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/feature-bento.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "proof-wall",
+      "title": "Proof Wall",
+      "type": "registry:block",
+      "description": "Logo marquee with a rotating customer quote",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/proof-wall.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/proof-wall.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "pricing-morph",
+      "title": "Pricing Morph",
+      "type": "registry:block",
+      "description": "Plan cards reshape when billing changes",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/pricing-morph.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/pricing-morph.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "faq-accordion",
+      "title": "FAQ Accordion",
+      "type": "registry:block",
+      "description": "One-open-at-a-time questions with a plus that becomes a minus",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/faq-accordion.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/faq-accordion.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "globe-cta",
+      "title": "Globe CTA",
+      "type": "registry:block",
+      "description": "Closing call to action next to a live dotted globe",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/globe-cta.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/globe-cta.jsx"
+        },
+        {
+          "path": "src/kavyn/edge-globe.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/edge-globe.jsx"
+        },
+        {
+          "path": "src/kavyn/world-dots.js",
+          "type": "registry:file",
+          "target": "@components/kavyn/world-dots.js"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "wordmark-footer",
+      "title": "Wordmark Footer",
+      "type": "registry:block",
+      "description": "Link columns over a giant wordmark that rises in",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/wordmark-footer.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/wordmark-footer.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "changelog-feed",
+      "title": "Changelog Feed",
+      "type": "registry:block",
+      "description": "Release timeline whose entries expand in place",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/changelog-feed.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/changelog-feed.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "sign-in-card",
+      "title": "Sign-in Card",
+      "type": "registry:block",
+      "description": "Magic-link sign-in with validation, shake and sent state",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/sign-in-card.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/sign-in-card.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "status-board",
+      "title": "Status Board",
+      "type": "registry:block",
+      "description": "Overall system state plus 90-day history per service",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/status-board.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/status-board.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "edge-dashboard",
+      "title": "Edge Dashboard",
+      "type": "registry:block",
+      "description": "Live analytics dashboard with stat tiles, request map and top countries",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/edge-dashboard.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/edge-dashboard.jsx"
+        },
+        {
+          "path": "src/kavyn/traffic-map.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/traffic-map.jsx"
+        },
+        {
+          "path": "src/kavyn/world-dots.js",
+          "type": "registry:file",
+          "target": "@components/kavyn/world-dots.js"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "liquid-button",
+      "title": "Liquid Button",
+      "type": "registry:component",
+      "description": "Gooey blobs merge and split on hover",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/liquid-button.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/liquid-button.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "magnet-pill",
+      "title": "Magnet Pill",
+      "type": "registry:component",
+      "description": "Label drifts toward the cursor, pill stretches back",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/magnet-pill.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/magnet-pill.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "ink-bleed-button",
+      "title": "Ink Bleed Button",
+      "type": "registry:component",
+      "description": "Fill floods in from the exact entry point",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/ink-bleed-button.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/ink-bleed-button.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "ember-button",
+      "title": "Ember Button",
+      "type": "registry:component",
+      "description": "Edge heat-shimmer builds as the cursor gets closer",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/ember-button.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/ember-button.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "orbit-button",
+      "title": "Orbit Button",
+      "type": "registry:component",
+      "description": "A spark orbits the border while work runs",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/orbit-button.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/orbit-button.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hold-to-confirm",
+      "title": "Hold to Confirm",
+      "type": "registry:component",
+      "description": "Ring fills while held, then snaps to a check",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/hold-to-confirm.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/hold-to-confirm.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "waitlist-form",
+      "title": "Waitlist Form",
+      "type": "registry:component",
+      "description": "Email capture with avatar stack social proof, live join count and success state",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/waitlist-form.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/waitlist-form.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "avatar-upload",
+      "title": "Avatar Upload",
+      "type": "registry:component",
+      "description": "Pick or drop a photo, see it cropped round, watch the ring fill, then replace or remove it",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/avatar-upload.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/avatar-upload.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "dropzone",
+      "title": "Dropzone",
+      "type": "registry:component",
+      "description": "File upload dropzone with per-file progress, retry and aggregate status",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/dropzone.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/dropzone.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "quick-menu",
+      "title": "Quick Menu",
+      "type": "registry:component",
+      "description": "Inline pill that pops a quick option menu above it",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/quick-menu.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/quick-menu.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "pocket-nav",
+      "title": "Pocket Nav",
+      "type": "registry:component",
+      "description": "Nav folds into a floating pill on scroll",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/pocket-nav.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/pocket-nav.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "tab-lens",
+      "title": "Tab Lens",
+      "type": "registry:component",
+      "description": "A lens slides between items and magnifies",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/tab-lens.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/tab-lens.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "dock-magnify",
+      "title": "Dock Magnify",
+      "type": "registry:component",
+      "description": "Icons grow with cursor distance on a spring",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/dock-magnify.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/dock-magnify.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "command-rail",
+      "title": "Command Rail",
+      "type": "registry:component",
+      "description": "Side rail with key hints, expands on hover",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/command-rail.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/command-rail.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "crumb-fold",
+      "title": "Crumb Fold",
+      "type": "registry:component",
+      "description": "Deep breadcrumbs fold into dots",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/crumb-fold.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/crumb-fold.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "stack-menu",
+      "title": "Stack Menu",
+      "type": "registry:component",
+      "description": "Menu items fan down like cards",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/stack-menu.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/stack-menu.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "section-beads",
+      "title": "Section Beads",
+      "type": "registry:component",
+      "description": "Beads fill as you read each section",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/section-beads.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/section-beads.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "snap-sheet",
+      "title": "Snap Sheet",
+      "type": "registry:component",
+      "description": "Bottom sheet with snap points",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/snap-sheet.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/snap-sheet.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "flow-chips",
+      "title": "Flow Chips",
+      "type": "registry:component",
+      "description": "Filter chips reorder with FLIP motion",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/flow-chips.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/flow-chips.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "stepper-morph",
+      "title": "Stepper Morph",
+      "type": "registry:component",
+      "description": "Step line morphs into a check",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/stepper-morph.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/stepper-morph.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "workspace-shuffle",
+      "title": "Workspace Shuffle",
+      "type": "registry:component",
+      "description": "Workspaces slide in as a card stack",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/workspace-shuffle.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/workspace-shuffle.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "flip-words",
+      "title": "Flip Words",
+      "type": "registry:component",
+      "description": "The last word rolls to the next, letter by letter",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/flip-words.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/flip-words.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "text-scramble",
+      "title": "Text Scramble",
+      "type": "registry:component",
+      "description": "Letters decode from noise, left to right, again on hover",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/text-scramble.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/text-scramble.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "caret-rewrite",
+      "title": "Caret Rewrite",
+      "type": "registry:component",
+      "description": "Types, backspaces and retypes with a live caret",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/caret-rewrite.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/caret-rewrite.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "shimmer-text",
+      "title": "Shimmer Text",
+      "type": "registry:component",
+      "description": "A light band sweeps across muted text",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/shimmer-text.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/shimmer-text.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "highlighter-sweep",
+      "title": "Highlighter Sweep",
+      "type": "registry:component",
+      "description": "A marker stroke draws under the key phrase",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/highlighter-sweep.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/highlighter-sweep.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "odometer-figures",
+      "title": "Odometer Figures",
+      "type": "registry:component",
+      "description": "Digits roll with a mechanical overshoot",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/odometer-figures.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/odometer-figures.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "weight-wave",
+      "title": "Weight Wave",
+      "type": "registry:component",
+      "description": "Variable-font weight ripples under the cursor",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/weight-wave.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/weight-wave.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "dust-letters",
+      "title": "Dust Letters",
+      "type": "registry:component",
+      "description": "A headline of dust that scatters and drifts home",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/dust-letters.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/dust-letters.jsx"
+        },
+        {
+          "path": "src/kavyn/canvas-loop.js",
+          "type": "registry:file",
+          "target": "@components/kavyn/canvas-loop.js"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "spotlight-card",
+      "title": "Spotlight Card",
+      "type": "registry:component",
+      "description": "Cursor light that also lights the border under it",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/spotlight-card.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/spotlight-card.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "beam-border",
+      "title": "Beam Border",
+      "type": "registry:component",
+      "description": "A single beam travels around the card edge",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/beam-border.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/beam-border.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "ledger-bento",
+      "title": "Ledger Bento",
+      "type": "registry:component",
+      "description": "Finance cells update in place",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/ledger-bento.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/ledger-bento.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "stat-wall",
+      "title": "Stat Wall",
+      "type": "registry:component",
+      "description": "Tiles count up in a checkerboard stagger",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/stat-wall.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/stat-wall.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "focus-grid",
+      "title": "Focus Grid",
+      "type": "registry:component",
+      "description": "Hovered cell sharpens, the rest blur back",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/focus-grid.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/focus-grid.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "timeline-rail",
+      "title": "Timeline Rail",
+      "type": "registry:component",
+      "description": "Events snap along a scroll rail",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/timeline-rail.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/timeline-rail.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "masonry-drift",
+      "title": "Masonry Drift",
+      "type": "registry:component",
+      "description": "Columns drift at different speeds",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/masonry-drift.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/masonry-drift.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "device-unveil",
+      "title": "Device Unveil",
+      "type": "registry:component",
+      "description": "Device frame reveals the UI on scroll",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/device-unveil.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/device-unveil.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "tilt-pass",
+      "title": "Tilt Pass",
+      "type": "registry:component",
+      "description": "Card tilts in 3D with glare that tracks light",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/tilt-pass.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/tilt-pass.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "layer-explode",
+      "title": "Layer Explode",
+      "type": "registry:component",
+      "description": "A card that splits into its design layers in 3D",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/layer-explode.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/layer-explode.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "review-rail",
+      "title": "Review Rail",
+      "type": "registry:component",
+      "description": "Two opposing rows that pause on hover",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/review-rail.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/review-rail.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "logo-constellation",
+      "title": "Logo Constellation",
+      "type": "registry:component",
+      "description": "Logos linked by lines that pulse",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/logo-constellation.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/logo-constellation.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "avatar-orbit",
+      "title": "Avatar Orbit",
+      "type": "registry:component",
+      "description": "Avatars orbit a central mark",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/avatar-orbit.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/avatar-orbit.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "expand-cards",
+      "title": "Expand Cards",
+      "type": "registry:component",
+      "description": "Panels share a row; the active one expands",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/expand-cards.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/expand-cards.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "morph-dialog",
+      "title": "Morph Dialog",
+      "type": "registry:component",
+      "description": "A card morphs into a dialog with a shared layout",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/morph-dialog.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/morph-dialog.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "notif-stack",
+      "title": "Notification Stack",
+      "type": "registry:component",
+      "description": "Notifications pile up; tap to fan them out",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/notif-stack.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/notif-stack.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "share-sheet",
+      "title": "Share Sheet",
+      "type": "registry:component",
+      "description": "Animated share sheet with social destinations, copy confirmation, real QR download, message and compact variants",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/share-sheet.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/share-sheet.jsx"
+        },
+        {
+          "path": "src/kavyn/share-sheet-qr.js",
+          "type": "registry:file",
+          "target": "@components/kavyn/share-sheet-qr.js"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "terminal-replay",
+      "title": "Terminal Replay",
+      "type": "registry:component",
+      "description": "Recorded terminal session with real timing",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/terminal-replay.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/terminal-replay.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "before-after-blade",
+      "title": "Before / After Blade",
+      "type": "registry:component",
+      "description": "Angled blade wipes between two images",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/before-after-blade.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/before-after-blade.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "lens-loupe",
+      "title": "Lens Loupe",
+      "type": "registry:component",
+      "description": "Magnifier follows the cursor with live zoom",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/lens-loupe.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/lens-loupe.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "isometric-stack",
+      "title": "Isometric Stack",
+      "type": "registry:component",
+      "description": "App layers separate isometrically on scroll",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/isometric-stack.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/isometric-stack.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "shortcut-caps",
+      "title": "Shortcut Caps",
+      "type": "registry:component",
+      "description": "Keycaps press in sequence to teach a shortcut",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/shortcut-caps.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/shortcut-caps.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "topic-bubbles",
+      "title": "Topic Bubbles",
+      "type": "registry:component",
+      "description": "Topics drop in with weight; tap to pick, drag to throw",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/topic-bubbles.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/topic-bubbles.jsx"
+        },
+        {
+          "path": "src/kavyn/canvas-loop.js",
+          "type": "registry:file",
+          "target": "@components/kavyn/canvas-loop.js"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "traffic-map",
+      "title": "Traffic Map",
+      "type": "registry:component",
+      "description": "Dotted world map with live request arcs between edge cities",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/traffic-map.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/traffic-map.jsx"
+        },
+        {
+          "path": "src/kavyn/world-dots.js",
+          "type": "registry:file",
+          "target": "@components/kavyn/world-dots.js"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "edge-globe",
+      "title": "Edge Globe",
+      "type": "registry:component",
+      "description": "Rotating globe of real land dots with arcs. Drag to spin",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/edge-globe.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/edge-globe.jsx"
+        },
+        {
+          "path": "src/kavyn/world-dots.js",
+          "type": "registry:file",
+          "target": "@components/kavyn/world-dots.js"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "uptime-bars",
+      "title": "Uptime Bars",
+      "type": "registry:component",
+      "description": "90-day status bars that rise in, with a per-day tooltip",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/uptime-bars.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/uptime-bars.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "latency-stream",
+      "title": "Latency Stream",
+      "type": "registry:component",
+      "description": "Live latency line streaming from the right with an average",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/latency-stream.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/latency-stream.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "threat-feed",
+      "title": "Threat Feed",
+      "type": "registry:component",
+      "description": "Security events slide into a live list; hover pauses it",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/threat-feed.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/threat-feed.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "region-bars",
+      "title": "Region Bars",
+      "type": "registry:component",
+      "description": "Top countries by traffic, re-ranking as shares shift",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/region-bars.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/region-bars.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "request-heatmap",
+      "title": "Request Heatmap",
+      "type": "registry:component",
+      "description": "Hour by weekday grid that fills on a diagonal wave",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/request-heatmap.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/request-heatmap.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "cache-ring",
+      "title": "Cache Ring",
+      "type": "registry:component",
+      "description": "Donut ring and number spring to each new ratio",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/cache-ring.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/cache-ring.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "commit-grove",
+      "title": "Commit Grove",
+      "type": "registry:component",
+      "description": "Daily contribution calendar with a green intensity scale, keyboard day navigation and expanding workspace highlights",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/commit-grove.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/commit-grove.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "breath-dots",
+      "title": "Breath Dots",
+      "type": "registry:component",
+      "description": "Three dots inhale and exhale in sequence",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/breath-dots.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/breath-dots.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "ring-weave",
+      "title": "Ring Weave",
+      "type": "registry:component",
+      "description": "Two rings interlock and swap",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/ring-weave.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/ring-weave.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "stitch-progress",
+      "title": "Stitch Progress",
+      "type": "registry:component",
+      "description": "A thread stitches across the bar",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/stitch-progress.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/stitch-progress.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "signal-bars",
+      "title": "Signal Bars",
+      "type": "registry:component",
+      "description": "Bars climb like signal strength",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/signal-bars.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/signal-bars.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "zoom-portal",
+      "title": "Zoom Portal",
+      "type": "registry:component",
+      "description": "The headline steps back and the product grows to fill the view",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/zoom-portal.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/zoom-portal.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "pinned-chapters",
+      "title": "Pinned Chapters",
+      "type": "registry:component",
+      "description": "The story scrolls while the picture stays pinned and changes",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/pinned-chapters.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/pinned-chapters.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "word-light",
+      "title": "Word Light",
+      "type": "registry:component",
+      "description": "A paragraph that lights up word by word as you read",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/word-light.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/word-light.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "sideways-gallery",
+      "title": "Sideways Gallery",
+      "type": "registry:component",
+      "description": "Scroll down, the rail of case studies moves left",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/sideways-gallery.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/sideways-gallery.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "reading-meter",
+      "title": "Reading Meter",
+      "type": "registry:component",
+      "description": "Top progress bar and a ring with minutes left",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/reading-meter.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/reading-meter.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "snap-cursor",
+      "title": "Snap Cursor",
+      "type": "registry:component",
+      "description": "A custom cursor that wraps whatever link you hover",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/snap-cursor.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/snap-cursor.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "lean-grid",
+      "title": "Lean Grid",
+      "type": "registry:component",
+      "description": "Tiles that lean toward the pointer in 3D",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/lean-grid.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/lean-grid.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "shader-grain",
+      "title": "Film Grain",
+      "type": "registry:component",
+      "description": "Warm light through live film grain, drawn on the GPU",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/shader-grain.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/shader-grain.jsx"
+        },
+        {
+          "path": "src/kavyn/gl-canvas.js",
+          "type": "registry:file",
+          "target": "@components/kavyn/gl-canvas.js"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "shader-ink",
+      "title": "Ink Current",
+      "type": "registry:component",
+      "description": "Slow fluid currents that bend away from the pointer",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/shader-ink.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/shader-ink.jsx"
+        },
+        {
+          "path": "src/kavyn/gl-canvas.js",
+          "type": "registry:file",
+          "target": "@components/kavyn/gl-canvas.js"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "shader-veil",
+      "title": "Polar Veil",
+      "type": "registry:component",
+      "description": "Aurora curtains with fine rays over a starfield",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/shader-veil.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/shader-veil.jsx"
+        },
+        {
+          "path": "src/kavyn/gl-canvas.js",
+          "type": "registry:file",
+          "target": "@components/kavyn/gl-canvas.js"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "shader-lattice",
+      "title": "Wave Lattice",
+      "type": "registry:component",
+      "description": "A dot grid carrying waves, rippling out from the pointer",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/shader-lattice.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/shader-lattice.jsx"
+        },
+        {
+          "path": "src/kavyn/gl-canvas.js",
+          "type": "registry:file",
+          "target": "@components/kavyn/gl-canvas.js"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "shader-caustics",
+      "title": "Pool Light",
+      "type": "registry:component",
+      "description": "Light dancing on a pool floor, pulled toward the pointer",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/shader-caustics.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/shader-caustics.jsx"
+        },
+        {
+          "path": "src/kavyn/gl-canvas.js",
+          "type": "registry:file",
+          "target": "@components/kavyn/gl-canvas.js"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "topo-lines",
+      "title": "Topo Lines",
+      "type": "registry:component",
+      "description": "Contour lines shift like a live map",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/topo-lines.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/topo-lines.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "halftone-tide",
+      "title": "Halftone Tide",
+      "type": "registry:component",
+      "description": "Dot field swells like a tide",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/halftone-tide.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/halftone-tide.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "grain-leak",
+      "title": "Grain Leak",
+      "type": "registry:component",
+      "description": "Film grain with a slow light leak",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/grain-leak.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/grain-leak.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "blueprint",
+      "title": "Blueprint",
+      "type": "registry:component",
+      "description": "Drafting grid with lines drawing in",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/blueprint.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/blueprint.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "circuit-pulse",
+      "title": "Circuit Pulse",
+      "type": "registry:component",
+      "description": "Traces carry pulses across a board",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/circuit-pulse.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/circuit-pulse.jsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "ink-smoke",
+      "title": "Ink Smoke",
+      "type": "registry:component",
+      "description": "Monochrome smoke drifts and folds",
+      "dependencies": [
+        "motion@^12.43.0"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/ink-smoke.jsx",
+          "type": "registry:file",
+          "target": "@components/kavyn/ink-smoke.jsx"
+        }
+      ]
+    }
+  ]
+}

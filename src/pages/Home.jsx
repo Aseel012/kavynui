@@ -22,10 +22,10 @@ function Title({ title, sub }) {
   )
 }
 
-function Command({ slug }) {
-  const cmd = `npx shadcn@latest add ${SITE.url}/r/${slug}.json`
+// A one-line command with a copy button.
+function Command({ cmd }) {
   return (
-    <div className="flex w-full max-w-md items-center gap-2 rounded-full bg-panel py-1.5 pl-4 pr-1.5">
+    <div className="flex w-full max-w-lg items-center gap-2 rounded-full bg-panel py-1.5 pl-4 pr-1.5">
       <span className="text-faint" aria-hidden>$</span>
       <code className="min-w-0 flex-1 truncate text-left font-mono text-[12px] text-tx/85">{cmd}</code>
       <CopyButton text={cmd} />
@@ -84,10 +84,10 @@ export default function Home() {
             </Link>
           )}
           <h1 className="max-w-4xl text-[46px] font-semibold leading-[0.98] tracking-[-0.05em] text-tx sm:text-[84px]">Build interfaces<br />people remember.</h1>
-          <p className="mt-6 max-w-xl text-[17px] leading-7 text-mute sm:text-[19px] sm:leading-8">{total} animated React components and {sections} full page sections, each one a single file you own. Add it with one command and change anything.</p>
+          <p className="mt-6 max-w-xl text-[17px] leading-7 text-mute sm:text-[19px] sm:leading-8">{total} animated React components and {sections} full page sections, each one a single file you own. Register the library once, then add anything by name.</p>
           <div className="mt-9 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row">
             <Link to="/components" className="flex h-12 w-full items-center justify-center rounded-full bg-tx px-6 text-[15px] font-medium text-bg transition-transform active:scale-95 sm:w-auto">Browse components</Link>
-            {newest && <Command slug={newest.slug} />}
+            <Command cmd={`npx shadcn@latest registry add @kavynui=${SITE.url}/r/{name}.json`} />
           </div>
         </motion.div>
       </section>
@@ -129,14 +129,13 @@ export default function Home() {
       </section>
 
       <section className="mx-auto flex max-w-2xl flex-col items-center px-4 pb-32 pt-32 text-center sm:pb-44 sm:pt-44">
-        <motion.h2 {...rise} className="text-[40px] font-semibold leading-[1] tracking-[-0.045em] text-tx sm:text-[64px]">Start with one.</motion.h2>
-        <p className="mt-4 max-w-md text-[17px] leading-7 text-mute">Pick a component, copy one line, and it is in your project. Your coding agent can find everything too.</p>
-        <div className="mt-8 flex w-full justify-center">{newest && <Command slug={newest.slug} />}</div>
+        <motion.h2 {...rise} className="text-[40px] font-semibold leading-[1] tracking-[-0.045em] text-tx sm:text-[64px]">Your agent can use it too.</motion.h2>
+        <p className="mt-4 max-w-md text-[17px] leading-7 text-mute">Once the library is registered, Claude Code, Cursor and other MCP clients can search it and install components by name.</p>
+        <div className="mt-8 flex w-full justify-center"><Command cmd="npx shadcn@latest mcp init" /></div>
         <div className="mt-6 flex flex-wrap justify-center gap-x-5 gap-y-2 text-[14px] text-mute">
-          <Link to="/components" className="hover:text-tx">All components</Link>
-          <Link to="/docs/installation" className="hover:text-tx">Installation</Link>
           <a href="/llms.txt" className="hover:text-tx">llms.txt</a>
-          <a href="/r/index.json" className="hover:text-tx">Registry index</a>
+          <a href="/r/registry.json" className="hover:text-tx">Registry index</a>
+          <Link to="/docs/installation" className="hover:text-tx">Installation</Link>
         </div>
       </section>
     </div>

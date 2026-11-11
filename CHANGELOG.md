@@ -5,7 +5,10 @@
 - Rebuilt the home page centered: new headline, a "New" pill and install command for the latest component, then live components straight away in a tabbed showcase.
 - Removed the "Everything, by job" list.
 - The home page is now driven entirely by `catalog.json` (`featured`, `new` + `added`, `kit`); see "Adding a component" in the README.
-- Avatar Upload demo photo is `public/avatars/pfp.jpg`: replace that file to change it.
+- Avatar Upload demo photo is `public/avatars/pfp.jpg` (an original 512px monochrome image): replace that file to change it.
+- The hero shows one site-wide command, `npx shadcn@latest registry add @kavynui=…`, instead of a single component's; the closing section covers connecting a coding agent (`npx shadcn@latest mcp init`). No command appears twice.
+- Agents: the site now publishes `/r/registry.json`, the index shadcn search and its MCP server read. Before this, agents could install a component by name but could not discover any.
+- Catalog sidebar: group counts sit at the right edge in the same font as the group name.
 - Catalog tiles keep the full component name visible; the use case truncates instead.
 
 ## 2026-11 redesign

@@ -56,6 +56,9 @@ ${fams}
 - Full component index with install commands: ${SITE}/llms-full.txt
 - shadcn registry index (full source for every item): ${SITE}/r/index.json
 - Install any item: npx shadcn@latest add ${SITE}/r/<slug>.json
+- Register the whole library once: npx shadcn@latest registry add @kavynui=${SITE}/r/{name}.json
+  then search with \`npx shadcn@latest search @kavynui -q <words>\` and install with \`npx shadcn@latest add @kavynui/<slug>\`
+- Agents: \`npx shadcn@latest mcp init\` gives your coding agent shadcn's MCP server, which searches and installs from registered registries.
 `)
 
 const lines = catalog.families.map((f) => [`## ${f.name}`, '', ...catalog.components.filter((c) => c.family === f.id).map((c) => `- [${c.name}](${SITE}/components/${c.slug}): ${c.description}. Use case: ${c.useCase}. Install: \`npx shadcn@latest add ${SITE}/r/${c.slug}.json\``), ''].join('\n'))

@@ -60,4 +60,7 @@ const items = catalog.components.map(entry => {
 })
 const index = { $schema: 'https://ui.shadcn.com/schema/registry.json', name: 'kavynui', homepage: 'https://kavynui.com', items }
 fs.writeFileSync(path.join(output, 'index.json'), JSON.stringify(index, null, 2) + '\n')
+// shadcn search and its MCP server read `<registry>/registry.json`: a light index (no sources) so agents can discover items fast.
+const catalogIndex = { ...index, items: items.map(({ files, ...rest }) => ({ ...rest, files: files.map(({ content, ...file }) => file) })) }
+fs.writeFileSync(path.join(output, 'registry.json'), JSON.stringify(catalogIndex, null, 2) + '\n')
 console.log(`registry: ${items.length} components with transitive sources and Tailwind v4 tokens`)

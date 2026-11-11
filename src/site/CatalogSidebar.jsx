@@ -64,8 +64,11 @@ export default function CatalogSidebar({ onNav, autoFocus = false }) {
             <div key={g.id} className="mb-4">
               <button type="button" onClick={() => setClosed((c) => ({ ...c, [g.id]: !c[g.id] }))} aria-expanded={!shut}
                 className="flex w-full items-center justify-between px-2.5 py-1 text-[13px] font-medium text-faint hover:text-mute">
-                <span>{g.name} <span className="font-normal tabular-nums">{g.items.length}</span></span>
-                <motion.svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth="2" animate={{ rotate: shut ? -90 : 0 }}><path d="m6 9 6 6 6-6" /></motion.svg>
+                <span className="flex items-center gap-1.5">
+                  <motion.svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth="2" animate={{ rotate: shut ? -90 : 0 }} aria-hidden><path d="m6 9 6 6 6-6" /></motion.svg>
+                  {g.name}
+                </span>
+                <span>{g.items.length}</span>
               </button>
               <AnimatePresence initial={false}>
                 {!shut && (
