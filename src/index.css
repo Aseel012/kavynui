@@ -66,3 +66,10 @@ body { background: var(--bg); color: var(--tx); font-family: var(--font-sans); -
 .kv-shim { background: linear-gradient(100deg, var(--tx) 42%, var(--faint) 50%, var(--tx) 58%) 100% 0 / 250% 100% no-repeat; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: kv-shim 5s ease-in-out infinite; }
 @keyframes kv-tick { 0%, 62% { transform: rotate(0deg); } 82%, 100% { transform: rotate(90deg); } }
 @keyframes kv-shim { 0%, 35% { background-position: 100% 0; } 75%, 100% { background-position: 0% 0; } }
+
+
+/* Logo hover: the diamond spins with a spring, press gives a small squeeze. */
+.kv-spin { transform-box: fill-box; transform-origin: center; transition: transform .7s cubic-bezier(.34, 1.56, .64, 1); }
+.kv-logo:hover .kv-spin { transform: rotate(180deg) scale(1.12); }
+.kv-logo:hover .kv-key { animation-play-state: paused; }
+.kv-logo:active { transform: scale(.97); }
