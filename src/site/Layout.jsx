@@ -59,7 +59,7 @@ export default function Layout() {
           <Logo />
           <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
             {LINKS.map((l) => (
-              <NavLink key={l.to} to={l.to} className="relative px-3 py-1.5 text-sm">
+              <NavLink key={l.to} to={l.to} className="relative px-3 py-1.5 text-[15px]">
                 {({ isActive }) => (<>
                   {isActive && <motion.span layoutId="nav-on" className="absolute inset-0 rounded-md bg-line" transition={{ type: 'spring', stiffness: 460, damping: 34 }} />}
                   <span className={`relative ${isActive ? 'text-tx' : 'text-mute hover:text-tx'}`}>{l.label}</span>

@@ -60,3 +60,9 @@ body { background: var(--bg); color: var(--tx); font-family: var(--font-sans); -
 /* Code viewer syntax colors: readable on the dark panel and on the light one. No blue. */
 .code-str { color: #e3c08d; } .code-num { color: #f2a7a0; } .code-kw { color: #c9c9ce; font-weight: 500; } .code-tag { color: #f5f5f7; }
 .light .code-str { color: #8a5a00; } .light .code-num { color: #b0372b; } .light .code-kw { color: #3a3a3c; } .light .code-tag { color: #1d1d1f; }
+
+/* Logo: the diamond ticks a quarter turn, a soft band passes over the wordmark. */
+.kv-key { transform-box: fill-box; transform-origin: center; animation: kv-tick 3.2s cubic-bezier(.34, 1.56, .64, 1) infinite; }
+.kv-shim { background: linear-gradient(100deg, var(--tx) 42%, var(--faint) 50%, var(--tx) 58%) 100% 0 / 250% 100% no-repeat; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: kv-shim 5s ease-in-out infinite; }
+@keyframes kv-tick { 0%, 62% { transform: rotate(0deg); } 82%, 100% { transform: rotate(90deg); } }
+@keyframes kv-shim { 0%, 35% { background-position: 100% 0; } 75%, 100% { background-position: 0% 0; } }
