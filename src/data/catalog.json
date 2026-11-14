@@ -69,8 +69,8 @@
     {
       "id": "bg",
       "name": "Backgrounds",
-      "blurb": "Shaders and canvases behind content",
-      "count": 11
+      "blurb": "Theme-aware shaders and canvases behind content",
+      "count": 18
     }
   ],
   "components": [
@@ -1349,116 +1349,271 @@
       ]
     },
     {
+      "slug": "shader-silk",
+      "name": "Silk",
+      "export": "ShaderSilk",
+      "family": "bg",
+      "description": "Satin folds that drift and catch the light",
+      "useCase": "Luxury landing",
       "tags": [
+        "new",
         "original"
       ],
-      "slug": "shader-grain",
-      "name": "Film Grain",
-      "export": "ShaderGrain",
-      "family": "bg",
-      "description": "Warm light through live film grain, drawn on the GPU",
-      "useCase": "Hero backdrop",
       "deps": [
-        "gl-canvas.js"
+        "shader-bg.tsx"
       ],
       "dependencies": [
         "react"
-      ]
+      ],
+      "lang": "tsx",
+      "added": "2026-11-12"
     },
     {
-      "tags": [
-        "original"
-      ],
-      "slug": "shader-ink",
-      "name": "Ink Current",
-      "export": "ShaderInk",
+      "slug": "shader-chrome",
+      "name": "Liquid Chrome",
+      "export": "ShaderChrome",
       "family": "bg",
-      "description": "Slow fluid currents that bend away from the pointer",
-      "useCase": "Launch page",
+      "description": "Slow liquid-metal reflections that part around the pointer",
+      "useCase": "AI product hero",
+      "tags": [
+        "new",
+        "original",
+        "featured"
+      ],
       "deps": [
-        "gl-canvas.js"
+        "shader-bg.tsx"
       ],
       "dependencies": [
         "react"
-      ]
+      ],
+      "lang": "tsx",
+      "added": "2026-11-12"
     },
     {
+      "slug": "shader-horizon",
+      "name": "Horizon",
+      "export": "ShaderHorizon",
+      "family": "bg",
+      "description": "The lit edge of a planet rising under your headline",
+      "useCase": "Waitlist page",
       "tags": [
-        "original"
+        "new",
+        "original",
+        "featured"
       ],
+      "deps": [
+        "shader-bg.tsx"
+      ],
+      "dependencies": [
+        "react"
+      ],
+      "lang": "tsx",
+      "added": "2026-11-12"
+    },
+    {
+      "slug": "shader-rays",
+      "name": "Light Rays",
+      "export": "ShaderRays",
+      "family": "bg",
+      "description": "Shafts of light falling from above, with dust in the beams",
+      "useCase": "Pricing page header",
+      "tags": [
+        "new",
+        "original",
+        "featured"
+      ],
+      "deps": [
+        "shader-bg.tsx"
+      ],
+      "dependencies": [
+        "react"
+      ],
+      "lang": "tsx",
+      "added": "2026-11-12"
+    },
+    {
       "slug": "shader-veil",
       "name": "Polar Veil",
       "export": "ShaderVeil",
       "family": "bg",
       "description": "Aurora curtains with fine rays over a starfield",
       "useCase": "Sign-up screen",
-      "deps": [
-        "gl-canvas.js"
-      ],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
       "tags": [
         "original"
       ],
+      "deps": [
+        "shader-bg.tsx"
+      ],
+      "dependencies": [
+        "react"
+      ],
+      "lang": "tsx"
+    },
+    {
+      "slug": "shader-ink",
+      "name": "Ink Current",
+      "export": "ShaderInk",
+      "family": "bg",
+      "description": "Ink folding through water, bending away from the pointer",
+      "useCase": "Launch page",
+      "tags": [
+        "original"
+      ],
+      "deps": [
+        "shader-bg.tsx"
+      ],
+      "dependencies": [
+        "react"
+      ],
+      "lang": "tsx"
+    },
+    {
+      "slug": "shader-caustics",
+      "name": "Pool Light",
+      "export": "ShaderCaustics",
+      "family": "bg",
+      "description": "Light dancing on a pool floor, gathering under the pointer",
+      "useCase": "Travel landing",
+      "tags": [
+        "original"
+      ],
+      "deps": [
+        "shader-bg.tsx"
+      ],
+      "dependencies": [
+        "react"
+      ],
+      "lang": "tsx"
+    },
+    {
+      "slug": "shader-strands",
+      "name": "Strands",
+      "export": "ShaderStrands",
+      "family": "bg",
+      "description": "A bundle of fine lines twisting like fibre in a current",
+      "useCase": "Audio or data product",
+      "tags": [
+        "new",
+        "original"
+      ],
+      "deps": [
+        "shader-bg.tsx"
+      ],
+      "dependencies": [
+        "react"
+      ],
+      "lang": "tsx",
+      "added": "2026-11-12"
+    },
+    {
       "slug": "shader-lattice",
       "name": "Wave Lattice",
       "export": "ShaderLattice",
       "family": "bg",
       "description": "A dot grid carrying waves, rippling out from the pointer",
       "useCase": "Dev tool hero",
+      "tags": [
+        "original"
+      ],
       "deps": [
-        "gl-canvas.js"
+        "shader-bg.tsx"
       ],
       "dependencies": [
         "react"
-      ]
+      ],
+      "lang": "tsx"
     },
     {
+      "slug": "shader-dither",
+      "name": "Dither Clouds",
+      "export": "ShaderDither",
+      "family": "bg",
+      "description": "Slow clouds drawn in one-bit pixels with an ordered dither",
+      "useCase": "Retro dev tool",
       "tags": [
         "new",
         "original"
       ],
-      "slug": "shader-caustics",
-      "name": "Pool Light",
-      "export": "ShaderCaustics",
-      "family": "bg",
-      "description": "Light dancing on a pool floor, pulled toward the pointer",
-      "useCase": "Travel landing",
       "deps": [
-        "gl-canvas.js"
+        "shader-bg.tsx"
       ],
       "dependencies": [
         "react"
-      ]
+      ],
+      "lang": "tsx",
+      "added": "2026-11-12"
+    },
+    {
+      "slug": "shader-warp",
+      "name": "Warp",
+      "export": "ShaderWarp",
+      "family": "bg",
+      "description": "Stars streaking past as if the page were moving forward",
+      "useCase": "Launch countdown",
+      "tags": [
+        "new",
+        "original"
+      ],
+      "deps": [
+        "shader-bg.tsx"
+      ],
+      "dependencies": [
+        "react"
+      ],
+      "lang": "tsx",
+      "added": "2026-11-12"
+    },
+    {
+      "slug": "shader-grain",
+      "name": "Film Grain",
+      "export": "ShaderGrain",
+      "family": "bg",
+      "description": "A slow light leak under live film grain",
+      "useCase": "Agency hero",
+      "tags": [
+        "original"
+      ],
+      "deps": [
+        "shader-bg.tsx"
+      ],
+      "dependencies": [
+        "react"
+      ],
+      "lang": "tsx"
     },
     {
       "slug": "topo-lines",
       "name": "Topo Lines",
       "export": "TopoLines",
       "family": "bg",
-      "description": "Contour lines shift like a live map",
+      "description": "Contour lines of a slowly shifting terrain",
       "useCase": "Outdoor brand",
       "tags": [
         "original"
       ],
+      "deps": [
+        "shader-bg.tsx"
+      ],
       "dependencies": [
         "react"
-      ]
+      ],
+      "lang": "tsx"
     },
     {
       "slug": "halftone-tide",
       "name": "Halftone Tide",
       "export": "HalftoneTide",
       "family": "bg",
-      "description": "Dot field swells like a tide",
-      "useCase": "Product hero",
+      "description": "Print-style halftone dots swelling like a tide",
+      "useCase": "Editorial hero",
       "tags": [],
+      "deps": [
+        "shader-bg.tsx"
+      ],
       "dependencies": [
         "react"
-      ]
+      ],
+      "lang": "tsx"
     },
     {
       "slug": "grain-leak",

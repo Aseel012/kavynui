@@ -4,6 +4,11 @@ import { useSearchParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import { GRADIENTS, KINDS, styleOf, cssOf, reactOf, tailwindOf } from '@/data/gradients'
 import CodeBlock from '@/site/CodeBlock'
+import Card from '@/site/Card'
+import { components } from '@/lib/catalog'
+
+// Live shader backgrounds from the catalog (family "bg" files that run on shader-bg).
+const SHADERS = components.filter((c) => c.family === 'bg' && (c.deps || []).includes('shader-bg.tsx'))
 
 const KEYFRAMES = [...new Set(GRADIENTS.filter((g) => g.anim).map((g) => g.anim.css))].join('\n')
 const TABS = [{ id: 'css', label: 'CSS' }, { id: 'tw', label: 'Tailwind' }, { id: 'react', label: 'React' }]
@@ -39,7 +44,7 @@ function Sheet({ g, onClose }) {
             </div>
             <span className="text-xs text-faint">{g.kind}{g.anim ? ' · animated' : ''}</span>
           </div>
-          <CodeBlock code={code} title={title} maxHeight={320} />
+          <CodeBlock code={code} title={title} maxHeight={320} event="copy_gradient" data={{ id: g.id, as: tab }} />
         </div>
       </motion.div>
     </motion.div>
@@ -51,13 +56,20 @@ export default function Backgrounds() {
   const [kind, setKind] = useState('All')
   const open = GRADIENTS.find((g) => g.id === params.get('bg')) || null
   const list = useMemo(() => GRADIENTS.filter((g) => kind === 'All' || g.kind === kind), [kind])
-  useSEO({ title: 'CSS backgrounds - kavynUI', description: 'Gradient backgrounds as plain CSS, Tailwind or React, each named for the product it suits.', path: '/backgrounds' })
+  useSEO({ title: 'Backgrounds - kavynUI', description: 'Theme-aware shader backgrounds and plain CSS gradients, each named for the product it suits.', path: '/backgrounds' })
   const setOpen = (g) => { const p = new URLSearchParams(params); g ? p.set('bg', g.id) : p.delete('bg'); setParams(p, { replace: true }) }
   return (
     <div className="px-4 pb-24 sm:px-8">
       <style>{KEYFRAMES}</style>
       <div className="pb-5 pt-8 sm:pt-10">
-        <h1 className="text-[28px] font-semibold tracking-[-0.03em] text-tx sm:text-[34px]">CSS backgrounds</h1>
+        <h1 className="text-[28px] font-semibold tracking-[-0.03em] text-tx sm:text-[34px]">Shader backgrounds</h1>
+        <p className="mt-1.5 max-w-lg text-[15px] text-mute">Live on the GPU, drawn in your theme's own ink and paper, so each one works in light and dark. Move the pointer over them. One command installs any of them.</p>
+      </div>
+      <div className="grid gap-x-5 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
+        {SHADERS.map((c) => <Card key={c.slug} item={c} page="backgrounds" />)}
+      </div>
+      <div className="pb-5 pt-16 sm:pt-20">
+        <h2 className="text-[28px] font-semibold tracking-[-0.03em] text-tx sm:text-[34px]">CSS backgrounds</h2>
         <p className="mt-1.5 max-w-lg text-[15px] text-mute">Plain CSS, no images, no libraries. Each is named for the product it suits. Open one for CSS, Tailwind and React code.</p>
       </div>
       <div className="no-scrollbar -mx-4 mb-5 flex gap-1 overflow-x-auto px-4">

@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import { bySlug, familyById, components, neighbors } from '@/lib/catalog'
-import { getSource, parseProps } from '@/lib/registry'
+import { getSource, parseProps, fileOf } from '@/lib/registry'
 import { Demo, GROW } from '@/site/Preview'
 import CodeBlock, { CopyButton } from '@/site/CodeBlock'
+import PropsPlayground, { controlsFor, changed, usageCode } from '@/site/PropsPlayground'
 import NotFound from './NotFound'
 import InstallCard from '@/site/InstallCard'
 import { useSEO } from '@/lib/seo'
 import { SITE } from '@/config'
 
 const VIEWPORTS = [{ id: 'desktop', w: '100%', label: 'Desktop' }, { id: 'tablet', w: '768px', label: 'Tablet' }, { id: 'mobile', w: '390px', label: 'Mobile' }]
-const fileOf = (slug) => `${slug}.jsx`
 
 function Seg({ value, options, onChange, id }) {
   return (
@@ -34,16 +34,19 @@ export default function Detail() {
   const [file, setFile] = useState(0)
   const [run, setRun] = useState(0)
   const [vp, setVp] = useState('desktop')
+  // Prop values chosen in the Customize panel; only ones that differ from the defaults are applied.
+  const [tweaks, setTweaks] = useState({})
 
   useSEO(item ? {
     title: `${item.name} - kavynUI`,
-    description: `${item.description}. Use case: ${item.useCase}. Copy the file and ship it.`,
+    description: `${item.description}. Use case: ${item.useCase}. Install with the shadcn CLI or copy the file.`,
     path: `/components/${item.slug}`,
-    jsonLd: { '@context': 'https://schema.org', '@type': 'SoftwareSourceCode', name: item.name, description: item.description, programmingLanguage: 'JavaScript', runtimePlatform: 'React', license: 'MIT', isPartOf: { '@type': 'WebSite', name: 'kavynUI', url: SITE.url } },
+    image: `/og/${item.slug}.png`,
+    jsonLd: { '@context': 'https://schema.org', '@type': 'SoftwareSourceCode', name: item.name, description: item.description, programmingLanguage: item.lang === 'tsx' ? 'TypeScript' : 'JavaScript', runtimePlatform: 'React', license: 'MIT', isPartOf: { '@type': 'WebSite', name: 'kavynUI', url: SITE.url } },
   } : { title: 'kavynUI', noindex: true })
   useEffect(() => {
     if (!item) return
-    setTab('preview'); setFiles(null); setFile(0); setRun(0); setVp('desktop')
+    setTab('preview'); setFiles(null); setFile(0); setRun(0); setVp('desktop'); setTweaks({})
     let live = true
     const names = [fileOf(item.slug), ...(item.deps || [])]
     Promise.all(names.map((n) => getSource(n))).then((srcs) => {
@@ -59,6 +62,8 @@ export default function Detail() {
   const related = components.filter((c) => c.family === item.family && c.slug !== item.slug).slice(0, 4)
   const main = files?.[0]?.code
   const props = main ? parseProps(main) : []
+  const controls = controlsFor(props)
+  const custom = changed(controls, tweaks)
   const aiSpec = [
     `# ${item.name} (kavynUI)`,
     `${item.description}. Use case: ${item.useCase}.`,
@@ -71,7 +76,7 @@ export default function Detail() {
     'Props:',
     ...(props.length ? props.map((p) => `- ${p.name}: ${p.type}, default ${p.default}`) : ['- none']),
   ].join('\n')
-  const usage = `import ${item.export} from '@/components/kavyn/${item.slug}'\n\nexport default function Page() {\n  return <${item.export} />\n}`
+  const usage = usageCode(item, custom)
 
   return (
     <div className="mx-auto max-w-6xl px-4 pb-24 pt-8 sm:px-8 sm:pt-10">
@@ -87,8 +92,7 @@ export default function Detail() {
         </div>
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <span className="rounded-full bg-panel2 px-3 py-1.5 text-mute">For <span className="text-tx">{item.useCase}</span></span>
-          <CopyButton text={aiSpec} label="Copy for AI" />
-          <a href={`/r/${item.slug}.json`} className="flex h-7 items-center rounded-full border border-line2 px-3 text-mute hover:text-tx">Registry JSON</a>
+          <CopyButton text={aiSpec} label="Copy for AI" event="copy_ai_spec" data={{ slug: item.slug }} />
         </div>
       </header>
 
@@ -109,15 +113,15 @@ export default function Detail() {
           {tab === 'preview' ? (
             <motion.div key="p" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.18 }}>
               {isBlock || item.layout === 'inline' ? (
-                <div className="rounded-[22px] border border-line bg-panel/50 p-2 sm:p-4">
+                <div className="overflow-hidden rounded-[22px] border border-line bg-panel/50 p-2 sm:p-4">
                   <motion.div layout className="mx-auto" style={{ width: VIEWPORTS.find((v) => v.id === vp)?.w, maxWidth: '100%' }} transition={{ type: 'spring', stiffness: 260, damping: 32 }}>
-                    <Demo key={run} item={item} page="detail" />
+                    <Demo key={run} item={item} page="detail" overrides={custom} />
                   </motion.div>
                 </div>
               ) : (
                 <div className={`relative overflow-hidden rounded-[22px] border border-line bg-bg ${GROW.has(item.slug) ? 'min-h-[380px] sm:min-h-[460px]' : 'h-[380px] sm:h-[460px]'}`}>
                   <div className="grid-fade pointer-events-none absolute inset-0 opacity-50" />
-                  <Demo key={run} item={item} page="detail" />
+                  <Demo key={run} item={item} page="detail" overrides={custom} />
                 </div>
               )}
             </motion.div>
@@ -132,20 +136,21 @@ export default function Detail() {
                       ))}
                     </div>
                   )}
-                  {files[file]?.code ? <CodeBlock code={files[file].code} title={`components/kavyn/${files[file].name}`} />
+                  {files[file]?.code ? <CodeBlock code={files[file].code} title={`components/kavyn/${files[file].name}`} event="copy_source" data={{ slug: item.slug, file: files[file].name }} />
                     : <div className="rounded-xl border border-line bg-panel p-6 text-sm text-mute">Could not load the source. Check your connection. <button type="button" onClick={() => window.location.reload()} className="ml-1 text-tx underline underline-offset-4">Reload</button></div>}
                 </>
               )}
             </motion.div>
           )}
         </AnimatePresence>
+        {tab === 'preview' && <PropsPlayground controls={controls} values={tweaks} onChange={setTweaks} onReset={() => setTweaks({})} />}
       </div>
 
       <section className="mt-12 grid gap-8 lg:grid-cols-[1fr_260px]">
         <div className="min-w-0 space-y-10">
           <div>
             <h2 className="mb-3 text-lg font-medium text-tx">Usage</h2>
-            <CodeBlock code={usage} title="Page.jsx" maxHeight={260} />
+            <CodeBlock code={usage} title="Page.jsx" maxHeight={260} event="copy_usage" data={{ slug: item.slug, customized: Object.keys(custom).length > 0 }} />
           </div>
           {item.slug === 'commit-grove' && <div>
             <h2 className="mb-3 text-lg font-medium text-tx">Connect your activity</h2>

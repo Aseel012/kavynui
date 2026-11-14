@@ -14,7 +14,7 @@ const imports = /(?:\b(?:import|export)\s+(?:[^'";]*?\s+from\s*)?|\bimport\s*\()
 function resolveSource(name, from = sourceRoot) {
   const stem = path.resolve(from, name)
   if (!stem.startsWith(sourceRoot + path.sep)) throw new Error(`Outside source root: ${name}`)
-  const found = [stem, `${stem}.jsx`, `${stem}.js`, path.join(stem, 'index.jsx'), path.join(stem, 'index.js')].find(file => fs.existsSync(file) && fs.statSync(file).isFile())
+  const found = [stem, `${stem}.tsx`, `${stem}.ts`, `${stem}.jsx`, `${stem}.js`, path.join(stem, 'index.jsx'), path.join(stem, 'index.js')].find(file => fs.existsSync(file) && fs.statSync(file).isFile())
   if (!found) throw new Error(`Missing local source: ${name}`)
   return found
 }
@@ -33,7 +33,7 @@ function collect(entry) {
       }
     }
   }
-  visit(resolveSource(`./${entry.slug}.jsx`))
+  visit(resolveSource(`./${entry.slug}`))
   for (const dep of entry.deps || []) visit(resolveSource(`./${dep}`))
   for (const dep of entry.dependencies || []) dependencies.add(dep)
   return { files, dependencies }
@@ -51,7 +51,9 @@ const items = catalog.components.map(entry => {
     type: entry.family === 'blocks' ? 'registry:block' : 'registry:component',
     description: entry.description,
     dependencies: [...dependencies].filter(name => !['react', 'react-dom'].includes(name)).map(name => `${name}@${packageInfo.dependencies[name]}`).sort(),
-    files: [...files].map(([file, content]) => ({ path: `src/kavyn/${path.relative(sourceRoot, file)}`, type: 'registry:file', target: `@components/kavyn/${path.relative(sourceRoot, file)}`, content })),
+    // .jsx/.js ship as registry:file (copied byte for byte). TypeScript files ship as registry:component:
+    // the shadcn CLI only strips types for JavaScript projects ("tsx": false) on that type, not on registry:file.
+    files: [...files].map(([file, content]) => ({ path: `src/kavyn/${path.relative(sourceRoot, file)}`, type: /\.tsx?$/.test(file) ? 'registry:component' : 'registry:file', target: `@components/kavyn/${path.relative(sourceRoot, file)}`, content })),
     cssVars: { theme, light, dark },
     css: { '.light': Object.fromEntries(Object.entries(light).map(([key, value]) => [`--${key}`, value])) },
   }

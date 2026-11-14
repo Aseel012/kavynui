@@ -12,7 +12,7 @@ export default function Components() {
   const family = raw === 'all' || familyById[raw] ? raw : 'all'
   const results = useMemo(() => search(q, family), [q, family])
   const set = (k, v) => { const p = new URLSearchParams(params); v && v !== 'all' ? p.set(k, v) : p.delete(k); setParams(p, { replace: true }) }
-  useSEO({ title: family === 'all' ? 'Components - kavynUI' : `${familyById[family].name} - kavynUI`, description: 'Browse all animated React components: shaders, scroll scenes, physics playgrounds, cursor systems, 3D stacks and more.', path: family === 'all' ? '/components' : `/components?family=${family}` })
+  useSEO({ title: family === 'all' ? 'Components - kavynUI' : `${familyById[family].name} - kavynUI`, description: 'Browse every animated React component by job: sections, buttons, forms, navigation, text, cards, maps, loaders, scroll scenes and shader backgrounds.', path: family === 'all' ? '/components' : `/components?family=${family}` })
   const tabs = [{ id: 'all', name: 'All' }, ...families]
   const fam = familyById[family]
 

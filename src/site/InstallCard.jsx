@@ -12,7 +12,7 @@ export default function InstallCard({ name }) {
       </div>
       <div className="flex min-w-0 items-start gap-3 rounded-[14px] bg-bg p-3">
         <code className="min-w-0 flex-1 break-all font-mono text-[12px] leading-6 text-tx sm:text-[13px]">{command}</code>
-        <CopyButton text={command} label="Copy command" className="mt-0.5" />
+        <CopyButton text={command} label="Copy command" className="mt-0.5" event="copy_install" data={{ slug: name, via: 'url' }} />
       </div>
       <p className="mt-3 text-xs leading-5 text-mute">Adds the component, its helper files, dependencies and theme tokens to your project. Start with a <a href="https://ui.shadcn.com/docs/installation" target="_blank" rel="noreferrer" className="text-tx underline underline-offset-4">shadcn-initialized project</a>.</p>
       <details className="mt-4 text-xs text-mute">
@@ -20,11 +20,11 @@ export default function InstallCard({ name }) {
         <p className="mb-2 mt-3 leading-5">Register the library once. After that, install anything by name, and shadcn search and its MCP server can find every component.</p>
         <div className="flex min-w-0 items-start gap-2 rounded-[14px] bg-bg p-3">
           <code className="min-w-0 flex-1 break-all font-mono leading-5 text-tx">{namespace}</code>
-          <CopyButton text={namespace} />
+          <CopyButton text={namespace} event="copy_register" data={{ from: 'install-card' }} />
         </div>
         <div className="mt-2 flex min-w-0 items-start gap-2 rounded-[14px] bg-bg p-3">
           <code className="min-w-0 flex-1 break-all font-mono leading-5 text-tx">npx shadcn@latest add @kavynui/{name}</code>
-          <CopyButton text={`npx shadcn@latest add @kavynui/${name}`} />
+          <CopyButton text={`npx shadcn@latest add @kavynui/${name}`} event="copy_install" data={{ slug: name, via: 'namespace' }} />
         </div>
       </details>
     </section>

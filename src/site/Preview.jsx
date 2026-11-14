@@ -104,26 +104,27 @@ export function Loading({ label }) {
   )
 }
 
-export function Demo({ item, page, mode = 'frame' }) {
+// `overrides` are prop values from the detail page's Customize panel.
+export function Demo({ item, page, mode = 'frame', overrides = undefined }) {
   const C = item ? getComponent(item.slug) : null
   if (!C) return <div className="absolute inset-0 grid place-items-center text-xs text-faint">Preview unavailable</div>
   let body
   if (item.family === 'bg' || item.family === 'shaders') {
     body = (
       <div className="absolute inset-0">
-        <C><div className="text-center"><div className="text-lg font-medium tracking-tight text-tx">{item.useCase}</div><div className="mt-1 text-xs text-mute">{item.name}</div></div></C>
+        <C {...overrides}><div className="text-center"><div className="text-lg font-medium tracking-tight text-tx">{item.useCase}</div><div className="mt-1 text-xs text-mute">{item.name}</div></div></C>
       </div>
     )
   } else if (item.layout === 'fill') {
-    body = <div className="absolute inset-0"><C /></div>
+    body = <div className="absolute inset-0"><C {...overrides} /></div>
   } else if (item.family === 'blocks') {
-    body = mode === 'thumb' ? <Thumb><C /></Thumb> : <C />
+    body = mode === 'thumb' ? <Thumb><C /></Thumb> : <C {...overrides} />
   } else if (page === 'detail' && mode === 'frame' && (GROW.has(item.slug) || item.layout === 'inline')) {
     // Detail page renders these in a natural-size, growing pane (GROW members) or an in-flow
     // container (layout: 'inline') - a Fit here would absolute-anchor to the viewport and spill.
-    body = <div className="flex justify-center px-4 py-8"><C {...(DEMO_PROPS[item.slug] || {})} /></div>
+    body = <div className="flex justify-center px-4 py-8"><C {...(DEMO_PROPS[item.slug] || {})} {...overrides} /></div>
   } else {
-    body = <Fit wide={WIDE.has(item.slug)}><C {...(DEMO_PROPS[item.slug] || {})} /></Fit>
+    body = <Fit wide={WIDE.has(item.slug)}><C {...(DEMO_PROPS[item.slug] || {})} {...overrides} /></Fit>
   }
   const inline = item.family === 'blocks' && mode !== 'thumb'
   return (

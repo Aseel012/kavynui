@@ -18,6 +18,8 @@ jobs:
       - run: npm ci
       - name: Lint (unused code, hook rules)
         run: npm run lint
+      - name: Typecheck (TypeScript components)
+        run: npm run typecheck
       - name: Static checks (catalog, stray files, CSP)
         run: node scripts/check.mjs
       - name: Unit tests (catalog, search, colors, contrast, backgrounds, upload components)
@@ -30,6 +32,10 @@ jobs:
           npx --yes wait-on http://127.0.0.1:4173 --timeout 30000
       - name: Registry check (shadcn schema, byte-identical sources)
         run: npm run registry:verify
+      - name: Install every component into fresh TypeScript and JavaScript apps
+        run: |
+          npm run test:install
+          JS=1 npm run test:install
       - name: End-to-end tests
         env:
           BASE: http://127.0.0.1:4173

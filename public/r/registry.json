@@ -5759,10 +5759,10 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "shader-grain",
-      "title": "Film Grain",
+      "name": "shader-silk",
+      "title": "Silk",
       "type": "registry:component",
-      "description": "Warm light through live film grain, drawn on the GPU",
+      "description": "Satin folds that drift and catch the light",
       "dependencies": [],
       "cssVars": {
         "theme": {
@@ -5818,23 +5818,23 @@
       },
       "files": [
         {
-          "path": "src/kavyn/shader-grain.jsx",
-          "type": "registry:file",
-          "target": "@components/kavyn/shader-grain.jsx"
+          "path": "src/kavyn/shader-silk.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-silk.tsx"
         },
         {
-          "path": "src/kavyn/gl-canvas.js",
-          "type": "registry:file",
-          "target": "@components/kavyn/gl-canvas.js"
+          "path": "src/kavyn/shader-bg.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-bg.tsx"
         }
       ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "shader-ink",
-      "title": "Ink Current",
+      "name": "shader-chrome",
+      "title": "Liquid Chrome",
       "type": "registry:component",
-      "description": "Slow fluid currents that bend away from the pointer",
+      "description": "Slow liquid-metal reflections that part around the pointer",
       "dependencies": [],
       "cssVars": {
         "theme": {
@@ -5890,14 +5890,158 @@
       },
       "files": [
         {
-          "path": "src/kavyn/shader-ink.jsx",
-          "type": "registry:file",
-          "target": "@components/kavyn/shader-ink.jsx"
+          "path": "src/kavyn/shader-chrome.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-chrome.tsx"
         },
         {
-          "path": "src/kavyn/gl-canvas.js",
-          "type": "registry:file",
-          "target": "@components/kavyn/gl-canvas.js"
+          "path": "src/kavyn/shader-bg.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-bg.tsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "shader-horizon",
+      "title": "Horizon",
+      "type": "registry:component",
+      "description": "The lit edge of a planet rising under your headline",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/shader-horizon.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-horizon.tsx"
+        },
+        {
+          "path": "src/kavyn/shader-bg.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-bg.tsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "shader-rays",
+      "title": "Light Rays",
+      "type": "registry:component",
+      "description": "Shafts of light falling from above, with dust in the beams",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/shader-rays.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-rays.tsx"
+        },
+        {
+          "path": "src/kavyn/shader-bg.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-bg.tsx"
         }
       ]
     },
@@ -5962,14 +6106,230 @@
       },
       "files": [
         {
-          "path": "src/kavyn/shader-veil.jsx",
-          "type": "registry:file",
-          "target": "@components/kavyn/shader-veil.jsx"
+          "path": "src/kavyn/shader-veil.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-veil.tsx"
         },
         {
-          "path": "src/kavyn/gl-canvas.js",
-          "type": "registry:file",
-          "target": "@components/kavyn/gl-canvas.js"
+          "path": "src/kavyn/shader-bg.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-bg.tsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "shader-ink",
+      "title": "Ink Current",
+      "type": "registry:component",
+      "description": "Ink folding through water, bending away from the pointer",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/shader-ink.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-ink.tsx"
+        },
+        {
+          "path": "src/kavyn/shader-bg.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-bg.tsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "shader-caustics",
+      "title": "Pool Light",
+      "type": "registry:component",
+      "description": "Light dancing on a pool floor, gathering under the pointer",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/shader-caustics.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-caustics.tsx"
+        },
+        {
+          "path": "src/kavyn/shader-bg.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-bg.tsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "shader-strands",
+      "title": "Strands",
+      "type": "registry:component",
+      "description": "A bundle of fine lines twisting like fibre in a current",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/shader-strands.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-strands.tsx"
+        },
+        {
+          "path": "src/kavyn/shader-bg.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-bg.tsx"
         }
       ]
     },
@@ -6034,23 +6394,23 @@
       },
       "files": [
         {
-          "path": "src/kavyn/shader-lattice.jsx",
-          "type": "registry:file",
-          "target": "@components/kavyn/shader-lattice.jsx"
+          "path": "src/kavyn/shader-lattice.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-lattice.tsx"
         },
         {
-          "path": "src/kavyn/gl-canvas.js",
-          "type": "registry:file",
-          "target": "@components/kavyn/gl-canvas.js"
+          "path": "src/kavyn/shader-bg.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-bg.tsx"
         }
       ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "shader-caustics",
-      "title": "Pool Light",
+      "name": "shader-dither",
+      "title": "Dither Clouds",
       "type": "registry:component",
-      "description": "Light dancing on a pool floor, pulled toward the pointer",
+      "description": "Slow clouds drawn in one-bit pixels with an ordered dither",
       "dependencies": [],
       "cssVars": {
         "theme": {
@@ -6106,14 +6466,158 @@
       },
       "files": [
         {
-          "path": "src/kavyn/shader-caustics.jsx",
-          "type": "registry:file",
-          "target": "@components/kavyn/shader-caustics.jsx"
+          "path": "src/kavyn/shader-dither.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-dither.tsx"
         },
         {
-          "path": "src/kavyn/gl-canvas.js",
-          "type": "registry:file",
-          "target": "@components/kavyn/gl-canvas.js"
+          "path": "src/kavyn/shader-bg.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-bg.tsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "shader-warp",
+      "title": "Warp",
+      "type": "registry:component",
+      "description": "Stars streaking past as if the page were moving forward",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/shader-warp.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-warp.tsx"
+        },
+        {
+          "path": "src/kavyn/shader-bg.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-bg.tsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "shader-grain",
+      "title": "Film Grain",
+      "type": "registry:component",
+      "description": "A slow light leak under live film grain",
+      "dependencies": [],
+      "cssVars": {
+        "theme": {
+          "color-bg": "var(--bg)",
+          "color-panel": "var(--panel)",
+          "color-panel2": "var(--panel2)",
+          "color-line": "var(--line)",
+          "color-line2": "var(--line2)",
+          "color-tx": "var(--tx)",
+          "color-mute": "var(--mute)",
+          "color-faint": "var(--faint)",
+          "color-acc": "var(--acc)",
+          "color-acc-fg": "var(--acc-fg)"
+        },
+        "light": {
+          "bg": "#ffffff",
+          "panel": "#f5f5f7",
+          "panel2": "#e8e8ed",
+          "line": "#e5e5ea",
+          "line2": "#d2d2d7",
+          "tx": "#1d1d1f",
+          "mute": "#6e6e73",
+          "faint": "#a1a1a6",
+          "acc": "#1d1d1f",
+          "acc-fg": "#ffffff"
+        },
+        "dark": {
+          "bg": "#000000",
+          "panel": "#141416",
+          "panel2": "#1f1f22",
+          "line": "#262628",
+          "line2": "#3a3a3d",
+          "tx": "#f5f5f7",
+          "mute": "#a1a1a6",
+          "faint": "#6e6e73",
+          "acc": "#f5f5f7",
+          "acc-fg": "#000000"
+        }
+      },
+      "css": {
+        ".light": {
+          "--bg": "#ffffff",
+          "--panel": "#f5f5f7",
+          "--panel2": "#e8e8ed",
+          "--line": "#e5e5ea",
+          "--line2": "#d2d2d7",
+          "--tx": "#1d1d1f",
+          "--mute": "#6e6e73",
+          "--faint": "#a1a1a6",
+          "--acc": "#1d1d1f",
+          "--acc-fg": "#ffffff"
+        }
+      },
+      "files": [
+        {
+          "path": "src/kavyn/shader-grain.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-grain.tsx"
+        },
+        {
+          "path": "src/kavyn/shader-bg.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-bg.tsx"
         }
       ]
     },
@@ -6122,7 +6626,7 @@
       "name": "topo-lines",
       "title": "Topo Lines",
       "type": "registry:component",
-      "description": "Contour lines shift like a live map",
+      "description": "Contour lines of a slowly shifting terrain",
       "dependencies": [],
       "cssVars": {
         "theme": {
@@ -6178,9 +6682,14 @@
       },
       "files": [
         {
-          "path": "src/kavyn/topo-lines.jsx",
-          "type": "registry:file",
-          "target": "@components/kavyn/topo-lines.jsx"
+          "path": "src/kavyn/topo-lines.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/topo-lines.tsx"
+        },
+        {
+          "path": "src/kavyn/shader-bg.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-bg.tsx"
         }
       ]
     },
@@ -6189,7 +6698,7 @@
       "name": "halftone-tide",
       "title": "Halftone Tide",
       "type": "registry:component",
-      "description": "Dot field swells like a tide",
+      "description": "Print-style halftone dots swelling like a tide",
       "dependencies": [],
       "cssVars": {
         "theme": {
@@ -6245,9 +6754,14 @@
       },
       "files": [
         {
-          "path": "src/kavyn/halftone-tide.jsx",
-          "type": "registry:file",
-          "target": "@components/kavyn/halftone-tide.jsx"
+          "path": "src/kavyn/halftone-tide.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/halftone-tide.tsx"
+        },
+        {
+          "path": "src/kavyn/shader-bg.tsx",
+          "type": "registry:component",
+          "target": "@components/kavyn/shader-bg.tsx"
         }
       ]
     },

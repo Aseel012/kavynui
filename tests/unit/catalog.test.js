@@ -7,15 +7,17 @@ import { parseProps } from '@/lib/registry'
 
 const root = path.resolve(import.meta.dirname, '../..')
 const src = (f) => fs.readFileSync(path.join(root, 'src/kavyn', f), 'utf8')
+// Components are .jsx or .tsx.
+const fileOf = (slug) => ['tsx', 'jsx'].map((x) => `${slug}.${x}`).find((f) => fs.existsSync(path.join(root, 'src/kavyn', f)))
 
 describe('catalog integrity', () => {
   it('has unique slugs that each map to a component file', () => {
     expect(new Set(components.map((c) => c.slug)).size).toBe(components.length)
-    for (const c of components) expect(fs.existsSync(path.join(root, 'src/kavyn', `${c.slug}.jsx`)), c.slug).toBe(true)
+    for (const c of components) expect(fileOf(c.slug), c.slug).toBeTruthy()
   })
 
   it('declares the export name the file really exports', () => {
-    for (const c of components) expect(src(`${c.slug}.jsx`), c.slug).toMatch(new RegExp(`export default function ${c.export}\\b`))
+    for (const c of components) expect(src(fileOf(c.slug)), c.slug).toMatch(new RegExp(`export default function ${c.export}\\b`))
   })
 
   it('puts every component in a known family and keeps family counts true', () => {
@@ -35,7 +37,7 @@ describe('catalog integrity', () => {
     for (const f of fs.readdirSync(path.join(root, 'src/kavyn'))) {
       for (const [, spec] of src(f).matchAll(/from '(\.\/[^']+)'/g)) {
         const base = path.join(root, 'src/kavyn', spec)
-        expect([base, `${base}.js`, `${base}.jsx`].some((p) => fs.existsSync(p)), `${f} imports ${spec}`).toBe(true)
+        expect([base, `${base}.js`, `${base}.jsx`, `${base}.ts`, `${base}.tsx`].some((p) => fs.existsSync(p)), `${f} imports ${spec}`).toBe(true)
       }
     }
   })
@@ -49,9 +51,9 @@ describe('catalog integrity', () => {
   })
 
   it('has no orphan component files outside the catalog', () => {
-    const files = fs.readdirSync(path.join(root, 'src/kavyn')).filter((f) => f.endsWith('.jsx')).map((f) => f.replace('.jsx', ''))
-    const helpers = new Set(components.flatMap((c) => c.deps || []).map((d) => d.replace(/\.jsx?$/, '')))
-    for (const f of files) expect(bySlug[f] || helpers.has(f), `${f}.jsx is not in catalog.json`).toBeTruthy()
+    const files = fs.readdirSync(path.join(root, 'src/kavyn')).filter((f) => /\.[jt]sx$/.test(f)).map((f) => f.replace(/\.[jt]sx$/, ''))
+    const helpers = new Set(components.flatMap((c) => c.deps || []).map((d) => d.replace(/\.[jt]sx?$/, '')))
+    for (const f of files) expect(bySlug[f] || helpers.has(f), `${f} is not in catalog.json`).toBeTruthy()
   })
 
   it('keeps sections in page order with pricing among them', () => {

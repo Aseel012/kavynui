@@ -2,7 +2,7 @@
 
 # kavynUI
 
-**94 animated React components and page sections. Monochrome, installed as source you own.**
+**101 animated React components and page sections. Monochrome, installed as source you own.**
 
 [Browse the catalog](https://kavynui.com/components) · [Sections](https://kavynui.com/blocks) · [Backgrounds](https://kavynui.com/backgrounds) · [Docs](https://kavynui.com/docs)
 
@@ -11,7 +11,7 @@
 
 </div>
 
-<!-- Hero: drop a 10-15s screen recording of the home showcase here, e.g. .github/hero.gif -->
+<p align="center"><img src=".github/hero.webp" alt="Six kavynUI shader backgrounds playing: Horizon, Silk, Light Rays, Liquid Chrome, Strands and Warp" width="720"></p>
 
 ```bash
 npx shadcn@latest add https://kavynui.com/r/liquid-button.json
@@ -23,9 +23,9 @@ That command copies one `.jsx` file into your project, adds `motion` if you don'
 
 Most animated component libraries look great in the demo and then fight the product you put them in: a purple gradient here, a neon glow there, six different ideas of what an accent color is.
 
-kavynUI takes the opposite bet. Every component is drawn in the same ten grays, so anything you install sits next to anything else, and next to your own UI, without a redesign. The motion carries the personality. Color is left to you, and changing it is one CSS variable.
+kavynUI takes the opposite bet. Every component is drawn in the same ten grays, so anything you install sits next to anything else, and next to your own UI, without a redesign. The shader backgrounds go one step further: they read `--bg` and `--tx` at runtime, so the same file is light-on-black in dark mode and ink-on-paper in light mode. The motion carries the personality. Color is left to you, and changing it is one CSS variable.
 
-Each component is also built for a job, not a mood. The catalog doesn't file `hold-to-confirm` under "cool buttons"; it files it under *delete account*. `breath-dots` is *AI thinking*. `terminal-replay` is *CLI docs*. If a piece had no real use case, it got cut: the library went from 140 components to 94 in the last redesign.
+Each component is also built for a job, not a mood. The catalog doesn't file `hold-to-confirm` under "cool buttons"; it files it under *delete account*. `breath-dots` is *AI thinking*. `terminal-replay` is *CLI docs*. If a piece had no real use case, it got cut.
 
 ## Quick start
 
@@ -102,7 +102,7 @@ The [home page](https://kavynui.com/#page-kit) has a builder for this: switch se
 | Maps & data | 9 | Dashboards, maps and live metrics | `traffic-map` `edge-globe` `uptime-bars` `request-heatmap` |
 | Loaders | 4 | Waiting that feels designed | `breath-dots` `ring-weave` `stitch-progress` |
 | Scroll & cursor | 7 | Stories that move as people read | `zoom-portal` `pinned-chapters` `word-light` |
-| Backgrounds | 11 | Shaders and canvases behind content | `shader-veil` `shader-caustics` `topo-lines` `halftone-tide` |
+| Backgrounds | 18 | Theme-aware shaders and canvases behind content | `shader-silk` `shader-chrome` `shader-horizon` `shader-rays` |
 
 Plus 16 pure-CSS gradient backgrounds on the [backgrounds page](https://kavynui.com/backgrounds), each exportable as CSS, Tailwind classes or a React wrapper.
 
@@ -165,7 +165,7 @@ Each component page also has a **Copy for AI** button that produces a spec you c
 ## What it isn't
 
 - **Not a base component kit.** There's no select, table or date picker here. Use shadcn/ui or Radix for those and kavynUI for the parts people remember.
-- **Not TypeScript.** Components are plain `.jsx` with JSDoc prop types. They work in TS projects, but they aren't `.tsx`.
+- **Mostly not TypeScript yet.** The shader backgrounds are `.tsx`; the shadcn CLI strips the types automatically for JavaScript projects. Everything else is plain `.jsx` with JSDoc prop types, and works in TS projects.
 - **Not an npm package.** There is no versioned API and no `npm update`. You get a file; improvements upstream don't reach you unless you reinstall it.
 
 ## Contributing
@@ -179,41 +179,41 @@ npm run dev
 
 ### Add a component
 
-1. Create `src/kavyn/<slug>.jsx` with one default export.
-2. Add an entry to `src/data/catalog.json`:
+```bash
+npm run new -- price-flip --family cards --use "Pricing card"   # TypeScript (default)
+npm run new -- shader-mist --shader                              # a shader background
+npm run new -- plain-thing --family buttons --js                 # plain JSX
+```
 
-   ```json
-   {
-     "slug": "hold-to-confirm",
-     "name": "Hold to Confirm",
-     "export": "HoldToConfirm",
-     "family": "buttons",
-     "description": "Ring fills while held, then snaps to a check",
-     "useCase": "Delete account",
-     "tags": ["new"],
-     "added": "2026-11-12"
-   }
-   ```
+That writes `src/kavyn/<slug>.tsx` from a template that already follows the house rules, and adds the
+catalog entry. Fill in the `description` and the TODO comment, then `npm test && npm run build`.
 
-3. Run `npm run build`.
-
-That's the whole process. The catalog entry drives the sidebar, the detail page, search, the registry JSON, the sitemap and `llms.txt`. Tag it `featured` to put it in the home showcase, or give a section a `kit` role to add it to the page builder. No page code changes.
+The catalog entry drives everything else with no page code: sidebar, search, the detail page and its
+Customize panel, the registry JSON, the static page and share image, the sitemap and `llms.txt`. The
+tests pick it up too. Tag it `featured` for the home showcase, or give a section a `kit` role to add it
+to the page builder.
 
 ### House rules
 
 - Theme tokens only. No hardcoded hex colors.
 - Works in dark and light.
 - Has a real `useCase`. "Looks cool" isn't one.
-- No external image URLs (the site's CSP is `img-src 'self'`; put files in `public/`).
+- `'use client'` on the first line, and nothing touches `window` or `document` while rendering (tested: every component is server-rendered).
+- No requests to other servers: no remote images, fonts or APIs by default (tested). People paste these into sites with strict CSPs, and every remote asset leaks their visitors' IPs.
+- No `innerHTML`, `eval` or `new Function` (tested). Links that open a new tab use `noopener`.
+- Imports only from `react`, `motion` or files the registry ships (tested).
 
 ### Checks
 
 ```bash
 npm run lint              # unused code, hook rules
+npm run typecheck         # the TypeScript components
 npm run check             # catalog, stray files, CSP
-npm test                  # unit: catalog, search, color audit, contrast, uploads
+npm test                  # unit: catalog, server render, safety, playground, color audit, contrast
 npm run build && npx vite preview --port 4173 &
 npm run registry:verify   # every item against shadcn's schema, sources byte-identical
+npm run test:install      # installs every component into a fresh TS app, type-checks, builds
+JS=1 npm run test:install # same for a JavaScript app
 npm run e2e               # real Chrome: page kit, search, theme, filters, uploads
 node scripts/smoke.mjs    # every route, fails on any console error
 ```
@@ -228,10 +228,24 @@ Browser scripts use `CHROME=/path/to/chrome`. Run smoke with `LIGHT=1` or `MOBIL
 | `src/data/catalog.json` | Single source of truth for everything the site and registry show |
 | `src/data/gradients.js` | CSS backgrounds and their CSS / Tailwind / React generators |
 | `src/pages/`, `src/site/`, `src/docs/` | The documentation site |
-| `scripts/` | Registry and SEO generators, verification, e2e and smoke tests |
+| `scripts/` | Registry, SEO and static-page generators, scaffolding, verification, install/e2e/smoke tests, clip recorder |
 | `public/r/` | Generated registry (don't edit by hand) |
 
 Site stack: React 19, Tailwind CSS v4, Motion, React Router, Vite.
+
+## Recording clips
+
+```bash
+npm run build && npx vite preview --port 4173 &
+npm run clip -- shader-silk                       # clips/shader-silk.mp4, ready for X / LinkedIn
+npm run clip -- hold-to-confirm --square          # 1:1 crop
+npm run clip -- shader-horizon,shader-rays --seconds 3 --webp   # one reel, plus a WebP for GitHub
+```
+
+## Sponsors
+
+kavynUI is free and MIT. Sponsors get a logo on the [home page](https://kavynui.com) and here.
+Six spots. Write to [shaikhmdaseel@gmail.com](mailto:shaikhmdaseel@gmail.com?subject=Sponsoring%20kavynUI).
 
 ## Templates
 

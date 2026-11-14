@@ -135,10 +135,10 @@ export const DOCS = [
     { id: 'shaders', title: 'Shaders & scroll', lead: 'GPU backgrounds, scroll scenes and physics that degrade gracefully.', toc: [['shaders', 'Shader backgrounds'], ['fallback', 'Fallbacks'], ['scroll', 'Scroll scenes'], ['physics', 'Canvas and cursor']], body: () => (<>
       <div className="relative mt-5 h-72 overflow-hidden rounded-2xl border border-line"><ShaderLattice><span className="text-sm font-medium text-tx">Your content here</span></ShaderLattice></div>
       <H2 id="shaders">Shader backgrounds</H2>
-      <P>The <L to="/components?family=bg">Backgrounds</L> family runs a small fragment shader through <C>gl-canvas.js</C>. Copy that file once; every shader imports it. Put content inside as children, the same way you use a CSS background.</P>
-      <Code title="usage" code={`<ShaderInk from="#c8a27a" to="#6e2f45">\n  <h1>Launch day</h1>\n</ShaderInk>`} />
+      <P>The <L to="/components?family=bg">Backgrounds</L> family runs a small fragment shader through <C>shader-bg.tsx</C>. The CLI brings that file along; every shader imports it. They take their ink and paper from your theme tokens, so they follow light and dark mode; pass <C>color</C> to tint one. Put content inside as children, the same way you use a CSS background.</P>
+      <Code title="usage" code={`// follows your theme\n<ShaderSilk>\n  <h1>Launch day</h1>\n</ShaderSilk>\n\n// tinted, slower, bolder\n<ShaderSilk color="#c8a27a" color2="#6e2f45" speed={0.6} intensity={1.4} />`} />
       <H2 id="fallback">Fallbacks</H2>
-      <P>Each shader paints a CSS gradient first and fades the canvas in only once WebGL is running. If WebGL is off, blocked, software-only or lost mid-session, the gradient stays and nothing errors. Rendering starts below screen resolution and steps down further if frames run slow. The loop pauses off screen and in hidden tabs, and reduced motion renders one still frame.</P>
+      <P>Each shader paints a CSS gradient first and fades the canvas in only once WebGL is running. If WebGL is off, blocked, software-only or lost mid-session, the gradient stays and nothing errors. Rendering starts at screen resolution (capped at 2x) and steps down if frames run slow. The loop pauses off screen and in hidden tabs, and reduced motion renders one still frame.</P>
       <H2 id="scroll">Scroll scenes</H2>
       <P><L to="/components?family=scroll">Scroll & cursor</L> scroll inside their own box, so they work in a card, a modal or a full page. Size the box with <C>className</C>, for example <C>h-screen</C> for a full-page story.</P>
       <H2 id="physics">Canvas and cursor</H2>

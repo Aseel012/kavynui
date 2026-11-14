@@ -20,9 +20,9 @@ export default function ProductHero({ title = 'Ship the site. Skip the servers.'
     <section className="@container relative w-full overflow-hidden rounded-2xl border border-line bg-bg">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,color-mix(in_oklab,var(--acc)_14%,transparent),transparent)]" />
       <div className="relative grid items-center gap-10 p-6 @4xl:grid-cols-2 @4xl:p-12">
-        <div>
-          <motion.h2 initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="text-3xl font-semibold tracking-[-0.035em] text-tx @2xl:text-5xl">{title}</motion.h2>
-          <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }} className="mt-4 max-w-md text-mute">{sub}</motion.p>
+        <div className="min-w-0">
+          <motion.h2 initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="text-3xl font-semibold tracking-[-0.035em] text-tx [overflow-wrap:anywhere] @2xl:text-5xl">{title}</motion.h2>
+          <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }} className="mt-4 max-w-md text-mute [overflow-wrap:anywhere]">{sub}</motion.p>
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.16 }} className="mt-7 flex flex-wrap gap-3">
             <button type="button" className="h-10 rounded-full bg-tx px-5 text-sm font-medium text-bg transition-transform active:scale-95">{primary}</button>
             <button type="button" className="h-10 rounded-full border border-line2 px-5 text-sm text-mute hover:text-tx">{secondary}</button>

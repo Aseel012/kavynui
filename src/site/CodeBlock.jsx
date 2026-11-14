@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
+import { track } from '@/lib/track'
 
 const KW = /\b(import|from|export|default|function|return|const|let|if|else|for|of|new|true|false|null|undefined|while|async|await)\b/
 
@@ -33,7 +34,8 @@ async function copyText(text) {
   } catch { return false }
 }
 
-export function CopyButton({ text, onCopy, className = '', label = 'Copy' }) {
+// `event` + `data` report a successful copy to analytics, e.g. event="copy_install" data={{ slug }}.
+export function CopyButton({ text, onCopy, className = '', label = 'Copy', event = '', data = undefined }) {
   const [state, setState] = useState('idle')
   return (
     <button
@@ -41,7 +43,7 @@ export function CopyButton({ text, onCopy, className = '', label = 'Copy' }) {
       disabled={!text}
       onClick={async () => {
         const ok = await copyText(String(text ?? ''))
-        setState(ok ? 'ok' : 'fail'); if (ok) onCopy?.()
+        setState(ok ? 'ok' : 'fail'); if (ok) { onCopy?.(); if (event) track(event, data) }
         setTimeout(() => setState('idle'), 1400)
       }}
       className={`relative h-7 shrink-0 overflow-hidden rounded-full bg-panel2 px-3 text-xs text-mute transition-colors hover:text-tx disabled:opacity-40 ${className}`}
@@ -55,13 +57,13 @@ export function CopyButton({ text, onCopy, className = '', label = 'Copy' }) {
   )
 }
 
-export default function CodeBlock({ code, title, onCopy, maxHeight = 520 }) {
+export default function CodeBlock({ code, title, onCopy, maxHeight = 520, event = '', data = undefined }) {
   const lines = code.replace(/\n$/, '').split('\n')
   return (
     <div className="overflow-hidden rounded-[18px] border border-line bg-panel">
       <div className="flex h-11 items-center justify-between border-b border-line pl-4 pr-2">
         <span className="font-mono text-xs text-faint">{title}</span>
-        <CopyButton text={code} onCopy={onCopy} />
+        <CopyButton text={code} onCopy={onCopy} event={event} data={data} />
       </div>
       <pre className="overflow-auto p-4 font-mono text-[12.5px] leading-6" style={{ maxHeight }}>
         {lines.map((l, i) => (

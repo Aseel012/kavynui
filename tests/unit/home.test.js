@@ -11,8 +11,11 @@ describe('home data (derived from catalog.json)', () => {
     expect(justAdded([c('x')])).toEqual([])
   })
 
-  it('justAdded on the real catalog starts with Avatar Upload', () => {
-    expect(justAdded()[0].slug).toBe('avatar-upload')
+  it('justAdded on the real catalog starts with the newest dated component', () => {
+    // Derived from the catalog, so adding a component never breaks this test.
+    const fresh = components.filter((c) => c.tags.includes('new'))
+    const newest = Math.max(...fresh.map((c) => Date.parse(c.added || '') || 0))
+    expect(Date.parse(justAdded()[0].added || '') || 0).toBe(newest)
   })
 
   it('showcase: only families with featured items, in family order, capped per family', () => {
