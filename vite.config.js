@@ -23,6 +23,6 @@ export default defineConfig(({ mode }) => ({
   build: { chunkSizeWarningLimit: 900 },
   // Tests run through Vitest's own transformer; match the app's automatic JSX runtime.
   esbuild: { jsx: 'automatic' },
-  test: { environment: 'jsdom', include: ['tests/unit/**/*.test.{js,jsx}'], setupFiles: ['tests/unit/setup.js'], css: false },
+  test: { environment: 'jsdom', include: ['tests/unit/**/*.test.{js,jsx,ts,tsx}'], setupFiles: ['tests/unit/setup.js'], css: false },
 }))
 

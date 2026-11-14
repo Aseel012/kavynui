@@ -9,6 +9,7 @@ import { CopyButton } from '@/site/CodeBlock'
 import { GRADIENTS, styleOf } from '@/data/gradients'
 import { useSEO, SITE_JSONLD } from '@/lib/seo'
 import { SITE } from '@/config'
+import Sponsors from '@/site/Sponsors'
 
 const chevron = <svg viewBox="0 0 24 24" className="size-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden><path d="m9 6 6 6-6 6" /></svg>
 const rise = { initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: '-80px' }, transition: { type: 'spring', stiffness: 160, damping: 24 } }
@@ -23,12 +24,12 @@ function Title({ title, sub }) {
 }
 
 // A one-line command with a copy button.
-function Command({ cmd }) {
+function Command({ cmd, event }) {
   return (
     <div className="flex w-full max-w-lg items-center gap-2 rounded-full bg-panel py-1.5 pl-4 pr-1.5">
       <span className="text-faint" aria-hidden>$</span>
       <code className="min-w-0 flex-1 truncate text-left font-mono text-[12px] text-tx/85">{cmd}</code>
-      <CopyButton text={cmd} />
+      <CopyButton text={cmd} event={event} data={{ from: 'home' }} />
     </div>
   )
 }
@@ -87,7 +88,7 @@ export default function Home() {
           <p className="mt-6 max-w-xl text-[17px] leading-7 text-mute sm:text-[19px] sm:leading-8">{total} animated React components and {sections} full page sections, each one a single file you own. Register the library once, then add anything by name.</p>
           <div className="mt-9 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row">
             <Link to="/components" className="flex h-12 w-full items-center justify-center rounded-full bg-tx px-6 text-[15px] font-medium text-bg transition-transform active:scale-95 sm:w-auto">Browse components</Link>
-            <Command cmd={`npx shadcn@latest registry add @kavynui=${SITE.url}/r/{name}.json`} />
+            <Command cmd={`npx shadcn@latest registry add @kavynui=${SITE.url}/r/{name}.json`} event="copy_register" />
           </div>
         </motion.div>
       </section>
@@ -115,7 +116,7 @@ export default function Home() {
       </div>
 
       <section className="pt-28 sm:pt-40">
-        <div className="px-4"><Title title="Backgrounds with a job." sub="Plain CSS, each named for the product it suits." /></div>
+        <div className="px-4"><Title title="Backgrounds with a job." sub="Plain CSS gradients here, live shaders in the catalog. Each is named for the product it suits." /></div>
         <style>{[...new Set(GRADIENTS.filter((g) => g.anim).map((g) => g.anim.css))].join('\n')}</style>
         <div className="no-scrollbar mx-auto flex max-w-[1280px] snap-x gap-4 overflow-x-auto scroll-px-4 px-4 pb-2 sm:scroll-px-8 sm:px-8 xl:justify-center">
           {GRADIENTS.slice(0, 5).map((g) => (
@@ -128,10 +129,12 @@ export default function Home() {
         </div>
       </section>
 
+      <Sponsors />
+
       <section className="mx-auto flex max-w-2xl flex-col items-center px-4 pb-32 pt-32 text-center sm:pb-44 sm:pt-44">
         <motion.h2 {...rise} className="text-[40px] font-semibold leading-[1] tracking-[-0.045em] text-tx sm:text-[64px]">Your agent can use it too.</motion.h2>
         <p className="mt-4 max-w-md text-[17px] leading-7 text-mute">Once the library is registered, Claude Code, Cursor and other MCP clients can search it and install components by name.</p>
-        <div className="mt-8 flex w-full justify-center"><Command cmd="npx shadcn@latest mcp init" /></div>
+        <div className="mt-8 flex w-full justify-center"><Command cmd="npx shadcn@latest mcp init" event="copy_mcp_init" /></div>
         <div className="mt-6 flex flex-wrap justify-center gap-x-5 gap-y-2 text-[14px] text-mute">
           <a href="/llms.txt" className="hover:text-tx">llms.txt</a>
           <a href="/r/registry.json" className="hover:text-tx">Registry index</a>

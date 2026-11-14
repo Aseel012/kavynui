@@ -7,13 +7,13 @@ import { bySlug, familyById } from '@/lib/catalog'
 
 const titleFor = (path) => {
   if (path.startsWith('/blocks')) return 'Sections'
-  if (path.startsWith('/backgrounds')) return 'CSS backgrounds'
+  if (path.startsWith('/backgrounds')) return 'Backgrounds'
   const slug = path.split('/')[2]
   if (slug && bySlug[slug]) return `${familyById[bySlug[slug].family]?.name} / ${bySlug[slug].name}`
   return 'All components'
 }
 
-// Left sidebar on desktop, a slide-in drawer on mobile.
+// Fixed left sidebar on desktop (like a docs site), a slide-in drawer on mobile.
 export default function CatalogLayout() {
   const ctx = useOutletContext()
   const [open, setOpen] = useState(false)
@@ -30,12 +30,13 @@ export default function CatalogLayout() {
     return () => window.removeEventListener('keydown', k)
   }, [open])
   return (
-    <div className="mx-auto flex max-w-[1600px]">
-      <aside className="sticky top-14 hidden h-[calc(100dvh-3.5rem)] w-64 shrink-0 border-r border-line lg:block">
+    <div>
+      {/* Pinned to the left edge of the screen under the header, with its own scroll: it never moves with the page. */}
+      <aside className="fixed bottom-0 left-0 top-14 z-30 hidden w-64 border-r border-line bg-bg lg:block">
         <CatalogSidebar />
       </aside>
 
-      <div className="min-w-0 flex-1">
+      <div className="min-w-0 lg:pl-64">
         <div className="sticky top-14 z-20 flex h-11 items-center gap-3 border-b border-line bg-bg/85 px-4 backdrop-blur-md lg:hidden">
           <button type="button" onClick={() => setOpen(true)} aria-label="Open catalog" className="flex h-8 items-center gap-2 rounded-full bg-panel2 px-3 text-xs text-tx">
             <svg viewBox="0 0 24 24" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 6h16M4 12h10M4 18h16" /></svg>Browse

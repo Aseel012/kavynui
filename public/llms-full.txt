@@ -1,6 +1,6 @@
 # kavynUI - full component index
 
-> 94 components in 12 families. Copy any file into a React + Tailwind project and ship it. Source and docs: https://kavynui.com
+> 101 components in 12 families. Copy any file into a React + Tailwind project and ship it. Source and docs: https://kavynui.com
 
 ## Sections
 
@@ -120,13 +120,20 @@
 
 ## Backgrounds
 
-- [Film Grain](https://kavynui.com/components/shader-grain): Warm light through live film grain, drawn on the GPU. Use case: Hero backdrop. Install: `npx shadcn@latest add https://kavynui.com/r/shader-grain.json`
-- [Ink Current](https://kavynui.com/components/shader-ink): Slow fluid currents that bend away from the pointer. Use case: Launch page. Install: `npx shadcn@latest add https://kavynui.com/r/shader-ink.json`
+- [Silk](https://kavynui.com/components/shader-silk): Satin folds that drift and catch the light. Use case: Luxury landing. Install: `npx shadcn@latest add https://kavynui.com/r/shader-silk.json`
+- [Liquid Chrome](https://kavynui.com/components/shader-chrome): Slow liquid-metal reflections that part around the pointer. Use case: AI product hero. Install: `npx shadcn@latest add https://kavynui.com/r/shader-chrome.json`
+- [Horizon](https://kavynui.com/components/shader-horizon): The lit edge of a planet rising under your headline. Use case: Waitlist page. Install: `npx shadcn@latest add https://kavynui.com/r/shader-horizon.json`
+- [Light Rays](https://kavynui.com/components/shader-rays): Shafts of light falling from above, with dust in the beams. Use case: Pricing page header. Install: `npx shadcn@latest add https://kavynui.com/r/shader-rays.json`
 - [Polar Veil](https://kavynui.com/components/shader-veil): Aurora curtains with fine rays over a starfield. Use case: Sign-up screen. Install: `npx shadcn@latest add https://kavynui.com/r/shader-veil.json`
+- [Ink Current](https://kavynui.com/components/shader-ink): Ink folding through water, bending away from the pointer. Use case: Launch page. Install: `npx shadcn@latest add https://kavynui.com/r/shader-ink.json`
+- [Pool Light](https://kavynui.com/components/shader-caustics): Light dancing on a pool floor, gathering under the pointer. Use case: Travel landing. Install: `npx shadcn@latest add https://kavynui.com/r/shader-caustics.json`
+- [Strands](https://kavynui.com/components/shader-strands): A bundle of fine lines twisting like fibre in a current. Use case: Audio or data product. Install: `npx shadcn@latest add https://kavynui.com/r/shader-strands.json`
 - [Wave Lattice](https://kavynui.com/components/shader-lattice): A dot grid carrying waves, rippling out from the pointer. Use case: Dev tool hero. Install: `npx shadcn@latest add https://kavynui.com/r/shader-lattice.json`
-- [Pool Light](https://kavynui.com/components/shader-caustics): Light dancing on a pool floor, pulled toward the pointer. Use case: Travel landing. Install: `npx shadcn@latest add https://kavynui.com/r/shader-caustics.json`
-- [Topo Lines](https://kavynui.com/components/topo-lines): Contour lines shift like a live map. Use case: Outdoor brand. Install: `npx shadcn@latest add https://kavynui.com/r/topo-lines.json`
-- [Halftone Tide](https://kavynui.com/components/halftone-tide): Dot field swells like a tide. Use case: Product hero. Install: `npx shadcn@latest add https://kavynui.com/r/halftone-tide.json`
+- [Dither Clouds](https://kavynui.com/components/shader-dither): Slow clouds drawn in one-bit pixels with an ordered dither. Use case: Retro dev tool. Install: `npx shadcn@latest add https://kavynui.com/r/shader-dither.json`
+- [Warp](https://kavynui.com/components/shader-warp): Stars streaking past as if the page were moving forward. Use case: Launch countdown. Install: `npx shadcn@latest add https://kavynui.com/r/shader-warp.json`
+- [Film Grain](https://kavynui.com/components/shader-grain): A slow light leak under live film grain. Use case: Agency hero. Install: `npx shadcn@latest add https://kavynui.com/r/shader-grain.json`
+- [Topo Lines](https://kavynui.com/components/topo-lines): Contour lines of a slowly shifting terrain. Use case: Outdoor brand. Install: `npx shadcn@latest add https://kavynui.com/r/topo-lines.json`
+- [Halftone Tide](https://kavynui.com/components/halftone-tide): Print-style halftone dots swelling like a tide. Use case: Editorial hero. Install: `npx shadcn@latest add https://kavynui.com/r/halftone-tide.json`
 - [Grain Leak](https://kavynui.com/components/grain-leak): Film grain with a slow light leak. Use case: Agency site. Install: `npx shadcn@latest add https://kavynui.com/r/grain-leak.json`
 - [Blueprint](https://kavynui.com/components/blueprint): Drafting grid with lines drawing in. Use case: Architecture. Install: `npx shadcn@latest add https://kavynui.com/r/blueprint.json`
 - [Circuit Pulse](https://kavynui.com/components/circuit-pulse): Traces carry pulses across a board. Use case: AI infra. Install: `npx shadcn@latest add https://kavynui.com/r/circuit-pulse.json`

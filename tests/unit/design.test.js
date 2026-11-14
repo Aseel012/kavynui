@@ -4,7 +4,7 @@ import path from 'node:path'
 import { GRADIENTS, KINDS, styleOf, cssOf, reactOf, tailwindOf } from '@/data/gradients'
 
 const root = path.resolve(import.meta.dirname, '../..')
-const walk = (dir) => fs.readdirSync(path.join(root, dir), { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(path.join(dir, e.name)) : /\.(jsx?|css)$/.test(e.name) ? [path.join(dir, e.name)] : [])
+const walk = (dir) => fs.readdirSync(path.join(root, dir), { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(path.join(dir, e.name)) : /\.([jt]sx?|css)$/.test(e.name) ? [path.join(dir, e.name)] : [])
 const files = ['src/kavyn', 'src/site', 'src/pages', 'src/docs', 'src/data'].flatMap(walk).concat('src/index.css')
 
 // Hue and saturation from a hex or rgb triplet.

@@ -6,7 +6,7 @@ import { families, components, search } from '@/lib/catalog'
 const TOP = [
   { to: '/components', label: 'All components', end: true, icon: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z' },
   { to: '/blocks', label: 'Sections', icon: 'M3 5h18v6H3zM3 13h8v6H3zM13 13h8v6h-8z' },
-  { to: '/backgrounds', label: 'CSS backgrounds', icon: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 0v18M3 12h18' },
+  { to: '/backgrounds', label: 'Backgrounds', icon: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 0v18M3 12h18' },
 ]
 
 function Item({ to, children, end, onNav }) {
@@ -29,6 +29,15 @@ export default function CatalogSidebar({ onNav, autoFocus = false }) {
   const activeFam = useMemo(() => components.find((c) => loc.pathname === `/components/${c.slug}`)?.family, [loc.pathname])
   const [closed, setClosed] = useState({})
   useEffect(() => { if (autoFocus) setTimeout(() => input.current?.focus(), 60) }, [autoFocus])
+  // Keep the current page's link in view, so opening a component far down the list doesn't show the top of it.
+  const list = useRef(null)
+  useEffect(() => {
+    const el = list.current?.querySelector('[aria-current="page"]')
+    if (el && list.current) {
+      const box = list.current.getBoundingClientRect(), r = el.getBoundingClientRect()
+      if (r.top < box.top || r.bottom > box.bottom) list.current.scrollTop += r.top - box.top - box.height / 3
+    }
+  }, [loc.pathname])
   const hits = useMemo(() => (q.trim() ? search(q) : null), [q])
   const groups = families.map((f) => ({ ...f, items: (hits || components).filter((c) => c.family === f.id) })).filter((g) => g.items.length)
 
@@ -47,7 +56,7 @@ export default function CatalogSidebar({ onNav, autoFocus = false }) {
           {q && <button type="button" onClick={() => setQ('')} className="text-[11px] text-faint hover:text-tx">Clear</button>}
         </label>
       </div>
-      <nav className="no-scrollbar flex-1 overflow-y-auto px-3 pb-10" aria-label="Catalog">
+      <nav ref={list} className="no-scrollbar flex-1 overflow-y-auto px-3 pb-10" aria-label="Catalog">
         {!hits && (
           <div className="mb-5 space-y-0.5">
             {TOP.map((t) => (

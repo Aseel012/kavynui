@@ -49,7 +49,8 @@ ${fams}
 
 ## Notes for AI assistants
 
-- Components are plain .jsx files: copy the file, no package install required.
+- Most components are plain .jsx files with JSDoc prop types. The shader backgrounds are TypeScript (.tsx); the shadcn CLI strips the types for JavaScript projects, so one command works in both.
+- Shader backgrounds draw in the page's own theme colours (--tx on --bg), so they follow light and dark mode. Props: color, color2, speed, intensity, scale, interactive.
 - Every component respects prefers-reduced-motion and works in light and dark mode.
 - WebGL pieces render a CSS gradient first and only fade in the GPU version when it runs; they pause off-screen and in background tabs.
 - License: MIT. Attribution appreciated, not required.

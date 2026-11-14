@@ -3,7 +3,7 @@ import { SITE } from '@/config'
 
 const DEFAULTS = {
   title: 'kavynUI - animated React components and blocks',
-  description: 'Copy-paste animated React components, blocks and backgrounds: WebGL shaders, scroll scenes, physics, 3D and particle text. Open source, MIT.',
+  description: 'Animated React components and page sections. Monochrome, theme-aware, installed as source you own with the shadcn CLI. Open source, MIT.',
 }
 
 function upsert(sel, make, attrs) {
@@ -16,7 +16,8 @@ const metaName = (name, content) => upsert(`meta[name="${name}"]`, () => { const
 const metaProp = (prop, content) => upsert(`meta[property="${prop}"]`, () => { const m = document.createElement('meta'); m.setAttribute('property', prop); return m }, { content })
 
 // Per-page SEO: title, description, canonical, Open Graph/Twitter cards and optional JSON-LD.
-export function useSEO({ title, description, path = '/', type = 'website', noindex = false, jsonLd = null }) {
+// `image` is a site-relative path; component pages pass their own share card (dist/og/<slug>.png, made by scripts/prerender.mjs).
+export function useSEO({ title, description, path = '/', type = 'website', noindex = false, jsonLd = null, image = '/og.png' }) {
   useEffect(() => {
     const t = title || DEFAULTS.title
     const d = description || DEFAULTS.description
@@ -29,11 +30,11 @@ export function useSEO({ title, description, path = '/', type = 'website', noind
     metaProp('og:type', type)
     metaProp('og:url', url)
     metaProp('og:site_name', 'kavynUI')
-    metaProp('og:image', `${SITE.url}/og.png`)
+    metaProp('og:image', `${SITE.url}${image}`)
     metaName('twitter:card', 'summary_large_image')
     metaName('twitter:title', t)
     metaName('twitter:description', d)
-    metaName('twitter:image', `${SITE.url}/og.png`)
+    metaName('twitter:image', `${SITE.url}${image}`)
     upsert('link[rel="canonical"]', () => { const l = document.createElement('link'); l.setAttribute('rel', 'canonical'); return l }, { href: url })
     let ld
     if (jsonLd) {
@@ -43,7 +44,7 @@ export function useSEO({ title, description, path = '/', type = 'website', noind
       document.head.appendChild(ld)
     }
     return () => { ld?.remove() }
-  }, [title, description, path, type, noindex, jsonLd])
+  }, [title, description, path, type, noindex, jsonLd, image])
 }
 
 export const SITE_JSONLD = {

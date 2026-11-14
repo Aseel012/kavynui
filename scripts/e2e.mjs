@@ -2,6 +2,12 @@
 // Usage: npm run build && npx vite preview --port 4173 & node scripts/e2e.mjs
 import puppeteer from 'puppeteer-core'
 import path from 'node:path'
+import { readFileSync } from 'node:fs'
+
+// Expected values come from catalog.json, so adding components never breaks these tests.
+const catalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'))
+const fresh = catalog.components.filter((c) => c.tags.includes('new'))
+const newestSlug = fresh.map((c, i) => [c, i]).sort((a, b) => (Date.parse(b[0].added || '') || 0) - (Date.parse(a[0].added || '') || 0) || a[1] - b[1])[0]?.[0].slug
 
 const BASE = process.env.BASE || 'http://127.0.0.1:4173'
 const CHROME = process.env.CHROME || '/usr/bin/google-chrome'
@@ -43,7 +49,7 @@ async function test(name, fn) {
 await test('home: hero pill links to the newest component from catalog.json', async () => {
   const p = await open('/')
   const href = await p.$eval('main a[href^="/components/"]', (a) => a.getAttribute('href'))
-  assert(href === '/components/avatar-upload', `pill points to ${href}`)
+  assert(href === `/components/${newestSlug}`, `pill points to ${href}, newest in catalog is ${newestSlug}`)
   return p
 })
 

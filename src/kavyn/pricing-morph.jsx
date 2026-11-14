@@ -22,10 +22,10 @@ export default function PricingMorph({ plans = PLANS, currency = '$' }) {
       </div>
       <div className="grid grid-cols-2 gap-2">
         {plans.map((p) => (
-          <motion.div layout key={p.n} transition={{ type: 'spring', stiffness: 300, damping: 28 }} className={`rounded-2xl border p-4 ${p.hot ? 'border-acc/50 bg-panel2' : 'border-line bg-panel'}`}>
+          <motion.div layout key={p.n} transition={{ type: 'spring', stiffness: 300, damping: 28 }} className={`min-w-0 rounded-2xl border p-4 ${p.hot ? 'border-acc/50 bg-panel2' : 'border-line bg-panel'}`}>
             <div className="text-sm text-mute">{p.n}</div>
-            <div className="mt-2 flex items-baseline gap-1">
-              <span className="text-mute">{currency}</span>
+            <div className="mt-2 flex min-w-0 flex-wrap items-baseline gap-x-1">
+              <span className="min-w-0 break-all text-mute">{currency}</span>
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.span key={yearly ? p.y : p.m} initial={{ y: 16, opacity: 0, filter: 'blur(4px)' }} animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }} exit={{ y: -16, opacity: 0, filter: 'blur(4px)' }} transition={{ type: 'spring', stiffness: 400, damping: 28 }} className="text-3xl font-medium text-tx">
                   {yearly ? p.y : p.m}
@@ -34,9 +34,9 @@ export default function PricingMorph({ plans = PLANS, currency = '$' }) {
               <span className="text-xs text-faint">/mo</span>
             </div>
             <AnimatePresence>
-              {yearly && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden text-xs text-acc">billed {currency}{p.y * 12} yearly</motion.div>}
+              {yearly && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden break-words text-xs text-acc">billed {currency}{p.y * 12} yearly</motion.div>}
             </AnimatePresence>
-            <ul className="mt-3 space-y-1 text-xs text-mute">{p.f.map((f) => <li key={f}>· {f}</li>)}</ul>
+            <ul className="mt-3 space-y-1 break-words text-xs text-mute">{p.f.map((f) => <li key={f}>· {f}</li>)}</ul>
           </motion.div>
         ))}
       </div>

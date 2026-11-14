@@ -54,8 +54,9 @@ export default function Layout() {
 
   return (
     <div className="flex min-h-dvh flex-col">
-      <header className="sticky top-0 z-40 border-b border-line bg-bg/80 backdrop-blur-md">
-        <div className="mx-auto flex h-14 max-w-[1600px] items-center gap-6 px-4 sm:px-8">
+      {/* Solid and full width: content never shows through it, and the logo lines up with the catalog sidebar. */}
+      <header className="sticky top-0 z-40 border-b border-line bg-bg">
+        <div className="flex h-14 items-center gap-6 px-4 sm:px-6">
           <Logo />
           <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
             {LINKS.map((l) => (
@@ -97,7 +98,8 @@ export default function Layout() {
 
       <main className="flex-1"><ErrorBoundary resetKey={loc.pathname}><Outlet context={{ openSearch: () => setPal(true) }} /></ErrorBoundary></main>
 
-      <footer className="border-t border-line">
+      {/* The footer lives on the home page only: on catalog and docs pages it pushed the sticky sidebar and cost screen space. */}
+      {loc.pathname === '/' && <footer className="border-t border-line">
         <div className="mx-auto grid max-w-[1600px] gap-10 px-4 py-14 sm:px-8 md:grid-cols-[1.6fr_repeat(3,1fr)]">
           <div>
             <Logo />
@@ -116,7 +118,7 @@ export default function Layout() {
           ))}
         </div>
         <div className="mx-auto max-w-[1600px] px-4 pb-8 text-[13px] text-faint sm:px-8">© {new Date().getFullYear()} kavynUI. {SITE.license} license. <a href="/llms.txt" className="hover:text-tx">llms.txt</a></div>
-      </footer>
+      </footer>}
       <NetworkStatus />
 
       <Palette open={pal} onClose={() => setPal(false)} />

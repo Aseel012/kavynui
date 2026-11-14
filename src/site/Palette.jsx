@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import { search, familyById } from '@/lib/catalog'
 
-const PAGES = [{ name: 'Home', to: '/' }, { name: 'All components', to: '/components' }, { name: 'Sections', to: '/blocks' }, { name: 'CSS backgrounds', to: '/backgrounds' }, { name: 'Docs', to: '/docs' }, { name: 'Blog', to: '/blog' }]
+const PAGES = [{ name: 'Home', to: '/' }, { name: 'All components', to: '/components' }, { name: 'Sections', to: '/blocks' }, { name: 'Backgrounds', to: '/backgrounds' }, { name: 'Docs', to: '/docs' }, { name: 'Blog', to: '/blog' }]
 
 export default function Palette({ open, onClose }) {
   const [q, setQ] = useState('')

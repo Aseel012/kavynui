@@ -20,7 +20,7 @@ const seen = new Set()
 for (const c of catalog.components) {
   if (seen.has(c.slug)) fail(`duplicate slug: ${c.slug}`)
   seen.add(c.slug)
-  if (!fs.existsSync(path.join(root, 'src/kavyn', `${c.slug}.jsx`))) fail(`${c.slug}: src/kavyn/${c.slug}.jsx is missing`)
+  if (!['jsx', 'tsx'].some((x) => fs.existsSync(path.join(root, 'src/kavyn', `${c.slug}.${x}`)))) fail(`${c.slug}: src/kavyn/${c.slug}.jsx (or .tsx) is missing`)
   const u = (c.useCase || '').trim()
   if (u.length < 5) fail(`${c.slug}: "useCase" is empty. Write one line: what problem does this solve?`)
   if (u.length > 90 || u.includes('\n')) fail(`${c.slug}: "useCase" must be one short line (max 90 chars)`)
@@ -29,9 +29,9 @@ for (const c of catalog.components) {
 
 // 3. Component files in src/kavyn that are not in the catalog (orphans)
 for (const f of fs.readdirSync(path.join(root, 'src/kavyn'))) {
-  if (!f.endsWith('.jsx')) continue
-  const slug = f.replace(/\.jsx$/, '')
-  if (!seen.has(slug)) console.warn(`warn: src/kavyn/${f} is not in catalog.json (helper file? ok. component? add it)`)
+  if (!/\.[jt]sx$/.test(f)) continue
+  const slug = f.replace(/\.[jt]sx$/, '')
+  if (!seen.has(slug) && !catalog.components.some((c) => (c.deps || []).includes(f))) console.warn(`warn: src/kavyn/${f} is not in catalog.json (helper file? ok. component? add it)`)
 }
 
 // 4. CSP: site code must not load external images (vercel.json has img-src 'self')
