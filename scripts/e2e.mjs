@@ -129,6 +129,17 @@ await test('search palette: Ctrl+K, type, Enter navigates', async () => {
   return p
 })
 
+await test('logo goes home from other pages, and back to the top on home', async () => {
+  const p = await open('/docs')
+  await p.click('header a[aria-label="kavynUI home"]')
+  await p.waitForFunction(() => location.pathname === '/')
+  await p.evaluate(() => window.scrollTo(0, 2000))
+  await p.waitForFunction(() => scrollY > 500)
+  await p.click('header a[aria-label="kavynUI home"]')
+  await p.waitForFunction(() => scrollY < 5, { timeout: 5000 })
+  return p
+})
+
 await test('theme toggle switches to light and survives reload', async () => {
   const p = await open('/')
   await p.click('header [aria-label="Switch to light mode"]')

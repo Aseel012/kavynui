@@ -27,7 +27,7 @@ export interface ShaderDitherProps extends ShaderBackgroundProps {
 
 // Slow clouds drawn in one-bit pixels with an ordered dither, like an old display. The pointer leaves a bright patch.
 // Ink and paper come from your theme (--tx on --bg), so it works in light and dark. Pass `color` to tint it.
-export default function ShaderDither({ pixel = 3, color = '', color2 = '', speed = 1, intensity = 1, scale = 1, interactive = true, allowSoftware = false, className = '', style, children }: ShaderDitherProps) {
+export default function ShaderDither({ pixel = 3, color = '', color2 = '', speed = 1, intensity = 1, scale = 1, interactive = true, allowSoftware = true, className = '', style, children }: ShaderDitherProps) {
   return (
     <ShaderBackground frag={FRAG} uniforms={{ uPixel: pixel }} color={color} color2={color2} speed={speed} intensity={intensity} scale={scale} interactive={interactive} allowSoftware={allowSoftware} className={className} style={style}>
       {children}

@@ -56,6 +56,12 @@ describe('safe to paste into any site', () => {
     }
   })
 
+  it('shader backgrounds never default to hiding themselves on software WebGL', () => {
+    // A wrapper default of allowSoftware = false overrides the runner and leaves an empty box
+    // on every machine without GPU WebGL (common on Linux). Opting out is the user's call, per instance.
+    for (const f of shipped.filter((f) => /from '\.\/shader-bg'/.test(read(f)))) expect(read(f), f).not.toMatch(/allowSoftware\s*=\s*false/)
+  })
+
   it('every component is marked as a client component for the Next.js app router', () => {
     for (const c of catalog.components) expect(read(fileOf(c.slug)).trimStart().startsWith("'use client'"), c.slug).toBe(true)
   })
@@ -70,3 +76,18 @@ describe('safe to paste into any site', () => {
     }
   })
 })
+
+describe('static page copy for crawlers', () => {
+  // scripts/prerender.mjs writes a plain HTML copy of every page into #root for agents that do not run
+  // JavaScript. People must never see it flash before the app mounts (it did, on slow phones).
+  const site = (f) => fs.readFileSync(path.join(root, f), 'utf8')
+  it('is marked data-static and hidden once JavaScript runs', () => {
+    expect(site('scripts/prerender.mjs')).toMatch(/<main data-static/)
+    expect(site('index.html')).toMatch(/html\.js #root > \[data-static\]\s*\{\s*display:\s*none/)
+    expect(site('public/theme-init.js')).toMatch(/classList\.add\('js'\)/)
+    // theme-init.js must load in <head>, before #root, or the copy shows for a frame.
+    const html = site('index.html')
+    expect(html.indexOf('/theme-init.js')).toBeLessThan(html.indexOf('<div id="root">'))
+  })
+})
+

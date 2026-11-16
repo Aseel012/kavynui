@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-11-16 shader backgrounds on every machine, no static-page flash
+
+- On software WebGL, backgrounds draw a still frame and animate only while the pointer is over them. Every background now compiles only when it nears the screen, one at a time in idle moments: the backgrounds page no longer freezes for half a second at a time on load, and a page at rest costs nothing.
+- **Fixed:** clicking the logo on the home page did nothing; it now scrolls back to the top.
+- **Fixed:** on slow connections (most visible on phones) the plain static copy of each page, written for crawlers and AI agents, showed for a second or two before the app loaded. It is now hidden in any browser that runs JavaScript; agents and crawlers still read it.
+- **Fixed:** shader backgrounds showed only their faint CSS fallback on machines without GPU WebGL (hardware acceleration off, a blocklisted GPU, most Linux setups, VMs, remote desktops). Each background wrapper defaulted `allowSoftware` to `false`, overriding the runner.
+- On software WebGL they now run at half resolution and 30fps, step resolution down while frames are slow, and hold a still frame if the device cannot keep up. `allowSoftware={false}` still opts out per instance.
+- The console now says why a background shows its fallback: no WebGL, software-only, or a shader that failed to compile (with the driver's message). Each reason is logged once per page.
+- A test keeps background wrappers from defaulting `allowSoftware` to `false` again.
+
 ## 2026-11 shaders, TypeScript, static pages
 
 ### Backgrounds

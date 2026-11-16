@@ -54,7 +54,7 @@ void main(){
 \`
 
 // TODO: one line on what this looks like.
-export default function ${exportName}({ color = '', color2 = '', speed = 1, intensity = 1, scale = 1, interactive = true, allowSoftware = false, className = '', style, children }: ShaderBackgroundProps) {
+export default function ${exportName}({ color = '', color2 = '', speed = 1, intensity = 1, scale = 1, interactive = true, allowSoftware = true, className = '', style, children }: ShaderBackgroundProps) {
   return (
     <ShaderBackground frag={FRAG} color={color} color2={color2} speed={speed} intensity={intensity} scale={scale} interactive={interactive} allowSoftware={allowSoftware} className={className} style={style}>
       {children}

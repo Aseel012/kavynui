@@ -50,7 +50,8 @@ const S = {
 }
 const link = (href, text) => `<a style="${S.a}" href="${esc(href)}">${esc(text)}</a>`
 const nav = `<nav style="font-size:14px;${S.mute}">${[['/', 'kavynUI'], ['/components', 'Components'], ['/blocks', 'Sections'], ['/backgrounds', 'Backgrounds'], ['/docs', 'Docs'], ['/blog', 'Blog']].map(([h, t]) => link(h, t)).join(' · ')}</nav>`
-const wrap = (inner) => `<main style="${S.main}">${nav}${inner}</main>`
+// data-static: index.html hides this in browsers that run JavaScript, so only crawlers and agents read it.
+const wrap = (inner) => `<main data-static style="${S.main}">${nav}${inner}</main>`
 const list = (items) => `<ul style="padding-left:18px">${items.map((i) => `<li>${i}</li>`).join('')}</ul>`
 const componentLine = (c) => `${link(`/components/${c.slug}`, c.name)} <span style="${S.mute}">- ${esc(c.description)}. For: ${esc(c.useCase)}.</span>`
 const REGISTER = `npx shadcn@latest registry add @kavynui=${SITE}/r/{name}.json`

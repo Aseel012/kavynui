@@ -20,6 +20,8 @@
     <meta name="twitter:image" content="__SITE_URL__/og.png" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script src="/theme-init.js"></script>
+    <!-- The static page copy in #root is for crawlers and agents that do not run JavaScript. Browsers that do never see it. -->
+    <style>html.js #root > [data-static] { display: none }</style>
     <script type="application/ld+json">
       {"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"kavynUI","url":"__SITE_URL__","description":"Animated React components and page sections. Monochrome, theme-aware, installed as source you own with the shadcn CLI. Open source, MIT."},{"@type":"Organization","name":"kavynUI","url":"__SITE_URL__","logo":"__SITE_URL__/favicon.svg"}]}
     </script>

@@ -10,8 +10,12 @@ import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react'
 //     mode and light-on-black in dark mode, and redraws when the theme class flips
 //   - quality: renders at device resolution (capped at 2x) and steps down if frames run slow
 //   - banding: every shader ends in a tiny dither, so dark gradients stay smooth on 8-bit screens
-//   - manners: pauses off screen and in hidden tabs, draws one still frame for reduced motion,
-//     and leaves the CSS fallback visible when WebGL is missing, lost or software-only
+//   - manners: pauses off screen and in hidden tabs, draws one still frame for reduced motion
+//   - any machine: uses the GPU when it can; on software-only WebGL (common on Linux, VMs, remote
+//     desktops) it draws a still frame and animates, at lower resolution and 30fps, only while the
+//     pointer is over it; if even that is too slow it holds the still frame.
+//   - page load: a background compiles only once it nears the screen, one at a time in idle moments,
+//     so a page full of them never freezes. Only with no WebGL at all does the CSS fallback stay, and the console says why.
 
 export type RGB = [number, number, number]
 
@@ -28,7 +32,7 @@ export interface ShaderBackgroundProps {
   scale?: number
   /** React to the pointer. */
   interactive?: boolean
-  /** Also run on software-only WebGL (no GPU). Off by default: it would slow a slow device. */
+  /** Run when WebGL is software-only (no GPU), at reduced resolution and 30fps. Set false to show the CSS fallback there instead. */
   allowSoftware?: boolean
   className?: string
   style?: CSSProperties
@@ -88,8 +92,47 @@ const readToken = (el: Element, name: string, fallback: RGB): RGB => hexToRgb(ge
 
 const num = (v: unknown, fallback: number) => (typeof v === 'number' && Number.isFinite(v) ? v : fallback)
 
+// Each problem is reported once per page, not once per background.
+const told = new Set<string>()
+const tell = (key: string, msg: string, level: 'info' | 'warn' = 'info') => {
+  if (told.has(key)) return
+  told.add(key)
+  try { console[level](`[kavynui] ${msg}`) } catch { /* no console */ }
+}
+
+// Setup is queued: one background compiles its shader per idle moment, so a page with many of them
+// never freezes while they all compile at once (on software WebGL a compile can take 100ms+).
+const queue: Array<() => void> = []
+let pumping = false
+const later = (fn: () => void) => (typeof requestIdleCallback === 'function' ? requestIdleCallback(fn, { timeout: 250 }) : setTimeout(fn, 16))
+const pump = () => {
+  const job = queue.shift()
+  if (!job) { pumping = false; return }
+  try { job() } finally { later(pump) }
+}
+const enqueue = (job: () => void) => {
+  queue.push(job)
+  if (!pumping) { pumping = true; later(pump) }
+  return () => { const i = queue.indexOf(job); if (i >= 0) queue.splice(i, 1) }
+}
+
+// On software WebGL a background animates only while the pointer is over it; otherwise it holds a still
+// frame, so a page of them costs nothing at rest. On a GPU they all animate as usual.
+let softOwner: object | null = null
+const softWakers = new Set<() => void>()
+const releaseSoft = (me: object) => {
+  if (softOwner !== me) return
+  softOwner = null
+  for (const wake of softWakers) wake()
+}
+
+const CTX: WebGLContextAttributes = { antialias: false, alpha: false, depth: false, stencil: false, powerPreference: 'low-power' }
+const getGL = (canvas: HTMLCanvasElement, attrs: WebGLContextAttributes) => {
+  try { return canvas.getContext('webgl', attrs) as WebGLRenderingContext | null } catch { return null }
+}
+
 /** Wraps your content in a box with a live shader behind it. Each background file is this plus one fragment shader. */
-export default function ShaderBackground({ frag, uniforms, color, color2, speed = 1, intensity = 1, scale = 1, interactive = true, allowSoftware = false, className = '', style, children }: FrameProps) {
+export default function ShaderBackground({ frag, uniforms, color, color2, speed = 1, intensity = 1, scale = 1, interactive = true, allowSoftware = true, className = '', style, children }: FrameProps) {
   const host = useRef<HTMLDivElement>(null)
   // Props are read every frame from this ref, so changing them never rebuilds the GL program.
   const live = useRef({ uniforms, color, color2, speed, intensity, scale, interactive })
@@ -98,25 +141,54 @@ export default function ShaderBackground({ frag, uniforms, color, color2, speed 
   useEffect(() => {
     const el = host.current
     if (!el || typeof window === 'undefined') return
+    // Nothing is compiled until the background comes near the screen, then setup waits its turn in the queue.
+    let dispose: (() => void) | void = undefined
+    let cancel = () => {}
+    const begin = () => { cancel = enqueue(() => { dispose = setup(el) }) }
+    let near: IntersectionObserver | null = null
+    if (typeof IntersectionObserver === 'undefined') begin()
+    else {
+      near = new IntersectionObserver(([e]) => { if (e?.isIntersecting) { near?.disconnect(); near = null; begin() } }, { rootMargin: '300px' })
+      near.observe(el)
+    }
+    return () => { near?.disconnect(); cancel(); if (dispose) dispose() }
+
+    function setup(el: HTMLDivElement): (() => void) | void {
     const canvas = document.createElement('canvas')
     canvas.setAttribute('aria-hidden', 'true')
     canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .7s ease'
-    let gl: WebGLRenderingContext | null = null
-    try { gl = canvas.getContext('webgl', { antialias: false, alpha: false, depth: false, stencil: false, powerPreference: 'low-power', failIfMajorPerformanceCaveat: !allowSoftware }) } catch { gl = null }
-    if (!gl) return
+    // GPU first. If the browser only offers software WebGL, use it at reduced cost rather than show nothing.
+    let soft = false
+    let gl = getGL(canvas, { ...CTX, failIfMajorPerformanceCaveat: true })
+    if (!gl) {
+      if (allowSoftware) { gl = getGL(canvas, CTX); soft = !!gl }
+      if (!gl) {
+        tell('nogl', allowSoftware
+          ? 'WebGL is not available in this browser, so shader backgrounds show their CSS fallback.'
+          : 'Only software WebGL is available and allowSoftware is false, so shader backgrounds show their CSS fallback.')
+        return
+      }
+      tell('soft', 'No GPU WebGL here (hardware acceleration off or the GPU is blocklisted). Shader backgrounds show a still frame and animate only under the pointer, at reduced resolution.')
+    }
     const g = gl
     const compile = (type: number, src: string) => {
       const s = g.createShader(type)
       if (!s) return null
       g.shaderSource(s, src); g.compileShader(s)
-      if (!g.getShaderParameter(s, g.COMPILE_STATUS)) { g.deleteShader(s); return null }
+      if (!g.getShaderParameter(s, g.COMPILE_STATUS)) {
+        tell(`compile:${src.length}`, `A shader failed to compile on this GPU, showing the CSS fallback. Driver says: ${g.getShaderInfoLog(s) || 'no details'}`, 'warn')
+        g.deleteShader(s); return null
+      }
       return s
     }
     const vs = compile(g.VERTEX_SHADER, VERT), fs = compile(g.FRAGMENT_SHADER, HEAD + frag)
     const prog = vs && fs ? g.createProgram() : null
     if (!prog || !vs || !fs) return
     g.attachShader(prog, vs); g.attachShader(prog, fs); g.linkProgram(prog)
-    if (!g.getProgramParameter(prog, g.LINK_STATUS)) return
+    if (!g.getProgramParameter(prog, g.LINK_STATUS)) {
+      tell(`link:${frag.length}`, `A shader failed to link, showing the CSS fallback. Driver says: ${g.getProgramInfoLog(prog) || 'no details'}`, 'warn')
+      return
+    }
     g.useProgram(prog)
     const buf = g.createBuffer()
     g.bindBuffer(g.ARRAY_BUFFER, buf)
@@ -148,19 +220,31 @@ export default function ShaderBackground({ frag, uniforms, color, color2, speed 
 
     const reduce = !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
     let raf = 0, visible = true, lost = false, shown = false, time = 0, prev = performance.now()
-    // Adaptive quality: start at device resolution, step down while frames keep running slow.
-    let q = 1, slow = 0, frames = 0
+    // Adaptive quality: start at device resolution (half of 1x on software), step down while frames run slow.
+    // On the floor and still slow: stop animating and keep the last frame, so the page stays responsive.
+    const MIN_Q = soft ? 0.2 : 0.4
+    let q = soft ? 0.5 : 1, slow = 0, frames = 0, still = false, lastDraw = 0
     const draw = (now: number) => {
       if (lost || g.isContextLost()) return
       const p = live.current
-      const dpr = Math.min(2, window.devicePixelRatio || 1) * q
+      const dpr = Math.min(soft ? 1 : 2, window.devicePixelRatio || 1) * q
       const w = Math.max(1, Math.round(el.clientWidth * dpr)), h = Math.max(1, Math.round(el.clientHeight * dpr))
       if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h }
       g.viewport(0, 0, w, h)
       const dt = Math.max(0, (now - prev) / 1000)
       time += Math.min(0.1, dt) * num(p.speed, 1)
       prev = now
-      if (shown && dt < 0.5) { frames++; if (dt > 1 / 45) slow++; if (frames >= 40) { if (slow > 16 && q > 0.4) q *= 0.8; frames = 0; slow = 0 } }
+      if (shown && dt < 0.5) {
+        frames++
+        if (dt > (soft ? 1 / 22 : 1 / 45)) slow++
+        if (frames >= 40) {
+          if (slow > 16) {
+            if (q > MIN_Q) q = Math.max(MIN_Q, q * 0.8)
+            else { still = true; tell('still', 'This device is too slow to animate shader backgrounds, so they hold a still frame.') }
+          }
+          frames = 0; slow = 0
+        }
+      }
       const on = p.interactive !== false
       mouse.x += ((on ? mouse.tx : 0.5) - mouse.x) * 0.07; mouse.y += ((on ? mouse.ty : 0.5) - mouse.y) * 0.07
       mouse.in += ((on ? mouse.tin : 0) - mouse.in) * 0.06
@@ -174,13 +258,19 @@ export default function ShaderBackground({ frag, uniforms, color, color2, speed 
       g.drawArrays(g.TRIANGLES, 0, 3)
       if (!shown) { shown = true; canvas.style.opacity = '1' }
     }
+    const me = {}
+    const mayAnimate = () => !soft || softOwner === me
     const loop = (now: number) => {
       raf = 0
-      draw(now)
-      if (!reduce && visible && !document.hidden) raf = requestAnimationFrame(loop)
+      // Software rendering is capped at 30fps: half the CPU for a difference few people see.
+      if (!soft || now - lastDraw >= 31 || !shown) { lastDraw = now; draw(now) }
+      if (!reduce && !still && visible && !document.hidden && mayAnimate()) raf = requestAnimationFrame(loop)
     }
     const start = () => { if (!raf && !lost) { prev = performance.now(); raf = requestAnimationFrame(loop) } }
-    const io = typeof IntersectionObserver !== 'undefined' ? new IntersectionObserver(([e]) => { visible = !!e?.isIntersecting; if (visible) start() }) : null
+    const onEnter = () => { if (soft && softOwner !== me) { softOwner = me; start() } }
+    const onExit = () => releaseSoft(me)
+    if (soft) { softWakers.add(start); el.addEventListener('pointerenter', onEnter); el.addEventListener('pointerleave', onExit) }
+    const io = typeof IntersectionObserver !== 'undefined' ? new IntersectionObserver(([e]) => { visible = !!e?.isIntersecting; if (visible) start(); else releaseSoft(me) }) : null
     io?.observe(el)
     const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(() => start()) : null
     ro?.observe(el)
@@ -194,6 +284,7 @@ export default function ShaderBackground({ frag, uniforms, color, color2, speed 
 
     return () => {
       cancelAnimationFrame(raf)
+      softWakers.delete(start); el.removeEventListener('pointerenter', onEnter); el.removeEventListener('pointerleave', onExit); releaseSoft(me)
       io?.disconnect(); ro?.disconnect(); mo?.disconnect()
       document.removeEventListener('visibilitychange', onVis)
       el.removeEventListener('pointermove', onMove)
@@ -206,6 +297,7 @@ export default function ShaderBackground({ frag, uniforms, color, color2, speed 
         g.getExtension('WEBGL_lose_context')?.loseContext()
       } catch { /* already gone */ }
       canvas.remove()
+    }
     }
   }, [frag, allowSoftware])
 
