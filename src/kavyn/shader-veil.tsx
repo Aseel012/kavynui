@@ -20,7 +20,7 @@ void main(){
 
 // Aurora curtains with fine vertical rays over a few slow stars.
 // Ink and paper come from your theme (--tx on --bg), so it works in light and dark. Pass `color` to tint it.
-export default function ShaderVeil({ color = '', color2 = '', speed = 1, intensity = 1, scale = 1, interactive = true, allowSoftware = false, className = '', style, children }: ShaderBackgroundProps) {
+export default function ShaderVeil({ color = '', color2 = '', speed = 1, intensity = 1, scale = 1, interactive = true, allowSoftware = true, className = '', style, children }: ShaderBackgroundProps) {
   return (
     <ShaderBackground frag={FRAG} color={color} color2={color2} speed={speed} intensity={intensity} scale={scale} interactive={interactive} allowSoftware={allowSoftware} className={className} style={style}>
       {children}
