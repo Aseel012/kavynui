@@ -46,6 +46,36 @@ async function test(name, fn) {
   finally { await page?.close?.() }
 }
 
+await test('morph dialog: keyboard focus stays inside and returns on close', async () => {
+  const p = await open('/components/morph-dialog')
+  const trigger = await p.waitForFunction(() => [...document.querySelectorAll('button')].find((b) => b.textContent.includes('Edge Functions') && b.textContent.includes('regions')))
+  await trigger.asElement().focus()
+  await p.keyboard.press('Enter')
+  await p.waitForSelector('[role=dialog]')
+  const inside = () => p.evaluate(() => !!document.activeElement.closest('[role=dialog]'))
+  assert(await inside(), 'opening must move focus into the dialog')
+  await p.keyboard.press('Tab')
+  assert(await inside(), 'Tab must stay inside the dialog')
+  await p.keyboard.down('Shift')
+  await p.keyboard.press('Tab')
+  await p.keyboard.up('Shift')
+  assert(await inside(), 'Shift+Tab must stay inside the dialog')
+  await p.keyboard.press('Escape')
+  await p.waitForSelector('[role=dialog]', { hidden: true })
+  assert(await p.evaluate(() => document.activeElement.textContent.includes('Edge Functions')), 'Escape must return focus to the trigger')
+  await p.keyboard.press('Enter')
+  await p.waitForFunction(() => {
+    const dialog = document.querySelector('[role=dialog]')
+    return dialog && getComputedStyle(dialog).transform === 'none'
+  })
+  await p.click('[role=dialog] button')
+  await p.waitForSelector('[role=dialog]', { hidden: true })
+  assert(await p.evaluate(() => document.activeElement.textContent.includes('Edge Functions')), 'Close must return focus to the trigger')
+  await p.keyboard.press('Tab')
+  assert(!await inside(), 'closing must remove the focus trap')
+  return p
+})
+
 await test('home: hero pill links to the newest component from catalog.json', async () => {
   const p = await open('/')
   const href = await p.$eval('main a[href^="/components/"]', (a) => a.getAttribute('href'))
