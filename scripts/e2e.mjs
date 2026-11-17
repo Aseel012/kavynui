@@ -54,6 +54,14 @@ await test('morph dialog: keyboard focus stays inside and returns on close', asy
   await p.waitForSelector('[role=dialog]')
   const inside = () => p.evaluate(() => !!document.activeElement.closest('[role=dialog]'))
   assert(await inside(), 'opening must move focus into the dialog')
+  await p.evaluate(() => {
+    const outside = document.createElement('button')
+    outside.id = 'dialog-background-test'
+    outside.textContent = 'Background action'
+    document.body.appendChild(outside)
+  })
+  await p.waitForFunction(() => document.querySelector('#dialog-background-test').inert)
+  assert(await p.evaluate(() => document.querySelector('[role=dialog]').previousElementSibling.inert === false), 'backdrop must remain interactive')
   await p.keyboard.press('Tab')
   assert(await inside(), 'Tab must stay inside the dialog')
   await p.keyboard.down('Shift')
@@ -61,6 +69,9 @@ await test('morph dialog: keyboard focus stays inside and returns on close', asy
   await p.keyboard.up('Shift')
   assert(await inside(), 'Shift+Tab must stay inside the dialog')
   await p.keyboard.press('Escape')
+  assert(await p.evaluate(() => [...document.querySelectorAll('[role=dialog]')].every(d => !d.hasAttribute('aria-modal') && d.inert && d.getAttribute('aria-hidden') === 'true')), 'exiting dialogs must not remain modal')
+  assert(await p.evaluate(() => !document.querySelector('#dialog-background-test').inert), 'closing must restore background interactivity')
+  await p.evaluate(() => document.querySelector('#dialog-background-test').remove())
   await p.waitForSelector('[role=dialog]', { hidden: true })
   assert(await p.evaluate(() => document.activeElement.textContent.includes('Edge Functions')), 'Escape must return focus to the trigger')
   await p.keyboard.press('Enter')
