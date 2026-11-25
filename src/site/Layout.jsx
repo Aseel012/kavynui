@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import SponsorBanner from './SponsorBanner'
 import { NavLink, Link, Outlet, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import Logo from './Logo'
@@ -16,9 +17,9 @@ const GH = 'M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9
 
 // GitHub link. Until VITE_GITHUB_URL is set it renders as a disabled "coming soon" icon.
 function GitHubLink({ className = '' }) {
-  const icon = <svg viewBox="0 0 24 24" className="size-4" fill="currentColor" aria-hidden><path d={GH} /></svg>
-  if (!SITE.github) return <span title="GitHub repo coming soon" aria-label="GitHub (coming soon)" className={`grid size-9 cursor-default place-items-center rounded-lg border border-line2 bg-panel text-faint ${className}`}>{icon}</span>
-  return <ExternalLink href={SITE.github} aria-label="GitHub" className={`grid size-9 place-items-center rounded-lg border border-line2 bg-panel text-mute hover:text-tx ${className}`}>{icon}</ExternalLink>
+  const icon = <svg viewBox="0 0 24 24" className="size-4" fill="currentColor" aria-hidden><path d={GH} /></svg>;
+  if (!SITE.github) return <span title="GitHub repo coming soon" aria-label="GitHub (coming soon)" className={`grid size-9 cursor-default place-items-center rounded-lg border border-line2 bg-panel text-faint ${className}`}>{icon}</span>;
+  return <ExternalLink href={SITE.github} aria-label="GitHub" className={`grid size-9 place-items-center rounded-lg border border-line2 bg-panel text-mute hover:text-tx ${className}`}>{icon}</ExternalLink>;
 }
 
 function SearchButton({ onClick, compact }) {
@@ -54,6 +55,7 @@ export default function Layout() {
 
   return (
     <div className="flex min-h-dvh flex-col">
+      <SponsorBanner />
       {/* Solid and full width: content never shows through it, and the logo lines up with the catalog sidebar. */}
       <header className="sticky top-0 z-40 border-b border-line bg-bg">
         <div className="flex h-14 items-center gap-6 px-4 sm:px-6">

@@ -1,4 +1,6 @@
 {
   "slots": 6,
-  "sponsors": []
+  "sponsors": [
+    { "name": "Second Mind", "url": "https://secondmind.ae/", "logo": "/sponsors/secondmind.svg" }
+  ]
 }
