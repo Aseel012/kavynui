@@ -85,8 +85,8 @@ export default function Home() {
           )}
           <h1 className="max-w-4xl text-[46px] font-semibold leading-[0.98] tracking-[-0.05em] text-tx sm:text-[84px]">Build interfaces<br />people remember.</h1>
           <p className="mt-6 max-w-xl text-[17px] leading-7 text-mute sm:text-[19px] sm:leading-8">{total} animated React components and {sections} full page sections, each one a single file you own. Add anything by name with the shadcn CLI.</p>
-          <div className="mt-9 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row">
-            <Link to="/components" className="flex h-12 w-full items-center justify-center rounded-full bg-tx px-6 text-[15px] font-medium text-bg transition-transform active:scale-95 sm:w-auto">Browse components</Link>
+          <div className="mt-9 flex w-full flex-col items-center gap-3 sm:w-full lg:w-auto lg:flex-row">
+            <Link to="/components" className="flex h-12 w-full shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-tx px-6 text-[15px] font-medium text-bg transition-transform active:scale-95 lg:w-auto">Browse components</Link>
             <Command cmd="npx shadcn@latest add @kavynui/liquid-button" event="copy_install" />
           </div>
           <a href="https://ui.shadcn.com/docs/directory" target="_blank" rel="noreferrer" className="mt-5 rounded-full bg-panel px-3 py-1 text-[12px] text-mute transition-colors hover:text-tx">In the shadcn registry directory</a>
