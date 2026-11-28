@@ -8,7 +8,6 @@ import PageKit from '@/site/PageKit'
 import { CopyButton } from '@/site/CodeBlock'
 import { GRADIENTS, styleOf } from '@/data/gradients'
 import { useSEO, SITE_JSONLD } from '@/lib/seo'
-import { SITE } from '@/config'
 import Sponsors from '@/site/Sponsors'
 
 const chevron = <svg viewBox="0 0 24 24" className="size-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden><path d="m9 6 6 6-6 6" /></svg>
@@ -85,11 +84,12 @@ export default function Home() {
             </Link>
           )}
           <h1 className="max-w-4xl text-[46px] font-semibold leading-[0.98] tracking-[-0.05em] text-tx sm:text-[84px]">Build interfaces<br />people remember.</h1>
-          <p className="mt-6 max-w-xl text-[17px] leading-7 text-mute sm:text-[19px] sm:leading-8">{total} animated React components and {sections} full page sections, each one a single file you own. Register the library once, then add anything by name.</p>
+          <p className="mt-6 max-w-xl text-[17px] leading-7 text-mute sm:text-[19px] sm:leading-8">{total} animated React components and {sections} full page sections, each one a single file you own. Add anything by name with the shadcn CLI.</p>
           <div className="mt-9 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row">
             <Link to="/components" className="flex h-12 w-full items-center justify-center rounded-full bg-tx px-6 text-[15px] font-medium text-bg transition-transform active:scale-95 sm:w-auto">Browse components</Link>
-            <Command cmd={`npx shadcn@latest registry add @kavynui=${SITE.url}/r/{name}.json`} event="copy_register" />
+            <Command cmd="npx shadcn@latest add @kavynui/liquid-button" event="copy_install" />
           </div>
+          <a href="https://ui.shadcn.com/docs/directory" target="_blank" rel="noreferrer" className="mt-5 rounded-full bg-panel px-3 py-1 text-[12px] text-mute transition-colors hover:text-tx">In the shadcn registry directory</a>
         </motion.div>
       </section>
 
@@ -133,7 +133,7 @@ export default function Home() {
 
       <section className="mx-auto flex max-w-2xl flex-col items-center px-4 pb-32 pt-32 text-center sm:pb-44 sm:pt-44">
         <motion.h2 {...rise} className="text-[40px] font-semibold leading-[1] tracking-[-0.045em] text-tx sm:text-[64px]">Your agent can use it too.</motion.h2>
-        <p className="mt-4 max-w-md text-[17px] leading-7 text-mute">Once the library is registered, Claude Code, Cursor and other MCP clients can search it and install components by name.</p>
+        <p className="mt-4 max-w-md text-[17px] leading-7 text-mute">Claude Code, Cursor and other MCP clients can search kavynUI by description and install components by name.</p>
         <div className="mt-8 flex w-full justify-center"><Command cmd="npx shadcn@latest mcp init" event="copy_mcp_init" /></div>
         <div className="mt-6 flex flex-wrap justify-center gap-x-5 gap-y-2 text-[14px] text-mute">
           <a href="/llms.txt" className="hover:text-tx">llms.txt</a>

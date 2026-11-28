@@ -61,11 +61,15 @@ export const DOCS = [
       <H2 id="next">Next steps</H2>
       <P>Set up a project in <L to="/docs/installation">Installation</L>, then add the tokens from <L to="/docs/theming">Theming</L>.</P>
     </>) },
-    { id: 'installation', title: 'Installation', lead: 'React 18+, Tailwind CSS v4 and Motion. That is all.', toc: [['new', 'New project'], ['existing', 'Existing project'], ['next', 'Next.js']], body: () => (<>
+    { id: 'installation', title: 'Installation', lead: 'React 18+, Tailwind CSS v4 and Motion. That is all.', toc: [['new', 'New project'], ['directory', 'shadcn directory'], ['existing', 'Existing project'], ['next', 'Next.js']], body: () => (<>
       <H2 id="new">New project</H2>
       <Steps items={[['Create the app', 'Use Vite with the React template.'], ['Install dependencies', 'Motion for animation, Tailwind for styles.'], ['Add the Tailwind plugin', 'One line in vite.config.js.'], ['Add the theme tokens', 'Paste them into your main CSS file.']]} />
       <Code title="terminal" code={`npm create vite@latest my-app -- --template react\ncd my-app\nnpm i motion tailwindcss @tailwindcss/vite`} />
       <Code title="vite.config.js" code={`import { defineConfig } from 'vite'\nimport react from '@vitejs/plugin-react'\nimport tailwindcss from '@tailwindcss/vite'\nimport { fileURLToPath } from 'node:url'\n\nexport default defineConfig({\n  plugins: [react(), tailwindcss()],\n  resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },\n})`} />
+      <H2 id="directory">Install from the shadcn directory</H2>
+      <P>kavynUI is listed in the official shadcn registry directory, so the CLI finds it by name. In a shadcn-initialized project, run this command with any component name:</P>
+      <Code title="terminal" code={`npx shadcn@latest add @kavynui/liquid-button`} />
+      <P>No <C>registry add</C> step is needed. The URL form <C>npx shadcn@latest add https://kavynui.com/r/liquid-button.json</C> remains available as a fallback.</P>
       <H2 id="existing">Existing project</H2>
       <P>Already on Tailwind v4? Install <C>motion</C>, add the tokens, and start copying components into <C>src/components/kavyn/</C>. Keep the file names as shown on each page, because some components import each other (for example the maps share <C>world-dots.js</C>).</P>
       <H2 id="next">Next.js</H2>
