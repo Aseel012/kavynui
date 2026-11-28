@@ -14,7 +14,7 @@
 <p align="center"><img src=".github/hero.webp" alt="Six kavynUI shader backgrounds playing: Horizon, Silk, Light Rays, Liquid Chrome, Strands and Warp" width="720"></p>
 
 ```bash
-npx shadcn@latest add https://kavynui.com/r/liquid-button.json
+npx shadcn@latest add @kavynui/liquid-button
 ```
 
 That command copies one `.jsx` file into your project, adds `motion` if you don't have it, and writes the theme tokens into your CSS. There is no `kavynui` package in your `node_modules` afterwards, and nothing to upgrade. The file is yours to edit.
@@ -31,19 +31,15 @@ Each component is also built for a job, not a mood. The catalog doesn't file `ho
 
 You need React and a Tailwind v4 project with shadcn initialized (`npx shadcn@latest init`).
 
-**1. Register the library once**
-
-```bash
-npx shadcn@latest registry add @kavynui=https://kavynui.com/r/{name}.json
-```
-
-**2. Install by name**
+**1. Install by name** (kavynUI is in the [official shadcn registry directory](https://ui.shadcn.com/docs/directory), so no setup step is needed)
 
 ```bash
 npx shadcn@latest add @kavynui/hold-to-confirm
 ```
 
-**3. Import the default export**
+Fallback by URL: `npx shadcn@latest add https://kavynui.com/r/hold-to-confirm.json`
+
+**2. Import the default export**
 
 ```jsx
 import HoldToConfirm from '@/components/kavyn/hold-to-confirm'
@@ -151,7 +147,7 @@ The registry is discoverable by tools, not only by people:
 npx shadcn@latest mcp init
 ```
 
-With the registry added, shadcn's MCP server lets Claude Code, Cursor and similar agents search kavynUI by description (`npx shadcn@latest search @kavynui -q "profile photo"`) and install what they find.
+With shadcn's MCP server set up, Claude Code, Cursor and similar agents can search kavynUI by description (`npx shadcn@latest search @kavynui -q "profile photo"`) and install what they find.
 
 | Endpoint | What it is |
 | --- | --- |
